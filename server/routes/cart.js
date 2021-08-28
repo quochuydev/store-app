@@ -26,7 +26,7 @@ router.get("/api/cart", async (req, res) => {
   res.json(cart);
 });
 
-const increase = ({ items, product, quantity = 1 }) => {
+const increase = (items, product, quantity) => {
   const foundItem = items.find((e) => e.productId === String(product._id));
 
   if (!foundItem) {
@@ -45,7 +45,7 @@ const increase = ({ items, product, quantity = 1 }) => {
 
   return items.map((item) => {
     if (String(item.productId) === String(product._id)) {
-      const updated_quantity = Number(item.quantity) + Number(quantity);
+      const updated_quantity = item.quantity + quantity;
       const updated_amount = updated_quantity * item.price;
 
       return {
@@ -65,7 +65,7 @@ router.post("/api/cart/add", async (req, res) => {
   const cart = await cartAssetCreate(token);
 
   const product = await productModel.findOne({ _id: id }).lean(true);
-  const items = increase({ items: [...cart.items], product, quantity });
+  const items = increase([...cart.items], product, Number(quantity));
   const total_price = _.sumBy(items, "amount");
   const item_count = _.sumBy(items, "quantity");
 
