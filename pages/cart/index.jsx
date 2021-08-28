@@ -1,4 +1,5 @@
 import axios from "axios";
+import Image from "next/image";
 
 import styles from "./style.module.css";
 import useCart from "../../hooks/useCart";
@@ -29,7 +30,7 @@ function CartComponent({ cart }) {
             <tr key={i}>
               <td>
                 <div className={styles.cartInfo}>
-                  <img src={e.image} alt={e.title} />
+                  <Image src={e.image} alt={e.title} />
                   <div>
                     <p>{e.title}</p>
                     <span>Price: ${e.price}</span>
