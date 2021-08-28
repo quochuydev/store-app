@@ -10,6 +10,11 @@ const productSchema = new mongoose.Schema({
   created_at: { type: Date, default: Date.now },
 });
 
+productSchema.post("save", async function (user, next) {
+  console.log("Event user:updated published", user._id);
+  next();
+});
+
 const productModel = mongoose.model("Product", productSchema);
 
 module.exports = { productModel };
