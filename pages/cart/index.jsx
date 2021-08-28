@@ -1,20 +1,18 @@
-import axios from "axios";
-
 import styles from "./style.module.css";
 import useCart from "../../hooks/useCart";
 import Layout from "../../components/Layout";
 
-export default function ProductDetail() {
+export default function Cart() {
+  const [cart] = useCart();
+
   return (
-    <Layout>
-      <ProductDetailOne />
+    <Layout {...{ cart }}>
+      <CartComponent {...{ cart }} />
     </Layout>
   );
 }
 
-function ProductDetailOne() {
-  const [cart] = useCart();
-
+function CartComponent({ cart }) {
   return (
     <div className={styles.cart}>
       <table className={styles.table}>

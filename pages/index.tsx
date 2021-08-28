@@ -8,6 +8,7 @@ import Products from "../components/Products";
 import Deal from "../components/Deal";
 import Contact from "../components/Contact";
 import Newsletter from "../components/Newsletter";
+import useCart from "../hooks/useCart";
 
 export async function getServerSideProps() {
   const result: any = await axios.get(
@@ -22,12 +23,14 @@ export async function getServerSideProps() {
 }
 
 export default function Index({ products }: any) {
+  const [cart] = useCart();
+
   return (
-    <Layout>
+    <Layout {...{ cart }}>
       <Home />
       <Banner />
       <Category />
-      <Products products={products} />
+      <Products {...{ products }} />
       <Deal />
       <Contact />
       <Newsletter />

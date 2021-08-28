@@ -3,11 +3,8 @@ import axios from "axios";
 
 import Menu from "./Menu";
 import SearchBox from "./SearchBox";
-import useCart from "../hooks/useCart";
 
-export default function Header() {
-  const [cart] = useCart();
-
+export default function Header({ cart }) {
   return (
     <header>
       <div className="header-1">
