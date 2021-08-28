@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/google-font-display */
+/* eslint-disable @next/next/no-css-tags */
 /* eslint-disable @next/next/no-sync-scripts */
 import Document, { NextScript, Head, Main, Html } from "next/document";
 import config from "../utils/config";
@@ -21,16 +23,6 @@ export default class MyDocument extends Document {
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
-          />
-          <link
-            rel="stylesheet"
-            type="text/css"
-            href="vendor/riode-fonts/riode-fonts.css"
-          />
-          <link
-            rel="stylesheet"
-            type="text/css"
-            href="vendor/owl-carousel/owl.carousel.min.css"
           />
           <link
             rel="stylesheet"
