@@ -7,59 +7,88 @@ import useCart from "../../hooks/useCart";
 import Layout from "../../components/Layout";
 
 export default function Cart() {
-  const [cart] = useCart();
+  const [cart, fetchCart] = useCart();
 
   return (
     <Layout {...{ cart }}>
-      <CartComponent {...{ cart }} />
+      <CartComponent {...{ cart, fetchCart }} />
     </Layout>
   );
 }
 
-const CartItem = ({ cart, item }) => {
-  return (
-    <tr>
-      <td>
-        <div className={styles.cartInfo}>
-          <img src={item.image} alt={item.title} />
-          <div>
-            <p>{item.title}</p>
-            <span>Price: ${item.price}</span>
-            <br />
-            <a
+function CartComponent({ cart, fetchCart }) {
+  const CartItem = ({ item }) => {
+    return (
+      <tr>
+        <td>
+          <div className={styles.cartInfo}>
+            <img src={item.image} alt={item.title} />
+            <div>
+              <p>{item.title}</p>
+              <span>Price: ${item.price}</span>
+              <br />
+              <a
+                onClick={async () => {
+                  await axios.post(
+                    `${process.env.SERVER_URL}/api/cart/remove/${item.productId}`
+                  );
+                  fetchCart();
+                  alert("success");
+                }}
+              >
+                remove
+              </a>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div className={styles.qtyClick}>
+            <button
+              type="button"
+              className={styles.qtyBtn}
               onClick={async () => {
-                await axios.post(
-                  `${process.env.SERVER_URL}/api/cart/remove/${item.productId}`
-                );
-                alert("success");
+                await axios.post(`${process.env.SERVER_URL}/api/cart/update`, {
+                  line_items: cart.items.map((e) =>
+                    e.productId === item.productId
+                      ? { productId: e.productId, quantity: -1 }
+                      : { productId: e.productId, quantity: 0 }
+                  ),
+                  note: "test",
+                });
+                fetchCart();
               }}
             >
-              remove
-            </a>
+              -
+            </button>
+            <input
+              type="text"
+              value={item.quantity}
+              className={styles.itemQuantity}
+            />
+            <button
+              type="button"
+              className={styles.qtyBtn}
+              onClick={async () => {
+                await axios.post(`${process.env.SERVER_URL}/api/cart/update`, {
+                  line_items: cart.items.map((e) =>
+                    e.productId === item.productId
+                      ? { productId: e.productId, quantity: 1 }
+                      : { productId: e.productId, quantity: 0 }
+                  ),
+                  note: "test",
+                });
+                fetchCart();
+              }}
+            >
+              +
+            </button>
           </div>
-        </div>
-      </td>
-      <td>
-        <div className={styles.qtyClick}>
-          <button type="button" className={styles.qtyBtn}>
-            -
-          </button>
-          <input
-            type="text"
-            value={item.quantity}
-            className={styles.itemQuantity}
-          />
-          <button type="button" className={styles.qtyBtn}>
-            +
-          </button>
-        </div>
-      </td>
-      <td>${item.amount}</td>
-    </tr>
-  );
-};
+        </td>
+        <td>${item.amount}</td>
+      </tr>
+    );
+  };
 
-function CartComponent({ cart }) {
   return (
     <div className={styles.cart}>
       <table className={styles.table}>
