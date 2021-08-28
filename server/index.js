@@ -33,7 +33,6 @@ app.prepare().then(() => {
     const token = req.cookies.token;
     if (token === undefined) {
       res.cookie("token", uuidv4(), { maxAge: 900000, httpOnly: true });
-      console.log("cookie created successfully");
     }
     next();
   });

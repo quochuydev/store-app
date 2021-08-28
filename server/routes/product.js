@@ -10,7 +10,11 @@ router.get("/api/products", async (req, res) => {
   const page = req.query.page ? Number(req.query.page) : 1;
   const skip = limit * (page - 1);
 
-  const items = await productModel.find({}).limit(limit).skip(skip);
+  const items = await productModel
+    .find({})
+    .sort({ created_at: -1 })
+    .limit(limit)
+    .skip(skip);
   res.send({ items });
 });
 
@@ -18,9 +22,7 @@ router.post("/api/products", async (req, res) => {
   const data = {
     title: "test " + String(Math.random() * 1000),
     price: Math.random() * 1000,
-    image:
-      req.body.image ||
-      "http://localhost:3000/files/1630083176261-giveaway-template.jpg",
+    image: req.body.image,
   };
 
   const product = await productModel.create(data);
@@ -31,9 +33,7 @@ router.put("/api/products/:id", async (req, res) => {
   const data = {
     title: "test " + String(Math.random() * 1000),
     price: Math.random() * 1000,
-    image:
-      req.body.image ||
-      "http://localhost:3000/files/1630083176261-giveaway-template.jpg",
+    image: req.body.image,
   };
 
   const product = await productModel.findByIdAndUpdate(
@@ -44,6 +44,7 @@ router.put("/api/products/:id", async (req, res) => {
       lean: true,
     }
   );
+
   res.json(product);
 });
 

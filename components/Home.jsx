@@ -5,6 +5,7 @@ import Product from "./Product";
 
 export default function Home({ products }){
   const [cart, setCart] = useState({})
+  const [image, setImage] = useState(null)
 
   // useEffect(() => {
   //   axios.get(process.env.SERVER_URL + "/cart")
@@ -72,6 +73,31 @@ export default function Home({ products }){
     {/* banner section ends */}
     {/* category section starts  */}
     <section className="category" id="category">
+      <button onClick={async ()=> {
+          await axios.post(process.env.SERVER_URL + "/api/products", {
+            image
+          });
+          alert('success')
+      }}>create product</button>
+
+      <input type="file" accept="image/*" onChange={async e => {
+        try {
+          const file = event.target?.files[0];
+          console.log(file);
+          var bodyFormData = new FormData();
+          bodyFormData.append('files', file);
+
+          const result = await axios({
+            method: 'post',
+            url: process.env.SERVER_URL + "/api/files",
+            headers: { "Content-Type": "multipart/form-data" },
+            data: bodyFormData
+          });
+          setImage(result?.data?.url);
+        } catch (error) {
+          //
+        }
+      }}/>
       <h1 className="heading">shop by <span>category</span></h1>
       <div className="box-container">
         <div className="box">
@@ -150,9 +176,6 @@ export default function Home({ products }){
         </div>
         <textarea placeholder="message" cols={30} rows={10} defaultValue={""} />
         <input type="submit" defaultValue="send message" className="btn" />
-        <button onClick={()=> {
-           axios.post(process.env.SERVER_URL + "/api/products");
-        }}>create product</button>
       </form>
     </section>
     {/* contact section ends */}
