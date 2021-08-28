@@ -145,13 +145,14 @@ section {
   color: #fff;
 }
 
-.header-2 .icons a {
+.header-2 .icons .link {
   font-size: 2.5rem;
   color: var(--black);
   padding-left: 1rem;
+  cursor: pointer;
 }
 
-.header-2 .icons a:hover {
+.header-2 .icons .link:hover {
   color: var(--green);
 }
 

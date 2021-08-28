@@ -1,5 +1,7 @@
+/* eslint-disable @next/next/link-passhref */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Link from "next/link";
 
 import Menu from "./Menu";
 import SearchBox from "./SearchBox";
@@ -24,11 +26,11 @@ export default function Header({ cart }) {
         <div id="menu-bar" className="fas fa-bars" />
         <Menu />
         <div className="icons">
-          <a href="/cart" className="fas fa-shopping-cart">
-            <span>{cart.item_count}</span>
-          </a>
-          {/* <a href="#" className="fas fa-heart" />
-        <a href="#" className="fas fa-user-circle" /> */}
+          <Link href="/cart">
+            <span className="link">
+              <i className="fas fa-shopping-cart" /> {cart.item_count}
+            </span>
+          </Link>
         </div>
       </div>
     </header>
