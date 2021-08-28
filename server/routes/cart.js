@@ -1,5 +1,5 @@
 const express = require("express");
-const lodash = require("lodash");
+const _ = require("lodash");
 
 const router = express.Router();
 
