@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import styles from "../styles/Home.module.css";
-import Home from "../components/Home";
+import Layout from "../components/Layout";
 
 export async function getServerSideProps() {
   const result: any = await axios.get(
@@ -19,7 +19,7 @@ export default function Index({ products }: any) {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <Home products={products} />
+        <Layout products={products} />
       </main>
 
       <footer className={styles.footer}>
