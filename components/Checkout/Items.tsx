@@ -18,9 +18,7 @@ export default function Items(props: any) {
             <span className="text-muted">${item.amount}</span>
           </li>
         ))}
-
         {/* <PromoCode /> */}
-
         <li className="list-group-item d-flex justify-content-between">
           <span>Total (USD)</span>
           <strong>${cart.total_price}</strong>

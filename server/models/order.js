@@ -2,16 +2,28 @@ const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
   customer: {
-    first_name: String,
-    phone_number: String,
+    firstName: String,
+    phoneNumber: String,
     email: String,
     address: String,
     lng: Number,
     lat: Number,
   },
   amount: Number,
-  line_items: [],
-  created_at: { type: Date, default: Date.now },
+  line_items: {
+    type: [
+      {
+        productId: String,
+        title: String,
+        image: String,
+        quantity: { type: Number, default: 0 },
+        price: { type: Number, default: 0 },
+        amount: { type: Number, default: 0 },
+      },
+    ],
+    default: [],
+  },
+  createdAt: { type: Date, default: Date.now },
 });
 
 const orderModel = mongoose.model("Order", orderSchema);

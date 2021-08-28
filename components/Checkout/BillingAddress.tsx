@@ -1,4 +1,6 @@
-export default function BillingAddress() {
+export default function BillingAddress(props: any) {
+  const { onData } = props;
+
   return (
     <div>
       <div className="row g-3">
@@ -6,7 +8,13 @@ export default function BillingAddress() {
           <label htmlFor="firstName" className="form-label">
             First name
           </label>
-          <input type="text" className="form-control" id="firstName" required />
+          <input
+            type="text"
+            className="form-control"
+            id="firstName"
+            required
+            onChange={(e) => onData("firstName", e.target.value)}
+          />
           <div className="invalid-feedback">Valid first name is required.</div>
         </div>
         {/* <LastnameComponent /> */}
@@ -21,6 +29,7 @@ export default function BillingAddress() {
             id="phone"
             placeholder="0382000638"
             required
+            onChange={(e) => onData("phoneNumber", e.target.value)}
           />
           <div className="invalid-feedback">Please enter a valid phone.</div>
         </div>
@@ -33,6 +42,7 @@ export default function BillingAddress() {
             className="form-control"
             id="email"
             placeholder="you@example.com"
+            onChange={(e) => onData("email", e.target.value)}
           />
           <div className="invalid-feedback">
             Please enter a valid email address for shipping updates.
@@ -48,6 +58,7 @@ export default function BillingAddress() {
             id="address"
             placeholder="1234 Main St"
             required
+            onChange={(e) => onData("address", e.target.value)}
           />
           <div className="invalid-feedback">
             Please enter your shipping address.

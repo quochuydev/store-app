@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
+import axios from "axios";
 
 import styles from "./style.module.css";
 import useCart from "../../hooks/useCart";
@@ -10,9 +11,33 @@ import Items from "../../components/Checkout/Items";
 
 export default function Checkout() {
   const [cart, fetchCart] = useCart();
-  const [order, setOrder] = useState({
-    line_items: [],
+
+  const [customer, setCustomer] = useState({
+    firstName: "",
+    phoneNumber: "",
+    email: "",
+    address: "",
   });
+
+  const onData = (name, value) => {
+    setCustomer({ ...customer, [name]: value });
+  };
+
+  const createOrder = async () => {
+    const data = {
+      customer,
+      line_items: cart.items,
+      amount: cart.total_price,
+    };
+
+    console.log(data);
+
+    const result = await axios.post(
+      process.env.SERVER_URL + "/api/orders",
+      data
+    );
+    console.log(result?.data);
+  };
 
   return (
     <div className={styles.container}>
@@ -26,12 +51,12 @@ export default function Checkout() {
               </span>
             </h4>
             <Items {...{ cart }} />
-            <PromoCodeInput />
+            {/* <PromoCodeInput /> */}
           </div>
           <div className="col-md-7 col-lg-8">
             <h4 className="mb-3">Billing address</h4>
             <form className="needs-validation was-validated" noValidate>
-              <BillingAddress />
+              <BillingAddress {...{ onData }} />
               <div className="form-check">
                 <input
                   type="checkbox"
@@ -46,8 +71,14 @@ export default function Checkout() {
               </div>
               {/* <Payment /> */}
               <hr className="my-4" />
-              <button className="w-100 btn btn-primary btn-lg" type="submit">
-                Continue to checkout
+              <button
+                className="w-100 btn btn-primary btn-lg"
+                onClick={(e) => {
+                  e.preventDefault();
+                  createOrder();
+                }}
+              >
+                Done
               </button>
             </form>
           </div>
