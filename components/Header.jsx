@@ -4,14 +4,20 @@ import axios from "axios";
 import Menu from "./Menu";
 import SearchBox from "./SearchBox";
 
+function Icon() {
+  return (
+    <a href="#" className="logo">
+      <i className="fas fa-shopping-basket" />
+      groco
+    </a>
+  );
+}
+
 export default function Header({ cart }) {
   return (
     <header>
       <div className="header-1">
-        <a href="#" className="logo">
-          <i className="fas fa-shopping-basket" />
-          groco
-        </a>
+        <Icon />
         <SearchBox />
       </div>
       <div className="header-2">

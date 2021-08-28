@@ -24,13 +24,14 @@ export async function getServerSideProps() {
 
 export default function Index({ products }: any) {
   const [cart] = useCart();
+  const afterAddToCart = () => {};
 
   return (
     <Layout {...{ cart }}>
       <Home />
       <Banner />
       <Category />
-      <Products {...{ products }} />
+      <Products {...{ products, afterAddToCart }} />
       <Deal />
       <Contact />
       <Newsletter />
