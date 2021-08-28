@@ -1,4 +1,5 @@
 const express = require("express");
+const lodash = require("lodash");
 
 const router = express.Router();
 
@@ -53,9 +54,12 @@ router.post("/cart/add", async (req, res) => {
     });
   }
 
+  const total_price = _.sumBy(items, "amount");
+  const item_count = _.sumBy(items, "quantity");
+
   const updated = await cartModel.findOneAndUpdate(
     { _id: cart._id },
-    { $set: { items } },
+    { $set: { items, item_count, total_price } },
     { new: true, lean: true }
   );
   res.json(updated);
