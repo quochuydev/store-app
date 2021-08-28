@@ -3,8 +3,6 @@ const express = require("express");
 const router = express.Router();
 const { productModel } = require("../models/product");
 
-const server = process.env.SERVER_URL;
-
 router.get("/api/products", async (req, res) => {
   const limit = req.query.limit ? Number(req.query.limit) : 20;
   const page = req.query.page ? Number(req.query.page) : 1;
@@ -19,10 +17,14 @@ router.get("/api/products", async (req, res) => {
 });
 
 router.post("/api/products", async (req, res) => {
+  const title = "test " + String(Math.floor(Math.random() * 1000));
+
   const data = {
-    title: "test " + String(Math.random() * 1000),
-    price: Math.random() * 1000,
-    image: req.body.image,
+    title,
+    price: Math.floor(Math.random() * 1000),
+    image:
+      req.body.image ||
+      "https://ui-avatars.com/api/?name=" + title + "&size=600",
   };
 
   const product = await productModel.create(data);
@@ -30,10 +32,13 @@ router.post("/api/products", async (req, res) => {
 });
 
 router.put("/api/products/:id", async (req, res) => {
+  const title = "test " + String(Math.floor(Math.random() * 1000));
   const data = {
-    title: "test " + String(Math.random() * 1000),
-    price: Math.random() * 1000,
-    image: req.body.image,
+    title,
+    price: Math.floor(Math.random() * 1000),
+    image:
+      req.body.image ||
+      "https://ui-avatars.com/api/?name=" + title + "&size=600",
   };
 
   const product = await productModel.findByIdAndUpdate(
