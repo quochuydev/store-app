@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 
 import styles from "./style.module.css";
 import useCart from "../../hooks/useCart";
@@ -117,9 +118,9 @@ function CartComponent({ cart, fetchCart }) {
           </tbody>
         </table>
 
-        <a href="#" className={styles.checkout}>
-          Proceed To Checkout
-        </a>
+        <Link href="/checkout">
+          <a className={styles.checkout}>Proceed To Checkout</a>
+        </Link>
       </div>
     </div>
   );

@@ -1,0 +1,10 @@
+.btn {
+  display: inline-block;
+  margin-top: 1rem;
+  background: var(--green);
+  color: #fff;
+  padding: 0.8rem 3rem;
+  font-size: 1.7rem;
+  text-align: center;
+  cursor: pointer;
+}

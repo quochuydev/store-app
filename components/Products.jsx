@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import useCard from "../hooks/useCart";
+import styles from "./style.module.css";
 
 export default function Products({ products, afterAddToCart }) {
   return (
@@ -63,7 +63,7 @@ function Product({ product, afterAddToCart }) {
         />
       </div>
       <a
-        className="btn"
+        className={styles.btn}
         onClick={async () => {
           await axios.post(process.env.SERVER_URL + "/api/cart/add", {
             quantity,
