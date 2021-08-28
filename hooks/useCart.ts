@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function useCart() {
+export default function useCart(): any {
   const [cart, setCart] = useState({
     items: [],
   });
