@@ -61,7 +61,7 @@ function CartComponent({ cart, fetchCart }) {
             </button>
             <input
               type="text"
-              value={item.quantity}
+              defaultValue={item.quantity}
               className={styles.itemQuantity}
             />
             <button
