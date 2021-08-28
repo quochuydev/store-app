@@ -26,18 +26,17 @@ router.get("/api/cart", async (req, res) => {
   res.json(cart);
 });
 
-const increase = (items, product, quantity) => {
+const increase = (items = [], product, quantity = 0) => {
   const foundItem = items.find((e) => e.productId === String(product._id));
 
   if (!foundItem) {
-    const amount = quantity * product.price;
     items.push({
       productId: product._id,
       title: product.title,
       image: product.image,
       price: product.price,
       quantity,
-      amount,
+      amount: quantity * product.price,
     });
 
     return items;
