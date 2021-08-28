@@ -34,10 +34,21 @@ function CountDown() {
   let m = Math.floor((gap % hour) / minute);
   let s = Math.floor((gap % minute) / second);
 
-  document.getElementById("day").innerText = d;
-  document.getElementById("hour").innerText = h;
-  document.getElementById("minute").innerText = m;
-  document.getElementById("second").innerText = s;
+  if (document.getElementById("day")) {
+    document.getElementById("day").innerText = d;
+  }
+
+  if (document.getElementById("hour")) {
+    document.getElementById("hour").innerText = h;
+  }
+
+  if (document.getElementById("minute")) {
+    document.getElementById("minute").innerText = m;
+  }
+
+  if (document.getElementById("second")) {
+    document.getElementById("second").innerText = s;
+  }
 }
 
 setInterval(function () {

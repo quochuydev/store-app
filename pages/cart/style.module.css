@@ -1,11 +1,8 @@
-.container {
+.cart {
   max-width: 114rem;
   margin: 0 auto;
-  font-size: 3rem;
-}
-
-.cart {
-  margin: 20rem auto;
+  font-size: 2rem;
+  margin: 2rem auto;
 }
 
 .table {

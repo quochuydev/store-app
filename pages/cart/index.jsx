@@ -1,15 +1,22 @@
+import axios from "axios";
+
 import styles from "./style.module.css";
 import useCart from "../../hooks/useCart";
-import useProduct from "../../hooks/useProduct";
+import Layout from "../../components/Layout";
 
-export default function ProductDetailOne() {
+export default function ProductDetail() {
+  return (
+    <Layout>
+      <ProductDetailOne />
+    </Layout>
+  );
+}
+
+function ProductDetailOne() {
   const [cart] = useCart();
-  const [products] = useProduct({});
 
   return (
-    <div className={[styles.container, styles.cart]}>
-      <p>{cart.item_count}</p>
-
+    <div className={styles.cart}>
       <table className={styles.table}>
         <tbody>
           <tr>
@@ -42,6 +49,10 @@ export default function ProductDetailOne() {
       <div className={styles.totalPrice}>
         <table className={styles.table}>
           <tbody>
+            <tr>
+              <td>Item count</td>
+              <td>{cart.item_count}</td>
+            </tr>
             <tr>
               <td>Subtotal</td>
               <td>${cart.total_price}</td>

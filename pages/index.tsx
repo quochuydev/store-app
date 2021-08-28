@@ -1,6 +1,13 @@
 import axios from "axios";
 
 import Layout from "../components/Layout";
+import Home from "../components/Home";
+import Banner from "../components/Banner";
+import Category from "../components/Category";
+import Products from "../components/Products";
+import Deal from "../components/Deal";
+import Contact from "../components/Contact";
+import Newsletter from "../components/Newsletter";
 
 export async function getServerSideProps() {
   const result: any = await axios.get(
@@ -15,5 +22,15 @@ export async function getServerSideProps() {
 }
 
 export default function Index({ products }: any) {
-  return <Layout products={products} />;
+  return (
+    <Layout>
+      <Home />
+      <Banner />
+      <Category />
+      <Products products={products} />
+      <Deal />
+      <Contact />
+      <Newsletter />
+    </Layout>
+  );
 }
