@@ -26,9 +26,9 @@ router.get("/cart", async (req, res) => {
 });
 
 const increase = ({ items = [], product, quantity = 1 }) => {
-  const found = items.find((e) => e.productId === product._id);
+  const foundItem = items.find((e) => e.productId === product._id);
 
-  if (!found) {
+  if (!foundItem) {
     items.push({
       productId: product._id,
       title: product.title,
