@@ -76,6 +76,20 @@ router.post("/api/cart/add", async (req, res) => {
   res.json(updated);
 });
 
+router.post("/api/cart/update", async (req, res) => {
+  const token = req.cookies.token;
+  const cart = await cartAssetCreate(token);
+
+  const { note } = req.body;
+
+  const updated = await cartModel.findOneAndUpdate(
+    { _id: cart._id },
+    { $set: { note } },
+    { new: true, lean: true }
+  );
+  res.json(updated);
+});
+
 router.post("/api/cart/update/:productId", async (req, res) => {
   const token = req.cookies.token;
   const cart = await cartAssetCreate(token);
@@ -90,7 +104,7 @@ router.post("/api/cart/update/:productId", async (req, res) => {
 
   const updated = await cartModel.findOneAndUpdate(
     { _id: cart._id },
-    { $set: { items, item_count, total_price, note } },
+    { $set: { items, item_count, total_price } },
     { new: true, lean: true }
   );
   res.json(updated);
