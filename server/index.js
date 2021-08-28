@@ -34,7 +34,7 @@ app.prepare().then(() => {
   server.use(function (req, res, next) {
     const token = req.cookies.token;
     if (token === undefined) {
-      res.cookie("token", uuidv4(), { maxAge: 900000, httpOnly: true });
+      res.cookie("token", uuidv4(), { maxAge: 9000000, httpOnly: true });
     }
     next();
   });

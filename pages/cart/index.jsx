@@ -50,7 +50,19 @@ function CartComponent({ cart }) {
                 </div>
               </td>
               <td>
-                <input type="number" value={e.quantity} min={1} />
+                <div className={styles.qtyClick}>
+                  <button type="button" className={styles.qtyBtn}>
+                    -
+                  </button>
+                  <input
+                    type="text"
+                    value={e.quantity}
+                    className={styles.itemQuantity}
+                  />
+                  <button type="button" className={styles.qtyBtn}>
+                    +
+                  </button>
+                </div>
               </td>
               <td>${e.amount}</td>
             </tr>

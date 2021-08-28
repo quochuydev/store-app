@@ -78,6 +78,38 @@
   text-align: right;
 }
 
+.qtyClick {
+  float: left;
+}
+
+.itemQuantity {
+  background: #fff;
+  font-weight: 500;
+  font-size: 15px;
+  height: 25px;
+  padding: 0;
+  text-align: center;
+  width: 35px;
+  border: 1px solid #f3f4f4;
+  border-radius: 0;
+  float: left;
+}
+
+.qtyBtn {
+  /* background: #fff; */
+  font-weight: 500;
+  font-size: 14px;
+  height: 25px;
+  padding: 0;
+  text-align: center;
+  width: 25px;
+  border: 1px solid #f3f4f4;
+  border-radius: 0;
+  float: left;
+  -webkit-appearance: none;
+  background: #f3f4f4;
+}
+
 @media (max-width: 567px) {
   .cartInfo p {
     display: none;
