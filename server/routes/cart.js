@@ -82,7 +82,8 @@ router.post("/api/cart/update/:productId", async (req, res) => {
 
   const { quantity } = req.body;
   const { productId } = req.params;
-  const items = await increase([...cart.items], productId, Number(quantity));
+  let items = await increase([...cart.items], productId, Number(quantity));
+  items = items.filter((e) => e.quantity >= 1);
 
   const total_price = _.sumBy(items, "amount");
   const item_count = _.sumBy(items, "quantity");
