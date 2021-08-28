@@ -17,11 +17,13 @@ router.get("/api/products", async (req, res) => {
 });
 
 router.post("/api/products", async (req, res) => {
-  const title = "test " + String(Math.floor(Math.random() * 1000));
+  const title =
+    req.body.title || "test " + String(Math.floor(Math.random() * 1000));
 
   const data = {
     title,
-    price: Math.floor(Math.random() * 1000),
+    price: req.body.price || Math.floor(Math.random() * 1000),
+    original_price: req.body.original_price || Math.floor(Math.random() * 1000),
     image:
       req.body.image ||
       "https://ui-avatars.com/api/?name=" + title + "&size=600",
@@ -32,10 +34,13 @@ router.post("/api/products", async (req, res) => {
 });
 
 router.put("/api/products/:id", async (req, res) => {
-  const title = "test " + String(Math.floor(Math.random() * 1000));
+  const title =
+    req.body.title || "test " + String(Math.floor(Math.random() * 1000));
+
   const data = {
     title,
-    price: Math.floor(Math.random() * 1000),
+    price: req.body.price || Math.floor(Math.random() * 1000),
+    original_price: req.body.original_price || Math.floor(Math.random() * 1000),
     image:
       req.body.image ||
       "https://ui-avatars.com/api/?name=" + title + "&size=600",
@@ -44,10 +49,7 @@ router.put("/api/products/:id", async (req, res) => {
   const product = await productModel.findByIdAndUpdate(
     req.params.id,
     { $set: data },
-    {
-      new: true,
-      lean: true,
-    }
+    { new: true, lean: true }
   );
 
   res.json(product);
