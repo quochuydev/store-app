@@ -12,7 +12,7 @@ export default function Items(props: any) {
             <div>
               <small className="text-muted">{item.title}</small>
               <h6 className="my-0">
-                {item.price} x {item.quantity}
+                ${item.price} x {item.quantity}
               </h6>
             </div>
             <span className="text-muted">${item.amount}</span>

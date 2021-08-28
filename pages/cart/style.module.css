@@ -23,7 +23,7 @@
   text-align: left;
   padding: 0.5rem;
   color: var(--white);
-  background-color: var(--primary);
+  background-color: var(--green);
   font-weight: normal;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .table td a {
-  color: var(--primary);
+  color: var(--green);
 }
 
 .table td img {
@@ -57,7 +57,7 @@
 
 .totalPrice a {
   display: inline-block;
-  background-color: var(--primary);
+  background-color: var(--green);
   color: var(--white);
   padding: 0.7rem 1.6rem;
   font-weight: 700;
@@ -65,7 +65,7 @@
 }
 
 .totalPrice table {
-  border-top: 3px solid var(--primary);
+  border-top: 3px solid var(--green);
   width: 100%;
   max-width: 35rem;
 }
