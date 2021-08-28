@@ -25,18 +25,12 @@ router.get("/cart", async (req, res) => {
   res.json(cart);
 });
 
-router.post("/cart/add", async (req, res) => {
-  const { quantity, id } = req.body;
-  const token = req.cookies.token;
-  const cart = await cartAssetCreate(token);
+const increase = ({ items = [], product, quantity = 1 }) => {
+  const found = items.find((e) => e.productId === product._id);
 
-  const product = await productModel.findOne({ _id: id }).lean(true);
-
-  let items = [...cart.items];
-  const found = items.find((e) => e.productId === id);
   if (found) {
     items = items.map((e) =>
-      e.productId === id
+      e.productId === product._id
         ? {
             ...e,
             quantity: e.quantity + quantity,
@@ -54,6 +48,16 @@ router.post("/cart/add", async (req, res) => {
     });
   }
 
+  return items;
+};
+
+router.post("/cart/add", async (req, res) => {
+  const { quantity, id } = req.body;
+  const token = req.cookies.token;
+  const cart = await cartAssetCreate(token);
+
+  const product = await productModel.findOne({ _id: id }).lean(true);
+  const items = increase({ items: [...cart.items], product, quantity });
   const total_price = _.sumBy(items, "amount");
   const item_count = _.sumBy(items, "quantity");
 
