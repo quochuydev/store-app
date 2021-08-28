@@ -15,6 +15,7 @@ const handle = app.getRequestHandler();
 const { fileRoute } = require("./routes/file");
 const { cartRoute } = require("./routes/cart");
 const { productRoute } = require("./routes/product");
+const { orderRoute } = require("./routes/order");
 
 mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
@@ -40,6 +41,7 @@ app.prepare().then(() => {
   server.use(fileRoute);
   server.use(cartRoute);
   server.use(productRoute);
+  server.use(orderRoute);
 
   server.use((err, req, res, next) => {
     if (err) {

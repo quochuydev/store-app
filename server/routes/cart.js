@@ -36,13 +36,21 @@ router.post("/cart/add", async (req, res) => {
     const found = items.find((e) => e.productId === id);
     if (found) {
       items = items.map((e) =>
-        e.productId === id ? { ...e, quantity: e.quantity + quantity } : e
+        e.productId === id
+          ? {
+              ...e,
+              quantity: e.quantity + quantity,
+              amount: (e.quantity + quantity) * e.price,
+            }
+          : e
       );
     } else {
       items.push({
         productId: product._id,
         title: product.title,
         quantity,
+        price: product.price,
+        amount: quantity * product.price,
       });
     }
     console.log(items, cart.items);
