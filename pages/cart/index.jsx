@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import styles from "./style.module.css";
 import useCart from "../../hooks/useCart";
 import Layout from "../../components/Layout";
@@ -32,7 +34,16 @@ function CartComponent({ cart }) {
                     <p>{e.title}</p>
                     <span>Price: ${e.price}</span>
                     <br />
-                    <a href="#">remove</a>
+                    <a
+                      onClick={async () => {
+                        await axios.post(
+                          `${process.env.SERVER_URL}/api/cart/remove/${e.productId}`
+                        );
+                        alert("success");
+                      }}
+                    >
+                      remove
+                    </a>
                   </div>
                 </div>
               </td>

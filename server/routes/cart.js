@@ -11,12 +11,13 @@ const cartAssetCreate = async (token) => {
     throw "no token found";
   }
 
-  const cart = await cartModel.findOne({ token });
+  const cart = await cartModel.findOne({ token }).lean(true);
   if (cart) {
     return cart;
   }
 
-  return cartModel.create({ token });
+  await cartModel.create({ token });
+  return cartModel.findOne({ token }).lean(true);
 };
 
 router.get("/api/cart", async (req, res) => {
@@ -29,24 +30,28 @@ const increase = ({ items, product, quantity = 1 }) => {
   const foundItem = items.find((e) => e.productId === String(product._id));
 
   if (!foundItem) {
+    const amount = quantity * product.price;
     items.push({
       productId: product._id,
       title: product.title,
       image: product.image,
       price: product.price,
       quantity,
-      amount: quantity * product.price,
+      amount,
     });
 
     return items;
   }
 
   return items.map((item) => {
-    if (item.productId === product._id) {
+    if (String(item.productId) === String(product._id)) {
+      const updated_quantity = item.quantity + quantity;
+      const updated_amount = updated_quantity * item.price;
+
       return {
         ...item,
-        quantity: item.quantity + quantity,
-        amount: (item.quantity + quantity) * item.price,
+        quantity: updated_quantity,
+        amount: updated_amount,
       };
     }
 

@@ -23,8 +23,8 @@ export async function getServerSideProps() {
 }
 
 export default function Index({ products }: any) {
-  const [cart] = useCart();
-  const afterAddToCart = () => {};
+  const [cart, fetchCart] = useCart();
+  const afterAddToCart = () => fetchCart();
 
   return (
     <Layout {...{ cart }}>

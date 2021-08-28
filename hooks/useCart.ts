@@ -7,15 +7,15 @@ export default function useCart() {
   });
 
   const fetchCart = () => {
+    console.log("fetch cart");
+
     axios.get(process.env.SERVER_URL + "/api/cart").then((result) => {
       console.log(result?.data);
       setCart(result?.data);
     });
   };
 
-  useEffect(() => {
-    fetchCart();
-  }, []);
+  useEffect(fetchCart, []);
 
-  return [cart];
+  return [cart, fetchCart];
 }
