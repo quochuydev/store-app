@@ -7,7 +7,7 @@ const { v4: uuidv4 } = require("uuid");
 const cookieParser = require("cookie-parser");
 var cors = require("cors");
 
-const port = process.env.PORR || 3000;
+const port = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
