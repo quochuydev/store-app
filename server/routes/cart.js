@@ -32,24 +32,24 @@ const increase = ({ items = [], product, quantity = 1 }) => {
     items.push({
       productId: product._id,
       title: product.title,
-      quantity,
       price: product.price,
+      quantity,
       amount: quantity * product.price,
     });
 
     return items;
   }
 
-  return items.map((e) => {
-    if (e.productId === product._id) {
+  return items.map((item) => {
+    if (item.productId === product._id) {
       return {
-        ...e,
-        quantity: e.quantity + quantity,
-        amount: (e.quantity + quantity) * e.price,
+        ...item,
+        quantity: item.quantity + quantity,
+        amount: (item.quantity + quantity) * item.price,
       };
     }
 
-    return e;
+    return item;
   });
 };
 
