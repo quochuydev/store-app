@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import Document, { NextScript, Head, Main, Html } from "next/document";
 import config from "../utils/config";
 
@@ -60,9 +61,7 @@ export default class MyDocument extends Document {
 
         <body>
           <Main />
-
           <script src="./js/jquery.min.js"></script>
-
           <NextScript />
         </body>
       </Html>
