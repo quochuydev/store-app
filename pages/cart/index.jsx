@@ -47,12 +47,11 @@ function CartComponent({ cart, fetchCart }) {
               type="button"
               className={styles.qtyBtn}
               onClick={async () => {
+                if (item.quantity <= 1) {
+                  return;
+                }
                 await axios.post(`${process.env.SERVER_URL}/api/cart/update`, {
-                  line_items: cart.items.map((e) =>
-                    e.productId === item.productId
-                      ? { productId: e.productId, quantity: -1 }
-                      : { productId: e.productId, quantity: 0 }
-                  ),
+                  line_item: { productId: item.productId, quantity: -1 },
                   note: "test",
                 });
                 fetchCart();
@@ -70,11 +69,7 @@ function CartComponent({ cart, fetchCart }) {
               className={styles.qtyBtn}
               onClick={async () => {
                 await axios.post(`${process.env.SERVER_URL}/api/cart/update`, {
-                  line_items: cart.items.map((e) =>
-                    e.productId === item.productId
-                      ? { productId: e.productId, quantity: 1 }
-                      : { productId: e.productId, quantity: 0 }
-                  ),
+                  line_item: { productId: item.productId, quantity: 1 },
                   note: "test",
                 });
                 fetchCart();
