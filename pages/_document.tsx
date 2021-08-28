@@ -14,7 +14,8 @@ export default class MyDocument extends Document {
   }
 
   render() {
-    console.log(GA_TRACKING_ID, isProduction);
+    GA_TRACKING_ID && console.log(GA_TRACKING_ID, isProduction);
+
     return (
       <Html lang="en">
         <Head>

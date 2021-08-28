@@ -25,45 +25,40 @@ router.get("/cart", async (req, res) => {
 });
 
 router.post("/cart/add", async (req, res) => {
-  try {
-    const { quantity, id } = req.body;
-    const token = req.cookies.token;
-    const cart = await cartAssetCreate(token);
+  const { quantity, id } = req.body;
+  const token = req.cookies.token;
+  const cart = await cartAssetCreate(token);
 
-    const product = await productModel.findOne({ _id: id }).lean(true);
+  const product = await productModel.findOne({ _id: id }).lean(true);
 
-    let items = [...cart.items];
-    const found = items.find((e) => e.productId === id);
-    if (found) {
-      items = items.map((e) =>
-        e.productId === id
-          ? {
-              ...e,
-              quantity: e.quantity + quantity,
-              amount: (e.quantity + quantity) * e.price,
-            }
-          : e
-      );
-    } else {
-      items.push({
-        productId: product._id,
-        title: product.title,
-        quantity,
-        price: product.price,
-        amount: quantity * product.price,
-      });
-    }
-    console.log(items, cart.items);
-
-    const updated = await cartModel.findOneAndUpdate(
-      { _id: cart._id },
-      { $set: { items } },
-      { new: true, lean: true }
+  let items = [...cart.items];
+  const found = items.find((e) => e.productId === id);
+  if (found) {
+    items = items.map((e) =>
+      e.productId === id
+        ? {
+            ...e,
+            quantity: e.quantity + quantity,
+            amount: (e.quantity + quantity) * e.price,
+          }
+        : e
     );
-    res.json(updated);
-  } catch (error) {
-    res.status(400).send(error);
+  } else {
+    items.push({
+      productId: product._id,
+      title: product.title,
+      quantity,
+      price: product.price,
+      amount: quantity * product.price,
+    });
   }
+
+  const updated = await cartModel.findOneAndUpdate(
+    { _id: cart._id },
+    { $set: { items } },
+    { new: true, lean: true }
+  );
+  res.json(updated);
 });
 
 module.exports = { cartRoute: router };
