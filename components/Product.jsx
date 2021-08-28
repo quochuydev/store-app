@@ -11,7 +11,7 @@ const Product = ({ product }) => {
                 <a href="#" className="fas fa-share" />
                 <a href="#" className="fas fa-eye" />
             </div>
-            <img src={product.image} alt={product.title} />
+            <img src={product.image || `https://ui-avatars.com/api/?name=${product.title}&size=600`} alt={product.title} />
             <h3>{product.title}</h3>
             <div className="stars">
                 <i className="fas fa-star" />
