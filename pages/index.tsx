@@ -30,7 +30,7 @@ export default function Index({ products }: any) {
       <Home />
       <Banner />
       <Category />
-      <Products {...{ products, afterAddToCart: () => fetchCart() }} />
+      <Products {...{ products, afterAddToCart: () => {} }} />
       <Deal />
       <Contact />
       <Newsletter />
