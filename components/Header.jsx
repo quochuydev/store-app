@@ -3,19 +3,10 @@ import axios from "axios";
 
 import Menu from "./Menu";
 import SearchBox from "./SearchBox";
+import useCart from "../hooks/useCart";
 
 export default function Header() {
-  const [cart, setCart] = useState({});
-
-  const fetchCart = () => {
-    axios
-      .get(process.env.SERVER_URL + "/cart")
-      .then((result) => setCart(result?.data));
-  };
-
-  useEffect(() => {
-    fetchCart();
-  }, []);
+  const [cart] = useCart();
 
   return (
     <header>
@@ -30,7 +21,7 @@ export default function Header() {
         <div id="menu-bar" className="fas fa-bars" />
         <Menu />
         <div className="icons">
-          <a href="#" className="fas fa-shopping-cart">
+          <a href="/cart" className="fas fa-shopping-cart">
             <span>{cart.item_count}</span>
           </a>
           {/* <a href="#" className="fas fa-heart" />

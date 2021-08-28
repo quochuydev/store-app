@@ -1,6 +1,5 @@
 import axios from "axios";
 
-import styles from "../styles/Home.module.css";
 import Layout from "../components/Layout";
 
 export async function getServerSideProps() {
@@ -16,17 +15,5 @@ export async function getServerSideProps() {
 }
 
 export default function Index({ products }: any) {
-  return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <Layout products={products} />
-      </main>
-
-      <footer className={styles.footer}>
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          Powered by Huy Pham
-        </a>
-      </footer>
-    </div>
-  );
+  return <Layout products={products} />;
 }

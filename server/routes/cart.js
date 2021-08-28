@@ -19,7 +19,7 @@ const cartAssetCreate = async (token) => {
   return cartModel.create({ token });
 };
 
-router.get("/cart", async (req, res) => {
+router.get("/api/cart", async (req, res) => {
   const token = req.cookies.token;
   const cart = await cartAssetCreate(token);
   res.json(cart);
@@ -53,7 +53,7 @@ const increase = ({ items = [], product, quantity = 1 }) => {
   });
 };
 
-router.post("/cart/add", async (req, res) => {
+router.post("/api/cart/add", async (req, res) => {
   const { quantity, id } = req.body;
   const token = req.cookies.token;
   const cart = await cartAssetCreate(token);

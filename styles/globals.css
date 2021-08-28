@@ -3,6 +3,10 @@
 :root {
   --green: #27ae60;
   --black: #2c2c54;
+  --primary: #69ae14;
+  --white: #fff;
+  --grey1: #3a3b3c;
+  --grey2: #828282;
 }
 
 * {

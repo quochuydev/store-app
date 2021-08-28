@@ -29,7 +29,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
           ></link>
-          {/* {isProduction && (
+          {isProduction && (
             <>
               <script
                 async
@@ -49,12 +49,13 @@ export default class MyDocument extends Document {
                 }}
               />
             </>
-          )} */}
+          )}
         </Head>
 
         <body>
           <Main />
           <script src="./js/jquery.min.js"></script>
+          <script src="./js/app.js"></script>
           <NextScript />
         </body>
       </Html>
