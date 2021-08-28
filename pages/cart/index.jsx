@@ -16,6 +16,49 @@ export default function Cart() {
   );
 }
 
+const CartItem = ({ cart, item }) => {
+  return (
+    <tr>
+      <td>
+        <div className={styles.cartInfo}>
+          <img src={item.image} alt={item.title} />
+          <div>
+            <p>{item.title}</p>
+            <span>Price: ${item.price}</span>
+            <br />
+            <a
+              onClick={async () => {
+                await axios.post(
+                  `${process.env.SERVER_URL}/api/cart/remove/${item.productId}`
+                );
+                alert("success");
+              }}
+            >
+              remove
+            </a>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div className={styles.qtyClick}>
+          <button type="button" className={styles.qtyBtn}>
+            -
+          </button>
+          <input
+            type="text"
+            value={item.quantity}
+            className={styles.itemQuantity}
+          />
+          <button type="button" className={styles.qtyBtn}>
+            +
+          </button>
+        </div>
+      </td>
+      <td>${item.amount}</td>
+    </tr>
+  );
+};
+
 function CartComponent({ cart }) {
   return (
     <div className={styles.cart}>
@@ -26,49 +69,12 @@ function CartComponent({ cart }) {
             <th>Quantity</th>
             <th>Subtotal</th>
           </tr>
-
           {cart.items.map((e, i) => (
-            <tr key={i}>
-              <td>
-                <div className={styles.cartInfo}>
-                  <img src={e.image} alt={e.title} />
-                  <div>
-                    <p>{e.title}</p>
-                    <span>Price: ${e.price}</span>
-                    <br />
-                    <a
-                      onClick={async () => {
-                        await axios.post(
-                          `${process.env.SERVER_URL}/api/cart/remove/${e.productId}`
-                        );
-                        alert("success");
-                      }}
-                    >
-                      remove
-                    </a>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div className={styles.qtyClick}>
-                  <button type="button" className={styles.qtyBtn}>
-                    -
-                  </button>
-                  <input
-                    type="text"
-                    value={e.quantity}
-                    className={styles.itemQuantity}
-                  />
-                  <button type="button" className={styles.qtyBtn}>
-                    +
-                  </button>
-                </div>
-              </td>
-              <td>${e.amount}</td>
-            </tr>
+            <CartItem key={i} item={e} cart={cart} />
           ))}
         </tbody>
       </table>
+
       <div className={styles.totalPrice}>
         <table className={styles.table}>
           <tbody>
@@ -86,6 +92,7 @@ function CartComponent({ cart }) {
             </tr>
           </tbody>
         </table>
+
         <a href="#" className={styles.checkout}>
           Proceed To Checkout
         </a>
