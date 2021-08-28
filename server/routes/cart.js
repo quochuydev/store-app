@@ -45,7 +45,7 @@ const increase = ({ items, product, quantity = 1 }) => {
 
   return items.map((item) => {
     if (String(item.productId) === String(product._id)) {
-      const updated_quantity = item.quantity + quantity;
+      const updated_quantity = Number(item.quantity) + Number(quantity);
       const updated_amount = updated_quantity * item.price;
 
       return {

@@ -72,7 +72,7 @@ function CartComponent({ cart }) {
             </tr>
           </tbody>
         </table>
-        <a href="#" className={[styles.checkout, styles.btn]}>
+        <a href="#" className={styles.checkout}>
           Proceed To Checkout
         </a>
       </div>
