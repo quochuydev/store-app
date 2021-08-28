@@ -17,6 +17,27 @@ export default function Cart() {
   );
 }
 
+function ButtonChangeQuantity({ item, type, fetchCart }) {
+  return (
+    <button
+      type="button"
+      className={styles.qtyBtn}
+      onClick={async () => {
+        if (type === "decrease" && item.quantity <= 1) {
+          return;
+        }
+        await axios.post(
+          `${process.env.SERVER_URL}/api/cart/update/${item.productId}`,
+          { quantity: type === "decrease" ? -1 : 1 }
+        );
+        fetchCart();
+      }}
+    >
+      {type === "decrease" ? "-" : "+"}
+    </button>
+  );
+}
+
 function CartComponent({ cart, fetchCart }) {
   const CartItem = ({ item }) => {
     return (
@@ -44,40 +65,21 @@ function CartComponent({ cart, fetchCart }) {
         </td>
         <td>
           <div className={styles.qtyClick}>
-            <button
-              type="button"
-              className={styles.qtyBtn}
-              onClick={async () => {
-                if (item.quantity <= 1) {
-                  return;
-                }
-                await axios.post(
-                  `${process.env.SERVER_URL}/api/cart/update/${item.productId}`,
-                  { quantity: -1 }
-                );
-                fetchCart();
-              }}
-            >
-              -
-            </button>
+            <ButtonChangeQuantity
+              type="decrease"
+              item={item}
+              fetchCart={fetchCart}
+            />
             <input
               type="text"
               defaultValue={item.quantity}
               className={styles.itemQuantity}
             />
-            <button
-              type="button"
-              className={styles.qtyBtn}
-              onClick={async () => {
-                await axios.post(
-                  `${process.env.SERVER_URL}/api/cart/update/${item.productId}`,
-                  { quantity: 1 }
-                );
-                fetchCart();
-              }}
-            >
-              +
-            </button>
+            <ButtonChangeQuantity
+              type="increase"
+              item={item}
+              fetchCart={fetchCart}
+            />
           </div>
         </td>
         <td>${item.amount}</td>
