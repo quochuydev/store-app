@@ -27,7 +27,7 @@ const Product = ({ product }) => {
                     onChange={e => setQuantity(e.target.value)}/>
             </div>
             <a className="btn" onClick={()=>{
-                axios.post("http://localhost:3000/cart/add", {
+                axios.post(process.env.SERVER_URL + "/cart/add", {
                     quantity,
                     id: product._id
                 });

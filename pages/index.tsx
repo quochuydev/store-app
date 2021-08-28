@@ -4,7 +4,7 @@ import styles from "../styles/Home.module.css";
 import Home from "../components/Home";
 
 export async function getServerSideProps() {
-  const result: any = await axios.get("http://localhost:3000/api/products");
+  const result: any = await axios.get(process.env.SERVER_URL + "/api/products");
 
   return {
     props: {

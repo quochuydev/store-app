@@ -6,10 +6,10 @@ import Product from "./Product";
 export default function Home({ products }){
   const [cart, setCart] = useState({})
 
-  useEffect(() => {
-    axios.get("http://localhost:3000/cart")
-      .then(result => setCart(result?.data));
-  }, [])
+  // useEffect(() => {
+  //   axios.get(process.env.SERVER_URL + "/cart")
+  //     .then(result => setCart(result?.data));
+  // }, [])
   
   return <div>
     <header>
@@ -151,7 +151,7 @@ export default function Home({ products }){
         <textarea placeholder="message" cols={30} rows={10} defaultValue={""} />
         <input type="submit" defaultValue="send message" className="btn" />
         <button onClick={()=> {
-           axios.post("http://localhost:3000/api/products");
+           axios.post(process.env.SERVER_URL + "/api/products");
         }}>create product</button>
       </form>
     </section>

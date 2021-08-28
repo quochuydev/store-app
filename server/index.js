@@ -16,8 +16,6 @@ const { fileRoute } = require("./routes/file");
 const { cartRoute } = require("./routes/cart");
 const { productRoute } = require("./routes/product");
 
-const serverUrl = process.env.SERVER_URL;
-
 mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -56,6 +54,6 @@ app.prepare().then(() => {
   });
 
   server.listen(port, () => {
-    console.log(`> Ready on ${serverUrl}:${port}`);
+    console.log(`> Ready on ${process.env.SERVER_URL}:${port}`);
   });
 });
