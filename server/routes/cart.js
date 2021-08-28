@@ -26,12 +26,13 @@ router.get("/api/cart", async (req, res) => {
   res.json(cart);
 });
 
-const increase = (items = [], product, quantity = 0) => {
-  const foundItem = items.find((e) => e.productId === String(product._id));
+const increase = async (items = [], productId, quantity = 0) => {
+  const product = await productModel.findOne({ _id: productId }).lean(true);
+  const foundItem = items.find((e) => e.productId === productId);
 
   if (!foundItem) {
     items.push({
-      productId: product._id,
+      productId: productId,
       title: product.title,
       image: product.image,
       price: product.price,
@@ -43,7 +44,7 @@ const increase = (items = [], product, quantity = 0) => {
   }
 
   return items.map((item) => {
-    if (String(item.productId) === String(product._id)) {
+    if (item.productId === productId) {
       const updated_quantity = item.quantity + quantity;
       const updated_amount = updated_quantity * item.price;
 
@@ -63,14 +64,33 @@ router.post("/api/cart/add", async (req, res) => {
   const token = req.cookies.token;
   const cart = await cartAssetCreate(token);
 
-  const product = await productModel.findOne({ _id: id }).lean(true);
-  const items = increase([...cart.items], product, Number(quantity));
+  const items = await increase([...cart.items], id, Number(quantity));
   const total_price = _.sumBy(items, "amount");
   const item_count = _.sumBy(items, "quantity");
 
   const updated = await cartModel.findOneAndUpdate(
     { _id: cart._id },
     { $set: { items, item_count, total_price } },
+    { new: true, lean: true }
+  );
+  res.json(updated);
+});
+
+router.post("/api/cart/update", async (req, res) => {
+  const { line_items, note } = req.body;
+  const token = req.cookies.token;
+  const cart = await cartAssetCreate(token);
+
+  for (let i = 0; i < line_items.length; i++) {
+    const product = line_items[i];
+  }
+
+  const total_price = _.sumBy(items, "amount");
+  const item_count = _.sumBy(items, "quantity");
+
+  const updated = await cartModel.findOneAndUpdate(
+    { _id: cart._id },
+    { $set: { items, item_count, total_price, note } },
     { new: true, lean: true }
   );
   res.json(updated);
