@@ -1,0 +1,61 @@
+require("dotenv").config();
+const express = require("express");
+const next = require("next");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const { v4: uuidv4 } = require("uuid");
+const cookieParser = require("cookie-parser");
+var cors = require("cors");
+
+const port = 3000;
+const dev = process.env.NODE_ENV !== "production";
+const app = next({ dev });
+const handle = app.getRequestHandler();
+
+const { fileRoute } = require("./routes/file");
+const { cartRoute } = require("./routes/cart");
+const { productRoute } = require("./routes/product");
+
+const serverUrl = process.env.SERVER_URL;
+
+mongoose.connect(process.env.DATABASE_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+app.prepare().then(() => {
+  const server = express();
+
+  server.use(cors({ credentials: true, origin: true }));
+  server.use(bodyParser.json({}));
+  server.use(bodyParser.urlencoded({ extended: false }));
+  server.use(cookieParser());
+
+  server.use(function (req, res, next) {
+    const token = req.cookies.token;
+    if (token === undefined) {
+      res.cookie("token", uuidv4(), { maxAge: 900000, httpOnly: true });
+      console.log("cookie created successfully");
+    }
+    next();
+  });
+
+  server.use(fileRoute);
+  server.use(cartRoute);
+  server.use(productRoute);
+
+  server.use((err, req, res, next) => {
+    if (err) {
+      return res.status(400).send(err);
+    }
+    next();
+  });
+
+  server.all("*", (req, res) => {
+    return handle(req, res);
+  });
+
+  server.listen(port, () => {
+    console.log(`> Ready on ${serverUrl}:${port}`);
+  });
+});
