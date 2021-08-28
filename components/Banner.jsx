@@ -4,7 +4,7 @@ export default function Section() {
   return (
     <section className="banner-container">
       <div className="banner">
-        <Image src="images/banner-1.jpg" alt="" />
+        <img src="images/banner-1.jpg" alt="" />
         <div className="content">
           <h3>special offer</h3>
           <p>upto 45% off</p>
@@ -14,7 +14,7 @@ export default function Section() {
         </div>
       </div>
       <div className="banner">
-        <Image src="images/banner-2.jpg" alt="" />
+        <img src="images/banner-2.jpg" alt="" />
         <div className="content">
           <h3>limited offer</h3>
           <p>upto 50% off</p>

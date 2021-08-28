@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <section className="home" id="home">
       <div className="image">
-        <Image src="images/home-img.png" alt="" />
+        <img src="images/home-img.png" alt="" />
       </div>
       <div className="content">
         <span>fresh and organic</span>

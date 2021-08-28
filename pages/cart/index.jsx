@@ -30,7 +30,7 @@ function CartComponent({ cart }) {
             <tr key={i}>
               <td>
                 <div className={styles.cartInfo}>
-                  <Image src={e.image} alt={e.title} />
+                  <img src={e.image} alt={e.title} />
                   <div>
                     <p>{e.title}</p>
                     <span>Price: ${e.price}</span>
