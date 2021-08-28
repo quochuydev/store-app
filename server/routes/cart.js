@@ -76,12 +76,12 @@ router.post("/api/cart/add", async (req, res) => {
   res.json(updated);
 });
 
-router.post("/api/cart/update", async (req, res) => {
+router.post("/api/cart/update/:productId", async (req, res) => {
   const token = req.cookies.token;
   const cart = await cartAssetCreate(token);
 
-  const { line_item, note } = req.body;
-  const { productId, quantity } = line_item;
+  const { quantity } = req.body;
+  const { productId } = req.params;
   const items = await increase([...cart.items], productId, Number(quantity));
 
   const total_price = _.sumBy(items, "amount");

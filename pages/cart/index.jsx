@@ -50,10 +50,10 @@ function CartComponent({ cart, fetchCart }) {
                 if (item.quantity <= 1) {
                   return;
                 }
-                await axios.post(`${process.env.SERVER_URL}/api/cart/update`, {
-                  line_item: { productId: item.productId, quantity: -1 },
-                  note: "test",
-                });
+                await axios.post(
+                  `${process.env.SERVER_URL}/api/cart/update/${item.productId}`,
+                  { quantity: -1 }
+                );
                 fetchCart();
               }}
             >
@@ -68,10 +68,10 @@ function CartComponent({ cart, fetchCart }) {
               type="button"
               className={styles.qtyBtn}
               onClick={async () => {
-                await axios.post(`${process.env.SERVER_URL}/api/cart/update`, {
-                  line_item: { productId: item.productId, quantity: 1 },
-                  note: "test",
-                });
+                await axios.post(
+                  `${process.env.SERVER_URL}/api/cart/update/${item.productId}`,
+                  { quantity: 1 }
+                );
                 fetchCart();
               }}
             >
