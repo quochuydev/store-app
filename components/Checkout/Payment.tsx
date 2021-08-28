@@ -1,6 +1,7 @@
 export default function Payment() {
   return (
     <div>
+      <hr className="my-4" />
       <h4 className="mb-3">Payment</h4>
       <div className="my-3">
         <div className="form-check">
