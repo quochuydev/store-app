@@ -10,7 +10,7 @@ const { fileModel } = require("../models/file");
 const server = process.env.SERVER_URL;
 
 router.get("/api/files", async (req, res) => {
-  const items = await fileModel.find({}).sort({ created_at: -1 });
+  const items = await fileModel.find({}).sort({ createdAt: -1 });
   res.status(200).json({ items });
 });
 

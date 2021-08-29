@@ -10,7 +10,7 @@ router.get("/api/products", async (req, res) => {
 
   const items = await productModel
     .find({})
-    .sort({ created_at: -1 })
+    .sort({ createdAt: -1 })
     .limit(limit)
     .skip(skip);
   res.send({ items });

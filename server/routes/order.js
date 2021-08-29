@@ -10,7 +10,7 @@ router.get("/api/orders", async (req, res) => {
 
   const items = await orderModel
     .find({})
-    .sort({ created_at: -1 })
+    .sort({ createdAt: -1 })
     .limit(limit)
     .skip(skip);
   res.send({ items });
