@@ -43,9 +43,9 @@ export default function Files() {
   return (
     <>
       <button onClick={onCreateProduct}>create product</button>
-
+      <br />
       {JSON.stringify(setting)}
-
+      <br />
       <input
         type="file"
         accept="image/*"

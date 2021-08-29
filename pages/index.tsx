@@ -14,25 +14,28 @@ import Newsletter from "../components/Newsletter";
 import useCart from "../hooks/useCart";
 
 export async function getServerSideProps() {
-  const result: any = await axios.get(
+  const result = await axios.get(
     process.env.SERVER_URL + "/api/products?limit=12"
   );
+
+  const setting = await axios.get(process.env.SERVER_URL + "/api/setting");
 
   return {
     props: {
       products: result?.data?.items || [],
+      setting: setting?.data || {},
     },
   };
 }
 
-export default function Index({ products }: any) {
+export default function Index({ products, setting }: any) {
   const [cart, fetchCart] = useCart();
-  const [setting, setSetting] = useState({});
+  // const [setting, setSetting] = useState({});
 
   useEffect(() => {
-    axios.get(process.env.SERVER_URL + "/api/setting").then((result) => {
-      setSetting(result?.data || {});
-    });
+    // axios.get(process.env.SERVER_URL + "/api/setting").then((result) => {
+    //   setSetting(result?.data || {});
+    // });
   }, []);
 
   const afterAddToCart = () => {
