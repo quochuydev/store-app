@@ -84,7 +84,7 @@ section {
 
 .header-1 .search-box-container {
   display: flex;
-  height: 5rem;
+  height: 4rem;
 }
 
 .header-1 .search-box-container #search-box {
@@ -117,7 +117,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 5%;
+  padding: 1rem 5%;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
   position: relative;
 }
