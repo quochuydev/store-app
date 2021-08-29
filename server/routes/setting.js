@@ -15,7 +15,7 @@ router.get("/api/setting", async (req, res) => {
 });
 
 router.put("/api/setting/:id", async (req, res) => {
-  const result = await productModel.findOneAndUpdate(
+  const result = await settingModel.findOneAndUpdate(
     { _id: req.params.id },
     { $set: req.body },
     { lean: true, new: true }
