@@ -1,6 +1,8 @@
 import axios from "axios";
 
 import ProductDetail from "../../components/Product";
+import useCart from "../../hooks/useCart";
+import Layout from "../../components/Layout";
 
 export async function getServerSideProps({ query }) {
   const result = await axios.get(
@@ -15,5 +17,11 @@ export async function getServerSideProps({ query }) {
 }
 
 export default function Product({ product }) {
-  return <ProductDetail {...{ product }} />;
+  const [cart] = useCart();
+
+  return (
+    <Layout {...{ cart }}>
+      <ProductDetail {...{ product }} />
+    </Layout>
+  );
 }
