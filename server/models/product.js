@@ -10,8 +10,8 @@ const productSchema = new mongoose.Schema({
   created_at: { type: Date, default: Date.now },
 });
 
-productSchema.post("save", async function (user, next) {
-  console.log("Event user:updated published", user._id);
+productSchema.post("save", async function (product, next) {
+  console.log("Event product:updated published", product._id);
   next();
 });
 

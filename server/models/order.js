@@ -26,6 +26,11 @@ const orderSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
+orderSchema.post("save", async function (order, next) {
+  console.log("Event order:updated published", order._id);
+  next();
+});
+
 const orderModel = mongoose.model("Order", orderSchema);
 
 module.exports = { orderModel };
