@@ -127,4 +127,11 @@ router.post("/api/cart/remove/:productId", async (req, res) => {
   res.json(updated);
 });
 
+router.delete("/api/cart", async (req, res) => {
+  const token = req.cookies.token;
+  const cart = await cartAssetCreate(token);
+  await cartModel.remove({ _id: cart._id });
+  res.send(true);
+});
+
 module.exports = { cartRoute: router };
