@@ -52,10 +52,22 @@ export default class MyDocument extends Document {
         </Head>
 
         <body>
-          <Main />
+          <div id="fb-root">
+            <Main />
+          </div>
+
+          <script
+            async
+            defer
+            crossOrigin="anonymous"
+            src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=579992946118574&autoLogAppEvents=1"
+            nonce="DhFHTsK8"
+          ></script>
+
           <script src="./js/jquery.min.js"></script>
           <script src="./js/app.js"></script>
           <script src="./js/bootstrap.bundle.min.js"></script>
+
           <NextScript />
         </body>
       </Html>

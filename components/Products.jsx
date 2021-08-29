@@ -39,8 +39,13 @@ function Product({ product, afterAddToCart }) {
         {Math.floor((product.original_price / product.price) * 100)}%
       </span>
       <div className="icons">
-        <a href="#" className="fas fa-heart" />
-        <a href="#" className="fas fa-share" />
+        <a className="fas fa-heart" onClick={addToCart} />
+        <a
+          target="_blank"
+          href={`https://www.facebook.com/sharer/sharer.php?u=https://dlcapp.herokuapp.com/products/${product._id}`}
+          className="fb-xfbml-parse-ignore fas fa-share"
+          rel="noreferrer"
+        />
         <Link href={`/products/${product._id}`}>
           <a href="#" className="fas fa-eye" />
         </Link>
@@ -53,7 +58,7 @@ function Product({ product, afterAddToCart }) {
         alt={product.title}
       />
       <Link href={`/products/${product._id}`}>
-        <h3>{product.title}</h3>
+        <h3 style={{ cursor: "pointer" }}>{product.title}</h3>
       </Link>
       {/* <ReviewStars /> */}
       <div className="price">
