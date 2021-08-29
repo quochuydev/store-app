@@ -96,13 +96,13 @@
 }
 
 .qtyBtn {
-  /* background: #fff; */
+  width: 3rem;
+  height: 3rem;
+  padding: 0.5rem;
+
   font-weight: 500;
   font-size: 14px;
-  height: 25px;
-  padding: 0;
   text-align: center;
-  width: 25px;
   border: 1px solid #f3f4f4;
   border-radius: 0;
   float: left;
