@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 
-import ReviewStars from "./Review/Stars";
 import styles from "./style.module.css";
 
 export default function Products({ products, afterAddToCart }) {
@@ -38,6 +37,7 @@ function Product({ product, afterAddToCart }) {
       <span className="discount">
         {Math.floor((product.original_price / product.price) * 100)}%
       </span>
+
       <div className="icons">
         <a className="fas fa-heart" onClick={addToCart} />
         <a
@@ -50,6 +50,7 @@ function Product({ product, afterAddToCart }) {
           <a href="#" className="fas fa-eye" />
         </Link>
       </div>
+
       <img
         src={
           product.image ||
@@ -60,10 +61,12 @@ function Product({ product, afterAddToCart }) {
       <Link href={`/products/${product._id}`}>
         <h3 style={{ cursor: "pointer" }}>{product.title}</h3>
       </Link>
+
       {/* <ReviewStars /> */}
       <div className="price">
         ${product.price} <span>${product.original_price}</span>
       </div>
+
       <div className="quantity">
         <span>quantity : </span>
         <input
@@ -75,8 +78,9 @@ function Product({ product, afterAddToCart }) {
           style={{ textAlign: "center" }}
         />
       </div>
+
       <a className={styles.btn} onClick={addToCart}>
-        Add to cart
+        <i className="fa fa-shopping-cart" /> Add to cart
       </a>
     </div>
   );

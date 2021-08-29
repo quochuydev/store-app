@@ -68,6 +68,10 @@ export default {
     },
   ],
   deal: {
+    title: "deal of the day",
+    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
+    possimus voluptates commodi laudantium! Doloribus sint voluptatibus
+    quaerat sequi suscipit nulla?`,
     url: "#",
   },
 };

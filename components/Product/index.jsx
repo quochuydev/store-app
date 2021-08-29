@@ -25,48 +25,46 @@ export default function ProductDetail({ product, afterAddToCart }) {
           </div> */}
         </div>
         <div className="col-md-6">
-          <h4 className="pro-d-title">{product.title}</h4>
+          <h1>{product.title}</h1>
           <div>{product.body}</div>
-          <div className="product_meta">
-            <span className="posted_in">
-              <strong>Categories:</strong>{" "}
-              {["Jackets", "Men", "Shirts", "T-shirt"].map((e, i) => (
-                <a key={i} rel="tag" href="#">
-                  {e}
-                </a>
-              ))}
-            </span>
+          <div>
+            <strong>Categories:</strong>
+            {["Jackets", "Men", "Shirts", "T-shirt"].map((e, i) => (
+              <a key={i} rel="tag" href="#">
+                {e}
+              </a>
+            ))}
             <br />
-            <span className="tagged_as">
-              <strong>Tags:</strong>{" "}
-              {["mens", "womens"].map((e, i) => (
-                <a key={i} rel="tag" href="#">
-                  {e}
-                </a>
-              ))}
-            </span>
+            <strong>Tags:</strong>
+            {["mens", "womens"].map((e, i) => (
+              <a key={i} rel="tag" href="#">
+                {e}
+              </a>
+            ))}
           </div>
-          <div className="m-bot15">
+
+          <div>
             <strong>Price : </strong>
             <p className="price">
               ${product.price} <span>${product.original_price}</span>
             </p>
           </div>
+
           <div className="form-group">
             <label>Quantity</label>
             <input
-              type="quantiy"
+              type="number"
               placeholder={1}
-              className="form-control quantity"
+              className="form-control"
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
               style={{ width: 100, textAlign: "center" }}
             />
           </div>
           <p>
-            <button className="btn btn-round btn-danger" onClick={addToCart}>
-              <i className="fa fa-shopping-cart" /> Add to Cart
-            </button>
+            <a className="btn" onClick={addToCart}>
+              <i className="fa fa-shopping-cart" /> Add to cart
+            </a>
           </p>
         </div>
       </div>

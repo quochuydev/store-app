@@ -4,12 +4,8 @@ export default function Deal() {
   return (
     <section className="deal" id="deal">
       <div className="content">
-        <h3 className="title">deal of the day</h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
-          possimus voluptates commodi laudantium! Doloribus sint voluptatibus
-          quaerat sequi suscipit nulla?
-        </p>
+        <h3 className="title">{config.deal.title}</h3>
+        <p>{config.deal.description}</p>
         <div className="count-down">
           <div className="box">
             <h3 id="day">00</h3>

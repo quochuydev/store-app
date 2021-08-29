@@ -31,7 +31,7 @@ export default function Index({ products }: any) {
       <Banner />
       <Category />
       <Products {...{ products, afterAddToCart: () => fetchCart() }} />
-      <Deal />
+      {/* <Deal /> */}
       <Contact />
       <Newsletter />
     </Layout>

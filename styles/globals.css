@@ -472,7 +472,7 @@ section {
   color: var(--black);
 }
 
-.newsletter form {
+.newsletter div {
   max-width: 55rem;
   display: flex;
   align-items: center;
@@ -481,7 +481,7 @@ section {
   background: rgba(0, 0, 0, 0.1);
 }
 
-.newsletter form .box {
+.newsletter div .box {
   width: 100%;
   padding: 0.7rem 1.5rem;
   font-size: 1.7rem;
@@ -489,7 +489,7 @@ section {
   text-transform: none;
 }
 
-.newsletter form .btn {
+.newsletter div .btn {
   margin-top: 0;
 }
 
