@@ -2,7 +2,6 @@
 /* eslint-disable @next/next/no-css-tags */
 /* eslint-disable @next/next/no-sync-scripts */
 import Document, { NextScript, Head, Main, Html } from "next/document";
-import config from "../utils/config";
 
 const GA_TRACKING_ID = process.env.GA_TRACKING_ID;
 const isProduction = process.env.NODE_ENV === "production";

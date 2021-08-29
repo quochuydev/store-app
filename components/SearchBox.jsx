@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import Router from "next/router";
 
 export default function SearchBox() {
   const [keyword, setKeyword] = useState("");
 
   const search = (q) => {
-    return alert("seach: " + q);
+    Router.push(`/search/?q=${q}`);
   };
 
   return (
-    <form className="search-box-container">
+    <div className="search-box-container">
       <input
         type="text"
         name="q"
@@ -19,6 +20,6 @@ export default function SearchBox() {
       <a href="#" onClick={() => search(keyword)}>
         <label htmlFor="search-box" className="fas fa-search" />
       </a>
-    </form>
+    </div>
   );
 }

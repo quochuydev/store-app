@@ -18,14 +18,16 @@ export default function Order() {
   });
 
   useEffect(() => {
-    if (id) {
-      axios({
-        method: "get",
-        url: `${process.env.SERVER_URL}/api/orders/${id}`,
-      }).then(function (response) {
-        setData(response.data);
-      });
+    if (!id) {
+      return;
     }
+
+    axios({
+      method: "get",
+      url: `${process.env.SERVER_URL}/api/orders/${id}`,
+    }).then(function (response) {
+      setData(response.data);
+    });
   }, [id]);
 
   return (
