@@ -16,6 +16,11 @@ router.get("/api/products", async (req, res) => {
   res.send({ items });
 });
 
+router.get("/api/products/:id", async (req, res) => {
+  const result = await productModel.findOne({ _id: req.params.id }).lean(true);
+  res.json(result);
+});
+
 router.post("/api/products", async (req, res) => {
   const title =
     req.body.title || "test " + String(Math.floor(Math.random() * 1000));

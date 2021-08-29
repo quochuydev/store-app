@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import axios from "axios";
+import Link from "next/link";
 
 import styles from "./style.module.css";
 
@@ -39,7 +41,10 @@ function Product({ product, afterAddToCart }) {
         }
         alt={product.title}
       />
-      <h3>{product.title}</h3>
+      <Link href={`/products/${product._id}`}>
+        <h3>{product.title}</h3>
+      </Link>
+
       <div className="stars">
         <i className="fas fa-star" />
         <i className="fas fa-star" />
