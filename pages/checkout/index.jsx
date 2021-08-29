@@ -38,6 +38,8 @@ export default function Checkout() {
       data
     );
 
+    await axios.delete(`${process.env.SERVER_URL}/api/cart`);
+
     const order = result?.data;
     Router.push(`/order/${order._id}?thankyou=true`);
   };

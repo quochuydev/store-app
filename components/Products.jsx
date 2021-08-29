@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 
+import ReviewStars from "./Review/Stars";
 import styles from "./style.module.css";
 
 export default function Products({ products, afterAddToCart }) {
@@ -13,8 +14,8 @@ export default function Products({ products, afterAddToCart }) {
         latest <span>products</span>
       </h1>
       <div className="box-container">
-        {products.map((e, i) => (
-          <Product key={i} product={e} afterAddToCart={afterAddToCart} />
+        {products.map((product, i) => (
+          <Product key={i} {...{ product, afterAddToCart }} />
         ))}
       </div>
     </section>
@@ -23,6 +24,14 @@ export default function Products({ products, afterAddToCart }) {
 
 function Product({ product, afterAddToCart }) {
   const [quantity, setQuantity] = useState(1);
+
+  const addToCart = async () => {
+    await axios.post(process.env.SERVER_URL + "/api/cart/add", {
+      quantity,
+      id: product._id,
+    });
+    return afterAddToCart();
+  };
 
   return (
     <div className="box">
@@ -44,16 +53,8 @@ function Product({ product, afterAddToCart }) {
       <Link href={`/products/${product._id}`}>
         <h3>{product.title}</h3>
       </Link>
-
-      <div className="stars">
-        <i className="fas fa-star" />
-        <i className="fas fa-star" />
-        <i className="fas fa-star" />
-        <i className="fas fa-star" />
-        <i className="fas fa-star-half-alt" />
-      </div>
+      <ReviewStars />
       <div className="price">
-        {" "}
         {product.original_price}
         <span>{product.price}</span>{" "}
       </div>
@@ -67,16 +68,7 @@ function Product({ product, afterAddToCart }) {
           onChange={(e) => setQuantity(e.target.value)}
         />
       </div>
-      <a
-        className={styles.btn}
-        onClick={async () => {
-          await axios.post(process.env.SERVER_URL + "/api/cart/add", {
-            quantity,
-            id: product._id,
-          });
-          return afterAddToCart();
-        }}
-      >
+      <a className={styles.btn} onClick={addToCart}>
         add to cart
       </a>
     </div>
