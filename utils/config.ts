@@ -67,4 +67,7 @@ export default {
       image: "images/category-4.png",
     },
   ],
+  deal: {
+    url: "#",
+  },
 };

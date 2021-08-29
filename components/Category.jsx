@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import Image from "next/image";
+import config from "../utils/config";
 
 export default function Category() {
   return (
@@ -9,38 +10,16 @@ export default function Category() {
         shop by <span>category</span>
       </h1>
       <div className="box-container">
-        <div className="box">
-          <h3>vegitables</h3>
-          <p>upto 50% off</p>
-          <img src="images/category-1.png" alt="" />
-          <a href="#" className="btn">
-            shop now
-          </a>
-        </div>
-        <div className="box">
-          <h3>juice</h3>
-          <p>upto 44% off</p>
-          <img src="images/category-2.png" alt="" />
-          <a href="#" className="btn">
-            shop now
-          </a>
-        </div>
-        <div className="box">
-          <h3>meat</h3>
-          <p>upto 35% off</p>
-          <img src="images/category-3.png" alt="" />
-          <a href="#" className="btn">
-            shop now
-          </a>
-        </div>
-        <div className="box">
-          <h3>fruite</h3>
-          <p>upto 12% off</p>
-          <img src="images/category-4.png" alt="" />
-          <a href="#" className="btn">
-            shop now
-          </a>
-        </div>
+        {config.categories.map((item, i) => (
+          <div key={i} className="box">
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+            <img src={item.image} alt="" />
+            <a href={item.url} className="btn">
+              shop now
+            </a>
+          </div>
+        ))}
       </div>
     </section>
   );
