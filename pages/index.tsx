@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -26,6 +27,13 @@ export async function getServerSideProps() {
 
 export default function Index({ products }: any) {
   const [cart, fetchCart] = useCart();
+  const [setting, setSetting] = useState({});
+
+  useEffect(() => {
+    axios.get(process.env.SERVER_URL + "/api/setting").then((result) => {
+      setSetting(result?.data || {});
+    });
+  }, []);
 
   const afterAddToCart = () => {
     fetchCart();

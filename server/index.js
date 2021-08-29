@@ -17,6 +17,7 @@ const { cartRoute } = require("./routes/cart");
 const { productRoute } = require("./routes/product");
 const { orderRoute } = require("./routes/order");
 const { coreRoute } = require("./routes/core");
+const { settingRoute } = require("./routes/setting");
 
 mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
@@ -44,6 +45,7 @@ app.prepare().then(() => {
   server.use(productRoute);
   server.use(orderRoute);
   server.use(coreRoute);
+  server.use(settingRoute);
 
   server.use((err, req, res, next) => {
     if (err) {

@@ -4,12 +4,19 @@ import axios from "axios";
 export default function Files() {
   const [image, setImage] = useState(null);
   const [files, setFiles] = useState([]);
+  const [setting, setSetting] = useState({});
 
   const fetchFiles = () => {
     axios.get(process.env.SERVER_URL + "/api/files").then((result) => {
       setFiles(result?.data?.items || []);
     });
   };
+
+  useEffect(() => {
+    axios.get(process.env.SERVER_URL + "/api/setting").then((result) => {
+      setSetting(result?.data || {});
+    });
+  }, []);
 
   useEffect(() => {
     fetchFiles();
@@ -36,6 +43,8 @@ export default function Files() {
   return (
     <>
       <button onClick={onCreateProduct}>create product</button>
+
+      {JSON.stringify(setting)}
 
       <input
         type="file"
