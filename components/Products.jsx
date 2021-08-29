@@ -55,8 +55,7 @@ function Product({ product, afterAddToCart }) {
       </Link>
       <ReviewStars />
       <div className="price">
-        {product.original_price}
-        <span>{product.price}</span>{" "}
+        {product.price} <span>{product.original_price}</span>
       </div>
       <div className="quantity">
         <span>quantity : </span>

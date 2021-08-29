@@ -7,13 +7,6 @@ import Layout from "../../components/Layout";
 import Thankyou from "../../components/Thankyou";
 import useCart from "../../hooks/useCart";
 
-const toDecimal = (price, fixedCount = 2) => {
-  return price.toLocaleString(undefined, {
-    minimumFractionDigits: fixedCount,
-    maximumFractionDigits: fixedCount,
-  });
-};
-
 export default function Order() {
   const { id, thankyou } = useRouter().query;
 

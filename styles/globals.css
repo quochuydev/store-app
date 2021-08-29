@@ -347,7 +347,7 @@ section {
 .product .box-container .box .price span {
   font-size: 1.5rem;
   color: #999;
-  text-decoration: line-through;
+  text-decoration: line-through !important;
 }
 
 .product .box-container .box .quantity {
