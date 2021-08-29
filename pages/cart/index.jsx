@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import axios from "axios";
 import Link from "next/link";
@@ -16,6 +17,10 @@ export default function Cart() {
   );
 }
 
+function NoneItems() {
+  return <div></div>;
+}
+
 function CartComponent({ cart, fetchCart }) {
   const CartItem = ({ item }) => {
     return (
@@ -24,10 +29,11 @@ function CartComponent({ cart, fetchCart }) {
           <div className={styles.cartInfo}>
             <img src={item.image} alt={item.title} />
             <div>
-              <p>{item.title}</p>
-              <span>Price: ${item.price}</span>
-              <br />
-              <ButtonRemoveItem {...{ item }} />
+              <Link href={`/products/${item.productId}`}>
+                <p>{item.title}</p>
+              </Link>
+              <p>Price: ${item.price}</p>
+              <ButtonRemoveItem {...{ item, fetchCart }} />
             </div>
           </div>
         </td>
@@ -115,7 +121,7 @@ function ButtonChangeQuantity({ item, type, fetchCart }) {
   );
 }
 
-function ButtonRemoveItem({ item }) {
+function ButtonRemoveItem({ item, fetchCart }) {
   const onRemove = async () => {
     await axios.post(
       `${process.env.SERVER_URL}/api/cart/remove/${item.productId}`

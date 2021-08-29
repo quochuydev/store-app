@@ -68,7 +68,7 @@ function Product({ product, afterAddToCart }) {
         />
       </div>
       <a className={styles.btn} onClick={addToCart}>
-        add to cart
+        Add to cart
       </a>
     </div>
   );

@@ -17,11 +17,11 @@ export async function getServerSideProps({ query }) {
 }
 
 export default function Product({ product }) {
-  const [cart] = useCart();
+  const [cart, fetchCart] = useCart();
 
   return (
     <Layout {...{ cart }}>
-      <ProductDetail {...{ product }} />
+      <ProductDetail {...{ product, afterAddToCart: () => fetchCart() }} />
     </Layout>
   );
 }

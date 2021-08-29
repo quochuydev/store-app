@@ -1,7 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
+import axios from "axios";
+
 import useCart from "../../hooks/useCart";
 
-export default function ProductDetail({ product }) {
+export default function ProductDetail({ product, afterAddToCart }) {
+  const addToCart = async () => {
+    await axios.post(process.env.SERVER_URL + "/api/cart/add", {
+      quantity: 1,
+      id: product._id,
+    });
+    return afterAddToCart();
+  };
+
   return (
     <div className="container">
       <div className="row">
@@ -49,7 +59,7 @@ export default function ProductDetail({ product }) {
             />
           </div>
           <p>
-            <button className="btn btn-round btn-danger" type="button">
+            <button className="btn btn-round btn-danger" onClick={addToCart}>
               <i className="fa fa-shopping-cart" /> Add to Cart
             </button>
           </p>
