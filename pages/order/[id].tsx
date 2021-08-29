@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import styles from "./style.module.css";
 import Layout from "../../components/Layout";
+import Thankyou from "../../components/Thankyou";
 import useCart from "../../hooks/useCart";
 
 const toDecimal = (price: any, fixedCount = 2) => {
@@ -14,7 +15,9 @@ const toDecimal = (price: any, fixedCount = 2) => {
 };
 
 export default function Order() {
-  const id = useRouter().query.id;
+  const { id, thankyou } = useRouter().query;
+  console.log(useRouter().query);
+
   const [cart] = useCart();
 
   const [data, setData] = useState<any>({
@@ -39,6 +42,7 @@ export default function Order() {
 
   return (
     <Layout {...{ cart }}>
+      {thankyou === "true" && <Thankyou />}
       <ItemsComponent {...{ data }} />
     </Layout>
   );

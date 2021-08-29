@@ -13,7 +13,7 @@ import PromoCodeInput from "../../components/Checkout/PromoCodeInput";
 import Payment from "../../components/Checkout/Payment";
 
 export default function Checkout() {
-  const [cart, fetchCart] = useCart();
+  const [cart] = useCart();
 
   const [customer, setCustomer] = useState({
     firstName: "",
@@ -39,7 +39,7 @@ export default function Checkout() {
     );
 
     const order = result?.data;
-    Router.push(`/order/${order._id}`);
+    Router.push(`/order/${order._id}?thankyou=true`);
   };
 
   return (
