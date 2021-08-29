@@ -1,27 +1,30 @@
 /* eslint-disable @next/next/no-img-element */
+import { useState } from "react";
 import axios from "axios";
 
 import useCart from "../../hooks/useCart";
 
 export default function ProductDetail({ product, afterAddToCart }) {
+  const [quantity, setQuantity] = useState(1);
+
   const addToCart = async () => {
     await axios.post(process.env.SERVER_URL + "/api/cart/add", {
-      quantity: 1,
+      quantity,
       id: product._id,
     });
     return afterAddToCart();
   };
 
   return (
-    <div className="container">
+    <div className="container mt-5">
       <div className="row">
         <div className="col-md-6">
           <div className="pro-img-details">
             <img src={product.image} alt={product.title} />
           </div>
-          <div className="pro-img-list">
+          {/* <div className="pro-img-list">
             <img src={product.image} alt={product.title} width={150} />
-          </div>
+          </div> */}
         </div>
         <div className="col-md-6">
           <h4 className="pro-d-title">{product.title}</h4>
@@ -56,6 +59,8 @@ export default function ProductDetail({ product, afterAddToCart }) {
               type="quantiy"
               placeholder={1}
               className="form-control quantity"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
             />
           </div>
           <p>
