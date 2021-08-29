@@ -36,12 +36,14 @@ function Product({ product, afterAddToCart }) {
   return (
     <div className="box">
       <span className="discount">
-        {Math.floor((product.original_price / product.price) * 100)}
+        {Math.floor((product.original_price / product.price) * 100)}%
       </span>
       <div className="icons">
         <a href="#" className="fas fa-heart" />
         <a href="#" className="fas fa-share" />
-        <a href="#" className="fas fa-eye" />
+        <Link href={`/products/${product._id}`}>
+          <a href="#" className="fas fa-eye" />
+        </Link>
       </div>
       <img
         src={
@@ -65,6 +67,7 @@ function Product({ product, afterAddToCart }) {
           max={1000}
           value={quantity}
           onChange={(e) => setQuantity(e.target.value)}
+          style={{ textAlign: "center" }}
         />
       </div>
       <a className={styles.btn} onClick={addToCart}>
