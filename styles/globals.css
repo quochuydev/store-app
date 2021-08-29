@@ -336,13 +336,15 @@ section {
   color: gold;
 }
 
-.product .box-container .box .price {
+.product .box-container .box .price,
+.price {
   font-size: 2rem;
   color: #333;
   padding: 0.5rem 0;
 }
 
-.product .box-container .box .price span {
+.product .box-container .box .price span,
+.price span {
   font-size: 1.5rem;
   color: #999;
   text-decoration: line-through !important;

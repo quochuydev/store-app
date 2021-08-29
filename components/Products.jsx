@@ -53,9 +53,9 @@ function Product({ product, afterAddToCart }) {
       <Link href={`/products/${product._id}`}>
         <h3>{product.title}</h3>
       </Link>
-      <ReviewStars />
+      {/* <ReviewStars /> */}
       <div className="price">
-        {product.price} <span>{product.original_price}</span>
+        ${product.price} <span>${product.original_price}</span>
       </div>
       <div className="quantity">
         <span>quantity : </span>

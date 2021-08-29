@@ -50,8 +50,9 @@ export default function ProductDetail({ product, afterAddToCart }) {
           </div>
           <div className="m-bot15">
             <strong>Price : </strong>
-            <span className="amount-old">${product.original_price}</span>
-            <span className="pro-price"> ${product.price}</span>
+            <p className="price">
+              ${product.price} <span>${product.original_price}</span>
+            </p>
           </div>
           <div className="form-group">
             <label>Quantity</label>
@@ -61,6 +62,7 @@ export default function ProductDetail({ product, afterAddToCart }) {
               className="form-control quantity"
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
+              style={{ width: 100, textAlign: "center" }}
             />
           </div>
           <p>
