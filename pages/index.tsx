@@ -43,9 +43,9 @@ export default function Index({ products }: any) {
   return (
     <Layout {...{ cart }}>
       <ToastContainer />
-      <Home />
-      <Banner />
-      <Category />
+      <Home {...{ setting }} />
+      <Banner {...{ setting }} />
+      <Category {...{ setting }} />
       <Products {...{ products, afterAddToCart }} />
       {/* <Deal /> */}
       <Contact />

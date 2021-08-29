@@ -4,8 +4,8 @@ export default function Deal() {
   return (
     <section className="deal" id="deal">
       <div className="content">
-        <h3 className="title">{config.deal.title}</h3>
-        <p>{config.deal.description}</p>
+        <h3 className="title">{setting.deal.title}</h3>
+        <p>{setting.deal.description}</p>
         <div className="count-down">
           <div className="box">
             <h3 id="day">00</h3>
@@ -24,7 +24,7 @@ export default function Deal() {
             <span>second</span>
           </div>
         </div>
-        <a href={config.deal.url} className="btn">
+        <a href={setting.deal.url} className="btn">
           check the deal
         </a>
       </div>

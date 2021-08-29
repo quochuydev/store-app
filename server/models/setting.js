@@ -2,35 +2,41 @@ const mongoose = require("mongoose");
 
 const settingSchema = new mongoose.Schema({
   shop: {
-    brand: String,
-    logo: String,
+    brand: { type: String, default: "" },
+    logo: { type: String, default: "" },
   },
   banner: {
-    title: String,
-    description: String,
-    image: String,
-    url: String,
+    title: { type: String, default: "" },
+    description: { type: String, default: "" },
+    image: { type: String, default: "" },
+    url: { type: String, default: "" },
   },
-  contents: [
-    {
-      title: String,
-      description: String,
-      image: String,
-      url: String,
-    },
-  ],
-  categories: [
-    {
-      title: String,
-      description: String,
-      image: String,
-      url: String,
-    },
-  ],
+  contents: {
+    type: [
+      {
+        title: { type: String, default: "" },
+        description: { type: String, default: "" },
+        image: { type: String, default: "" },
+        url: { type: String, default: "" },
+      },
+    ],
+    default: [],
+  },
+  categories: {
+    type: [
+      {
+        title: { type: String, default: "" },
+        description: { type: String, default: "" },
+        image: { type: String, default: "" },
+        url: { type: String, default: "" },
+      },
+    ],
+    default: [],
+  },
   deal: {
-    title: String,
-    description: String,
-    url: String,
+    title: { type: String, default: "" },
+    description: { type: String, default: "" },
+    url: { type: String, default: "" },
   },
 });
 

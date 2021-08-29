@@ -29,18 +29,20 @@ export default {
     url: "#",
     image: "images/home-img.png",
   },
-  content1: {
-    title: "special offer",
-    description: "upto 45% off",
-    url: "#",
-    image: "images/banner-1.jpg",
-  },
-  content2: {
-    title: "limited offer",
-    description: "upto 50% off",
-    url: "#",
-    image: "images/banner-2.jpg",
-  },
+  contents: [
+    {
+      title: "special offer",
+      description: "upto 45% off",
+      url: "#",
+      image: "images/banner-1.jpg",
+    },
+    {
+      title: "limited offer",
+      description: "upto 50% off",
+      url: "#",
+      image: "images/banner-2.jpg",
+    },
+  ],
   categories: [
     {
       title: "vegitables",

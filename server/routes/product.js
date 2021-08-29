@@ -70,4 +70,4 @@ router.put("/api/products/:id", async (req, res) => {
   res.json(product);
 });
 
-module.exports = { productRoute: router };
+module.exports = { prwoductRoute: router };
