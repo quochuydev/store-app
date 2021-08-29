@@ -26,7 +26,7 @@
 }
 
 html {
-  font-size: 62.5%;
+  font-size: 75%;
   overflow-x: hidden;
   scroll-padding-top: 6.5rem;
   scroll-behavior: smooth;
@@ -56,7 +56,7 @@ section {
   color: var(--black);
   text-transform: uppercase;
   padding: 1rem;
-  font-size: 3.5rem;
+  font-size: 1.5rem;
   padding-bottom: 2rem;
 }
 
@@ -552,12 +552,6 @@ section {
 }
 
 /* media queries  */
-
-@media (max-width: 1200px) {
-  html {
-    font-size: 55%;
-  }
-}
 
 @media (max-width: 991px) {
   .header-1,
