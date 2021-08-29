@@ -7,7 +7,7 @@ import Layout from "../../components/Layout";
 import Thankyou from "../../components/Thankyou";
 import useCart from "../../hooks/useCart";
 
-const toDecimal = (price: any, fixedCount = 2) => {
+const toDecimal = (price, fixedCount = 2) => {
   return price.toLocaleString(undefined, {
     minimumFractionDigits: fixedCount,
     maximumFractionDigits: fixedCount,
@@ -19,7 +19,7 @@ export default function Order() {
 
   const [cart] = useCart();
 
-  const [data, setData] = useState<any>({
+  const [data, setData] = useState({
     amount: 0,
     line_items: [],
   });
@@ -38,13 +38,48 @@ export default function Order() {
   return (
     <Layout {...{ cart }}>
       {thankyou === "true" && <Thankyou />}
+      <CustomerInfo {...{ data }} />
       <ItemsComponent {...{ data }} />
     </Layout>
   );
 }
 
-function ItemsComponent({ data }: any) {
-  const CartItem = ({ item }: any) => {
+function CustomerInfo({ data }) {
+  return (
+    <div className="row g-3">
+      <div className="col-md-4">
+        <label htmlFor="country" className="form-label">
+          Country
+        </label>
+        <select className="form-select" id="country" required>
+          <option>Choose...</option>
+          <option>United States</option>
+        </select>
+        <div className="invalid-feedback">Please select a valid country.</div>
+      </div>
+      <div className="col-md-4">
+        <label htmlFor="state" className="form-label">
+          State
+        </label>
+        <select className="form-select" id="state" required>
+          <option>Choose...</option>
+          <option>California</option>
+        </select>
+        <div className="invalid-feedback">Please provide a valid state.</div>
+      </div>
+      <div className="col-md-4">
+        <label htmlFor="zip" className="form-label">
+          Zip
+        </label>
+        <input type="text" className="form-control" id="zip" required />
+        <div className="invalid-feedback">Zip code required.</div>
+      </div>
+    </div>
+  );
+}
+
+function ItemsComponent({ data }) {
+  const CartItem = ({ item }) => {
     return (
       <tr>
         <td>
@@ -74,7 +109,7 @@ function ItemsComponent({ data }: any) {
             <th>Quantity</th>
             <th>Total</th>
           </tr>
-          {data.line_items.map((e: any, i: number) => (
+          {data.line_items.map((e, i) => (
             <CartItem key={i} item={e} />
           ))}
         </tbody>
