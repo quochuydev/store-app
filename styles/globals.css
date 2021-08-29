@@ -39,8 +39,8 @@ section {
 .btn {
   display: inline-block;
   margin-top: 1rem;
-  background: var(--green);
-  color: #fff;
+  background: var(--green) !important;
+  color: #fff !important;
   padding: 0.8rem 3rem;
   font-size: 1.7rem;
   text-align: center;
@@ -48,7 +48,7 @@ section {
 }
 
 .btn:hover {
-  background: var(--black);
+  background: var(--grey2) !important;
 }
 
 .heading {
