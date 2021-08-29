@@ -57,7 +57,6 @@ setInterval(function () {
 
 $(document).ready(function () {
   $("button").on("click", function () {
-    console.log(123);
     $(".card-holder").append(
       '<div class="card w-100"><div class="card-body">multiple cards</div></div>'
     );

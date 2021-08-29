@@ -16,7 +16,6 @@ const toDecimal = (price: any, fixedCount = 2) => {
 
 export default function Order() {
   const { id, thankyou } = useRouter().query;
-  console.log(useRouter().query);
 
   const [cart] = useCart();
 
@@ -30,13 +29,9 @@ export default function Order() {
       axios({
         method: "get",
         url: `${process.env.SERVER_URL}/api/orders/${id}`,
-      })
-        .then(function (response) {
-          setData(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      }).then(function (response) {
+        setData(response.data);
+      });
     }
   }, [id]);
 
