@@ -2,8 +2,6 @@
 import { useState } from "react";
 import axios from "axios";
 
-import useCart from "../../hooks/useCart";
-
 export default function ProductDetail({ product, afterAddToCart }) {
   const [quantity, setQuantity] = useState(1);
 

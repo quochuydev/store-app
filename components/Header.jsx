@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/link-passhref */
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Link from "next/link";
 
 import Menu from "./Menu";
