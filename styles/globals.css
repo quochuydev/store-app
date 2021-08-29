@@ -31,7 +31,7 @@ html {
 }
 
 section {
-  padding: 2rem 9%;
+  padding: 2rem 5%;
 }
 
 .btn {
@@ -68,7 +68,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 9%;
+  padding: 2rem 5%;
 }
 
 .logo {
@@ -117,7 +117,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 9%;
+  padding: 2rem 5%;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
   position: relative;
 }
@@ -275,7 +275,7 @@ section {
 }
 
 .product .box-container .box {
-  flex: 1 1 30rem;
+  flex: 1 1 25rem;
   text-align: center;
   padding: 2rem;
   border: 0.1rem solid rgba(0, 0, 0, 0.3);
