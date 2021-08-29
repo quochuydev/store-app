@@ -9,6 +9,15 @@ const productSchema = new mongoose.Schema({
   image: { type: String, null: true },
   categories: { type: [String], default: [] },
   tags: { type: [String], default: [] },
+  attributes: {
+    type: [
+      {
+        key: String,
+        value: String,
+      },
+    ],
+    default: [],
+  },
   createdAt: { type: Date, default: Date.now },
 });
 
