@@ -33,10 +33,10 @@ function CartComponent({ cart, fetchCart }) {
                 <p>{item.title}</p>
               </Link>
               <p>Price: ${item.price}</p>
-              <ButtonRemoveItem {...{ item, fetchCart }} />
             </div>
           </div>
         </td>
+        <td>${item.price}</td>
         <td>
           <div className={styles.qtyClick}>
             <ButtonChangeQuantity
@@ -56,7 +56,10 @@ function CartComponent({ cart, fetchCart }) {
             />
           </div>
         </td>
-        <td>${item.amount}</td>
+        <td style={{ textAlign: "right" }}>${item.amount}</td>
+        <td>
+          <ButtonRemoveItem {...{ item, fetchCart }} />
+        </td>
       </tr>
     );
   };
@@ -67,8 +70,10 @@ function CartComponent({ cart, fetchCart }) {
         <tbody>
           <tr>
             <th>Product</th>
+            <th>Price</th>
             <th>Quantity</th>
-            <th>Subtotal</th>
+            <th style={{ textAlign: "right" }}>Total</th>
+            <th></th>
           </tr>
           {cart.items.map((e, i) => (
             <CartItem key={i} item={e} cart={cart} />

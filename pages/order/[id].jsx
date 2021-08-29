@@ -41,17 +41,19 @@ export default function Order() {
 
 function CustomerInfo({ data }) {
   return (
-    <div className="row g-3">
-      <div className="col-md-6">
-        <b>Billing address</b>
-        <div>{data.customer?.firstName}</div>
-        <div>{data.customer?.phoneNumber}</div>
-        <div>{data.customer?.email}</div>
-        <div>{data.customer?.address}</div>
-      </div>
-      <div className="col-md-6">
-        <b>Payment</b>
-        <div>Cash On Delivery (COD)</div>
+    <div className="container g-3">
+      <div className="row">
+        <div className="col-md-6">
+          <b>Billing address</b>
+          <div>{data.customer?.firstName}</div>
+          <div>{data.customer?.phoneNumber}</div>
+          <div>{data.customer?.email}</div>
+          <div>{data.customer?.address}</div>
+        </div>
+        <div className="col-md-6">
+          <b>Payment</b>
+          <div>Cash On Delivery (COD)</div>
+        </div>
       </div>
     </div>
   );
