@@ -16,6 +16,11 @@ router.get("/api/orders", async (req, res) => {
   res.send({ items });
 });
 
+router.get("/api/orders/:id", async (req, res) => {
+  const order = await orderModel.findOne({ _id: req.params.id }).lean(true);
+  res.json(order);
+});
+
 router.post("/api/orders", async (req, res) => {
   const data = req.body;
 

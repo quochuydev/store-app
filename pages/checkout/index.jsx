@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import axios from "axios";
+import Router from "next/router";
 
 import styles from "./style.module.css";
 import useCart from "../../hooks/useCart";
@@ -32,13 +33,13 @@ export default function Checkout() {
       amount: cart.total_price,
     };
 
-    console.log(data);
-
     const result = await axios.post(
       process.env.SERVER_URL + "/api/orders",
       data
     );
-    console.log(result?.data);
+
+    const order = result?.data;
+    Router.push(`/order/${order._id}`);
   };
 
   return (
