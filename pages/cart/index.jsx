@@ -17,27 +17,6 @@ export default function Cart() {
   );
 }
 
-function ButtonChangeQuantity({ item, type, fetchCart }) {
-  return (
-    <button
-      type="button"
-      className={styles.qtyBtn}
-      onClick={async () => {
-        if (type === "decrease" && item.quantity <= 1) {
-          return;
-        }
-        await axios.post(
-          `${process.env.SERVER_URL}/api/cart/update/${item.productId}`,
-          { quantity: type === "decrease" ? -1 : 1 }
-        );
-        fetchCart();
-      }}
-    >
-      {type === "decrease" ? "-" : "+"}
-    </button>
-  );
-}
-
 function CartComponent({ cart, fetchCart }) {
   const CartItem = ({ item }) => {
     return (
@@ -49,17 +28,7 @@ function CartComponent({ cart, fetchCart }) {
               <p>{item.title}</p>
               <span>Price: ${item.price}</span>
               <br />
-              <a
-                onClick={async () => {
-                  await axios.post(
-                    `${process.env.SERVER_URL}/api/cart/remove/${item.productId}`
-                  );
-                  fetchCart();
-                  alert("success");
-                }}
-              >
-                remove
-              </a>
+              <ButtonRemoveItem {...{ item }} />
             </div>
           </div>
         </td>
@@ -126,4 +95,35 @@ function CartComponent({ cart, fetchCart }) {
       </div>
     </div>
   );
+}
+
+function ButtonChangeQuantity({ item, type, fetchCart }) {
+  const onClick = async () => {
+    if (type === "decrease" && item.quantity <= 1) {
+      return;
+    }
+    await axios.post(
+      `${process.env.SERVER_URL}/api/cart/update/${item.productId}`,
+      { quantity: type === "decrease" ? -1 : 1 }
+    );
+    fetchCart();
+  };
+
+  return (
+    <button type="button" className={styles.qtyBtn} onClick={onClick}>
+      {type === "decrease" ? "-" : "+"}
+    </button>
+  );
+}
+
+function ButtonRemoveItem({ item }) {
+  const onRemove = async () => {
+    await axios.post(
+      `${process.env.SERVER_URL}/api/cart/remove/${item.productId}`
+    );
+    fetchCart();
+    alert("success");
+  };
+
+  return <a onClick={onRemove}>remove</a>;
 }

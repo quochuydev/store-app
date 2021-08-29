@@ -9,6 +9,11 @@ const { fileModel } = require("../models/file");
 
 const server = process.env.SERVER_URL;
 
+router.get("/api/files", async (req, res) => {
+  const items = await fileModel.find({}).sort({ created_at: -1 });
+  res.status(200).json({ items });
+});
+
 router.get("/files/:filename", (req, res) => {
   var fullPath = path.join(path.resolve("./files"), req.params.filename);
 
@@ -34,7 +39,7 @@ var upload = multer({ storage: storage });
 
 router.post("/api/files", upload.single("files"), async (req, res) => {
   if (!req.file) {
-    return res.status(400).send(error);
+    return res.status(400).send("empty file");
   }
 
   const file = await fileModel.create({
