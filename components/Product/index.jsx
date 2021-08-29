@@ -17,13 +17,11 @@ export default function ProductDetail({ product, afterAddToCart }) {
     <div className="container mt-5">
       <div className="row">
         <div className="col-md-6">
-          <div>
-            <img
-              src={product.image}
-              alt={product.title}
-              style={{ width: "100%" }}
-            />
-          </div>
+          <img
+            src={product.image}
+            alt={product.title}
+            style={{ width: "100%" }}
+          />
           {/* <img src={product.image} alt={product.title} width={150} /> */}
         </div>
         <div className="col-md-6">
