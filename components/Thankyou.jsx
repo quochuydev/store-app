@@ -14,6 +14,7 @@ export default function Thankyou() {
           Continue to homepage
         </a>
       </p>
+      <hr />
     </div>
   );
 }

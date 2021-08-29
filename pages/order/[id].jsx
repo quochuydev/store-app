@@ -47,32 +47,16 @@ export default function Order() {
 function CustomerInfo({ data }) {
   return (
     <div className="row g-3">
-      <div className="col-md-4">
-        <label htmlFor="country" className="form-label">
-          Country
-        </label>
-        <select className="form-select" id="country" required>
-          <option>Choose...</option>
-          <option>United States</option>
-        </select>
-        <div className="invalid-feedback">Please select a valid country.</div>
+      <div className="col-md-6">
+        <b>Billing address</b>
+        <div>{data.customer?.firstName}</div>
+        <div>{data.customer?.phoneNumber}</div>
+        <div>{data.customer?.email}</div>
+        <div>{data.customer?.address}</div>
       </div>
-      <div className="col-md-4">
-        <label htmlFor="state" className="form-label">
-          State
-        </label>
-        <select className="form-select" id="state" required>
-          <option>Choose...</option>
-          <option>California</option>
-        </select>
-        <div className="invalid-feedback">Please provide a valid state.</div>
-      </div>
-      <div className="col-md-4">
-        <label htmlFor="zip" className="form-label">
-          Zip
-        </label>
-        <input type="text" className="form-control" id="zip" required />
-        <div className="invalid-feedback">Zip code required.</div>
+      <div className="col-md-6">
+        <b>Payment</b>
+        <div>Cash On Delivery (COD)</div>
       </div>
     </div>
   );
