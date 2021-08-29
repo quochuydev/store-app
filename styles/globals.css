@@ -484,12 +484,14 @@ section {
 .newsletter div .box {
   width: 100%;
   padding: 0.7rem 1.5rem;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   color: #333;
   text-transform: none;
 }
 
 .newsletter div .btn {
+  padding: 0.7rem 1.5rem;
+  font-size: 1.5rem;
   margin-top: 0;
 }
 

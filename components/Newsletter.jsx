@@ -1,7 +1,7 @@
 export default function Newsletter() {
   return (
     <section className="newsletter">
-      <h3>subscribe us for latest updates</h3>
+      <h3>Subscribe us for latest updates</h3>
       <div>
         <input
           className="box"
