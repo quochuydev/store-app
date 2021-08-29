@@ -59,7 +59,7 @@ function Product({ product, afterAddToCart }) {
         alt={product.title}
       />
       <Link href={`/products/${product._id}`}>
-        <h3 style={{ cursor: "pointer" }}>{product.title}</h3>
+        <h3 style={{ marginTop: 5, cursor: "pointer" }}>{product.title}</h3>
       </Link>
 
       {/* <ReviewStars /> */}

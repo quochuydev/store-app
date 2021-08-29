@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Router from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./style.module.css";
 import useCart from "../../hooks/useCart";
@@ -27,14 +29,18 @@ export default function Checkout() {
   };
 
   const createOrder = async () => {
-    const data = {
-      customer,
-      line_items: cart.items,
-      amount: cart.total_price,
-    };
+    if (!customer.firstName || customer.firstName === "") {
+      return toast("Invalid first name!");
+    }
+    if (!customer.phoneNumber || customer.phoneNumber === "") {
+      return toast("Invalid phone number!");
+    }
+    if (!customer.address || customer.address === "") {
+      return toast("Invalid address!");
+    }
 
     const result = await axios.post(
-      process.env.SERVER_URL + "/api/orders",
+      `${process.env.SERVER_URL}/api/orders`,
       data
     );
 
@@ -46,6 +52,8 @@ export default function Checkout() {
 
   return (
     <Layout {...{ cart }}>
+      <ToastContainer />
+
       <div className={styles.container}>
         <main>
           <div className="row g-5">

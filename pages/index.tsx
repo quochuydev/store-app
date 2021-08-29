@@ -1,4 +1,6 @@
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Layout from "../components/Layout";
 import Home from "../components/Home";
@@ -25,12 +27,18 @@ export async function getServerSideProps() {
 export default function Index({ products }: any) {
   const [cart, fetchCart] = useCart();
 
+  const afterAddToCart = () => {
+    fetchCart();
+    toast("Added", { position: "bottom-right" });
+  };
+
   return (
     <Layout {...{ cart }}>
+      <ToastContainer />
       <Home />
       <Banner />
       <Category />
-      <Products {...{ products, afterAddToCart: () => fetchCart() }} />
+      <Products {...{ products, afterAddToCart }} />
       {/* <Deal /> */}
       <Contact />
       <Newsletter />

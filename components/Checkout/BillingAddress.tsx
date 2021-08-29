@@ -12,6 +12,7 @@ export default function BillingAddress(props: any) {
             type="text"
             className="form-control"
             id="firstName"
+            placeholder="Your name"
             required
             onChange={(e) => onData("firstName", e.target.value)}
           />
@@ -21,7 +22,7 @@ export default function BillingAddress(props: any) {
         {/* <UsernameComponent /> */}
         <div className="col-12">
           <label htmlFor="phone" className="form-label">
-            Phone <span className="text-muted">(Optional)</span>
+            Phone <span className="text-muted"></span>
           </label>
           <input
             type="text"
@@ -41,7 +42,7 @@ export default function BillingAddress(props: any) {
             type="email"
             className="form-control"
             id="email"
-            placeholder="you@example.com"
+            placeholder="example@gmail.com"
             onChange={(e) => onData("email", e.target.value)}
           />
           <div className="invalid-feedback">
@@ -56,7 +57,7 @@ export default function BillingAddress(props: any) {
             type="text"
             className="form-control"
             id="address"
-            placeholder="1234 Main St"
+            placeholder="1234 Main St - Ho Chi Minh City"
             required
             onChange={(e) => onData("address", e.target.value)}
           />
