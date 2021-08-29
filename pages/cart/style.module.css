@@ -5,11 +5,6 @@
   margin: 2rem auto;
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
 .cartInfo {
   display: flex;
   flex-wrap: wrap;
@@ -17,6 +12,11 @@
 
 .cartInfo span {
   color: var(--grey2);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .table th {
@@ -85,7 +85,6 @@
 .itemQuantity {
   background: #fff;
   font-weight: 500;
-  font-size: 15px;
   height: 25px;
   padding: 0;
   text-align: center;
@@ -101,7 +100,6 @@
   padding: 0.5rem;
 
   font-weight: 500;
-  font-size: 14px;
   text-align: center;
   border: 1px solid #f3f4f4;
   border-radius: 0;

@@ -59,10 +59,12 @@ export default function Checkout() {
               <Items {...{ cart }} />
               {/* <PromoCodeInput /> */}
             </div>
+
             <div className="col-md-7 col-lg-8">
               <h4 className="mb-3">Billing address</h4>
               <form className="needs-validation was-validated" noValidate>
                 <BillingAddress {...{ onData }} />
+
                 <div className="form-check">
                   <input
                     type="checkbox"
@@ -75,6 +77,7 @@ export default function Checkout() {
                     Shipping address is the same as my billing address
                   </label>
                 </div>
+
                 {/* <Payment /> */}
                 <hr className="my-4" />
                 <button

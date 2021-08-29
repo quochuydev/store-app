@@ -7,6 +7,8 @@ const productSchema = new mongoose.Schema({
   price: { type: Number, default: 0 },
   original_price: { type: Number, default: 0 },
   image: { type: String, null: true },
+  categories: { type: [String], default: [] },
+  tags: { type: [String], default: [] },
   createdAt: { type: Date, default: Date.now },
 });
 

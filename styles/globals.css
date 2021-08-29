@@ -40,7 +40,7 @@ section {
   background: var(--green) !important;
   color: #fff !important;
   padding: 0.8rem 3rem;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   text-align: center;
   cursor: pointer;
 }
@@ -100,8 +100,8 @@ section {
 .header-1 .search-box-container label {
   height: 100%;
   width: 8rem;
-  font-size: 2.5rem;
-  line-height: 5rem;
+  font-size: 2rem;
+  line-height: 4rem;
   color: #fff;
   background: var(--green);
   text-align: center;
@@ -143,7 +143,7 @@ section {
 }
 
 .header-2 .icons .link {
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: var(--black);
   padding-left: 1rem;
   cursor: pointer;
@@ -254,7 +254,7 @@ section {
 }
 
 .category .box-container .box h3 {
-  font-size: 3.5rem;
+  font-size: 3rem;
   color: var(--black);
 }
 
@@ -313,7 +313,7 @@ section {
   height: 4.5rem;
   width: 4.5rem;
   line-height: 4.5rem;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   color: var(--black);
   background: rgba(0, 0, 0, 0.05);
   border-radius: 50%;
@@ -332,7 +332,7 @@ section {
 
 .product .box-container .box .stars i {
   padding: 1rem 0.1rem;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   color: gold;
 }
 
@@ -360,7 +360,7 @@ section {
 
 .product .box-container .box .quantity span {
   padding: 0 0.7rem;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
 }
 
 .product .box-container .box .quantity input {
@@ -394,7 +394,7 @@ section {
 }
 
 .deal .content p {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   padding: 1rem 0;
   color: #333;
 }
@@ -445,7 +445,7 @@ section {
 .contact form .inputBox input,
 .contact form textarea {
   padding: 1rem;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   background: #f7f7f7;
   text-transform: none;
   margin: 1rem 0;
@@ -532,7 +532,7 @@ section {
 .footer .box-container .box .links a {
   display: block;
   padding: 0.5rem 0;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   color: #333;
 }
 

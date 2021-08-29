@@ -55,15 +55,6 @@
   margin-top: 2rem;
 }
 
-.totalPrice a {
-  display: inline-block;
-  background-color: var(--green);
-  color: var(--white);
-  padding: 0.7rem 1.6rem;
-  font-weight: 700;
-  border-radius: 3rem;
-}
-
 .totalPrice table {
   border-top: 3px solid var(--green);
   width: 100%;
@@ -76,38 +67,6 @@
 
 .table th:last-child {
   text-align: right;
-}
-
-.qtyClick {
-  float: left;
-}
-
-.itemQuantity {
-  background: #fff;
-  font-weight: 500;
-  font-size: 15px;
-  height: 25px;
-  padding: 0;
-  text-align: center;
-  width: 35px;
-  border: 1px solid #f3f4f4;
-  border-radius: 0;
-  float: left;
-}
-
-.qtyBtn {
-  /* background: #fff; */
-  font-weight: 500;
-  font-size: 14px;
-  height: 25px;
-  padding: 0;
-  text-align: center;
-  width: 25px;
-  border: 1px solid #f3f4f4;
-  border-radius: 0;
-  float: left;
-  -webkit-appearance: none;
-  background: #f3f4f4;
 }
 
 @media (max-width: 567px) {

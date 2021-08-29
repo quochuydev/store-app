@@ -17,38 +17,41 @@ export default function ProductDetail({ product, afterAddToCart }) {
     <div className="container mt-5">
       <div className="row">
         <div className="col-md-6">
-          <div className="pro-img-details">
-            <img src={product.image} alt={product.title} />
+          <div>
+            <img
+              src={product.image}
+              alt={product.title}
+              style={{ width: "100%" }}
+            />
           </div>
-          {/* <div className="pro-img-list">
-            <img src={product.image} alt={product.title} width={150} />
-          </div> */}
+          {/* <img src={product.image} alt={product.title} width={150} /> */}
         </div>
         <div className="col-md-6">
           <h1>{product.title}</h1>
           <div>{product.body}</div>
-          <div>
-            <strong>Categories:</strong>
-            {["Jackets", "Men", "Shirts", "T-shirt"].map((e, i) => (
-              <a key={i} rel="tag" href="#">
-                {e}
-              </a>
-            ))}
-            <br />
-            <strong>Tags:</strong>
-            {["mens", "womens"].map((e, i) => (
-              <a key={i} rel="tag" href="#">
-                {e}
-              </a>
-            ))}
-          </div>
 
-          <div>
-            <strong>Price : </strong>
-            <p className="price">
-              ${product.price} <span>${product.original_price}</span>
-            </p>
-          </div>
+          <strong>Categories:</strong>
+          {product.categories?.map((e, i) => (
+            <a key={i} rel="tag" href="#">
+              {e}
+            </a>
+          ))}
+
+          <br />
+
+          <strong>Tags:</strong>
+          {product.tags?.map((e, i) => (
+            <a key={i} rel="tag" href="#">
+              {e}
+            </a>
+          ))}
+
+          <br />
+
+          <strong>Price: </strong>
+          <p className="price">
+            ${product.price} <span>${product.original_price}</span>
+          </p>
 
           <div className="form-group">
             <label>Quantity</label>
@@ -61,11 +64,10 @@ export default function ProductDetail({ product, afterAddToCart }) {
               style={{ width: 100, textAlign: "center" }}
             />
           </div>
-          <p>
-            <a className="btn" onClick={addToCart}>
-              <i className="fa fa-shopping-cart" /> Add to cart
-            </a>
-          </p>
+
+          <a className="btn" onClick={addToCart}>
+            <i className="fa fa-shopping-cart" /> Add to cart
+          </a>
         </div>
       </div>
     </div>
