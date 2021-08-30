@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
@@ -111,20 +112,28 @@ function CartComponent({ cart, fetchCart }) {
 }
 
 function ButtonChangeQuantity({ item, type, fetchCart }) {
+  const [loading, setLoading] = useState(false);
+
   const onClick = async () => {
     if (type === "decrease" && item.quantity <= 1) {
       return;
     }
+    setLoading(true);
     await axios.post(
       `${process.env.SERVER_URL}/api/cart/update/${item.productId}`,
       { quantity: type === "decrease" ? -1 : 1 }
     );
+    setLoading(false);
     fetchCart();
   };
 
   return (
     <button type="button" className={styles.qtyBtn} onClick={onClick}>
-      {type === "decrease" ? "-" : "+"}
+      {loading ? (
+        <i className={`fa fa-spinner fa-spin`} />
+      ) : (
+        <>{type === "decrease" ? "-" : "+"}</>
+      )}
     </button>
   );
 }
@@ -138,5 +147,9 @@ function ButtonRemoveItem({ item, fetchCart }) {
     toast("success");
   };
 
-  return <a onClick={onRemove}>remove</a>;
+  return (
+    <a className="btn" style={{ cursor: "pointer" }} onClick={onRemove}>
+      remove
+    </a>
+  );
 }
