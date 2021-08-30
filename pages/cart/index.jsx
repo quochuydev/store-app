@@ -2,6 +2,8 @@
 /* eslint-disable @next/next/no-img-element */
 import axios from "axios";
 import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./style.module.css";
 import useCart from "../../hooks/useCart";
@@ -66,6 +68,7 @@ function CartComponent({ cart, fetchCart }) {
 
   return (
     <div className={styles.cart}>
+      <ToastContainer />
       <table className={styles.table}>
         <tbody>
           <tr>
@@ -132,7 +135,7 @@ function ButtonRemoveItem({ item, fetchCart }) {
       `${process.env.SERVER_URL}/api/cart/remove/${item.productId}`
     );
     fetchCart();
-    alert("success");
+    toast("success");
   };
 
   return <a onClick={onRemove}>remove</a>;
