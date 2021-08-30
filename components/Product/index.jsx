@@ -2,14 +2,19 @@
 import { useState } from "react";
 import axios from "axios";
 
+import styles from "../style.module.css";
+
 export default function ProductDetail({ product, afterAddToCart }) {
   const [quantity, setQuantity] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   const addToCart = async () => {
+    setLoading(true);
     await axios.post(process.env.SERVER_URL + "/api/cart/add", {
       quantity,
       id: product._id,
     });
+    setLoading(false);
     return afterAddToCart();
   };
 
@@ -63,9 +68,9 @@ export default function ProductDetail({ product, afterAddToCart }) {
             />
           </div>
 
-          <a className="btn" onClick={addToCart}>
+          <button className={styles.btn} onClick={addToCart} disabled={loading}>
             <i className="fa fa-shopping-cart" /> Add to cart
-          </a>
+          </button>
         </div>
       </div>
     </div>
