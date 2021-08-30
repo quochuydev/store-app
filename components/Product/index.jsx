@@ -69,7 +69,12 @@ export default function ProductDetail({ product, afterAddToCart }) {
           </div>
 
           <button className={styles.btn} onClick={addToCart} disabled={loading}>
-            <i className="fa fa-shopping-cart" /> Add to cart
+            <i
+              className={`fa ${
+                loading ? "fa-spinner fa-spin" : "fa-shopping-cart"
+              }`}
+            />
+            Add to cart
           </button>
         </div>
       </div>
