@@ -139,17 +139,20 @@ function ButtonChangeQuantity({ item, type, fetchCart }) {
 }
 
 function ButtonRemoveItem({ item, fetchCart }) {
+  const [loading, setLoading] = useState(false);
+
   const onRemove = async () => {
+    setLoading(true);
     await axios.post(
       `${process.env.SERVER_URL}/api/cart/remove/${item.productId}`
     );
+    setLoading(false);
     fetchCart();
-    toast("success");
   };
 
   return (
     <a className="btn" style={{ cursor: "pointer" }} onClick={onRemove}>
-      remove
+      {loading ? <i className={`fa fa-spinner fa-spin`} /> : <>remove</>}
     </a>
   );
 }
