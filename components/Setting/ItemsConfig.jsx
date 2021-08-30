@@ -26,7 +26,7 @@ export default function ItemsConfig(props) {
   };
 
   const onAdd = () => {
-    setData([...initData, df]);
+    setData([...data, df]);
   };
 
   return (
