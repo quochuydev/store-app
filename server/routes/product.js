@@ -40,8 +40,7 @@ router.post("/api/products", async (req, res) => {
     price: req.body.price || Math.floor(Math.random() * 1000),
     original_price: req.body.original_price || Math.floor(Math.random() * 1000),
     image:
-      req.body.image ||
-      "https://ui-avatars.com/api/?name=" + title + "&size=600",
+      req.body.image || `https://ui-avatars.com/api/?name=${title}&size=600`,
   };
 
   const product = await productModel.create(data);
@@ -57,8 +56,7 @@ router.put("/api/products/:id", async (req, res) => {
     price: req.body.price || Math.floor(Math.random() * 1000),
     original_price: req.body.original_price || Math.floor(Math.random() * 1000),
     image:
-      req.body.image ||
-      "https://ui-avatars.com/api/?name=" + title + "&size=600",
+      req.body.image || `https://ui-avatars.com/api/?name=${title}&size=600`,
   };
 
   const product = await productModel.findByIdAndUpdate(
