@@ -8,3 +8,12 @@
   text-align: center;
   cursor: pointer;
 }
+
+.btn:disabled ::after {
+  content: "";
+}
+
+.btn:disabled {
+  background: var(--grey2);
+  color: #fff;
+}
