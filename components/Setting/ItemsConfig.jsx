@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 
 export default function ItemsConfig(props) {
-  const { setting, label = "", name, initData } = props;
+  const { setting, label = "", name, initData, onSave } = props;
 
   const df = {
     title: "",
@@ -28,17 +27,6 @@ export default function ItemsConfig(props) {
 
   const onAdd = () => {
     setData([...initData, df]);
-  };
-
-  const onClick = async () => {
-    const result = await axios.put(
-      process.env.SERVER_URL + "/api/setting/" + setting._id,
-      {
-        [name]: data,
-      }
-    );
-    alert("success");
-    return result;
   };
 
   return (
@@ -76,7 +64,7 @@ export default function ItemsConfig(props) {
       ))}
 
       <br />
-      <button onClick={onClick}>save</button>
+      <button onClick={() => onSave(name, data)}>save</button>
     </div>
   );
 }

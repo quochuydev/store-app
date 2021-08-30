@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 
 export default function InputConfig(props) {
-  const { setting, label = "", name, initData = {} } = props;
+  const { setting, label = "", name, initData = {}, onSave } = props;
 
   const [data, setData] = useState(initData);
 
@@ -14,17 +13,6 @@ export default function InputConfig(props) {
 
   const onData = (name, value) => {
     setData({ ...data, [name]: value });
-  };
-
-  const onClick = async () => {
-    const result = await axios.put(
-      process.env.SERVER_URL + "/api/setting/" + setting._id,
-      {
-        [name]: data,
-      }
-    );
-    alert("success");
-    return result;
   };
 
   return (
@@ -49,7 +37,7 @@ export default function InputConfig(props) {
       <label>url</label>
       <input value={data.url} onChange={(e) => onData("url", e.target.value)} />
       <br />
-      <button onClick={onClick}>save</button>
+      <button onClick={() => onSave(name, data)}>save</button>
     </div>
   );
 }

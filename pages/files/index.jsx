@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import InputConfig from "../../components/Setting/InputConfig";
 import ItemsConfig from "../../components/Setting/ItemsConfig";
@@ -29,7 +31,7 @@ export default function Files() {
     await axios.post(process.env.SERVER_URL + "/api/products", {
       image,
     });
-    alert("success");
+    toast("success");
   };
 
   const onCopy = (text) => {
@@ -43,17 +45,26 @@ export default function Files() {
     );
   };
 
+  const onSave = async (name, data) => {
+    const result = await axios.put(
+      process.env.SERVER_URL + "/api/setting/" + setting._id,
+      { [name]: data }
+    );
+    toast("updated");
+    return result;
+  };
+
   return (
     <>
+      <ToastContainer />
       <button onClick={onCreateProduct}>create product</button>
-      <br />
-      {JSON.stringify(setting)}
       <hr />
       <InputConfig
         setting={setting}
         name="banner"
         label="banner"
         initData={setting.banner}
+        onSave={onSave}
       />
       <hr />
       <ItemsConfig
@@ -61,6 +72,7 @@ export default function Files() {
         name="contents"
         label="contents"
         initData={setting.contents}
+        onSave={onSave}
       />
       <hr />
       <ItemsConfig
@@ -68,8 +80,10 @@ export default function Files() {
         name="categories"
         label="categories"
         initData={setting.categories}
+        onSave={onSave}
       />
       <hr />
+
       <br />
       <input
         type="file"
