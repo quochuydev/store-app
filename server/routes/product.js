@@ -20,8 +20,8 @@ router.get("/api/products", async (req, res) => {
   const items = await productModel
     .find(criteria)
     .sort({ createdAt: -1 })
-    .limit(limit)
-    .skip(skip);
+    .limit(Number(limit))
+    .skip(Number(skip));
 
   res.json({ meta, items });
 });
