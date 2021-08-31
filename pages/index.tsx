@@ -28,14 +28,14 @@ export async function getServerSideProps() {
   };
 }
 
-export default function Index({ products, setting }: any) {
+export default function Index({ products }: any) {
   const [cart, fetchCart] = useCart();
-  // const [setting, setSetting] = useState({});
+  const [setting, setSetting] = useState({});
 
   useEffect(() => {
-    // axios.get(process.env.SERVER_URL + "/api/setting").then((result) => {
-    //   setSetting(result?.data || {});
-    // });
+    axios.get(process.env.SERVER_URL + "/api/setting").then((result) => {
+      setSetting(result?.data || {});
+    });
   }, []);
 
   const afterAddToCart = () => {

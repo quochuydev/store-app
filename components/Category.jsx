@@ -9,7 +9,7 @@ export default function Category({ setting }) {
         shop by <span>category</span>
       </h1>
       <div className="box-container">
-        {setting.categories.map((item, i) => (
+        {setting.categories?.map((item, i) => (
           <div key={i} className="box">
             <h3>{item.title}</h3>
             <p>{item.description}</p>

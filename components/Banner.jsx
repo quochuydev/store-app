@@ -4,7 +4,7 @@ import config from "../utils/config";
 export default function Section({ setting }) {
   return (
     <section className="banner-container">
-      {setting.contents.map((content, i) => (
+      {setting.contents?.map((content, i) => (
         <div key={i} className="banner">
           <img src={content.image} alt={content.title} />
 
