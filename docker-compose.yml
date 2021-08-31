@@ -16,3 +16,9 @@ services:
     restart: always
     ports:
       - 27017:27017
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+    ports:
+      - "80:80"
