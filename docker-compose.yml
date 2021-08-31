@@ -11,14 +11,16 @@ services:
     environment:
       DATABASE_URL: mongodb://db:27017/grocery
       SERVER_URL: http://localhost:3000
+
   db:
     image: mongo
     restart: always
     ports:
       - 27017:27017
+
   nginx:
     restart: always
     build:
       context: ./nginx
     ports:
-      - "80:80"
+      - "8000:80"
