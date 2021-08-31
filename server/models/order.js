@@ -27,7 +27,7 @@ const orderSchema = new mongoose.Schema({
 });
 
 orderSchema.post("save", async function (order, next) {
-  console.log("Event order:updated published", order._id);
+  console.log("Event shop:order.saved published", order._id);
   next();
 });
 

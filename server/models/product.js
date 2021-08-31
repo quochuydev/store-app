@@ -22,7 +22,7 @@ const productSchema = new mongoose.Schema({
 });
 
 productSchema.post("save", async function (product, next) {
-  console.log("Event product:updated published", product._id);
+  console.log("Event shop:product.saved published", product._id);
   next();
 });
 

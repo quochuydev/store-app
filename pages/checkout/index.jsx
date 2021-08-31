@@ -39,10 +39,11 @@ export default function Checkout() {
       return toast("Invalid address!");
     }
 
-    const result = await axios.post(
-      `${process.env.SERVER_URL}/api/orders`,
-      data
-    );
+    const result = await axios.post(`${process.env.SERVER_URL}/api/orders`, {
+      customer,
+      line_items: cart.items,
+      amount: cart.total_price,
+    });
 
     await axios.delete(`${process.env.SERVER_URL}/api/cart`);
 
