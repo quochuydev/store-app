@@ -7,7 +7,7 @@ services:
       context: ./nginx
     ports:
       - 443:443
-      - 81:80
+      - 80:80
 
   certbot:
     image: certbot/certbot
