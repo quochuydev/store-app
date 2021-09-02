@@ -4,6 +4,7 @@ export default {
   phoneNumber: "0382986838",
   email: "quochuy.dev@gmail.com",
   address: "Nhat Chi Mai - Q.Tan Binh, TP.HCM, VietNam",
+  desciption: "Website development eCommerce",
   company: "quochuydev",
   facebookUrl: "http://instagram.com/#",
   pinterestUrl: "https://www.pinterest.com/#",

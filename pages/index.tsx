@@ -51,7 +51,7 @@ export default function Index({ products }: any) {
       <Category {...{ setting }} />
       <Products {...{ products, afterAddToCart }} />
       {/* <Deal /> */}
-      <Contact />
+      {/* <Contact /> */}
       <Newsletter />
     </Layout>
   );

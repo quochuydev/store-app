@@ -2,7 +2,7 @@
 
 :root {
   --green: #27ae60;
-  --black: #2c2c54;
+  --black: #000;
   --primary: #69ae14;
   --white: #fff;
   --grey1: #3a3b3c;
@@ -51,7 +51,7 @@ section {
   text-transform: uppercase;
   padding: 1rem;
   font-size: 1.5rem;
-  padding-bottom: 2rem;
+  margin: 1.5rem 0;
 }
 
 .heading span {
@@ -71,6 +71,7 @@ section {
   color: var(--black);
   font-weight: bolder;
   font-size: 3rem;
+  text-align: left;
 }
 
 .logo i {
@@ -87,7 +88,7 @@ section {
   height: 100%;
   width: 100%;
   padding: 1rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #333;
   border: 0.1rem solid rgba(0, 0, 0, 0.3);
   text-transform: none;
@@ -95,8 +96,8 @@ section {
 
 .header-1 .search-box-container label {
   height: 100%;
-  width: 8rem;
-  font-size: 2rem;
+  width: 6rem;
+  font-size: 1.5rem;
   line-height: 4rem;
   color: #fff;
   background: var(--green);
@@ -127,8 +128,8 @@ section {
 }
 
 .header-2 .navbar a {
-  padding: 0.5rem 1.5rem;
-  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
   border-radius: 0.5rem;
   color: var(--black);
 }
@@ -150,10 +151,10 @@ section {
 }
 
 #menu-bar {
-  font-size: 3rem;
+  font-size: 2rem;
   border-radius: 0.5rem;
   border: 0.1rem solid var(--black);
-  padding: 0.8rem 1.5rem;
+  padding: 0.5rem 1rem;
   color: var(--black);
   cursor: pointer;
   display: none;
@@ -555,7 +556,7 @@ section {
 @media (max-width: 991px) {
   .header-1,
   .header-2 {
-    padding: 2rem;
+    padding: 1rem;
   }
 
   section {
@@ -579,11 +580,12 @@ section {
   }
 
   .header-2 .navbar.active {
+    z-index: 100;
     display: initial;
   }
 
   .header-2 .navbar a {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     display: block;
     text-align: center;
     background: #fff;

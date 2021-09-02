@@ -1,6 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import config from "../utils/config";
-
 export default function Section({ setting }) {
   return (
     <section className="banner-container">

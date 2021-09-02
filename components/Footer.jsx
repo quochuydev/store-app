@@ -1,3 +1,5 @@
+import config from "../utils/config";
+
 export default function Footer() {
   return (
     <section className="footer">
@@ -7,25 +9,20 @@ export default function Footer() {
             <i className="fas fa-shopping-basket" />
             groco
           </a>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam
-            culpa sit enim nesciunt rerum laborum illum quam error ut alias!
-          </p>
+          <p>{config.desciption}</p>
           <div className="share">
-            <a href="#" className="btn fab fa-facebook-f" />
-            <a href="#" className="btn fab fa-twitter" />
-            <a href="#" className="btn fab fa-instagram" />
-            <a href="#" className="btn fab fa-linkedin" />
+            <a href={config.facebookUrl} className="btn fab fa-facebook-f" />
+            <a href={config.twitterUrl} className="btn fab fa-twitter" />
+            <a href={config.instagramUrl} className="btn fab fa-instagram" />
+            <a href={config.linkedinUrl} className="btn fab fa-linkedin" />
           </div>
         </div>
         <div className="box">
-          <h3>our location</h3>
+          <h3>Our contact</h3>
           <div className="links">
-            <a href="#">india</a>
-            <a href="#">USA</a>
-            <a href="#">france</a>
-            <a href="#">japan</a>
-            <a href="#">russia</a>
+            <a href="#">Phone number: {config.phoneNumber}</a>
+            <a href="#">Email: {config.email}</a>
+            <a href="#">Address: {config.address}</a>
           </div>
         </div>
         <div className="box">
