@@ -15,9 +15,9 @@ services:
       - "3000:3000"
     depends_on:
       - db
+    env_file: ".env"
     environment:
       DATABASE_URL: mongodb://db:27017/grocery
-      SERVER_URL: http://localhost:3000
 
   db:
     image: mongo
