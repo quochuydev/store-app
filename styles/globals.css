@@ -510,6 +510,7 @@ section {
   width: 4rem;
   line-height: 4rem;
   text-align: center;
+  margin-right: 5px;
 }
 
 .footer .box-container .box h3 {

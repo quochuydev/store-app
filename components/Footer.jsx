@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="box">
           <a href="#" className="logo">
             <i className="fas fa-shopping-basket" />
-            groco
+            Groco
           </a>
           <p>{config.desciption}</p>
           <div className="share">
@@ -26,7 +26,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="box">
-          <h3>quick links</h3>
+          <h3>Quick links</h3>
           <div className="links">
             <a href="#">home</a>
             <a href="#">category</a>
