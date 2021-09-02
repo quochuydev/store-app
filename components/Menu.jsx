@@ -9,6 +9,7 @@ export default function Menu() {
       <Link href="/#product">product</Link>
       <Link href="/#deal">deal</Link>
       <Link href="/#contact">contact</Link>
+      <Link href="/tickets">tickets</Link>
     </nav>
   );
 }

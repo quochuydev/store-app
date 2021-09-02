@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import "../styles/ticket.css";
 import "../styles/bootstrap.min.css";
 import type { AppProps } from "next/app";
 

@@ -24,13 +24,15 @@ export default function Header({ cart }) {
       <div className="header-2">
         <div id="menu-bar" className="fas fa-bars" />
         <Menu />
-        <div className="icons">
-          <Link href="/cart">
-            <span className="link">
-              <i className="fas fa-shopping-cart" /> {cart.item_count}
-            </span>
-          </Link>
-        </div>
+        {cart && (
+          <div className="icons">
+            <Link href="/cart">
+              <span className="link">
+                <i className="fas fa-shopping-cart" /> {cart.item_count}
+              </span>
+            </Link>
+          </div>
+        )}
       </div>
     </header>
   );
