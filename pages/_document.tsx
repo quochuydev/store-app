@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-title-in-document-head */
 /* eslint-disable @next/next/google-font-display */
 /* eslint-disable @next/next/no-css-tags */
 /* eslint-disable @next/next/no-sync-scripts */
@@ -19,7 +20,9 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <base href="/"></base>
-          <link rel="icon" href="images/icons/favicon.png" />
+          <link rel="icon" href="favicon.png" />
+          <title>Grocery</title>
+
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900"
