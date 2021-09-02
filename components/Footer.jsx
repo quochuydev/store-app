@@ -45,7 +45,7 @@ export default function Footer() {
         </div>
       </div>
       <h1 className="credit">
-        created by <span> quochuydev </span> | all rights reserved!{" "}
+        created by <span> quochuydev </span> | all rights reserved!
       </h1>
     </section>
   );
