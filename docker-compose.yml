@@ -5,6 +5,9 @@ services:
     restart: always
     build:
       context: ./nginx
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
     ports:
       - 443:443
       - 80:80
@@ -12,7 +15,10 @@ services:
   certbot:
     image: certbot/certbot
     container_name: certbot
-    command: certonly --email quochuydev1@gmail.com --agree-tos --no-eff-email --staging -d cafeman.xyz  -d www.cafeman.xyz
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+    command: certonly --nginx -d cafeman.xyz -d www.cafeman.xyz
 
   app:
     build: .
@@ -29,3 +35,8 @@ services:
     restart: always
     ports:
       - 27017:27017
+
+volumes:
+  certbot-etc:
+  certbot-var:
+    driver: local
