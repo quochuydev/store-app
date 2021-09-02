@@ -18,7 +18,7 @@ services:
     volumes:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
-    command: certbot --nginx -d cafeman.xyz -d www.cafeman.xyz
+    command: certbot --webroot-path=/var/www/certbot --nginx -d cafeman.xyz -d www.cafeman.xyz
 
   app:
     build: .
