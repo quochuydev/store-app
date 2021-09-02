@@ -11,8 +11,6 @@ services:
   certbot:
     image: certbot/certbot
     container_name: certbot
-    depends_on:
-      - webserver
     command: certonly --email quochuydev1@gmail.com --agree-tos --no-eff-email --staging -d cafeman.xyz  -d www.cafeman.xyz
 
   app:
