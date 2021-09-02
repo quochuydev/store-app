@@ -1,5 +1,5 @@
-function FilterBox({ filter }) {
-  const { name, options } = filter;
+function FilterBox({ filter, handleChange }) {
+  const { type, name, options } = filter;
 
   return (
     <div className="widget">
@@ -10,15 +10,23 @@ function FilterBox({ filter }) {
       </div>
       <div className="collapse show" id="dateposted">
         <div className="widget-content">
-          {options.map((e, i) => (
+          {options.map((option, i) => (
             <div key={i} className="custom-control custom-checkbox">
               <input
                 type="checkbox"
                 className="custom-control-input me-2"
-                id="dateposted1"
+                defaultChecked={false}
+                id={type + option.value}
+                value={option.value}
+                onChange={(e) =>
+                  handleChange(type, e.target.value, e.target.checked)
+                }
               />
-              <label className="custom-control-label" htmlFor="dateposted1">
-                {e.name}
+              <label
+                className="custom-control-label"
+                htmlFor={type + option.value}
+              >
+                {option.name}
               </label>
             </div>
           ))}
@@ -28,26 +36,29 @@ function FilterBox({ filter }) {
   );
 }
 
-export default function Filter() {
+export default function Filter({ query, handleChange }) {
   const filters = [
     {
+      type: "shipping",
       name: "Giao nhận",
       options: [
-        { value: "", name: "Lấy hàng tận nhà" },
-        { value: "", name: "Giao hàng tại nhà" },
+        { value: false, name: "Lấy hàng tại nhà xe" },
+        { value: true, name: "Giao hàng tận nhà" },
       ],
     },
     {
+      type: "time",
       name: "Giờ xe chạy",
       options: [
-        { value: "", name: "Mờ sáng (2h - 6h)" },
-        { value: "", name: "Sáng (7h - 12h)" },
-        { value: "", name: "Trưa, chiều (1h - 5h)" },
-        { value: "", name: "Buổi tối (6h - 12h)" },
-        { value: "", name: "Nửa đêm" },
+        { value: 3, name: "Mờ sáng (2h - 6h)" },
+        { value: 4, name: "Sáng (7h - 12h)" },
+        { value: 5, name: "Trưa, chiều (1h - 5h)" },
+        { value: 6, name: "Buổi tối (6h - 12h)" },
+        { value: 7, name: "Nửa đêm" },
       ],
     },
     {
+      type: "fee",
       name: "Giá cước",
       options: [
         { value: "", name: "Dưới 3k 1kg" },
@@ -56,6 +67,7 @@ export default function Filter() {
       ],
     },
     {
+      type: "carType",
       name: "Loại xe",
       options: [
         { value: "", name: "Xe lạnh" },
@@ -65,6 +77,7 @@ export default function Filter() {
       ],
     },
     {
+      type: "brand",
       name: "Nhà xe",
       options: [
         { value: "", name: "Minh Quốc" },
@@ -75,7 +88,10 @@ export default function Filter() {
   return (
     <div className="sidebar">
       {filters.map((filter, i) => (
-        <FilterBox key={i} {...{ filter }} />
+        <FilterBox
+          key={i}
+          {...{ value: query[filter.type], filter, handleChange }}
+        />
       ))}
     </div>
   );

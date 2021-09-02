@@ -27,9 +27,12 @@ export default function TicketCard() {
 
         <div className="col-md-8 col-lg-6">
           <div className="card-body">
-            <h3 className="card-title fw-bold">Nhà xe minh quốc</h3>
+            <h3 className="card-title fw-bold">
+              Nhà xe minh quốc{" "}
+              <span style={{ fontSize: 14 }}>(Tải trọng 12 tấn)</span>
+            </h3>
 
-            <div className="fromto">
+            <table className="fromto">
               <tr>
                 <td style={{ width: 100 }}>
                   <b>6:00</b>
@@ -50,9 +53,8 @@ export default function TicketCard() {
                   <small>110 Hùng Vương, Long An</small>
                 </td>
               </tr>
-            </div>
+            </table>
             <br />
-
             <a style={styles.phone}>Gọi: 0382986838</a>
           </div>
         </div>

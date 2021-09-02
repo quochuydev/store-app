@@ -1,4 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
+import { useRouter } from "next/router";
+
 import TicketCard from "./TicketCard";
 import Pagination from "./Pagination";
 import Filter from "./Filter";
@@ -15,6 +17,14 @@ export default function Tickets() {
 }
 
 function TicketsComponent() {
+  const router = useRouter();
+  const query = {};
+
+  const handleChange = (name, value, checked) => {
+    console.log(name, value, checked);
+    router.push(`/tickets?${name}=${value}`);
+  };
+
   return (
     <div>
       <div className="container">
@@ -26,7 +36,7 @@ function TicketsComponent() {
 
         <div className="row">
           <div className="col-lg-3">
-            <Filter />
+            <Filter {...{ query, handleChange }} />
           </div>
           <div className="col-lg-9">
             <div className="mb-4">
