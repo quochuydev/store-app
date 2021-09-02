@@ -4,20 +4,36 @@ const router = express.Router();
 const { ticketModel } = require("../models/ticket");
 
 router.get("/api/tickets", async (req, res) => {
-  const limit = req.query.limit ? Number(req.query.limit) : 20;
-  const page = req.query.page ? Number(req.query.page) : 1;
+  const { limit = 20, page = 1, ...criteria } = req.query;
+
   const skip = limit * (page - 1);
+  const total = await ticketModel.count(criteria);
+
+  const totalPage = Math.ceil(total / limit);
+  const meta = { total, limit, page, skip, totalPage };
+  console.log(meta, criteria);
+
+  if (!total) {
+    return res.json({ meta, items: [] });
+  }
 
   const items = await ticketModel
-    .find({})
+    .find(criteria)
     .sort({ createdAt: -1 })
-    .limit(limit)
-    .skip(skip);
-  res.send({ items });
+    .limit(Number(limit))
+    .skip(Number(skip));
+
+  res.json({ meta, items });
 });
 
 router.get("/api/tickets/:id", async (req, res) => {
-  res.json({});
+  const result = await ticketModel.findOne({ _id: req.params.id }).lean(true);
+  res.json(result);
+});
+
+router.post("/api/tickets", async (req, res) => {
+  const result = await ticketModel.create(req.body);
+  res.json(result);
 });
 
 module.exports = { ticketRoute: router };
