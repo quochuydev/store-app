@@ -35,14 +35,6 @@ export default function Footer() {
             <a href="#">contact</a>
           </div>
         </div>
-        <div className="box">
-          <h3>download app</h3>
-          <div className="links">
-            <a href="#">google play</a>
-            <a href="#">window xp</a>
-            <a href="#">app store</a>
-          </div>
-        </div>
       </div>
       <h1 className="credit">
         created by <span> quochuydev </span> | all rights reserved!
