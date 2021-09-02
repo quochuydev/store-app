@@ -31,18 +31,14 @@ html {
 }
 
 section {
-  padding: 2rem 5%;
+  padding: 0 5%;
 }
 
 .btn {
-  display: inline-block;
   margin-top: 1rem;
   background: var(--green) !important;
   color: #fff !important;
-  padding: 0.8rem 3rem;
-  font-size: 1.5rem;
-  text-align: center;
-  cursor: pointer;
+  font-size: 1.5rem !important;
 }
 
 .btn:hover {
@@ -266,6 +262,7 @@ section {
 
 .category .box-container .box .btn {
   display: block;
+  font-size: 1.5rem;
 }
 
 .product .box-container {
@@ -294,8 +291,8 @@ section {
   left: 1rem;
   background: rgba(0, 255, 0, 0.1);
   color: var(--green);
-  padding: 0.7rem 1rem;
-  font-size: 2rem;
+  padding: 0.2rem 1rem;
+  font-size: 1.5rem;
 }
 
 .product .box-container .box .icons {
@@ -338,7 +335,7 @@ section {
 
 .product .box-container .box .price,
 .price {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #333;
   padding: 0;
 }

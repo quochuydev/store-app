@@ -10,15 +10,26 @@ import LocationSearch from "./LocationSearch";
 
 import Layout from "../../components/Layout";
 
-export default function Tickets() {
+export async function getServerSideProps({ query }) {
+  return {
+    props: {
+      ticket: {
+        name: "Nhà xe Minh Quốc",
+        volume: 12,
+      },
+    },
+  };
+}
+
+export default function Tickets({ ticket }) {
   return (
     <Layout>
-      <TicketsComponent />
+      <TicketsComponent {...{ ticket }} />
     </Layout>
   );
 }
 
-function TicketsComponent() {
+function TicketsComponent({ ticket }) {
   const router = useRouter();
   const [query, setQuery] = useState({});
 
@@ -75,7 +86,7 @@ function TicketsComponent() {
           </div>
           <div className="col-lg-9">
             <div className="mb-4">
-              <TicketCard />
+              <TicketCard {...{ ticket }} />
             </div>
 
             <div className="text-center mt-4 mt-sm-5">

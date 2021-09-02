@@ -12,7 +12,8 @@ const styles = {
     cursor: "pointer",
   },
 };
-export default function TicketCard() {
+
+export default function TicketCard({ ticket }) {
   return (
     <div className="card mb-3">
       <div className="row g-0">
@@ -20,7 +21,7 @@ export default function TicketCard() {
           <img
             src="images/car.png"
             className="img-fluid rounded-start"
-            alt="..."
+            alt={ticket.name}
             style={{ padding: 15 }}
           />
         </div>
@@ -28,14 +29,17 @@ export default function TicketCard() {
         <div className="col-md-8 col-lg-5">
           <div className="card-body">
             <h3 className="card-title fw-bold">
-              Nhà xe minh quốc{" "}
-              <span style={{ fontSize: 14 }}>(Tải trọng 12 tấn)</span>
+              {ticket.name}{" "}
+              <span style={{ fontSize: 14 }}>
+                (Tải trọng {ticket.volume} tấn)
+              </span>
             </h3>
 
             <table className="fromto">
               <tbody>
                 <tr>
                   <td style={{ width: 100 }}>
+                    {/* <b>{new Date(ticket.start).toISOString()}</b> */}
                     <b>6:00</b>
                   </td>
                   <td>
@@ -45,7 +49,7 @@ export default function TicketCard() {
                   </td>
                 </tr>
                 <tr>
-                  <td stywle={{ width: 100 }}>
+                  <td style={{ width: 100 }}>
                     <b>6:00</b>
                   </td>
                   <td>
