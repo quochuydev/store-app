@@ -13,7 +13,7 @@ const styles = {
   },
 };
 
-export default function TicketCard({ ticket }) {
+export default function TicketCard({ ticket = {} }) {
   return (
     <div className="card mb-3">
       <div className="row g-0">
