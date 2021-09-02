@@ -23,4 +23,5 @@ services:
     build:
       context: ./nginx
     ports:
-      - "81:80"
+      - 443:443
+      - 80:80
