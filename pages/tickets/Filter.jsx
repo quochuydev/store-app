@@ -36,7 +36,7 @@ function FilterBox({ value, filter, handleChange }) {
   );
 }
 
-export default function Filter({ query, handleChange }) {
+export default function Filter({ query = {}, handleChange }) {
   const filters = [
     {
       type: "shipping",

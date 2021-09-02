@@ -26,15 +26,15 @@ function TicketsComponent() {
     console.log(router.query);
     const newQuery = {};
 
-    if (router.query.shipping) {
-      newQuery.shipping = router.query.shipping.split(",");
+    if (router.query?.shipping) {
+      newQuery.shipping = router.query?.shipping.split(",");
     }
 
-    if (router.query.time) {
-      newQuery.time = router.query.time.split(",");
+    if (router.query?.time) {
+      newQuery.time = router.query?.time.split(",");
     }
 
-    setQuery((query) => ({ ...query, ...newQuery }));
+    setQuery({ ...query, ...newQuery });
   }, [router.query]);
 
   const pushQuery = () => {
