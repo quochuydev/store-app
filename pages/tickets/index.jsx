@@ -34,7 +34,7 @@ function TicketsComponent() {
       newQuery.time = router.query.time.split(",");
     }
 
-    setQuery({ ...query, ...newQuery });
+    setQuery((query) => ({ ...query, ...newQuery }));
   }, [router.query]);
 
   const pushQuery = () => {

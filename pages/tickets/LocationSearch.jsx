@@ -1,4 +1,4 @@
-import place from "./vietnam-places";
+import place from "../../utils/vietnam-places";
 
 export default function LocationSearch() {
   return (
