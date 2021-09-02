@@ -25,7 +25,7 @@ export default function TicketCard() {
           />
         </div>
 
-        <div className="col-md-8 col-lg-6">
+        <div className="col-md-8 col-lg-5">
           <div className="card-body">
             <h3 className="card-title fw-bold">
               Nhà xe minh quốc{" "}
@@ -61,7 +61,7 @@ export default function TicketCard() {
           </div>
         </div>
 
-        <div className="col-md-12 col-lg-3">
+        <div className="col-md-12 col-lg-4">
           <div style={{ margin: 15, padding: 15, border: "1px solid black" }}>
             <p>Dưới 100kg: 3k/kg</p>
             <p>100 - 300kg: 2.5k/kg</p>

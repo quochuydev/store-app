@@ -65,7 +65,10 @@ function TicketsComponent() {
 
         <div className="row">
           <div className="col-lg-3">
-            <button className="btn btn-primary" onClick={() => pushQuery()}>
+            <button
+              className="btn btn-primary mb-3"
+              onClick={() => pushQuery()}
+            >
               Apply filter
             </button>
             <Filter {...{ query, handleChange }} />
