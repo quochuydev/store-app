@@ -50,8 +50,8 @@ section {
   color: var(--black);
   text-transform: uppercase;
   padding: 1rem;
-  font-size: 1.5rem;
-  margin: 1.5rem 0;
+  font-size: 2.5rem;
+  margin: 2.5rem 0;
 }
 
 .heading span {
@@ -627,10 +627,6 @@ section {
 @media (max-width: 450px) {
   html {
     font-size: 50%;
-  }
-
-  .heading {
-    font-size: 3rem;
   }
 
   .header-1 {
