@@ -15,13 +15,27 @@ export default function Cart() {
 
   return (
     <Layout {...{ cart }}>
-      <CartComponent {...{ cart, fetchCart }} />
+      {cart.items?.length ? (
+        <CartComponent {...{ cart, fetchCart }} />
+      ) : (
+        <NoneItems />
+      )}
     </Layout>
   );
 }
 
 function NoneItems() {
-  return <div></div>;
+  return (
+    <div
+      className={styles.cart}
+      style={{ textAlign: "center", padding: "10rem" }}
+    >
+      <p>Giỏ hàng của bạn đang trống</p>
+      <Link className="btn btn-primary btn-sm" href="/">
+        Continue to homepage
+      </Link>
+    </div>
+  );
 }
 
 function CartComponent({ cart, fetchCart }) {
