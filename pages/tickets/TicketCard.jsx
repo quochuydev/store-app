@@ -18,7 +18,7 @@ export default function TicketCard() {
       <div className="row g-0">
         <div className="col-md-4 col-lg-3">
           <img
-            src="https://bootdey.com/img/Content/avatar/avatar1.png"
+            src="images/car.png"
             className="img-fluid rounded-start"
             alt="..."
             style={{ padding: 15 }}
@@ -33,26 +33,28 @@ export default function TicketCard() {
             </h3>
 
             <table className="fromto">
-              <tr>
-                <td style={{ width: 100 }}>
-                  <b>6:00</b>
-                </td>
-                <td>
-                  <b>VP Long and</b>
-                  <br />
-                  <small>110 Hùng Vương, Long An</small>
-                </td>
-              </tr>
-              <tr>
-                <td stywle={{ width: 100 }}>
-                  <b>6:00</b>
-                </td>
-                <td>
-                  <b>VP Long and</b>
-                  <br />
-                  <small>110 Hùng Vương, Long An</small>
-                </td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td style={{ width: 100 }}>
+                    <b>6:00</b>
+                  </td>
+                  <td>
+                    <b>VP Long and</b>
+                    <br />
+                    <small>110 Hùng Vương, Long An</small>
+                  </td>
+                </tr>
+                <tr>
+                  <td stywle={{ width: 100 }}>
+                    <b>6:00</b>
+                  </td>
+                  <td>
+                    <b>VP Long and</b>
+                    <br />
+                    <small>110 Hùng Vương, Long An</small>
+                  </td>
+                </tr>
+              </tbody>
             </table>
             <br />
             <a style={styles.phone}>Gọi: 0382986838</a>

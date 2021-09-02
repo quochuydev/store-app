@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import * as _ from "lodash";
 
 import TicketCard from "./TicketCard";
 import Pagination from "./Pagination";
@@ -18,11 +20,38 @@ export default function Tickets() {
 
 function TicketsComponent() {
   const router = useRouter();
-  const query = {};
+  const [query, setQuery] = useState({});
+
+  useEffect(() => {
+    console.log(router.query);
+    const newQuery = {};
+
+    if (router.query.shipping) {
+      newQuery.shipping = router.query.shipping.split(",");
+    }
+
+    if (router.query.time) {
+      newQuery.time = router.query.time.split(",");
+    }
+
+    setQuery({ ...query, ...newQuery });
+  }, [router.query]);
+
+  const pushQuery = () => {
+    const queryString = Object.keys(query)
+      .map((e) => `${e}=${query[e]}`)
+      .join("&");
+    router.push(`/tickets?${queryString}`);
+  };
 
   const handleChange = (name, value, checked) => {
-    console.log(name, value, checked);
-    router.push(`/tickets?${name}=${value}`);
+    if (checked) {
+      const values = query[name] ? [...query[name], value] : [value];
+      setQuery({ ...query, [name]: _.uniq(values) });
+    } else {
+      const values = [...query[name]].filter((e) => e !== value);
+      setQuery({ ...query, [name]: values });
+    }
   };
 
   return (
@@ -36,6 +65,9 @@ function TicketsComponent() {
 
         <div className="row">
           <div className="col-lg-3">
+            <button className="btn btn-primary" onClick={() => pushQuery()}>
+              Apply filter
+            </button>
             <Filter {...{ query, handleChange }} />
           </div>
           <div className="col-lg-9">

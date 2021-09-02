@@ -1,4 +1,4 @@
-function FilterBox({ filter, handleChange }) {
+function FilterBox({ value, filter, handleChange }) {
   const { type, name, options } = filter;
 
   return (
@@ -15,7 +15,7 @@ function FilterBox({ filter, handleChange }) {
               <input
                 type="checkbox"
                 className="custom-control-input me-2"
-                defaultChecked={false}
+                defaultChecked={value?.includes(String(option.value))}
                 id={type + option.value}
                 value={option.value}
                 onChange={(e) =>
