@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Thankyou() {
   return (
-    <div className="mt-5 jumbotron text-center">
+    <div className="jumbotron text-center">
       <h1 className="display-3">Thank You!</h1>
       <p className="lead">
         <strong>Please check your email</strong> for further instructions on how

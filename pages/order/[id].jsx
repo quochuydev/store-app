@@ -32,6 +32,7 @@ export default function Order() {
 
   return (
     <Layout {...{ cart }}>
+      <div className="mt-5" />
       {thankyou === "true" && <Thankyou />}
       <CustomerInfo {...{ data }} />
       <ItemsComponent {...{ data }} />
