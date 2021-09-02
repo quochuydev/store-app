@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Thankyou() {
   return (
     <div className="mt-5 jumbotron text-center">
@@ -7,12 +9,12 @@ export default function Thankyou() {
         to complete your account setup.
       </p>
       <p>
-        Having trouble? <a href>Contact us</a>
+        Having trouble? <a href="#">Contact us</a>
       </p>
       <p className="lead">
-        <a className="btn btn-primary btn-sm" href="/" role="button">
+        <Link className="btn btn-primary btn-sm" href="/">
           Continue to homepage
-        </a>
+        </Link>
       </p>
       <hr />
     </div>
