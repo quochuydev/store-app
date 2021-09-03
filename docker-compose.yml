@@ -11,7 +11,7 @@ services:
     ports:
       - 443:443
       - 80:80
-    command: CMD ["nginx", "-g", "daemon off;"]
+    command: nginx -g daemon off;
 
   certbot:
     image: certbot/certbot
