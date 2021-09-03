@@ -12,6 +12,24 @@ services:
       - 443:443
       - 80:80
 
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    command:
+      - certonly
+      - --webroot
+      - -w
+      - /var/www/certbot/html
+      - --email=quochuydev1@gmail.com
+      - --agree-tos
+      - --no-eff-email
+      - --dry-run
+      - -d
+      - cafeman.xyz
+
   app:
     build: .
     ports:
