@@ -24,7 +24,11 @@ mongoose.connect(process.env.DATABASE_URL, {
   useUnifiedTopology: true,
 });
 
-console.log(process.env.NODE_ENV, process.env.DATABASE_URL);
+console.log(
+  process.env.NODE_ENV !== "production",
+  process.env.NODE_ENV,
+  process.env.DATABASE_URL
+);
 
 app.prepare().then(() => {
   const server = express();
