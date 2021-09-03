@@ -31,14 +31,12 @@ export default function Footer() {
             <a href="#">home</a>
             <a href="#">category</a>
             <a href="#">product</a>
-            <a href="#">deal</a>
-            <a href="#">contact</a>
           </div>
         </div>
       </div>
-      <h1 className="credit">
+      <p className="credit">
         created by <span> quochuydev </span> | all rights reserved!
-      </h1>
+      </p>
     </section>
   );
 }

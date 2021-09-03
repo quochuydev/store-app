@@ -12,7 +12,9 @@
 }
 
 .header-1 {
-  background: #eee;
+  background: url("/images/newsletter-bg.jpg") no-repeat;
+  /* background: #eee; */
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,7 +24,7 @@
 .logo {
   color: var(--black);
   font-weight: bolder;
-  font-size: 3rem;
+  font-size: 4rem;
   text-align: left;
 }
 

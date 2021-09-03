@@ -82,7 +82,7 @@ function CartComponent({ cart, fetchCart }) {
   };
 
   return (
-    <div className={styles.cart}>
+    <section className={styles.cart}>
       <ToastContainer />
       <table className={styles.table}>
         <tbody>
@@ -121,7 +121,7 @@ function CartComponent({ cart, fetchCart }) {
           <a className={styles.checkout}>Proceed To Checkout</a>
         </Link>
       </div>
-    </div>
+    </section>
   );
 }
 
