@@ -18,7 +18,7 @@ function FilterBox({ value, filter, handleChange }) {
                 defaultChecked={value?.includes(String(option.value))}
                 id={type + option.value}
                 value={option.value}
-                onChange={(e) =>
+                onClick={(e) =>
                   handleChange(type, e.target.value, e.target.checked)
                 }
               />

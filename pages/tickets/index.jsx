@@ -33,8 +33,26 @@ function TicketsComponent({ ticket }) {
   const router = useRouter();
   const [query, setQuery] = useState({});
 
+  const firstUpdate = React.useRef(true);
   useEffect(() => {
-    console.log(router.query);
+    const pushQuery = () => {
+      const queryString = Object.keys(query)
+        .map((e) => `${e}=${query[e]}`)
+        .join("&");
+      router.push(`/tickets?${queryString}`);
+    };
+
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+
+    console.log(query);
+    pushQuery();
+  }, [query]);
+
+  useEffect(() => {
+    console.log(router.query, query);
     const newQuery = {};
 
     if (router.query?.shipping) {
@@ -45,22 +63,17 @@ function TicketsComponent({ ticket }) {
       newQuery.time = router.query?.time.split(",");
     }
 
-    setQuery({ ...query, ...newQuery });
-  }, [router.query]);
-
-  const pushQuery = () => {
-    const queryString = Object.keys(query)
-      .map((e) => `${e}=${query[e]}`)
-      .join("&");
-    router.push(`/tickets?${queryString}`);
-  };
+    setQuery((q) => ({ ...q, ...newQuery }));
+  }, []);
 
   const handleChange = (name, value, checked) => {
     if (checked) {
       const values = query[name] ? [...query[name], value] : [value];
       setQuery({ ...query, [name]: _.uniq(values) });
     } else {
-      const values = [...query[name]].filter((e) => e !== value);
+      const values = [...query[name]].filter(
+        (e) => String(e) !== String(value)
+      );
       setQuery({ ...query, [name]: values });
     }
   };
@@ -76,12 +89,6 @@ function TicketsComponent({ ticket }) {
 
         <div className="row">
           <div className="col-lg-3">
-            <button
-              className="btn btn-primary mb-3"
-              onClick={() => pushQuery()}
-            >
-              Apply filter
-            </button>
             <Filter {...{ query, handleChange }} />
           </div>
           <div className="col-lg-9">
