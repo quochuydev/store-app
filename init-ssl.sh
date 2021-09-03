@@ -39,7 +39,7 @@ echo
 
 
 echo "### Starting reverse proxy ..."
-docker-compose up --force-recreate -d reverse-proxy
+docker-compose up --force-recreate -d nginx
 echo
 
 echo "### Deleting dummy certificate for $domains ..."
