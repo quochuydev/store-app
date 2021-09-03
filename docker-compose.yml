@@ -12,17 +12,6 @@ services:
       - 443:443
       - 80:80
 
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
-    command: certonly --webroot --agree-tos --renew-by-default \
-      --preferred-challenges http-01 --server https://acme-v02.api.letsencrypt.org/directory \
-      --text --email quochuydev1@gmail.com \
-      -w /tmp/letsencrypt -d cafeman.xyz
-
   app:
     build: .
     ports:
