@@ -20,6 +20,8 @@ export default {
     isLoginFacebook: false,
     isLoginTwitter: false,
   },
+  tickets: true,
+  checkin: true,
   shop: {
     brand: "cafe2hdaily",
     logo: "./images/home/logo.png",

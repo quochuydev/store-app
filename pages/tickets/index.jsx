@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import * as _ from "lodash";
+import axios from "axios";
 
 import TicketCard from "./TicketCard";
 import Pagination from "./Pagination";
@@ -10,26 +11,43 @@ import LocationSearch from "./LocationSearch";
 
 import Layout from "../../components/Layout";
 
-export async function getServerSideProps({ query }) {
-  return {
-    props: {
-      ticket: {
+const fetchTickets = async () => {
+  try {
+    const result = await axios.get(`${process.env.SERVER_URL}/api/tickets`);
+    return result?.data?.items;
+  } catch (error) {
+    return [
+      {
         name: "Nhà xe Minh Quốc",
         volume: 12,
       },
+      {
+        name: "Nhà xe Minh Quốc",
+        volume: 12,
+      },
+    ];
+  }
+};
+
+export async function getServerSideProps({ query }) {
+  const tickets = await fetchTickets();
+
+  return {
+    props: {
+      tickets,
     },
   };
 }
 
-export default function Tickets({ ticket }) {
+export default function Tickets({ tickets }) {
   return (
     <Layout>
-      <TicketsComponent {...{ ticket }} />
+      <TicketsComponent {...{ tickets }} />
     </Layout>
   );
 }
 
-function TicketsComponent({ ticket }) {
+function TicketsComponent({ tickets }) {
   const router = useRouter();
   const [query, setQuery] = useState({});
 
@@ -92,9 +110,9 @@ function TicketsComponent({ ticket }) {
             <Filter {...{ query, handleChange }} />
           </div>
           <div className="col-lg-9">
-            <div className="mb-4">
-              <TicketCard {...{ ticket }} />
-            </div>
+            {tickets.map((ticket, i) => (
+              <TicketCard key={i} {...{ ticket }} />
+            ))}
 
             <div className="text-center mt-4 mt-sm-5">
               <Pagination />
