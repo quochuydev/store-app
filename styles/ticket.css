@@ -1,8 +1,5 @@
-/* Candidate List */
 .candidate-list {
   background: #ffffff;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   border-bottom: 1px solid #eeeeee;
   -webkit-box-align: center;
@@ -126,8 +123,6 @@
 }
 
 .candidate-grid .candidate-list-favourite-time {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   border-top: 1px solid #eeeeee;
   margin-top: 10px;
