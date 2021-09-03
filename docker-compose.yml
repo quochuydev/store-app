@@ -7,7 +7,10 @@ services:
     build:
       context: ./nginx
     volumes:
-      - ./conf.d:/etc/nginx/conf.d
+      # custom
+      - /home/admin-dashboard-store:/build
+      # base
+      - /etc/nginx/conf.d:/etc/nginx/conf.d
       - /data/certbot/conf:/etc/letsencrypt
       - /data/certbot/www:/var/www/certbot
     ports:
