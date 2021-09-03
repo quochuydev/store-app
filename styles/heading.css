@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem 5%;
+  padding: 1rem 5%;
 }
 
 .logo {
@@ -33,14 +33,12 @@
 
 .header-1 .search-box-container {
   display: flex;
-  height: 4rem;
 }
 
 .header-1 .search-box-container #search-box {
   height: 100%;
   width: 100%;
   padding: 1rem;
-  font-size: 1rem;
   color: #333;
   border: 0.1rem solid rgba(0, 0, 0, 0.3);
   text-transform: none;
@@ -48,9 +46,8 @@
 
 .header-1 .search-box-container label {
   height: 100%;
-  width: 6rem;
-  font-size: 1rem;
-  line-height: 4rem;
+  width: 4rem;
+  line-height: 3rem;
   color: #fff;
   background: var(--green);
   text-align: center;
@@ -81,7 +78,6 @@
 
 .header-2 .navbar a {
   padding: 0.5rem 1rem;
-  font-size: 1rem;
   border-radius: 0.3rem;
   color: var(--black);
 }
