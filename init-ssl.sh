@@ -8,7 +8,7 @@ fi
 domains=(cafeman.xyz)
 rsa_key_size=4096
 data_path="./data/certbot"
-email="huy.pham@inapps.net" # Adding a valid address is strongly recommended
+email="quochuydev1@gmail.com" # Adding a valid address is strongly recommended
 staging=0 # Set to 1 if you're testing your setup to avoid hitting request limits
 
 if [ -d "$data_path" ]; then
