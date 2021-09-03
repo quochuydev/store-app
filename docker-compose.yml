@@ -3,7 +3,7 @@ version: "3.3"
 services:
   nginx:
     restart: always
-    name: nginx
+    container_name: nginx
     build:
       context: ./nginx
     volumes:
