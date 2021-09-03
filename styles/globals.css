@@ -25,7 +25,6 @@
 }
 
 html {
-  font-size: 80%;
   overflow-x: hidden;
 }
 
@@ -37,7 +36,7 @@ section {
   margin-top: 1rem;
   background: var(--green) !important;
   color: #fff !important;
-  font-size: 1.5rem !important;
+  font-size: 1rem !important;
 }
 
 .btn:hover {
@@ -77,7 +76,7 @@ section {
 .banner-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .banner-container .banner {
@@ -116,7 +115,7 @@ section {
 
 .category .box-container {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   flex-wrap: wrap;
   padding-top: 1rem;
 }
@@ -140,19 +139,19 @@ section {
 }
 
 .category .box-container .box p {
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #666;
 }
 
 .category .box-container .box .btn {
   display: block;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 .product .box-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .product .box-container .box {
@@ -176,7 +175,7 @@ section {
   background: rgba(0, 255, 0, 0.1);
   color: var(--green);
   padding: 0.2rem 1rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 .product .box-container .box .icons {
@@ -194,7 +193,7 @@ section {
   height: 4.5rem;
   width: 4.5rem;
   line-height: 4.5rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: var(--black);
   background: rgba(0, 0, 0, 0.05);
   border-radius: 50%;
@@ -208,25 +207,24 @@ section {
 
 .product .box-container .box h3 {
   color: var(--black);
-  font-size: 2.5rem;
 }
 
 .product .box-container .box .stars i {
   padding: 1rem 0.1rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: gold;
 }
 
 .product .box-container .box .price,
 .price {
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #333;
   padding: 0;
 }
 
 .product .box-container .box .price span,
 .price span {
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #999;
   text-decoration: line-through !important;
 }
@@ -241,12 +239,12 @@ section {
 
 .product .box-container .box .quantity span {
   padding: 0 0.7rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 .product .box-container .box .quantity input {
   border: 0.1rem solid rgba(0, 0, 0, 0.3);
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bolder;
   color: var(--black);
   padding: 0.5rem;
@@ -275,7 +273,7 @@ section {
 }
 
 .deal .content p {
-  font-size: 1.5rem;
+  font-size: 1rem;
   padding: 1rem 0;
   color: #333;
 }
@@ -326,7 +324,7 @@ section {
 .contact form .inputBox input,
 .contact form textarea {
   padding: 1rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   background: #f7f7f7;
   text-transform: none;
   margin: 1rem 0;
@@ -364,21 +362,21 @@ section {
 
 .newsletter div .box {
   width: 100%;
-  padding: 0.7rem 1.5rem;
-  font-size: 1.5rem;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
   color: #333;
   text-transform: none;
 }
 
 .newsletter div .btn {
-  padding: 0.7rem 1.5rem;
-  font-size: 1.5rem;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
   margin-top: 0;
 }
 
 .footer .box-container {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
@@ -397,7 +395,6 @@ section {
 }
 
 .footer .box-container .box h3 {
-  font-size: 2.5rem;
   color: var(--black);
 }
 
@@ -414,7 +411,7 @@ section {
 .footer .box-container .box .links a {
   display: block;
   padding: 0.5rem 0;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #333;
 }
 
@@ -502,6 +499,6 @@ section {
   }
 
   .deal .content .count-down .box span {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 }
