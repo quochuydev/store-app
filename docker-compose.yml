@@ -18,7 +18,7 @@ services:
     volumes:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
-    command: certonly --webroot -w /var/www/certbot/html --email=quochuydev1@gmail.com --agree-tos --no-eff-email --dry-run -d cafeman.xyz
+    command: certonly --webroot -w /var/www/certbot --email=quochuydev1@gmail.com --agree-tos --no-eff-email --dry-run -d cafeman.xyz
 
   app:
     build: .
