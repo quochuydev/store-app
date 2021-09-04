@@ -30,6 +30,9 @@ export default {
     bank: "Chuyển khoản",
     noteShipping: "Shipping address is the same as my billing address",
 
+    category: "Category",
+    products: "Sản phẩm",
+
     product: "Sản phẩm",
     price: "Giá tiền",
     quantity: "Số lượng",
@@ -40,6 +43,8 @@ export default {
       "Please check your email for further instructions on how to complete your account setup",
     trouble: "Having trouble",
     contactUs: "Liên hệ với chúng tôi",
+    shopBy: "Shop by",
+    shopNow: "Shop now",
   },
   error: {
     firstName: "Họ và tên không hợp lệ.",

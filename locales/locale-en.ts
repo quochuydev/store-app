@@ -16,7 +16,6 @@ export default {
     inputPhone: "Enter your phone number",
     emptyCart: "Empty cart",
     toHome: "Continue to homepage",
-    quantity: "quantity",
     processCheckout: "Proceed To Checkout",
 
     billing: "Billing address",
@@ -30,12 +29,21 @@ export default {
     cod: "Thanh toán khi giao hàng",
     bank: "Chuyển khoản",
     noteShipping: "Shipping address is the same as my billing address",
-    total: "Tổng tiền",
+
+    category: "Category",
+    products: "Products",
+
+    product: "Product",
+    price: "Price",
+    quantity: "Quantity",
+    total: "Total",
 
     thankyou: "Cảm ơn!",
     thankyouDescription:
       "Please check your email for further instructions on how to complete your account setup",
     contactUs: "Liên hệ với chúng tôi",
+    shopBy: "Shop by",
+    shopNow: "Shop now",
   },
   error: {
     firstName: "Invalid first name",

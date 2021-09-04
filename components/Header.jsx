@@ -45,7 +45,13 @@ export default function Header({ cart }) {
             </div>
           )}
           <select
-            style={{ marginLeft: 10 }}
+            className="language"
+            style={{
+              marginLeft: 10,
+              background: "#000",
+              color: "#fff",
+              textAlign: "center",
+            }}
             value={i18n.language}
             onChange={(e) => changeLanguage(e.target.value)}
           >

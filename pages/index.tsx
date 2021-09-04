@@ -14,6 +14,7 @@ import Newsletter from "../components/Newsletter";
 
 import useCart from "../hooks/useCart";
 import config from "../utils/config";
+import useTranslation from "../locales/useTranslation";
 
 export async function getServerSideProps() {
   const result = await axios.get(`${config.server}/api/products?limit=8`);
@@ -29,6 +30,8 @@ export async function getServerSideProps() {
 }
 
 export default function Index({ meta, products, setting }: any) {
+  const { t } = useTranslation();
+
   const [cart, fetchCart] = useCart();
 
   const afterAddToCart = () => {
@@ -42,7 +45,7 @@ export default function Index({ meta, products, setting }: any) {
       <Home {...{ setting }} />
       <Banner {...{ setting }} />
       <h1 className="heading">
-        shop by <span>category</span>
+        {t("label.shopBy")} <span>{t("label.category")}</span>
       </h1>
       <Category {...{ setting }} />
       <Products {...{ meta, products, afterAddToCart }} />
