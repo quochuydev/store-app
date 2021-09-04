@@ -44,6 +44,7 @@ export default {
     contactUs: "Liên hệ với chúng tôi",
     shopBy: "Shop by",
     shopNow: "Shop now",
+    search: "Search...",
   },
   error: {
     firstName: "Invalid first name",

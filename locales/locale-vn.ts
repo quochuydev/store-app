@@ -45,6 +45,7 @@ export default {
     contactUs: "Liên hệ với chúng tôi",
     shopBy: "Shop by",
     shopNow: "Shop now",
+    search: "Tìm kiếm...",
   },
   error: {
     firstName: "Họ và tên không hợp lệ.",
