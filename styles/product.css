@@ -22,7 +22,7 @@
   position: absolute;
   top: 1rem;
   left: 1rem;
-  background: rgba(0, 255, 0, 0.1);
+  background: rgba(0, 255, 0, 0.2);
   color: var(--green);
   padding: 0.2rem 1rem;
 }
@@ -90,7 +90,7 @@
   border: 0.1rem solid rgba(0, 0, 0, 0.3);
   font-weight: bolder;
   color: var(--black);
-  padding: 0.5rem;
+  padding: 0.2rem;
   background: rgba(0, 0, 0, 0.05);
 }
 
