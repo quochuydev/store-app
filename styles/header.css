@@ -35,9 +35,9 @@
 }
 
 .logo {
-  color: var(--black);
+  color: var(--black) !important;
   font-weight: bolder;
-  font-size: 4rem;
+  font-size: 3rem;
   text-align: left;
 }
 
@@ -96,15 +96,14 @@
 
 .header-2 .navbar a {
   font-size: 1.2rem;
-  padding: 0.5rem 1rem;
-  border-radius: 0.3rem;
+  padding: 10px 1.5rem;
   color: var(--black);
   text-transform: capitalize;
 }
 
 .header-2 .navbar a:hover {
-  background: var(--green);
-  color: #fff;
+  border-bottom: 2px solid var(--green);
+  margin-bottom: -2px;
 }
 
 .header-2 .icons .link {
