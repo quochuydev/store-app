@@ -1,0 +1,99 @@
+.product .box-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.product .box-container .box {
+  flex: 1 1 25rem;
+  text-align: center;
+  padding: 2rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.product .box-container .box img {
+  height: 20rem;
+}
+
+.product .box-container .box .discount {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(0, 255, 0, 0.1);
+  color: var(--green);
+  padding: 0.2rem 1rem;
+}
+
+.product .box-container .box .icons {
+  position: absolute;
+  top: 0.5rem;
+  right: -6rem;
+}
+
+.product .box-container .box:hover .icons {
+  right: 1rem;
+}
+
+.product .box-container .box .icons a {
+  display: block;
+  height: 4.5rem;
+  width: 4.5rem;
+  line-height: 4.5rem;
+  color: var(--black);
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  margin-top: 0.7rem;
+}
+
+.product .box-container .box .icons a:hover {
+  background: var(--green);
+  color: #fff;
+}
+
+.product .box-container .box h3 {
+  color: var(--black);
+}
+
+.product .box-container .box .stars i {
+  padding: 1rem 0.1rem;
+  color: gold;
+}
+
+.product .box-container .box .price,
+.price {
+  color: #333;
+  padding: 0;
+}
+
+.product .box-container .box .price span,
+.price span {
+  color: #999;
+  text-decoration: line-through !important;
+}
+
+.product .box-container .box .quantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.product .box-container .box .quantity span {
+  padding: 0 0.7rem;
+}
+
+.product .box-container .box .quantity input {
+  border: 0.1rem solid rgba(0, 0, 0, 0.3);
+  font-weight: bolder;
+  color: var(--black);
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.product .box-container .box .btn {
+  display: block;
+}

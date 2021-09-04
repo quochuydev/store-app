@@ -3,6 +3,9 @@
 @import "footer";
 @import "newsletter";
 @import "mega-menu";
+@import "category";
+@import "product";
+@import "contact";
 
 :root {
   --green: #27ae60;
@@ -115,167 +118,6 @@ section {
   transform: scale(1.2) rotate(-5deg);
 }
 
-.category .box-container {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  padding-top: 1rem;
-}
-
-.category .box-container .box {
-  border: 0.1rem solid rgba(0, 0, 0, 0.3);
-  border-radius: 0.5rem;
-  text-align: center;
-  padding: 2rem;
-  flex: 1 1 25rem;
-}
-
-.category .box-container .box img {
-  width: 20rem;
-  margin: 0.5rem 0;
-}
-
-.category .box-container .box h3 {
-  font-size: 3rem;
-  color: var(--black);
-}
-
-.category .box-container .box p {
-  color: #666;
-}
-
-.category .box-container .box .btn {
-  display: block;
-}
-
-.product .box-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.product .box-container .box {
-  flex: 1 1 25rem;
-  text-align: center;
-  padding: 2rem;
-  border: 0.1rem solid rgba(0, 0, 0, 0.3);
-  border-radius: 0.5rem;
-  overflow: hidden;
-  position: relative;
-}
-
-.product .box-container .box img {
-  height: 20rem;
-}
-
-.product .box-container .box .discount {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background: rgba(0, 255, 0, 0.1);
-  color: var(--green);
-  padding: 0.2rem 1rem;
-}
-
-.product .box-container .box .icons {
-  position: absolute;
-  top: 0.5rem;
-  right: -6rem;
-}
-
-.product .box-container .box:hover .icons {
-  right: 1rem;
-}
-
-.product .box-container .box .icons a {
-  display: block;
-  height: 4.5rem;
-  width: 4.5rem;
-  line-height: 4.5rem;
-  color: var(--black);
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 50%;
-  margin-top: 0.7rem;
-}
-
-.product .box-container .box .icons a:hover {
-  background: var(--green);
-  color: #fff;
-}
-
-.product .box-container .box h3 {
-  color: var(--black);
-}
-
-.product .box-container .box .stars i {
-  padding: 1rem 0.1rem;
-  color: gold;
-}
-
-.product .box-container .box .price,
-.price {
-  color: #333;
-  padding: 0;
-}
-
-.product .box-container .box .price span,
-.price span {
-  color: #999;
-  text-decoration: line-through !important;
-}
-
-.product .box-container .box .quantity {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 1rem;
-  padding-bottom: 0.5rem;
-}
-
-.product .box-container .box .quantity span {
-  padding: 0 0.7rem;
-}
-
-.product .box-container .box .quantity input {
-  border: 0.1rem solid rgba(0, 0, 0, 0.3);
-  font-weight: bolder;
-  color: var(--black);
-  padding: 0.5rem;
-  background: rgba(0, 0, 0, 0.05);
-}
-
-.product .box-container .box .btn {
-  display: block;
-}
-
-.contact form {
-  text-align: center;
-  padding: 2rem;
-  border: 0.1rem solid rgba(0, 0, 0, 0.3);
-}
-
-.contact form .inputBox {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.contact form .inputBox input,
-.contact form textarea {
-  padding: 1rem;
-  background: #f7f7f7;
-  text-transform: none;
-  margin: 1rem 0;
-  border: 0.1rem solid rgba(0, 0, 0, 0.3);
-  width: 49%;
-}
-
-.contact form textarea {
-  height: 20rem;
-  resize: none;
-  width: 100%;
-}
-
 @media (max-width: 991px) {
   .header-1,
   .header-2 {
@@ -290,10 +132,6 @@ section {
 @media (max-width: 768px) {
   .home .content {
     text-align: center;
-  }
-
-  .contact form .inputBox input {
-    width: 100%;
   }
 }
 

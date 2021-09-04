@@ -1,0 +1,32 @@
+.category .box-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+}
+
+.category .box-container .box {
+  border: 0.1rem solid rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+  text-align: center;
+  padding: 2rem;
+  flex: 1 1 25rem;
+}
+
+.category .box-container .box img {
+  width: 20rem;
+  margin: 0.5rem 0;
+}
+
+.category .box-container .box h3 {
+  font-size: 3rem;
+  color: var(--black);
+}
+
+.category .box-container .box p {
+  color: #666;
+}
+
+.category .box-container .box .btn {
+  display: block;
+}

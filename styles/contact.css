@@ -1,0 +1,33 @@
+.contact form {
+  text-align: center;
+  padding: 2rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.3);
+}
+
+.contact form .inputBox {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.contact form .inputBox input,
+.contact form textarea {
+  padding: 1rem;
+  background: #f7f7f7;
+  text-transform: none;
+  margin: 1rem 0;
+  border: 0.1rem solid rgba(0, 0, 0, 0.3);
+  width: 49%;
+}
+
+.contact form textarea {
+  height: 20rem;
+  resize: none;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .contact form .inputBox input {
+    width: 100%;
+  }
+}
