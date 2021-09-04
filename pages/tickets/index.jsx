@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
@@ -51,22 +52,21 @@ function TicketsComponent({ tickets }) {
   const router = useRouter();
   const [query, setQuery] = useState({});
 
+  const pushQuery = (_query) => {
+    const queryString = Object.keys(_query)
+      .map((e) => `${e}=${_query[e]}`)
+      .join("&");
+    router.push(`/tickets?${queryString}`);
+  };
+
   const firstUpdate = React.useRef(true);
   useEffect(() => {
-    const pushQuery = () => {
-      const queryString = Object.keys(query)
-        .map((e) => `${e}=${query[e]}`)
-        .join("&");
-      router.push(`/tickets?${queryString}`);
-    };
-
     if (firstUpdate.current) {
-      firstUpdate.current = false;
-      return;
+      return (firstUpdate.current = false);
     }
 
     console.log(query);
-    pushQuery();
+    pushQuery(query);
   }, [query]);
 
   useEffect(() => {
