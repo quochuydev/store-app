@@ -30,8 +30,7 @@
 
 .table td input {
   width: 5rem;
-  height: 3rem;
-  padding: 0.5rem;
+  line-height: 2rem;
 }
 
 .table td a {
@@ -39,8 +38,8 @@
 }
 
 .table td img {
-  width: 8rem;
-  height: 8rem;
+  width: 5rem;
+  height: 5rem;
   margin-right: 1rem;
 }
 
@@ -82,7 +81,6 @@
 .itemQuantity {
   background: #fff;
   font-weight: 500;
-  height: 25px;
   padding: 0;
   text-align: center;
   width: 35px;
@@ -92,16 +90,12 @@
 }
 
 .qtyBtn {
-  width: 3rem;
-  height: 3rem;
-  padding: 0.5rem;
-
+  width: 2rem;
+  line-height: 2rem;
   font-weight: 500;
   text-align: center;
-  border: 1px solid #f3f4f4;
   border-radius: 0;
   float: left;
-  -webkit-appearance: none;
   background: #f3f4f4;
 }
 
