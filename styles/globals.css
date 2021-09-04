@@ -120,11 +120,6 @@ section {
 }
 
 @media (max-width: 991px) {
-  .header-1,
-  .header-2 {
-    padding: 1rem;
-  }
-
   section {
     padding: 2rem;
   }

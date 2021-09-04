@@ -60,7 +60,7 @@
 .header-1 .search-box-container a {
   width: 4rem;
   color: #fff;
-  background: var(--green);
+  background: var(--black);
   text-align: center;
   cursor: pointer;
   line-height: 2.5rem;
@@ -75,7 +75,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 5%;
+  padding: 0.5rem 5%;
   box-shadow: 0 0.5rem 1rem #0000001a;
   position: relative;
 }
@@ -147,5 +147,12 @@
     background: #fff;
     padding: 1rem;
     margin: 1rem 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .header-1,
+  .header-2 {
+    padding: 1rem;
   }
 }

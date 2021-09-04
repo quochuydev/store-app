@@ -33,20 +33,26 @@ router.get("/api/products/:id", async (req, res) => {
   res.json(result);
 });
 
-router.post("/api/products", async (req, res) => {
-  const product = await productModel.create(req.body);
-  res.json(product);
+router.post("/api/products", async (req, res, next) => {
+  try {
+    const product = await productModel.create(req.body);
+    res.json(product);
+  } catch (error) {
+    next(error);
+  }
 });
 
-router.put("/api/products/:id", (req, res, next) => {
-  productModel
-    .findByIdAndUpdate(
+router.put("/api/products/:id", async (req, res, next) => {
+  try {
+    const result = await productModel.findByIdAndUpdate(
       req.params.id,
       { $set: req.body },
       { new: true, lean: true }
-    )
-    .then((result) => res.json(result))
-    .catch((error) => next(error));
+    );
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = { productRoute: router };

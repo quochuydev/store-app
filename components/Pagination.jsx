@@ -11,7 +11,7 @@ export default function Pagination({
   for (let i = 1; i <= totalPage; i++) {
     pages.push(
       <li key={i} className={`page-item ${i === page && "active"}`}>
-        <a className="page-link" href={`#?page=${i}`}>
+        <a className="page-link" href={`#product?page=${i}`}>
           {i}
         </a>
       </li>
