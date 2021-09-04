@@ -41,6 +41,9 @@ export default function Index({ meta, products, setting }: any) {
       <ToastContainer />
       <Home {...{ setting }} />
       <Banner {...{ setting }} />
+      <h1 className="heading">
+        shop by <span>category</span>
+      </h1>
       <Category {...{ setting }} />
       <Products {...{ meta, products, afterAddToCart }} />
       {/* <Deal /> */}

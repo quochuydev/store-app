@@ -5,9 +5,6 @@ import config from "../utils/config";
 export default function Category({ setting }) {
   return (
     <section className="category" id="category">
-      <h1 className="heading">
-        shop by <span>category</span>
-      </h1>
       <div className="box-container">
         {setting.categories?.map((item, i) => (
           <div key={i} className="box">

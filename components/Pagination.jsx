@@ -5,8 +5,6 @@ export default function Pagination({
   skip = 0,
   totalPage = 1,
 }) {
-  console.log({ total, limit, page, skip, totalPage });
-
   const pages = [];
   for (let i = 1; i <= totalPage; i++) {
     pages.push(

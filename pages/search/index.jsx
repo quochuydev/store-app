@@ -6,12 +6,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Layout from "../../components/Layout";
 import Products from "../../components/Products";
+import Category from "../../components/Category";
 
 import useCart from "../../hooks/useCart";
 import config from "../../utils/config";
 
 export async function getServerSideProps({ query }) {
-  console.log(query);
   const result = await axios.get(
     `${config.server}/api/products?limit=8&q=${query.q}`
   );
@@ -36,34 +36,22 @@ export default function Search({ meta, products, setting }) {
   };
 
   return (
-    <section>
-      <div className="row">
-        <div className="col-md-3">
-          <div className="widget">
-            <div className="widget-title widget-collapse mt-2">
-              <h3>{"name"}</h3>
-            </div>
-            <div className="collapse show" id="dateposted">
-              <div className="widget-content">
-                <div className="custom-control custom-checkbox">
-                  <input
-                    type="checkbox"
-                    className="custom-control-input me-2"
-                    value={"option.value"}
-                  />
-                  <label className="custom-control-label">
-                    {"option.name"}
-                  </label>
-                </div>
-              </div>
-            </div>
+    <Layout {...{ cart }}>
+      <ToastContainer />
+      <section>
+        <div className="row">
+          <div className="col-md-3">
+            {/*  */}
+            <div className="mt-5" />
+            <Category {...{ setting }} />
+            {/*  */}
+          </div>
+
+          <div className="col-md-9">
+            <Products {...{ meta, products, afterAddToCart }} />
           </div>
         </div>
-
-        <div className="col-md-9">
-          <Products {...{ meta, products, afterAddToCart }} />
-        </div>
-      </div>
-    </section>
+      </section>
+    </Layout>
   );
 }

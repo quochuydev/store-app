@@ -62,7 +62,11 @@ function Product({ product, afterAddToCart }) {
 
       <img src={product.image} alt={product.title} />
       <Link href={`/products/${product._id}`}>
-        <h4 style={{ marginTop: 5, cursor: "pointer" }}>{product.title}</h4>
+        <h4 style={{ marginTop: 5, cursor: "pointer" }}>
+          {product.title?.length > 35
+            ? product.title.slice(0, 35) + "...[read]"
+            : product.title}
+        </h4>
       </Link>
 
       {/* <ReviewStars /> */}
