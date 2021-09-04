@@ -11,7 +11,7 @@ export default function Menu() {
   return (
     <nav className="navbar">
       <Link href="/#home">home</Link>
-      <Link href="/#category">category</Link>
+      <Link href="/#category">{t("navigation.category")}</Link>
       {/* <MegaMenu /> */}
       <Link href="/#product">{t("navigation.product")}</Link>
       {config.tickets && <Link href="/tickets">tickets</Link>}

@@ -11,6 +11,7 @@ export default {
     logout: "Logout",
     login: "Login",
     register: "Register",
+    category: "Danh mục",
     product: "Sản phẩm",
   },
   page: {
