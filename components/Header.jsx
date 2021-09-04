@@ -19,7 +19,6 @@ export default function Header({ cart }) {
   const { t, i18n } = useTranslation();
 
   const changeLanguage = (lng) => {
-    console.log(lng, i18n);
     i18n.changeLanguage(lng);
   };
 
@@ -30,27 +29,30 @@ export default function Header({ cart }) {
       </div>
       <div className="header-1">
         <Icon />
-        <select
-          value={i18n.language}
-          onChange={(e) => changeLanguage(e.target.value)}
-        >
-          <option value="vn">vn</option>
-          <option value="en">en</option>
-        </select>
         <SearchBox />
       </div>
       <div className="header-2">
         <div id="menu-bar" className="fas fa-bars" />
         <Menu />
-        {cart && (
-          <div className="icons">
-            <Link href="/cart">
-              <span className="link">
-                <i className="fas fa-shopping-cart" /> {cart.item_count}
-              </span>
-            </Link>
-          </div>
-        )}
+        <div style={{ display: "flex" }}>
+          {cart && (
+            <div className="icons">
+              <Link href="/cart">
+                <span className="link">
+                  <i className="fas fa-shopping-cart" /> {cart.item_count}
+                </span>
+              </Link>
+            </div>
+          )}
+          <select
+            style={{ marginLeft: 10 }}
+            value={i18n.language}
+            onChange={(e) => changeLanguage(e.target.value)}
+          >
+            <option value="vn">vn</option>
+            <option value="en">en</option>
+          </select>
+        </div>
       </div>
     </header>
   );
