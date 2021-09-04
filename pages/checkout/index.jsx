@@ -55,7 +55,7 @@ export default function Checkout() {
     <Layout {...{ cart }}>
       <ToastContainer />
 
-      <div className={styles.container}>
+      <section className={styles.container}>
         <main>
           <div className="row g-5">
             <div className="col-md-5 col-lg-4 order-md-last">
@@ -102,7 +102,7 @@ export default function Checkout() {
             </div>
           </div>
         </main>
-      </div>
+      </section>
     </Layout>
   );
 }
