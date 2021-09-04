@@ -69,11 +69,11 @@ function CustomerInfo({ data }) {
         <div className="col-md-6">
           <b>Payment</b>
           <div>
-            {data.payment?.type === "code"
+            {data.payment?.type === "cod"
               ? "Cash On Delivery (COD)"
               : "Bank tranfer"}
           </div>
-          {!paymentNote && (
+          {data.payment?.type !== "cod" && !paymentNote && (
             <>
               <hr />
               <p style={{ color: "#69ae14" }}>

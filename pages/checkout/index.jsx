@@ -45,6 +45,9 @@ export default function Checkout() {
       customer,
       line_items: cart.items,
       amount: cart.total_price,
+      payment: {
+        type: paymentType,
+      },
     });
 
     await axios.delete(`${process.env.SERVER_URL}/api/cart`);
@@ -80,10 +83,9 @@ export default function Checkout() {
                     name="paymentMethod"
                     type="radio"
                     className="form-check-input"
-                    defaultChecked
                     required
                     checked={paymentType === "cod"}
-                    onClick={() => setPaymentType("cod")}
+                    onChange={() => setPaymentType("cod")}
                   />
                   <label className="form-check-label" htmlFor="credit">
                     Cash On Delivery (COD)
@@ -97,7 +99,7 @@ export default function Checkout() {
                     className="form-check-input"
                     required
                     checked={paymentType === "bank"}
-                    onClick={() => setPaymentType("bank")}
+                    onChange={() => setPaymentType("bank")}
                   />
                   <label className="form-check-label" htmlFor="debit">
                     Bank tranfer
