@@ -4,16 +4,21 @@ const router = express.Router();
 const { productModel } = require("../models/product");
 
 router.get("/api/products", async (req, res) => {
-  let { limit = 20, page = 1, ...criteria } = req.query;
+  let { limit = 20, page = 1, ...filter } = req.query;
   limit = Number(limit);
   page = Number(page);
+
+  const criteria = {};
+  if (filter.q) {
+    criteria.title = { $regex: filter.q };
+  }
 
   const skip = limit * (page - 1);
   const total = await productModel.count(criteria);
 
   const totalPage = Math.ceil(total / limit);
   const meta = { total, limit, page, skip, totalPage };
-  console.log(meta, criteria);
+  console.log("products", meta, criteria);
 
   if (!total) {
     return res.json({ meta, items: [] });

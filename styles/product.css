@@ -5,9 +5,9 @@
 }
 
 .product .box-container .box {
-  flex: 1 1 25rem;
+  flex: 1 1 20rem;
   text-align: center;
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 0.5rem;
   overflow: hidden;
   position: relative;
@@ -15,6 +15,7 @@
 
 .product .box-container .box img {
   height: 20rem;
+  max-width: 100%;
 }
 
 .product .box-container .box .discount {
