@@ -89,7 +89,7 @@ function Product({ product, afterAddToCart }) {
           className={`fa ${
             loading ? "fa-spinner fa-spin" : "fa-shopping-cart"
           }`}
-        />
+        />{" "}
         Add to cart
       </button>
     </div>

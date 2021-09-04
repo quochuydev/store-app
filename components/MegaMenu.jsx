@@ -13,7 +13,7 @@ export default function MegaMenu() {
               aria-expanded="false"
               id="dropdownMenuLink"
             >
-              Shop By Category
+              Shop
               <span className="glyphicon glyphicon-chevron-down pull-right" />
             </a>
             <ul
