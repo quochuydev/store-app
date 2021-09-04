@@ -17,10 +17,10 @@ export default function MegaMenu() {
               <span className="glyphicon glyphicon-chevron-down pull-right" />
             </a>
             <ul
-              className="dropdown-menu mega-dropdown-menu row"
+              className="dropdown-menu mega-dropdown-menu row container"
               aria-labelledby="dropdownMenuLink"
             >
-              <li className="col-sm-3">
+              <li className="col-sm-4">
                 <ul>
                   <li className="dropdown-header">Hottest Products</li>
                   <div
@@ -31,7 +31,7 @@ export default function MegaMenu() {
                     <div className="carousel-inner">
                       <div className="item active">
                         <img
-                          src="http://placehold.it/254x100/3498db/f5f5f5/&text=New+Collection"
+                          src={`https://ui-avatars.com/api/?name=${"New Collection"}&size=200`}
                           className="img-responsive"
                           alt="product 1"
                         />
@@ -58,41 +58,7 @@ export default function MegaMenu() {
                   <li className="divider" />
                 </ul>
               </li>
-              <li className="col-sm-3">
-                <ul>
-                  <li className="dropdown-header">Scanners</li>
-                  <li>
-                    <a href="#">Police, Fire &amp; EMS</a>
-                  </li>
-                  <li>
-                    <a href="#">Digital Scanners</a>
-                  </li>
-                  <li>
-                    <a href="#">Trunk Tracker Scanners</a>
-                  </li>
-                  <li>
-                    <a href="#">Nascar Scanners</a>
-                  </li>
-                  <li>
-                    <a href="#">Base/Mobile Scanners</a>
-                  </li>
-                  <li>
-                    <a href="#">Portable/Handheld Scanners</a>
-                  </li>
-                  <li>
-                    <a href="#">Accessories</a>
-                  </li>
-                  <li>
-                    <a href="#">View All</a>
-                  </li>
-                  <li className="divider" />
-                  <li className="dropdown-header">Two Way Radios</li>
-                  <li>
-                    <a href="#">View All</a>
-                  </li>
-                </ul>
-              </li>
-              <li className="col-sm-3">
+              <li className="col-sm-4">
                 <ul>
                   <li className="dropdown-header">Marine Radios</li>
                   <li>
@@ -118,17 +84,9 @@ export default function MegaMenu() {
                   <li>
                     <a href="#">Additional Cameras</a>
                   </li>
-                  <li>
-                    <a href="#">View All</a>
-                  </li>
-                  <li className="divider" />
-                  <li className="dropdown-header">Radar Detectors</li>
-                  <li>
-                    <a href="#">View All</a>
-                  </li>
                 </ul>
               </li>
-              <li className="col-sm-3">
+              <li className="col-sm-4">
                 <ul>
                   <li className="dropdown-header">Accessories</li>
                   <li>
@@ -144,10 +102,10 @@ export default function MegaMenu() {
                     <a href="#">View All</a>
                   </li>
                   <li className="divider" />
+
                   <li className="dropdown-header">Newsletter</li>
                   <form className="form" role="form">
                     <div className="form-group">
-                      Info
                       <label className="sr-only" htmlFor="email">
                         Email address
                       </label>
