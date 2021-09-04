@@ -4,8 +4,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function CreateProduct({ image }) {
-  console.log(image);
-
   const title = "title" + String(Math.floor(Math.random() * 10000000));
   const price = Math.floor(Math.random() * 100) * 1000;
 
@@ -45,6 +43,14 @@ export default function CreateProduct({ image }) {
       />
       <br />
 
+      <b>original_price</b>
+      <input
+        type="number"
+        value={data.original_price}
+        onChange={(e) => onData("original_price", e.target.value)}
+      />
+      <br />
+
       <b>description</b>
       <input
         value={data.description}
@@ -53,7 +59,12 @@ export default function CreateProduct({ image }) {
       <br />
 
       <b>image</b>
+      <input
+        value={data.image}
+        onChange={(e) => onData("image", e.target.value)}
+      />
       <p>{image}</p>
+
       <button onClick={onCreateProduct}>create product</button>
     </>
   );
