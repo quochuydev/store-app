@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import styles from "./style.module.css";
 import Pagination from "./Pagination";
+import config from "../utils/config";
 
 export default function Products({ meta, products, afterAddToCart }) {
   const { total, limit, page, skip, totalPage } = meta;
@@ -31,10 +32,11 @@ function Product({ product, afterAddToCart }) {
 
   const addToCart = async () => {
     setLoading(true);
-    await axios.post(process.env.SERVER_URL + "/api/cart/add", {
+    await axios.post(`${config.server}/api/cart/add`, {
       quantity,
       id: product._id,
     });
+
     setLoading(false);
     return afterAddToCart();
   };
@@ -49,7 +51,7 @@ function Product({ product, afterAddToCart }) {
         <a className="fas fa-heart" onClick={addToCart} />
         <a
           target="_blank"
-          href={`https://www.facebook.com/sharer/sharer.php?u=${process.env.SERVER_URL}/products/${product._id}`}
+          href={`https://www.facebook.com/sharer/sharer.php?u=${config.server}/products/${product._id}`}
           className="fb-xfbml-parse-ignore fas fa-share"
           rel="noreferrer"
         />
@@ -58,15 +60,9 @@ function Product({ product, afterAddToCart }) {
         </Link>
       </div>
 
-      <img
-        src={
-          product.image ||
-          `https://ui-avatars.com/api/?name=${product.title}&size=600`
-        }
-        alt={product.title}
-      />
+      <img src={product.image} alt={product.title} />
       <Link href={`/products/${product._id}`}>
-        <h3 style={{ marginTop: 5, cursor: "pointer" }}>{product.title}</h3>
+        <h4 style={{ marginTop: 5, cursor: "pointer" }}>{product.title}</h4>
       </Link>
 
       {/* <ReviewStars /> */}

@@ -34,45 +34,19 @@ router.get("/api/products/:id", async (req, res) => {
 });
 
 router.post("/api/products", async (req, res) => {
-  const title = req.body.title;
-  const image =
-    req.body.image || `https://ui-avatars.com/api/?name=${title}&size=600`;
-  const price = req.body.price || Math.floor(Math.random() * 100) * 1000;
-  const original_price = req.body.original_price || price;
-
-  const product = await productModel.create({
-    title,
-    price,
-    original_price,
-    image,
-    description: req.body.description,
-  });
-
+  const product = await productModel.create(req.body);
   res.json(product);
 });
 
-router.put("/api/products/:id", async (req, res) => {
-  const title = req.body.title;
-  const image =
-    req.body.image || `https://ui-avatars.com/api/?name=${title}&size=600`;
-  const price = req.body.price || Math.floor(Math.random() * 100) * 1000;
-  const original_price = req.body.original_price || price;
-
-  const data = {
-    title,
-    price,
-    original_price,
-    image,
-    description: req.body.description,
-  };
-
-  const product = await productModel.findByIdAndUpdate(
-    req.params.id,
-    { $set: data },
-    { new: true, lean: true }
-  );
-
-  res.json(product);
+router.put("/api/products/:id", (req, res, next) => {
+  productModel
+    .findByIdAndUpdate(
+      req.params.id,
+      { $set: req.body },
+      { new: true, lean: true }
+    )
+    .then((result) => res.json(result))
+    .catch((error) => next(error));
 });
 
 module.exports = { productRoute: router };
