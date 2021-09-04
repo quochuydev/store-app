@@ -2,6 +2,7 @@
 @import "header";
 @import "footer";
 @import "newsletter";
+@import "mega-menu";
 
 :root {
   --green: #27ae60;

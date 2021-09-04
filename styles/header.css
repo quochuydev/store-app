@@ -53,20 +53,23 @@
 .header-1 .search-box-container #search-box {
   height: 100%;
   width: 100%;
-  padding: 1rem;
+  padding: 0.5rem;
   color: #333;
   border: 0.1rem solid rgba(0, 0, 0, 0.3);
   text-transform: none;
 }
 
-.header-1 .search-box-container label {
-  height: 100%;
+.header-1 .search-box-container a {
   width: 4rem;
-  line-height: 3rem;
+  line-height: 1rem;
   color: #fff;
   background: var(--green);
   text-align: center;
   cursor: pointer;
+}
+
+.header-1 .search-box-container a label {
+  line-height: 2.5rem;
 }
 
 .header-1 .search-box-container label:hover {

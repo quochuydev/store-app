@@ -62,3 +62,7 @@ $(document).ready(function () {
     );
   });
 });
+
+$("body").on("click", ".mega-dropdown", function (e) {
+  return e.stopPropagation();
+});

@@ -11,6 +11,7 @@ import Products from "../components/Products";
 import Deal from "../components/Deal";
 import Contact from "../components/Contact";
 import Newsletter from "../components/Newsletter";
+
 import useCart from "../hooks/useCart";
 
 export async function getServerSideProps() {
