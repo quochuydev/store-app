@@ -13,8 +13,11 @@ import BillingAddress from "../../components/Checkout/BillingAddress";
 import Items from "../../components/Checkout/Items";
 import PromoCodeInput from "../../components/Checkout/PromoCodeInput";
 import Payment from "../../components/Checkout/Payment";
+import useTranslation from "../../locales/useTranslation";
 
 export default function Checkout() {
+  const { t } = useTranslation();
+
   const [cart] = useCart();
 
   const [paymentType, setPaymentType] = useState("cod");
@@ -65,7 +68,7 @@ export default function Checkout() {
           <div className="row g-5">
             <div className="col-md-5 col-lg-4 order-md-last">
               <h4 className="d-flex justify-content-between align-items-center mb-3">
-                <span className="text-primary">Your cart</span>
+                <span className="text-primary">{t("label.yourCart")}</span>
                 <span className="badge bg-primary rounded-pill">
                   {cart.item_count}
                 </span>
@@ -74,7 +77,7 @@ export default function Checkout() {
               {/* <PromoCodeInput /> */}
 
               <h4 className="d-flex justify-content-between align-items-center mt-5">
-                <span className="text-primary">Payment method</span>
+                <span className="text-primary">{t("label.paymentMethod")}</span>
               </h4>
               <div className="mt-3">
                 <div className="form-check">
@@ -88,7 +91,7 @@ export default function Checkout() {
                     onChange={() => setPaymentType("cod")}
                   />
                   <label className="form-check-label" htmlFor="credit">
-                    Cash On Delivery (COD)
+                    {t("label.cod")}
                   </label>
                 </div>
                 <div className="form-check">
@@ -102,7 +105,7 @@ export default function Checkout() {
                     onChange={() => setPaymentType("bank")}
                   />
                   <label className="form-check-label" htmlFor="debit">
-                    Bank tranfer
+                    {t("label.bank")}
                   </label>
                 </div>
               </div>

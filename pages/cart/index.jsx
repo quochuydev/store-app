@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import styles from "./style.module.css";
 import useCart from "../../hooks/useCart";
 import Layout from "../../components/Layout";
+import useTranslation from "../../locales/useTranslation";
 
 export default function Cart() {
   const [cart, fetchCart] = useCart();
@@ -25,20 +26,24 @@ export default function Cart() {
 }
 
 function NoneItems() {
+  const { t } = useTranslation();
+
   return (
     <div
       className={styles.cart}
       style={{ textAlign: "center", padding: "10rem" }}
     >
-      <p>Giỏ hàng của bạn đang trống</p>
+      <p>{t("label.emptyCart")}</p>
       <Link className="btn btn-primary btn-sm" href="/">
-        Continue to homepage
+        {t("label.toHome")}
       </Link>
     </div>
   );
 }
 
 function CartComponent({ cart, fetchCart }) {
+  const { t } = useTranslation();
+
   const CartItem = ({ item }) => {
     return (
       <tr>
@@ -87,10 +92,10 @@ function CartComponent({ cart, fetchCart }) {
       <table className={styles.table}>
         <tbody>
           <tr>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th style={{ textAlign: "right" }}>Total</th>
+            <th>{t("label.product")}</th>
+            <th>{t("label.price")}</th>
+            <th>{t("label.quantity")}</th>
+            <th style={{ textAlign: "right" }}>{t("label.total")}</th>
             <th></th>
           </tr>
           {cart.items.map((e, i) => (
@@ -111,14 +116,14 @@ function CartComponent({ cart, fetchCart }) {
               <td>${cart.total_price}</td>
             </tr>
             <tr>
-              <td>Total</td>
+              <td>{t("label.total")}</td>
               <td>${cart.total_price}</td>
             </tr>
           </tbody>
         </table>
 
         <Link href="/checkout">
-          <a className={styles.checkout}>Proceed To Checkout</a>
+          <a className={styles.checkout}>{t("label.processCheckout")}</a>
         </Link>
       </div>
     </section>

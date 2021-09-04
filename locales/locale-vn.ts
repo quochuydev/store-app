@@ -6,13 +6,46 @@ export default {
     twitterHandle: "@example",
   },
   navigation: {
-    dropdown: "Menu",
-    profile: "Profile",
-    logout: "Logout",
-    login: "Login",
-    register: "Register",
+    home: "Trang chủ",
     category: "Danh mục",
     product: "Sản phẩm",
+  },
+  label: {
+    addToCart: "Thêm vào giỏ hàng",
+    subscribe: "Đăng kí để nhận được tư vấn",
+    inputPhone: "Nhập số điện thoại",
+    emptyCart: "Giỏ hàng của bạn đang trống",
+    toHome: "Về lại trang chủ",
+    processCheckout: "Tiếp tục thanh toán",
+
+    billing: "Billing address",
+    firstName: "Họ và tên",
+    phone: "Số điện thoại",
+    address: "Số điện thoại",
+    done: "Hoàn tất",
+
+    paymentMethod: "Phương thức thanh toán",
+    yourCart: "Đơn hàng của bạn",
+    cod: "Thanh toán khi giao hàng",
+    bank: "Chuyển khoản",
+    noteShipping: "Shipping address is the same as my billing address",
+
+    product: "Sản phẩm",
+    price: "Giá tiền",
+    quantity: "Số lượng",
+    total: "Tổng tiền",
+
+    thankyou: "Cảm ơn!",
+    thankyouDescription:
+      "Please check your email for further instructions on how to complete your account setup",
+    trouble: "Having trouble",
+    contactUs: "Liên hệ với chúng tôi",
+  },
+  error: {
+    firstName: "Họ và tên không hợp lệ.",
+    phone: "Số điện thoại không hợp lệ.",
+    email: "Địa chỉ email không hợp lệ.",
+    address: "Địa chỉ của bạn không hợp lệ.",
   },
   page: {
     notFound: {

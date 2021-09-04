@@ -1,9 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+
+import useTranslation from "../locales/useTranslation";
 import config from "../utils/config";
 
 export default function Newsletter() {
+  const { t } = useTranslation();
+
   const [phoneNumber, setPhoneNumber] = useState("");
   const onClick = async () => {
     if (!phoneNumber || phoneNumber === "") {
@@ -16,12 +20,12 @@ export default function Newsletter() {
 
   return (
     <section className="newsletter">
-      <h3>Subscribe us for latest updates</h3>
+      <h3>{t("label.subscribe")}</h3>
       <div>
         <input
           className="box"
           type="text"
-          placeholder="enter your phone number"
+          placeholder={t("label.inputPhone")}
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target?.value)}
         />

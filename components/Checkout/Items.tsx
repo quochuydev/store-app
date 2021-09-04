@@ -1,4 +1,8 @@
+import useTranslation from "../../locales/useTranslation";
+
 export default function Items(props: any) {
+  const { t } = useTranslation();
+
   const { cart } = props;
 
   return (
@@ -20,7 +24,7 @@ export default function Items(props: any) {
         ))}
         {/* <PromoCode /> */}
         <li className="list-group-item d-flex justify-content-between">
-          <span>Total (USD)</span>
+          <span>{t("label.total")}</span>
           <strong>${cart.total_price}</strong>
         </li>
       </ul>

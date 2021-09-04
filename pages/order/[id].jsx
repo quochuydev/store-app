@@ -2,10 +2,12 @@
 import { useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+
 import styles from "./style.module.css";
 import Layout from "../../components/Layout";
 import Thankyou from "../../components/Thankyou";
 import useCart from "../../hooks/useCart";
+import useTranslation from "../../locales/useTranslation";
 
 export default function Order() {
   const { id, thankyou } = useRouter().query;
@@ -47,6 +49,8 @@ export default function Order() {
 }
 
 function CustomerInfo({ data }) {
+  const { t } = useTranslation();
+
   const [paymentNote, setPaymentNote] = useState(null);
   console.log(data);
 
@@ -115,6 +119,8 @@ function CustomerInfo({ data }) {
 }
 
 function ItemsComponent({ data }) {
+  const { t } = useTranslation();
+
   const CartItem = ({ item }) => {
     return (
       <tr>
@@ -140,10 +146,10 @@ function ItemsComponent({ data }) {
       <table className={styles.table}>
         <tbody>
           <tr>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
+            <th>{t("label.product")}</th>
+            <th>{t("label.price")}</th>
+            <th>{t("label.quantity")}</th>
+            <th>{t("label.total")}</th>
           </tr>
           {data.line_items.map((e, i) => (
             <CartItem key={i} item={e} />
@@ -155,7 +161,7 @@ function ItemsComponent({ data }) {
         <table className={styles.table}>
           <tbody>
             <tr>
-              <td>Total</td>
+              <td>{t("label.total")}</td>
               <td>${data.amount}</td>
             </tr>
           </tbody>

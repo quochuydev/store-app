@@ -7,6 +7,7 @@ import Link from "next/link";
 import styles from "./style.module.css";
 import Pagination from "./Pagination";
 import config from "../utils/config";
+import useTranslation from "../locales/useTranslation";
 
 export default function Products({ meta, products, afterAddToCart }) {
   const { total, limit, page, skip, totalPage } = meta;
@@ -27,6 +28,8 @@ export default function Products({ meta, products, afterAddToCart }) {
 }
 
 function Product({ product, afterAddToCart }) {
+  const { t } = useTranslation();
+
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
 
@@ -75,7 +78,7 @@ function Product({ product, afterAddToCart }) {
       </div>
 
       <div className="quantity">
-        <span>quantity : </span>
+        <span>{t("label.quantity")}</span>
         <input
           type="number"
           min={1}

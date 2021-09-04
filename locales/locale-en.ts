@@ -6,12 +6,42 @@ export default {
     twitterHandle: "@example",
   },
   navigation: {
-    dropdown: "Menu",
-    profile: "Profile",
-    logout: "Logout",
-    login: "Login",
-    register: "Register",
+    home: "Home",
+    category: "Category",
     product: "Product",
+  },
+  label: {
+    addToCart: "Add to cart",
+    subscribe: "Subscribe us for latest updates",
+    inputPhone: "Enter your phone number",
+    emptyCart: "Empty cart",
+    toHome: "Continue to homepage",
+    quantity: "quantity",
+    processCheckout: "Proceed To Checkout",
+
+    billing: "Billing address",
+    firstName: "Họ và tên",
+    phone: "Số điện thoại",
+    address: "Số điện thoại",
+    done: "Hoàn tất",
+
+    paymentMethod: "Phương thức thanh toán",
+    yourCart: "Đơn hàng của bạn",
+    cod: "Thanh toán khi giao hàng",
+    bank: "Chuyển khoản",
+    noteShipping: "Shipping address is the same as my billing address",
+    total: "Tổng tiền",
+
+    thankyou: "Cảm ơn!",
+    thankyouDescription:
+      "Please check your email for further instructions on how to complete your account setup",
+    contactUs: "Liên hệ với chúng tôi",
+  },
+  error: {
+    firstName: "Invalid first name",
+    phone: "Invalid phone number",
+    email: "Invalid email",
+    address: "Please enter your shipping address.",
   },
   page: {
     notFound: {

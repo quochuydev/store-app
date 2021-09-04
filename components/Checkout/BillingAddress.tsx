@@ -1,4 +1,8 @@
+import useTranslation from "../../locales/useTranslation";
+
 export default function BillingAddress(props: any) {
+  const { t } = useTranslation();
+
   const { onData } = props;
 
   return (
@@ -16,7 +20,7 @@ export default function BillingAddress(props: any) {
             required
             onChange={(e) => onData("firstName", e.target.value)}
           />
-          <div className="invalid-feedback">Valid first name is required.</div>
+          <div className="invalid-feedback">{t("error.firstName")}</div>
         </div>
         {/* <LastnameComponent /> */}
         {/* <UsernameComponent /> */}
@@ -32,7 +36,7 @@ export default function BillingAddress(props: any) {
             required
             onChange={(e) => onData("phoneNumber", e.target.value)}
           />
-          <div className="invalid-feedback">Please enter a valid phone.</div>
+          <div className="invalid-feedback">{t("error.phone")}</div>
         </div>
         <div className="col-12">
           <label htmlFor="email" className="form-label">
@@ -45,9 +49,7 @@ export default function BillingAddress(props: any) {
             placeholder="example@gmail.com"
             onChange={(e) => onData("email", e.target.value)}
           />
-          <div className="invalid-feedback">
-            Please enter a valid email address for shipping updates.
-          </div>
+          <div className="invalid-feedback">{t("error.email")}</div>
         </div>
         <div className="col-12">
           <label htmlFor="address" className="form-label">
@@ -61,9 +63,7 @@ export default function BillingAddress(props: any) {
             required
             onChange={(e) => onData("address", e.target.value)}
           />
-          <div className="invalid-feedback">
-            Please enter your shipping address.
-          </div>
+          <div className="invalid-feedback">{t("error.address")}</div>
         </div>
         {/* <PlaceComponent /> */}
       </div>
