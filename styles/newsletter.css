@@ -1,0 +1,39 @@
+.newsletter {
+  /* background: url(../images/newsletter-bg.jpg) no-repeat; */
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+.newsletter h3 {
+  font-size: 3rem;
+  color: var(--black);
+}
+
+.newsletter div {
+  max-width: 55rem;
+  display: flex;
+  align-items: center;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.newsletter div .box {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  color: #333;
+  text-transform: none;
+}
+
+.newsletter div .btn {
+  padding: 0.7rem 1rem;
+  margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  .newsletter h3 {
+    font-size: 2.2rem;
+  }
+}

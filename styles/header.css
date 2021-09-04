@@ -1,3 +1,17 @@
+.header-top .top-message {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: unset;
+  letter-spacing: 0.05em;
+  text-align: center;
+  padding: 6px;
+  position: relative;
+  color: #b05d5d;
+  background-color: #ffe8e8;
+  margin: 0;
+  border: 0;
+}
+
 .heading {
   text-align: center;
   color: var(--black);
@@ -13,7 +27,6 @@
 
 .header-1 {
   background: url("/images/newsletter-bg.jpg") no-repeat;
-  /* background: #eee; */
   background-size: cover;
   display: flex;
   align-items: center;

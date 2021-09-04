@@ -1,0 +1,55 @@
+.footer .box-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer .box-container .box {
+  padding: 1rem 0;
+  flex: 1 1 25rem;
+}
+
+.footer .box-container .box .share a {
+  padding: 0;
+  height: 3rem;
+  width: 3rem;
+  line-height: 3rem;
+  text-align: center;
+  margin-right: 5px;
+}
+
+.footer .box-container .box h3 {
+  color: var(--black);
+}
+
+.footer .box-container .box p {
+  font-size: 1.3rem;
+  color: #666;
+  padding: 0.7rem 0;
+}
+
+.footer .box-container .box .links {
+  padding: 1rem 0;
+}
+
+.footer .box-container .box .links a {
+  display: block;
+  padding: 0.5rem 0;
+  color: #333;
+}
+
+.footer .box-container .box .links a:hover {
+  text-decoration: underline;
+  color: var(--green);
+}
+
+.footer .credit {
+  padding: 0.5rem 1rem;
+  border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.footer .credit span {
+  color: var(--green);
+}

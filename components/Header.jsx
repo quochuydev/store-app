@@ -17,6 +17,9 @@ function Icon() {
 export default function Header({ cart }) {
   return (
     <header>
+      <div className="header-top">
+        <p className="top-message">Mid-Season Sale Up to 70% OFF. Shop Now</p>
+      </div>
       <div className="header-1">
         <Icon />
         <SearchBox />
