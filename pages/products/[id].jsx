@@ -23,7 +23,7 @@ export default function Product({ product }) {
 
   const afterAddToCart = () => {
     fetchCart();
-    toast("Added", { position: "bottom-right" });
+    toast("Added to cart", { position: "bottom-right" });
   };
 
   return (

@@ -5,6 +5,7 @@ import axios from "axios";
 import Link from "next/link";
 
 import styles from "./style.module.css";
+import Pagination from "./Pagination";
 
 export default function Products({ products, afterAddToCart }) {
   return (
@@ -12,11 +13,12 @@ export default function Products({ products, afterAddToCart }) {
       <h1 className="heading">
         latest <span>products</span>
       </h1>
-      <div className="box-container">
+      <div className="box-container mb-5">
         {products.map((product, i) => (
           <Product key={i} {...{ product, afterAddToCart }} />
         ))}
       </div>
+      <Pagination />
     </section>
   );
 }

@@ -5,7 +5,7 @@ import * as _ from "lodash";
 import axios from "axios";
 
 import TicketCard from "./TicketCard";
-import Pagination from "./Pagination";
+import Pagination from "../../components/Pagination";
 import Filter from "./Filter";
 import LocationSearch from "./LocationSearch";
 
