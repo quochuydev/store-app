@@ -64,7 +64,7 @@ function Product({ product, afterAddToCart }) {
       <Link href={`/products/${product._id}`}>
         <h4 style={{ marginTop: 5, cursor: "pointer" }}>
           {product.title?.length > 35
-            ? product.title.slice(0, 35) + "...[read]"
+            ? product.title.slice(0, 35) + "..."
             : product.title}
         </h4>
       </Link>

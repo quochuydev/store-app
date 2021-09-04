@@ -21,7 +21,7 @@ export default {
     isLoginFacebook: false,
     isLoginTwitter: false,
   },
-  tickets: true,
+  tickets: false,
   checkin: true,
   shop: {
     brand: "cafe2hdaily",

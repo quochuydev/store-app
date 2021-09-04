@@ -39,9 +39,9 @@
 
 .product .box-container .box .icons a {
   display: block;
-  height: 4.5rem;
-  width: 4.5rem;
-  line-height: 4.5rem;
+  height: 4rem;
+  width: 4rem;
+  line-height: 4rem;
   color: var(--black);
   background: rgba(0, 0, 0, 0.05);
   border-radius: 50%;

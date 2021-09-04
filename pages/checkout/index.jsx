@@ -32,13 +32,13 @@ export default function Checkout() {
 
   const createOrder = async () => {
     if (!customer.firstName || customer.firstName === "") {
-      return toast("Invalid first name!");
+      return toast.error("Invalid first name!");
     }
     if (!customer.phoneNumber || customer.phoneNumber === "") {
-      return toast("Invalid phone number!");
+      return toast.error("Invalid phone number!");
     }
     if (!customer.address || customer.address === "") {
-      return toast("Invalid address!");
+      return toast.error("Invalid address!");
     }
 
     const result = await axios.post(`${process.env.SERVER_URL}/api/orders`, {
