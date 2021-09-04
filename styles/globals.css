@@ -57,17 +57,12 @@ section {
   flex-wrap: wrap;
 }
 
-.home .image {
-  flex: 1 1 20rem;
-  padding-top: 3rem;
-}
-
 .home .image img {
   width: 100%;
 }
 
-.home .content {
-  flex: 1 1 40rem;
+.home .image {
+  padding-top: 3rem;
 }
 
 .home .content span {
@@ -86,7 +81,7 @@ section {
 }
 
 .banner-container .banner {
-  flex: 1 1 40rem;
+  flex: 1 1 20rem;
   height: 20rem;
   overflow: hidden;
   position: relative;
@@ -123,6 +118,14 @@ section {
   section {
     padding: 2rem;
   }
+
+  .home .image {
+    flex: 1 1 20rem;
+  }
+
+  .home .content {
+    flex: 1 1 20rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -134,14 +137,5 @@ section {
 @media (max-width: 450px) {
   html {
     font-size: 50%;
-  }
-
-  .header-1 {
-    flex-flow: column;
-  }
-
-  .header-1 .search-box-container {
-    width: 100%;
-    margin-top: 2rem;
   }
 }

@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import Menu from "./Menu";
 import SearchBox from "./SearchBox";
+import useTranslation from "../locales/useTranslation";
 
 function Icon() {
   return (
@@ -15,6 +16,13 @@ function Icon() {
 }
 
 export default function Header({ cart }) {
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    console.log(lng, i18n);
+    i18n.changeLanguage(lng);
+  };
+
   return (
     <header>
       <div className="header-top">
@@ -22,6 +30,13 @@ export default function Header({ cart }) {
       </div>
       <div className="header-1">
         <Icon />
+        <select
+          value={i18n.language}
+          onChange={(e) => changeLanguage(e.target.value)}
+        >
+          <option value="vn">vn</option>
+          <option value="en">en</option>
+        </select>
         <SearchBox />
       </div>
       <div className="header-2">
