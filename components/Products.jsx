@@ -47,7 +47,7 @@ function Product({ product, afterAddToCart }) {
         <a className="fas fa-heart" onClick={addToCart} />
         <a
           target="_blank"
-          href={`https://www.facebook.com/sharer/sharer.php?u=https://dlcapp.herokuapp.com/products/${product._id}`}
+          href={`https://www.facebook.com/sharer/sharer.php?u=${process.env.SERVER_URL}/products/${product._id}`}
           className="fb-xfbml-parse-ignore fas fa-share"
           rel="noreferrer"
         />
