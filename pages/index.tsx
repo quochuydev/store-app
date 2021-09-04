@@ -19,7 +19,7 @@ export async function getServerSideProps() {
     process.env.SERVER_URL + "/api/products?limit=12"
   );
 
-  const setting = await axios.get(process.env.SERVER_URL + "/api/setting");
+  const setting = await axios.get(process.env.SERVER_URL + "/api/settings");
 
   return {
     props: {
@@ -29,15 +29,8 @@ export async function getServerSideProps() {
   };
 }
 
-export default function Index({ products }: any) {
+export default function Index({ setting, products }: any) {
   const [cart, fetchCart] = useCart();
-  const [setting, setSetting] = useState({});
-
-  useEffect(() => {
-    axios.get(process.env.SERVER_URL + "/api/setting").then((result) => {
-      setSetting(result?.data || {});
-    });
-  }, []);
 
   const afterAddToCart = () => {
     fetchCart();

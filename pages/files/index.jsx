@@ -18,7 +18,7 @@ export default function Files() {
   };
 
   useEffect(() => {
-    axios.get(process.env.SERVER_URL + "/api/setting").then((result) => {
+    axios.get(process.env.SERVER_URL + "/api/settings").then((result) => {
       setSetting(result?.data || {});
     });
   }, []);
@@ -47,7 +47,7 @@ export default function Files() {
 
   const onSave = async (name, data) => {
     const result = await axios.put(
-      process.env.SERVER_URL + "/api/setting/" + setting._id,
+      process.env.SERVER_URL + "/api/settings/" + setting._id,
       { [name]: data }
     );
     toast("updated");

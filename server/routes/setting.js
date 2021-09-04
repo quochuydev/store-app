@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const { settingModel } = require("../models/setting");
 
-router.get("/api/setting", async (req, res) => {
+router.get("/api/settings", async (req, res) => {
   let result = await settingModel.findOne({}).lean(true);
 
   if (result) {
@@ -14,7 +14,7 @@ router.get("/api/setting", async (req, res) => {
   res.json(result);
 });
 
-router.put("/api/setting/:id", async (req, res) => {
+router.put("/api/settings/:id", async (req, res) => {
   const result = await settingModel.findOneAndUpdate(
     { _id: req.params.id },
     { $set: req.body },
