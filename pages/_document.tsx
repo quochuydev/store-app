@@ -21,7 +21,6 @@ export default class MyDocument extends Document {
         <Head>
           <base href="/"></base>
           <link rel="icon" href="favicon.png" />
-          <title>Grocery</title>
 
           <link
             rel="stylesheet"

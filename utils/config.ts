@@ -1,7 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 export default {
   server: process.env.SERVER_URL,
-  title: "Website development eCommerce",
+  title: "Grocery - eCommerce website",
   phoneNumber: "0382986838",
   email: "quochuy.dev@gmail.com",
   address: "Nhat Chi Mai - Q.Tan Binh, TP.HCM, VietNam",
