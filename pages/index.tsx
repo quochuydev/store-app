@@ -13,13 +13,11 @@ import Contact from "../components/Contact";
 import Newsletter from "../components/Newsletter";
 
 import useCart from "../hooks/useCart";
+import config from "../utils/config";
 
 export async function getServerSideProps() {
-  const result = await axios.get(
-    process.env.SERVER_URL + "/api/products?limit=12"
-  );
-
-  const setting = await axios.get(process.env.SERVER_URL + "/api/settings");
+  const result = await axios.get(`${config.server}/api/products?limit=8`);
+  const setting = await axios.get(`${config.server}/api/settings`);
 
   return {
     props: {

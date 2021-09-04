@@ -1,5 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 export default {
+  server: process.env.SERVER_URL,
   title: "Website development eCommerce",
   phoneNumber: "0382986838",
   email: "quochuy.dev@gmail.com",
