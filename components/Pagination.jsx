@@ -1,33 +1,29 @@
-export default function Pagination() {
+export default function Pagination({
+  total = 0,
+  limit = 20,
+  page = 1,
+  skip = 0,
+  totalPage = 1,
+}) {
+  console.log({ total, limit, page, skip, totalPage });
+
+  const pages = [];
+  for (let i = 1; i <= totalPage; i++) {
+    pages.push(
+      <li className={`page-item ${i === page && "active"}`}>
+        <a className="page-link" href={`#?page=${i}`}>
+          {i}
+        </a>
+      </li>
+    );
+  }
+
   return (
     <ul className="pagination justify-content-center mb-0">
       <li className="page-item disabled">
         <span className="page-link">Prev</span>
       </li>
-      <li className="page-item active" aria-current="page">
-        <span className="page-link">1 </span>
-        <span className="sr-only">(current)</span>
-      </li>
-      <li className="page-item">
-        <a className="page-link" href="#">
-          2
-        </a>
-      </li>
-      <li className="page-item">
-        <a className="page-link" href="#">
-          3
-        </a>
-      </li>
-      <li className="page-item">
-        <a className="page-link" href="#">
-          ...
-        </a>
-      </li>
-      <li className="page-item">
-        <a className="page-link" href="#">
-          25
-        </a>
-      </li>
+      {pages}
       <li className="page-item">
         <a className="page-link" href="#">
           Next

@@ -7,7 +7,9 @@ import Link from "next/link";
 import styles from "./style.module.css";
 import Pagination from "./Pagination";
 
-export default function Products({ products, afterAddToCart }) {
+export default function Products({ meta, products, afterAddToCart }) {
+  const { total, limit, page, skip, totalPage } = meta;
+
   return (
     <section className="product" id="product">
       <h1 className="heading">
@@ -18,7 +20,7 @@ export default function Products({ products, afterAddToCart }) {
           <Product key={i} {...{ product, afterAddToCart }} />
         ))}
       </div>
-      <Pagination />
+      <Pagination {...{ total, limit, page, skip, totalPage }} />
     </section>
   );
 }

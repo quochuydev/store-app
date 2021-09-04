@@ -115,7 +115,7 @@ function TicketsComponent({ tickets }) {
             ))}
 
             <div className="text-center mt-4 mt-sm-5">
-              <Pagination />
+              <Pagination {...{}} />
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import InputConfig from "../../components/Setting/InputConfig";
 import ItemsConfig from "../../components/Setting/ItemsConfig";
+import CreateProduct from "./CreateProduct";
 
 export default function Files() {
   const [image, setImage] = useState(null);
@@ -26,13 +27,6 @@ export default function Files() {
   useEffect(() => {
     fetchFiles();
   }, []);
-
-  const onCreateProduct = async () => {
-    await axios.post(process.env.SERVER_URL + "/api/products", {
-      image,
-    });
-    toast("success");
-  };
 
   const onCopy = (text) => {
     navigator.clipboard.writeText(text).then(
@@ -57,34 +51,8 @@ export default function Files() {
   return (
     <>
       <ToastContainer />
-      <button onClick={onCreateProduct}>create product</button>
+      <CreateProduct {...{ image }} />
       <hr />
-      <InputConfig
-        setting={setting}
-        name="banner"
-        label="banner"
-        initData={setting.banner}
-        onSave={onSave}
-      />
-      <hr />
-      <ItemsConfig
-        setting={setting}
-        name="contents"
-        label="contents"
-        initData={setting.contents}
-        onSave={onSave}
-      />
-      <hr />
-      <ItemsConfig
-        setting={setting}
-        name="categories"
-        label="categories"
-        initData={setting.categories}
-        onSave={onSave}
-      />
-      <hr />
-
-      <br />
       <input
         type="file"
         accept="image/*"
@@ -115,6 +83,31 @@ export default function Files() {
           <li onClick={() => onCopy(e.url)}>{e.url}</li>
         </ul>
       ))}
+
+      <hr />
+      <InputConfig
+        setting={setting}
+        name="banner"
+        label="banner"
+        initData={setting.banner}
+        onSave={onSave}
+      />
+      <hr />
+      <ItemsConfig
+        setting={setting}
+        name="contents"
+        label="contents"
+        initData={setting.contents}
+        onSave={onSave}
+      />
+      <hr />
+      <ItemsConfig
+        setting={setting}
+        name="categories"
+        label="categories"
+        initData={setting.categories}
+        onSave={onSave}
+      />
     </>
   );
 }

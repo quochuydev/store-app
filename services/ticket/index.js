@@ -2,10 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-var cors = require("cors");
+const cors = require("cors");
 
 const port = process.env.PORT || 4000;
-const dev = process.env.NODE_ENV !== "production";
 
 const { ticketRoute } = require("./routes/ticket");
 

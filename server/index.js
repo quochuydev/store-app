@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { v4: uuidv4 } = require("uuid");
 const cookieParser = require("cookie-parser");
-var cors = require("cors");
+const cors = require("cors");
 
 const port = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== "production";

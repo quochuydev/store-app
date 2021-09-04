@@ -1,13 +1,18 @@
 const express = require("express");
-const multer = require("multer");
-const slugify = require("slugify");
 const fs = require("fs");
 const path = require("path");
-
 const router = express.Router();
-const { fileModel } = require("../models/file");
 
-const server = process.env.SERVER_URL;
+const { fileModel } = require("../models/file");
+const { diskStorage, uploader } = require("../uploader");
+
+router.post("/api/files", diskStorage, async (req, res) => {
+  if (!req.file) {
+    return res.status(400).send("empty file");
+  }
+  const file = await uploader(req.file);
+  res.send(file);
+});
 
 router.get("/api/files", async (req, res) => {
   const items = await fileModel.find({}).sort({ createdAt: -1 });
@@ -15,7 +20,7 @@ router.get("/api/files", async (req, res) => {
 });
 
 router.get("/files/:filename", (req, res) => {
-  var fullPath = path.join(path.resolve("./files"), req.params.filename);
+  const fullPath = path.join(path.resolve("./files"), req.params.filename);
 
   fs.exists(fullPath, function (exists) {
     if (!exists) {
@@ -24,28 +29,6 @@ router.get("/files/:filename", (req, res) => {
     const filestream = fs.createReadStream(fullPath);
     filestream.pipe(res);
   });
-});
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "files");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + "-" + slugify(file.originalname, { lower: true }));
-  },
-});
-
-const upload = multer({ storage });
-
-router.post("/api/files", upload.single("files"), async (req, res) => {
-  if (!req.file) {
-    return res.status(400).send("empty file");
-  }
-
-  const file = await fileModel.create({
-    url: server + "/" + req.file.path,
-  });
-  res.send(file);
 });
 
 module.exports = { fileRoute: router };

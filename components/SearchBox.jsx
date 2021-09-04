@@ -17,9 +17,7 @@ export default function SearchBox() {
         placeholder="search here..."
         onChange={(e) => setKeyword(e.target.value)}
       />
-      <a href="#" onClick={() => search(keyword)}>
-        <label htmlFor="search-box" className="fas fa-search" />
-      </a>
+      <a onClick={() => search(keyword)} className="fas fa-search" />
     </div>
   );
 }

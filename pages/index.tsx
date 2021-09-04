@@ -21,13 +21,14 @@ export async function getServerSideProps() {
 
   return {
     props: {
+      meta: result?.data?.meta || {},
       products: result?.data?.items || [],
       setting: setting?.data || {},
     },
   };
 }
 
-export default function Index({ setting, products }: any) {
+export default function Index({ meta, products, setting }: any) {
   const [cart, fetchCart] = useCart();
 
   const afterAddToCart = () => {
@@ -41,7 +42,7 @@ export default function Index({ setting, products }: any) {
       <Home {...{ setting }} />
       <Banner {...{ setting }} />
       <Category {...{ setting }} />
-      <Products {...{ products, afterAddToCart }} />
+      <Products {...{ meta, products, afterAddToCart }} />
       {/* <Deal /> */}
       {/* <Contact /> */}
       <Newsletter />

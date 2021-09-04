@@ -19,15 +19,15 @@ export default function ProductDetail({ product, afterAddToCart }) {
   };
 
   return (
-    <div className="container mt-5">
+    <section className="mt-5">
       <div className="row">
         <div className="col-md-6">
           <img
             src={product.image}
             alt={product.title}
             style={{ width: "100%" }}
+            className="p-4"
           />
-          {/* <img src={product.image} alt={product.title} width={150} /> */}
         </div>
         <div className="col-md-6">
           <h1>{product.title}</h1>
@@ -78,6 +78,6 @@ export default function ProductDetail({ product, afterAddToCart }) {
           </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
