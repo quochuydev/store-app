@@ -32,10 +32,11 @@ export default function Order() {
 
   return (
     <Layout {...{ cart }}>
-      <div className="mt-5" />
-      {thankyou === "true" && <Thankyou />}
-      <CustomerInfo {...{ data }} />
-      <ItemsComponent {...{ data }} />
+      <section className="mt-5">
+        {thankyou === "true" && <Thankyou />}
+        <CustomerInfo {...{ data }} />
+        <ItemsComponent {...{ data }} />
+      </section>
     </Layout>
   );
 }
@@ -53,7 +54,45 @@ function CustomerInfo({ data }) {
         </div>
         <div className="col-md-6">
           <b>Payment</b>
-          <div>Cash On Delivery (COD)</div>
+          <div>
+            {data.payment?.type === "code"
+              ? "Cash On Delivery (COD)"
+              : "Bank tranfer"}
+          </div>
+          {!data.payment?.note && (
+            <>
+              <hr />
+              <p style={{ color: "#69ae14" }}>
+                <b>Gửi bằng chứng thanh toán (${data.amount})</b>
+              </p>
+              <input
+                type="file"
+                onChange={async (event) => {
+                  try {
+                    const file = event.target?.files[0];
+                    console.log(file);
+                    const bodyFormData = new FormData();
+                    bodyFormData.append("files", file);
+
+                    const result = await axios({
+                      method: "post",
+                      url: process.env.SERVER_URL + "/api/files",
+                      headers: { "Content-Type": "multipart/form-data" },
+                      data: bodyFormData,
+                    });
+
+                    const paymentInfo = await axios.post(
+                      `${process.env.SERVER_URL}/api/orders/${data._id}/payment-info`,
+                      { note: result?.data?.url }
+                    );
+                    console.log(paymentInfo);
+                  } catch (error) {
+                    //
+                  }
+                }}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>

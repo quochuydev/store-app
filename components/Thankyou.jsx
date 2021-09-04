@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Thankyou() {
   return (
     <div className="jumbotron text-center">
-      <h1 className="display-3">Thank You!</h1>
+      <h2 className="display-3">Thank You!</h2>
       <p className="lead">
         <strong>Please check your email</strong> for further instructions on how
         to complete your account setup.

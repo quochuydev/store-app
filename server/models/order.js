@@ -23,6 +23,10 @@ const orderSchema = new mongoose.Schema({
     ],
     default: [],
   },
+  payment: {
+    type: { type: String, default: "cod" },
+    note: { type: String, default: null },
+  },
   createdAt: { type: Date, default: Date.now },
 });
 

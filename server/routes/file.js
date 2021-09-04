@@ -26,7 +26,7 @@ router.get("/files/:filename", (req, res) => {
   });
 });
 
-var storage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "files");
   },
@@ -35,7 +35,7 @@ var storage = multer.diskStorage({
   },
 });
 
-var upload = multer({ storage: storage });
+const upload = multer({ storage });
 
 router.post("/api/files", upload.single("files"), async (req, res) => {
   if (!req.file) {

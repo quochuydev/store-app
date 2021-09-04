@@ -40,4 +40,25 @@ router.put("/api/orders/:id", async (req, res) => {
   res.json(order);
 });
 
+router.post("/api/orders/:id/payment-info", async (req, res, next) => {
+  const { note } = req.body;
+  if (!note) {
+    return next({ message: "invalid data" });
+  }
+
+  const order = await orderModel.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set: {
+        payment: {
+          note,
+        },
+      },
+    },
+    { new: true, lean: true }
+  );
+
+  res.json(order);
+});
+
 module.exports = { orderRoute: router };
