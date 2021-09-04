@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import styles from "./style.module.css";
@@ -34,7 +34,12 @@ export default function Order() {
     <Layout {...{ cart }}>
       <section className="mt-5">
         {thankyou === "true" && <Thankyou />}
-        <CustomerInfo {...{ data }} />
+        {useMemo(
+          () => (
+            <CustomerInfo {...{ data }} />
+          ),
+          [data]
+        )}
         <ItemsComponent {...{ data }} />
       </section>
     </Layout>
@@ -42,6 +47,15 @@ export default function Order() {
 }
 
 function CustomerInfo({ data }) {
+  const [paymentNote, setPaymentNote] = useState(null);
+  console.log(data);
+
+  useEffect(() => {
+    if (data.payment) {
+      setPaymentNote(data.payment?.note);
+    }
+  }, [data]);
+
   return (
     <div className="container g-3">
       <div className="row">
@@ -59,7 +73,7 @@ function CustomerInfo({ data }) {
               ? "Cash On Delivery (COD)"
               : "Bank tranfer"}
           </div>
-          {!data.payment?.note && (
+          {!paymentNote && (
             <>
               <hr />
               <p style={{ color: "#69ae14" }}>
@@ -70,7 +84,6 @@ function CustomerInfo({ data }) {
                 onChange={async (event) => {
                   try {
                     const file = event.target?.files[0];
-                    console.log(file);
                     const bodyFormData = new FormData();
                     bodyFormData.append("files", file);
 
@@ -81,11 +94,13 @@ function CustomerInfo({ data }) {
                       data: bodyFormData,
                     });
 
-                    const paymentInfo = await axios.post(
+                    const note = result?.data?.url;
+                    await axios.post(
                       `${process.env.SERVER_URL}/api/orders/${data._id}/payment-info`,
-                      { note: result?.data?.url }
+                      { note }
                     );
-                    console.log(paymentInfo);
+
+                    setPaymentNote(note);
                   } catch (error) {
                     //
                   }
