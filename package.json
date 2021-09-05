@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "start": "node server/index",
-    "ticket": "node services/ticket/index",
     "build": "next build",
     "lint": "next lint"
   },
