@@ -25,11 +25,10 @@ mongoose.connect(process.env.DATABASE_URL, {
 });
 
 console.log("*********************************");
-console.log("started");
-console.log("port: ", port);
-console.log("env: ", process.env.NODE_ENV);
-console.log("is production: ", process.env.NODE_ENV === "production");
-console.log("database: ", process.env.DATABASE_URL);
+console.log("port:", port);
+console.log("env:", process.env.NODE_ENV);
+console.log("is production:", process.env.NODE_ENV === "production");
+console.log("database:", process.env.DATABASE_URL);
 console.log("*********************************");
 
 app.prepare().then(() => {
