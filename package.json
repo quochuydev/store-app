@@ -19,7 +19,7 @@
     "lodash": "^4.17.21",
     "mongoose": "^6.0.2",
     "multer": "^1.4.3",
-    "multer-cloud-storage": "git+https://github.com/quochuydev/multer-cloud-storage.git",
+    "multer-cloud-storage": "https://github.com/quochuydev/multer-cloud-storage.git",
     "next": "11.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
