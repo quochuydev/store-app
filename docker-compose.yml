@@ -41,7 +41,7 @@ services:
 
   db:
     image: mongo
-    db: certbot
+    container_name: db
     restart: always
     ports:
       - 27017:27017
