@@ -60,4 +60,13 @@ router.put("/api/products/:id", async (req, res, next) => {
   }
 });
 
+router.delete("/api/products/:id", async (req, res, next) => {
+  try {
+    const result = await productModel.deleteOne({ _id: req.params.id });
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = { productRoute: router };
