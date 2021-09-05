@@ -4,9 +4,9 @@ const path = require("path");
 const router = express.Router();
 
 const { fileModel } = require("../models/file");
-const { diskStorage, uploader } = require("../uploader");
+const { storage, uploader } = require("../uploader");
 
-router.post("/api/files", diskStorage, async (req, res) => {
+router.post("/api/files", storage, async (req, res) => {
   if (!req.file) {
     return res.status(400).send("empty file");
   }
