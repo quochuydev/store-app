@@ -4,10 +4,11 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 
-const { fileModel } = require("./models/file");
-const { storage, uploader } = require("./uploader");
+const { ticketRoute } = require("./routes/ticket");
+const { fileRoute } = require("./routes/file");
+
 
 console.log("*********************************");
 console.log("port:", port);
@@ -28,33 +29,11 @@ server.use(bodyParser.json({}));
 server.use(bodyParser.urlencoded({ extended: false }));
 
 server.get("/", async (req, res) => {
-  res.send("File service");
+  res.send("service");
 });
 
-server.get("/api/files", async (req, res) => {
-  const items = await fileModel.find({}).sort({ createdAt: -1 });
-  res.status(200).json({ items });
-});
-
-server.post("/api/files", storage, async (req, res) => {
-  if (!req.file) {
-    return res.status(400).send("empty file");
-  }
-  const file = await uploader(req.file);
-  res.send(file);
-});
-
-server.get("/files/:filename", (req, res) => {
-  const fullPath = path.join(path.resolve("./files"), req.params.filename);
-
-  fs.exists(fullPath, function (exists) {
-    if (!exists) {
-      return res.status(400).send({ message: "File not exist" });
-    }
-    const filestream = fs.createReadStream(fullPath);
-    filestream.pipe(res);
-  });
-});
+server.use(ticketRoute)
+server.use(fileRoute)
 
 server.use((err, req, res, next) => {
   if (err) {
