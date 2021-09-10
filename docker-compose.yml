@@ -1,6 +1,42 @@
 version: "3.3"
 
 services:
+  app:
+    build: .
+    container_name: app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    env_file: ".env"
+    environment:
+      DATABASE_URL: mongodb://db:27017/grocery
+      # NODE_ENV: production
+
+  db:
+    image: mongo
+    container_name: db
+    restart: always
+    ports:
+      - 27017:27017
+
+  service:
+    image: quochuydev/services
+    container_name: service
+    ports:
+      - 4000:4000
+    depends_on:
+      - db
+    volumes:
+      # Custom: grocery folder
+      - /home/grocery/keys:./keys
+    environment:
+      DATABASE_URL: mongodb://db:27017/service
+      DATABASE_URL: https://service.cafeman.xyz
+      GCS_BUCKET: cafeman_files
+      GCLOUD_PROJECT: coffee
+      GCS_KEYFILE: ./keys/gcs_service_account.json
+
   nginx:
     restart: always
     container_name: nginx
@@ -18,18 +54,6 @@ services:
       - 443:443
       - 80:80
 
-  app:
-    build: .
-    container_name: app
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
-    env_file: ".env"
-    environment:
-      DATABASE_URL: mongodb://db:27017/grocery
-      NODE_ENV: production
-
   certbot:
     image: certbot/certbot
     container_name: certbot
@@ -38,10 +62,3 @@ services:
       - /data/certbot/conf:/etc/letsencrypt
       - /data/certbot/www:/var/www/certbot
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
-
-  db:
-    image: mongo
-    container_name: db
-    restart: always
-    ports:
-      - 27017:27017
