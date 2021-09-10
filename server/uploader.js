@@ -18,6 +18,7 @@ const upload = multer({
 });
 
 const diskStorage = upload.single("files");
+
 const diskUploader = (file) => {
   console.log(file);
   return fileModel.create({ url: server + "/" + file.path });
@@ -37,6 +38,7 @@ const cloudUpload = multer({
 });
 
 const cloudStorage = cloudUpload.single("files");
+
 const cloudUploader = (file) => {
   return fileModel.create({ url: file.linkUrl });
 };

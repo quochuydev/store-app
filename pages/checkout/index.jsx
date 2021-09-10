@@ -112,7 +112,7 @@ export default function Checkout() {
             </div>
 
             <div className="col-md-7 col-lg-8">
-              <h4 className="mb-3">Billing address</h4>
+              <h4 className="mb-3">{t("label.billing")}</h4>
               <form className="needs-validation was-validated" noValidate>
                 <BillingAddress {...{ onData }} />
 
@@ -125,7 +125,7 @@ export default function Checkout() {
                     disabled
                   />
                   <label className="form-check-label" htmlFor="same-address">
-                    Shipping address is the same as my billing address
+                    {t("label.noteShipping")}
                   </label>
                 </div>
 
@@ -138,7 +138,7 @@ export default function Checkout() {
                     createOrder();
                   }}
                 >
-                  Done
+                  {t("label.done")}
                 </button>
               </form>
             </div>

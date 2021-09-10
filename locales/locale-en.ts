@@ -20,8 +20,8 @@ export default {
 
     billing: "Billing address",
     firstName: "Họ và tên",
-    phone: "Số điện thoại",
-    address: "Số điện thoại",
+    phoneNumber: "Số điện thoại",
+    address: "Address",
     done: "Hoàn tất",
 
     paymentMethod: "Phương thức thanh toán",

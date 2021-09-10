@@ -11,6 +11,7 @@ export default function BillingAddress(props: any) {
         <div className="col-sm-6">
           <label htmlFor="firstName" className="form-label">
             First name
+            {t("label.firstName")}
           </label>
           <input
             type="text"
@@ -26,7 +27,8 @@ export default function BillingAddress(props: any) {
         {/* <UsernameComponent /> */}
         <div className="col-12">
           <label htmlFor="phone" className="form-label">
-            Phone <span className="text-muted"></span>
+            {t("label.phoneNumber")}
+            <span className="text-muted"></span>
           </label>
           <input
             type="text"
@@ -53,7 +55,7 @@ export default function BillingAddress(props: any) {
         </div>
         <div className="col-12">
           <label htmlFor="address" className="form-label">
-            Address
+            {t("label.address")}
           </label>
           <input
             type="text"

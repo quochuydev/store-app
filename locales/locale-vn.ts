@@ -18,17 +18,17 @@ export default {
     toHome: "Về lại trang chủ",
     processCheckout: "Tiếp tục thanh toán",
 
-    billing: "Billing address",
+    billing: "Thông tin thanh toán",
     firstName: "Họ và tên",
-    phone: "Số điện thoại",
-    address: "Số điện thoại",
+    phoneNumber: "Số điện thoại",
+    address: "Địa chỉ",
     done: "Hoàn tất",
 
     paymentMethod: "Phương thức thanh toán",
     yourCart: "Đơn hàng của bạn",
     cod: "Thanh toán khi giao hàng",
     bank: "Chuyển khoản",
-    noteShipping: "Shipping address is the same as my billing address",
+    noteShipping: "Địa chỉ giao hàng là địa chỉ thanh toán",
 
     category: "Category",
     products: "Sản phẩm",
