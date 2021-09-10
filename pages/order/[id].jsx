@@ -93,7 +93,7 @@ function CustomerInfo({ data }) {
 
                     const result = await axios({
                       method: "post",
-                      url: process.env.SERVER_URL + "/api/files",
+                      url: process.env.SERVER_FILE_URL + "/api/files",
                       headers: { "Content-Type": "multipart/form-data" },
                       data: bodyFormData,
                     });

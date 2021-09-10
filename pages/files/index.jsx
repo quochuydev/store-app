@@ -13,7 +13,7 @@ export default function Files() {
   const [setting, setSetting] = useState({});
 
   const fetchFiles = () => {
-    axios.get(process.env.SERVER_URL + "/api/files").then((result) => {
+    axios.get(process.env.SERVER_FILE_URL + "/api/files").then((result) => {
       setFiles(result?.data?.items || []);
     });
   };
@@ -65,7 +65,7 @@ export default function Files() {
 
             const result = await axios({
               method: "post",
-              url: process.env.SERVER_URL + "/api/files",
+              url: process.env.SERVER_FILE_URL + "/api/files",
               headers: { "Content-Type": "multipart/form-data" },
               data: bodyFormData,
             });

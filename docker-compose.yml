@@ -8,17 +8,12 @@ services:
       - "3000:3000"
     depends_on:
       - db
+      - service
     env_file: ".env"
     environment:
       DATABASE_URL: mongodb://db:27017/grocery
+      SERVER_FILE_URL: https://service:4000
       NODE_ENV: production
-
-  db:
-    image: mongo
-    container_name: db
-    restart: always
-    ports:
-      - 27017:27017
 
   service:
     image: quochuydev/services
@@ -36,6 +31,13 @@ services:
       GCS_BUCKET: cafeman_files
       GCLOUD_PROJECT: coffee
       GCS_KEYFILE: ./keys/gcs_service_account.json
+
+  db:
+    image: mongo
+    container_name: db
+    restart: always
+    ports:
+      - 27017:27017
 
   nginx:
     restart: always
