@@ -8,11 +8,9 @@ services:
       - "3000:3000"
     depends_on:
       - db
-      - service
     env_file: ".env"
     environment:
       DATABASE_URL: mongodb://db:27017/grocery
-      SERVER_FILE_URL: https://service.cafeman.xyz
       NODE_ENV: production
 
   service:
@@ -23,13 +21,14 @@ services:
     depends_on:
       - db
     volumes:
-      # Custom: grocery folder
+      # [1] Custom: grocery folder
       - /home/grocery/keys:/usr/src/app/keys
     environment:
       DATABASE_URL: mongodb://db:27017/service
       SERVER_URL: https://service.cafeman.xyz
       GCS_BUCKET: cafeman_files
       GCLOUD_PROJECT: coffee
+      # [1]
       GCS_KEYFILE: ./keys/gcs_service_account.json
 
   db:
