@@ -29,36 +29,36 @@ services:
       - db
     volumes:
       # Custom: grocery folder
-      - /home/grocery/keys:./keys
+      - /home/grocery/keys:/usr/src/app/keys
     environment:
       DATABASE_URL: mongodb://db:27017/service
-      DATABASE_URL: https://service.cafeman.xyz
+      SERVER_URL: https://service.cafeman.xyz
       GCS_BUCKET: cafeman_files
       GCLOUD_PROJECT: coffee
       GCS_KEYFILE: ./keys/gcs_service_account.json
 
-  nginx:
-    restart: always
-    container_name: nginx
-    build:
-      context: ./nginx
-    volumes:
-      # Custom: admin-dashboard-store
-      - /home/admin-dashboard-store/build:/build
-      # Base
-      - /etc/nginx/conf.d:/etc/nginx/conf.d
-      # SSL
-      - /data/certbot/conf:/etc/letsencrypt
-      - /data/certbot/www:/var/www/certbot
-    ports:
-      - 443:443
-      - 80:80
+  # nginx:
+  #   restart: always
+  #   container_name: nginx
+  #   build:
+  #     context: ./nginx
+  #   volumes:
+  #     # Custom: admin-dashboard-store
+  #     - /home/admin-dashboard-store/build:/build
+  #     # Base
+  #     - /etc/nginx/conf.d:/etc/nginx/conf.d
+  #     # SSL
+  #     - /data/certbot/conf:/etc/letsencrypt
+  #     - /data/certbot/www:/var/www/certbot
+  #   ports:
+  #     - 443:443
+  #     - 80:80
 
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    restart: unless-stopped
-    volumes:
-      - /data/certbot/conf:/etc/letsencrypt
-      - /data/certbot/www:/var/www/certbot
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+  # certbot:
+  #   image: certbot/certbot
+  #   container_name: certbot
+  #   restart: unless-stopped
+  #   volumes:
+  #     - /data/certbot/conf:/etc/letsencrypt
+  #     - /data/certbot/www:/var/www/certbot
+  #   entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
