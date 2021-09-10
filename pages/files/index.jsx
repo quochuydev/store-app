@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -51,6 +52,7 @@ export default function Files() {
   return (
     <>
       <ToastContainer />
+      <Link href="/">Home</Link>
       <CreateProduct {...{ image }} />
       <hr />
       <input

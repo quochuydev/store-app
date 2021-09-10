@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from "react";
 
 export default function ItemsConfig(props) {
@@ -31,12 +33,15 @@ export default function ItemsConfig(props) {
 
   return (
     <div>
-      <p>{label}</p>
+      <h2>{label}</h2>
       <br />
       <button onClick={onAdd}>Add</button>
       <br />
       {data?.map((item, i) => (
         <div key={i}>
+          <hr />
+          <img src={item.image} width={200} />
+          <br />
           <label>title</label>
           <input
             value={item.title}

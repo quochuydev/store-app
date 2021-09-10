@@ -16,6 +16,13 @@ export default function CreateProduct({ image }) {
     description: "description" + String(Math.floor(Math.random() * 10000000)),
   });
 
+  useEffect(() => {
+    console.log(image);
+    if (image) {
+      onData("image", image);
+    }
+  }, [image]);
+
   const onData = (name, value) => {
     setData({ ...data, [name]: value });
   };
