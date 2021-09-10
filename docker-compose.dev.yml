@@ -26,7 +26,7 @@ services:
       - /home/grocery/keys:/usr/src/app/keys
     environment:
       DATABASE_URL: mongodb://db:27017/service
-      SERVER_URL: https://service.cafeman.xyz
+      SERVER_URL: http://localhost:4000
       GCS_BUCKET: cafeman_files
       GCLOUD_PROJECT: coffee
       GCS_KEYFILE: ./keys/gcs_service_account.json
