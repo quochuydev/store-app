@@ -12,7 +12,7 @@ services:
     env_file: ".env"
     environment:
       DATABASE_URL: mongodb://db:27017/grocery
-      SERVER_FILE_URL: https://service:4000
+      SERVER_FILE_URL: https://service.cafeman.xyz
       NODE_ENV: production
 
   service:
