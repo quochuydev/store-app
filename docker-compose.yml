@@ -15,7 +15,7 @@ services:
       NODE_ENV: production
 
   service:
-    image: quochuydev/services:latest
+    image: quochuydev/services
     container_name: service
     ports:
       - 4000:4000
@@ -24,6 +24,7 @@ services:
     environment:
       DATABASE_URL: mongodb://db:27017/service
       SERVER_URL: https://service.cafeman.xyz
+      NODE_ENV: production
 
   db:
     image: mongo
