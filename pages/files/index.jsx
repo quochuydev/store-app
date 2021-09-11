@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import InputConfig from "../../components/Setting/InputConfig";
 import ItemsConfig from "../../components/Setting/ItemsConfig";
 import CreateProduct from "./CreateProduct";
+import Uploader from "../../components/Uploader";
 
 export default function Files() {
   const [image, setImage] = useState(null);
@@ -14,7 +15,7 @@ export default function Files() {
   const [setting, setSetting] = useState({});
 
   const fetchFiles = () => {
-    axios.get(process.env.SERVER_FILE_URL + "/api/files").then((result) => {
+    axios.get(`${process.env.SERVER_URL}/api/files`).then((result) => {
       setFiles(result?.data?.items || []);
     });
   };
@@ -55,26 +56,10 @@ export default function Files() {
       <Link href="/">Home</Link>
       <CreateProduct {...{ image }} />
       <hr />
-      <input
-        type="file"
-        accept="image/*"
-        onChange={async (event) => {
-          try {
-            const file = event.target?.files[0];
-            console.log(file);
-            const bodyFormData = new FormData();
-            bodyFormData.append("files", file);
 
-            const result = await axios({
-              method: "post",
-              url: process.env.SERVER_FILE_URL + "/api/files",
-              headers: { "Content-Type": "multipart/form-data" },
-              data: bodyFormData,
-            });
-            setImage(result?.data?.url);
-          } catch (error) {
-            //
-          }
+      <Uploader
+        onSuccess={async (result) => {
+          setImage(result?.url);
           fetchFiles();
         }}
       />

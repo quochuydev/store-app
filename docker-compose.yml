@@ -11,25 +11,19 @@ services:
     env_file: ".env"
     environment:
       DATABASE_URL: mongodb://db:27017/grocery
+      SERVER_URL: https://cafeman.xyz
       NODE_ENV: production
 
   service:
-    image: quochuydev/services
+    image: quochuydev/services:latest
     container_name: service
     ports:
       - 4000:4000
     depends_on:
       - db
-    volumes:
-      # [1] Custom: grocery folder
-      - /home/grocery/keys:/usr/src/app/keys
     environment:
       DATABASE_URL: mongodb://db:27017/service
       SERVER_URL: https://service.cafeman.xyz
-      GCS_BUCKET: cafeman_files
-      GCLOUD_PROJECT: coffee
-      # [1]
-      GCS_KEYFILE: ./keys/gcs_service_account.json
 
   db:
     image: mongo

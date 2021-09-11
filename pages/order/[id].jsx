@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/router";
@@ -8,6 +9,7 @@ import Layout from "../../components/Layout";
 import Thankyou from "../../components/Thankyou";
 import useCart from "../../hooks/useCart";
 import useTranslation from "../../locales/useTranslation";
+import Uploader from "../../components/Uploader";
 
 export default function Order() {
   const { id, thankyou } = useRouter().query;
@@ -79,38 +81,27 @@ function CustomerInfo({ data }) {
           </div>
           {data.payment?.type !== "cod" && !paymentNote && (
             <>
-              <hr />
               <p style={{ color: "#69ae14" }}>
                 <b>Gửi bằng chứng thanh toán (${data.amount})</b>
               </p>
-              <input
-                type="file"
-                onChange={async (event) => {
-                  try {
-                    const file = event.target?.files[0];
-                    const bodyFormData = new FormData();
-                    bodyFormData.append("files", file);
-
-                    const result = await axios({
-                      method: "post",
-                      url: process.env.SERVER_FILE_URL + "/api/files",
-                      headers: { "Content-Type": "multipart/form-data" },
-                      data: bodyFormData,
-                    });
-
-                    const note = result?.data?.url;
-                    await axios.post(
-                      `${process.env.SERVER_URL}/api/orders/${data._id}/payment-info`,
-                      { note }
-                    );
-
-                    setPaymentNote(note);
-                  } catch (error) {
-                    //
-                  }
+              <Uploader
+                onSuccess={async (result) => {
+                  const note = result?.url;
+                  await axios.post(
+                    `${process.env.SERVER_URL}/api/orders/${data._id}/payment-info`,
+                    { note }
+                  );
+                  setPaymentNote(note);
+                }}
+                onError={(error) => {
+                  //
                 }}
               />
             </>
+          )}
+
+          {data.payment?.type !== "cod" && paymentNote && (
+            <p>Đã gửi bằng chứng thanh toán</p>
           )}
         </div>
       </div>

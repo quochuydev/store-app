@@ -3,6 +3,5 @@ module.exports = {
   reactStrictMode: true,
   env: {
     SERVER_URL: process.env.SERVER_URL,
-    SERVER_FILE_URL: process.env.SERVER_FILE_URL,
   },
 };

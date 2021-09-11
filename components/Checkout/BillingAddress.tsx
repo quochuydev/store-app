@@ -10,7 +10,6 @@ export default function BillingAddress(props: any) {
       <div className="row g-3">
         <div className="col-sm-6">
           <label htmlFor="firstName" className="form-label">
-            First name
             {t("label.firstName")}
           </label>
           <input

@@ -12,10 +12,9 @@ services:
     env_file: ".env"
     environment:
       DATABASE_URL: mongodb://db:27017/grocery
-      SERVER_FILE_URL: http://localhost:4000
 
   service:
-    image: quochuydev/services
+    image: quochuydev/services:latest
     container_name: service
     ports:
       - 4000:4000
