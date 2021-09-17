@@ -14,7 +14,7 @@ services:
       DATABASE_URL: mongodb://db:27017/grocery
 
   service:
-    image: quochuydev/services:latest
+    image: quochuydev/services
     container_name: service
     ports:
       - 4000:4000
