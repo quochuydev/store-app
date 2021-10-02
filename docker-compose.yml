@@ -6,6 +6,7 @@ services:
     container_name: app
     ports:
       - "3000:3000"
+      - "3001:3000"
     depends_on:
       - db
     env_file: ".env"

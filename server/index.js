@@ -19,17 +19,17 @@ const { orderRoute } = require("./routes/order");
 const { coreRoute } = require("./routes/core");
 const { settingRoute } = require("./routes/setting");
 
-mongoose.connect(process.env.DATABASE_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
 console.log("*********************************");
 console.log("port:", port);
 console.log("env:", process.env.NODE_ENV);
 console.log("is production:", process.env.NODE_ENV === "production");
 console.log("database:", process.env.DATABASE_URL);
 console.log("*********************************");
+
+mongoose.connect(process.env.DATABASE_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 app.prepare().then(() => {
   const server = express();
@@ -45,6 +45,10 @@ app.prepare().then(() => {
       res.cookie("token", uuidv4(), { maxAge: 9000000, httpOnly: true });
     }
     next();
+  });
+
+  server.get("/test", () => {
+    console.log(`> Ready on ${process.env.SERVER_URL}:${port}`);
   });
 
   server.use(fileRoute);
