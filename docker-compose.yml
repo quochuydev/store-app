@@ -17,7 +17,7 @@ services:
 
   app_rep_1:
     build: .
-    container_name: app
+    container_name: app_rep_1
     ports:
       - "3001:3000"
     depends_on:
