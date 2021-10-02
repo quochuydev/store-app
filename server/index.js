@@ -54,9 +54,12 @@ app.prepare().then(() => {
   };
 
   server.get("/test", async (req, res) => {
+    const start = Date.now();
     await timeout(10000);
     console.log(`> Ready on ${process.env.SERVER_URL}:${port}`);
-    res.send(`> Ready on ${process.env.SERVER_URL}:${port}`);
+    res.send(
+      `> Ready on ${process.env.SERVER_URL}:${port}, end: ${Date.now() - start}`
+    );
   });
 
   server.use(fileRoute);
