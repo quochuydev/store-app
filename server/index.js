@@ -47,7 +47,15 @@ app.prepare().then(() => {
     next();
   });
 
-  server.get("/test", (req, res) => {
+  const timeout = (time) => {
+    return new Promise(function (resolve) {
+      setTimeout(resolve, time);
+      resolve();
+    });
+  };
+
+  server.get("/test", async (req, res) => {
+    await timeout(10000);
     console.log(`> Ready on ${process.env.SERVER_URL}:${port}`);
     res.send(`> Ready on ${process.env.SERVER_URL}:${port}`);
   });
