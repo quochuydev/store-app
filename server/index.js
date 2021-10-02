@@ -47,7 +47,7 @@ app.prepare().then(() => {
     next();
   });
 
-  server.get("/test", () => {
+  server.get("/test", (req, res) => {
     console.log(`> Ready on ${process.env.SERVER_URL}:${port}`);
     res.send(`> Ready on ${process.env.SERVER_URL}:${port}`);
   });
