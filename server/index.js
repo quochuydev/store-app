@@ -48,9 +48,7 @@ app.prepare().then(() => {
   });
 
   const timeout = (time) => {
-    return new Promise(function (resolve) {
-      setTimeout(resolve, time);
-    });
+    return new Promise((resolve) => setTimeout(resolve, time));
   };
 
   server.get("/test", async (req, res) => {
@@ -58,7 +56,9 @@ app.prepare().then(() => {
     await timeout(10000);
     console.log(`> Ready on ${process.env.SERVER_URL}:${port}`);
     res.send(
-      `> Ready on ${process.env.SERVER_URL}:${port}, end: ${Date.now() - start}`
+      `> Ready on ${process.env.SERVER_URL}:${port},start: ${start}, end: ${
+        Date.now() - start
+      },${process.env.MESSAGE}`
     );
   });
 

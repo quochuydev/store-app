@@ -6,6 +6,19 @@ services:
     container_name: app
     ports:
       - "3000:3000"
+    depends_on:
+      - db
+    env_file: ".env"
+    environment:
+      DATABASE_URL: mongodb://db:27017/grocery
+      SERVER_URL: https://cafeman.xyz
+      NODE_ENV: production
+      MESSAGE: app
+
+  app_rep_1:
+    build: .
+    container_name: app
+    ports:
       - "3001:3000"
     depends_on:
       - db
@@ -14,6 +27,7 @@ services:
       DATABASE_URL: mongodb://db:27017/grocery
       SERVER_URL: https://cafeman.xyz
       NODE_ENV: production
+      MESSAGE: app_rep_1
 
   service:
     image: quochuydev/services
