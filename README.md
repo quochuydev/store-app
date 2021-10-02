@@ -6,3 +6,4 @@ sudo cp nginx/default.conf /etc/nginx/conf.d/default.conf
 sudo docker exec -it nginx /bin/bash
 service nginx status
 nginx -s reload
+cat /etc/nginx/conf.d/default.conf
