@@ -49,6 +49,7 @@ app.prepare().then(() => {
 
   server.get("/test", () => {
     console.log(`> Ready on ${process.env.SERVER_URL}:${port}`);
+    res.send(`> Ready on ${process.env.SERVER_URL}:${port}`);
   });
 
   server.use(fileRoute);
