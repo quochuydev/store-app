@@ -51,15 +51,10 @@ app.prepare().then(() => {
     return new Promise((resolve) => setTimeout(resolve, time));
   };
 
-  server.get("/test", async (req, res) => {
+  server.get("/load", async (req, res) => {
     const start = Date.now();
     await timeout(10000);
-    console.log(`> Ready on ${process.env.SERVER_URL}:${port}`);
-    res.send(
-      `> Ready on ${process.env.SERVER_URL}:${port},start: ${start}, end: ${
-        Date.now() - start
-      },${process.env.MESSAGE}`
-    );
+    res.send(`end: ${Date.now() - start},${process.env.MESSAGE}`);
   });
 
   server.use(fileRoute);
