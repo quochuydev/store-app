@@ -79,6 +79,6 @@ services:
     restart: always
     container_name: jenkins
     volumes:
-      - ./data/jenkins:/var/jenkins_home
+      - /data/jenkins:/var/jenkins_home
     expose:
       - 8080
