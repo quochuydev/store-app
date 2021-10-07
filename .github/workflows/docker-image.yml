@@ -18,5 +18,5 @@ jobs:
       run: |
         touch .env
         echo DATABASE_URL=mongodb://localhost:27017/grocery >> .env
-        run: docker-compose up -d --build
+        docker-compose up -d --build
       # run: docker build . --file Dockerfile --tag stapp:$(date +%s)
