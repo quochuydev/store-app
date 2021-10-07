@@ -51,10 +51,14 @@ app.prepare().then(() => {
     return new Promise((resolve) => setTimeout(resolve, time));
   };
 
+  server.get("/test", async (req, res) => {
+    res.send(`${process.env.MESSAGE} rebuild ${1}`);
+  });
+
   server.get("/load", async (req, res) => {
     const start = Date.now();
     await timeout(10000);
-    res.send(`end: ${Date.now() - start},${process.env.MESSAGE}`);
+    res.send(`load: ${Date.now() - start},${process.env.MESSAGE}`);
   });
 
   server.use(fileRoute);
