@@ -15,4 +15,5 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag stapp:$(date +%s)
+      run: docker-compose up -d --build
+#       run: docker build . --file Dockerfile --tag stapp:$(date +%s)
