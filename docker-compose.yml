@@ -76,7 +76,7 @@ services:
 
   jenkins:
     image: jenkins
-    container_name: jenkins
+    container_name: jenkins:lts
     restart: always
     ports:
       - 8080:8080
