@@ -75,7 +75,7 @@ services:
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
   jenkins:
-    image: jenkins/jenkins
+    image: jenkins
     container_name: jenkins
     restart: always
     ports:
