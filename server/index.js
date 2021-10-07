@@ -52,7 +52,7 @@ app.prepare().then(() => {
   };
 
   server.get("/test", async (req, res) => {
-    res.send(`${process.env.MESSAGE} rebuild ${1}`);
+    res.send(`${process.env.MESSAGE} rebuild ${2}`);
   });
 
   server.get("/load", async (req, res) => {
