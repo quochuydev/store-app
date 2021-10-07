@@ -3,9 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                step([$class: 'DockerComposeBuilder']) {
-                    sh 'docker-compose up -d --build'
-                }
+                sh 'docker-compose up -d --build'
             }
         }
     }
