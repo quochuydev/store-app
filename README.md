@@ -11,6 +11,11 @@ cat /etc/nginx/conf.d/default.conf
 cd /etc/nginx/conf.d
 ```
 
+
+**Linux**
+
+cd /home/grocery/ && sudo bash ./commands/build.sh
+
 **Docker**
 
 docker build . --tag quochuydev/store-app:1.0.0
