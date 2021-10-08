@@ -40,6 +40,8 @@ app.prepare().then(() => {
   server.use(cookieParser());
 
   server.use(function (req, res, next) {
+    console.log(`Load balance server: ${process.env.MESSAGE}`);
+
     const token = req.cookies.token;
     if (token === undefined) {
       res.cookie("token", uuidv4(), { maxAge: 9000000, httpOnly: true });
