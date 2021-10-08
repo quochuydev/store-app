@@ -40,8 +40,6 @@ app.prepare().then(() => {
   server.use(cookieParser());
 
   server.use(function (req, res, next) {
-    console.log(`Load balance server: ${process.env.MESSAGE}`);
-
     const token = req.cookies.token;
     if (token === undefined) {
       res.cookie("token", uuidv4(), { maxAge: 9000000, httpOnly: true });
@@ -49,18 +47,9 @@ app.prepare().then(() => {
     next();
   });
 
-  const timeout = (time) => {
-    return new Promise((resolve) => setTimeout(resolve, time));
-  };
-
   server.get("/test", async (req, res) => {
-    res.send(`${process.env.MESSAGE} rebuild 4`);
-  });
-
-  server.get("/load", async (req, res) => {
     const start = Date.now();
-    await timeout(10000);
-    res.send(`load: ${Date.now() - start},${process.env.MESSAGE}`);
+    res.send(`load: ${Date.now() - start}`, process.env.MESSAGE, "rebuild");
   });
 
   server.use(fileRoute);
