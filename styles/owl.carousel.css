@@ -1,0 +1,8 @@
+.owl-carousel {
+  overflow: hidden;
+  max-height: 600px;
+}
+
+.owl-carousel img {
+  overflow: hidden;
+}
