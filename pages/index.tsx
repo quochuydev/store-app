@@ -16,7 +16,7 @@ import useCart from "../hooks/useCart";
 import config from "../utils/config";
 import useTranslation from "../locales/useTranslation";
 
-import { noSSRWithLoadingDynamic } from "./dynamic.import";
+import { noSSRWithLoadingDynamic } from "../utils/dynamic.import";
 
 export default noSSRWithLoadingDynamic(import("../components/Index"));
 
