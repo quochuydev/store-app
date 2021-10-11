@@ -16,10 +16,10 @@ import useTranslation from "../locales/useTranslation";
 export default function Index({ meta, products, setting }) {
   const { t } = useTranslation();
 
-  const [cart, fetchCart] = useCart();
+  const [cart, getCart] = useCart();
 
   const afterAddToCart = () => {
-    fetchCart();
+    getCart();
     toast("Added to cart", { position: "bottom-right" });
   };
 
@@ -27,12 +27,12 @@ export default function Index({ meta, products, setting }) {
     <Layout {...{ cart }}>
       <ToastContainer />
       <Home {...{ setting }} />
-      {/* <Banner {...{ setting }} /> */}
       <h1 className="heading">
         {t("label.shopBy")} <span>{t("label.category")}</span>
       </h1>
       <Category {...{ setting }} />
       <Products {...{ meta, products, afterAddToCart }} />
+      {/* <Banner {...{ setting }} /> */}
       {/* <Deal /> */}
       {/* <Contact /> */}
       <Newsletter />

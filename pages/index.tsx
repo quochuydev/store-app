@@ -32,30 +32,3 @@ export async function getServerSideProps() {
     },
   };
 }
-
-// function Index({ meta, products, setting }: any) {
-//   const { t } = useTranslation();
-
-//   const [cart, fetchCart] = useCart();
-
-//   const afterAddToCart = () => {
-//     fetchCart();
-//     toast("Added to cart", { position: "bottom-right" });
-//   };
-
-//   return (
-//     <Layout {...{ cart }}>
-//       <ToastContainer />
-//       <Home {...{ setting }} />
-//       <Banner {...{ setting }} />
-//       <h1 className="heading">
-//         {t("label.shopBy")} <span>{t("label.category")}</span>
-//       </h1>
-//       <Category {...{ setting }} />
-//       <Products {...{ meta, products, afterAddToCart }} />
-//       {/* <Deal /> */}
-//       {/* <Contact /> */}
-//       <Newsletter />
-//     </Layout>
-//   );
-// }

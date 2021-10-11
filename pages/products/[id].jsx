@@ -19,10 +19,10 @@ export async function getServerSideProps({ query }) {
 }
 
 export default function Product({ product }) {
-  const [cart, fetchCart] = useCart();
+  const [cart, getCart] = useCart();
 
   const afterAddToCart = () => {
-    fetchCart();
+    getCart();
     toast("Added to cart", { position: "bottom-right" });
   };
 

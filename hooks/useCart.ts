@@ -6,7 +6,7 @@ export default function useCart(): any {
     items: [],
   });
 
-  const fetchCart = () => {
+  const getCart = () => {
     console.log("fetch cart");
 
     axios.get(process.env.SERVER_URL + "/api/cart").then((result) => {
@@ -14,7 +14,7 @@ export default function useCart(): any {
     });
   };
 
-  useEffect(fetchCart, []);
+  useEffect(getCart, []);
 
-  return [cart, fetchCart];
+  return [cart, getCart];
 }

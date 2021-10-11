@@ -12,12 +12,12 @@ import Layout from "../../components/Layout";
 import useTranslation from "../../locales/useTranslation";
 
 export default function Cart() {
-  const [cart, fetchCart] = useCart();
+  const [cart, getCart] = useCart();
 
   return (
     <Layout {...{ cart }}>
       {cart.items?.length ? (
-        <CartComponent {...{ cart, fetchCart }} />
+        <CartComponent {...{ cart, getCart }} />
       ) : (
         <NoneItems />
       )}
@@ -41,7 +41,7 @@ function NoneItems() {
   );
 }
 
-function CartComponent({ cart, fetchCart }) {
+function CartComponent({ cart, getCart }) {
   const { t } = useTranslation();
 
   const CartItem = ({ item }) => {
@@ -64,7 +64,7 @@ function CartComponent({ cart, fetchCart }) {
             <ButtonChangeQuantity
               type="decrease"
               item={item}
-              fetchCart={fetchCart}
+              getCart={getCart}
             />
             <input
               type="text"
@@ -74,13 +74,13 @@ function CartComponent({ cart, fetchCart }) {
             <ButtonChangeQuantity
               type="increase"
               item={item}
-              fetchCart={fetchCart}
+              getCart={getCart}
             />
           </div>
         </td>
         <td style={{ textAlign: "right" }}>${item.amount}</td>
         <td>
-          <ButtonRemoveItem {...{ item, fetchCart }} />
+          <ButtonRemoveItem {...{ item, getCart }} />
         </td>
       </tr>
     );
@@ -130,7 +130,7 @@ function CartComponent({ cart, fetchCart }) {
   );
 }
 
-function ButtonChangeQuantity({ item, type, fetchCart }) {
+function ButtonChangeQuantity({ item, type, getCart }) {
   const [loading, setLoading] = useState(false);
 
   const onClick = async () => {
@@ -143,7 +143,7 @@ function ButtonChangeQuantity({ item, type, fetchCart }) {
       { quantity: type === "decrease" ? -1 : 1 }
     );
     setLoading(false);
-    fetchCart();
+    getCart();
   };
 
   return (
@@ -157,7 +157,7 @@ function ButtonChangeQuantity({ item, type, fetchCart }) {
   );
 }
 
-function ButtonRemoveItem({ item, fetchCart }) {
+function ButtonRemoveItem({ item, getCart }) {
   const [loading, setLoading] = useState(false);
 
   const onRemove = async () => {
@@ -166,7 +166,7 @@ function ButtonRemoveItem({ item, fetchCart }) {
       `${process.env.SERVER_URL}/api/cart/remove/${item.productId}`
     );
     setLoading(false);
-    fetchCart();
+    getCart();
   };
 
   return (
