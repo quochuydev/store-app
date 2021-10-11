@@ -52,22 +52,29 @@ section {
 }
 
 .home {
-  display: flex;
+  /* display: flex; */
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  padding: 0;
+}
+
+.home .content {
+  position: absolute;
+  top: 50px;
+  left: 10%;
 }
 
 .home .image img {
   width: 100%;
 }
 
-.home .content span {
-  font-size: 4rem;
-  color: #666;
+.home .content h3 {
+  font-size: 5rem;
+  color: var(--black);
 }
 
-.home .content h3 {
+.home .content p {
   color: var(--black);
 }
 

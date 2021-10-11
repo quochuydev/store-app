@@ -21,7 +21,7 @@ import { noSSRWithLoadingDynamic } from "../utils/dynamic.import";
 export default noSSRWithLoadingDynamic(import("../components/Index"));
 
 export async function getServerSideProps() {
-  const result = await axios.get(`${config.server}/api/products?limit=8`);
+  const result = await axios.get(`${config.server}/api/products?limit=9`);
   const setting = await axios.get(`${config.server}/api/settings`);
 
   return {

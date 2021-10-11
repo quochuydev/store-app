@@ -32,11 +32,9 @@
 }
 .mega-dropdown-menu > li > ul > li > a {
   display: block;
-  padding: 3px 20px;
   clear: both;
   font-weight: normal;
   line-height: 1.428571429;
-  color: #999;
   white-space: normal;
 }
 .mega-dropdown-menu > li ul > li > a:hover,

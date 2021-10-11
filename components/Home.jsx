@@ -18,13 +18,13 @@ export default function Home({ setting }) {
 
   useEffect(() => {
     setIndex(0);
-  }, [window.location.pathname]);
+  }, []);
 
   useEffect(() => {
     if (mediaRef !== null && mediaRef.current !== null && index >= 0) {
       mediaRef.current.$car.to(index, 300, true);
     }
-  }, [index]);
+  }, [index, mediaRef]);
 
   const setIndexHandler = (mediaIndex) => {
     if (mediaIndex !== index) {
@@ -65,18 +65,20 @@ export default function Home({ setting }) {
         onChangeRef={changeRefHandler}
         events={events}
       >
-        {/* <section className="home"> */}
-        {/* <div className="image"> */}
-        <img src={setting.banner?.image} alt={setting.banner?.title} />
-        {/* </div> */}
-        {/* <div className="content">
-            <span>{setting.banner?.title}</span>
-            <h3>{setting.banner?.description}</h3>
-            <a href={setting.banner?.url} className="btn">
-              get started
-            </a>
-          </div> */}
-        {/* </section> */}
+        {setting.contents.map((e, i) => (
+          <section key={i} className="home">
+            <div className="image">
+              <img src={setting.banner?.image} alt={setting.banner?.title} />
+            </div>
+            <div className="content">
+              <h3>{setting.banner?.title}</h3>
+              <p>{setting.banner?.description}</p>
+              <a href={setting.banner?.url} className="btn">
+                get started
+              </a>
+            </div>
+          </section>
+        ))}
       </OwlCarousel>
       <Thumb
         thumbs={setting.contents}
