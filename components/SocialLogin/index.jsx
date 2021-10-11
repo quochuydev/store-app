@@ -42,27 +42,35 @@ export default function SocialLoginButton(props) {
     console.error(err);
   };
 
+  const facebookAppId = process.env.FACEBOOK_APP_ID;
+  const googleClientId = process.env.GOOGLE_CLIENT_ID;
+
   return (
     <div className={props.className}>
-      <SocialButton
-        provider="facebook"
-        appId={process.env.FACEBOOK_APP_ID}
-        onLoginSuccess={handleSocialLogin}
-        onLoginFailure={handleSocialLoginFailure}
-      >
-        Login with Facebook
-      </SocialButton>
+      {facebookAppId && (
+        <SocialButton
+          provider="facebook"
+          appId={facebookAppId}
+          onLoginSuccess={handleSocialLogin}
+          onLoginFailure={handleSocialLoginFailure}
+          style={{ background: "none", border: 0 }}
+        >
+          Facebook
+        </SocialButton>
+      )}
 
-      <SocialButton
-        provider="google"
-        appId={process.env.GOOGLE_CLIENT_ID}
-        onLoginSuccess={handleSocialLogin}
-        onLoginFailure={handleSocialLoginFailure}
-        style={{ background: "none", border: 0 }}
-      >
-        Login with Google
-        {/* <FcGoogle /> */}
-      </SocialButton>
+      {googleClientId && (
+        <SocialButton
+          provider="google"
+          appId={googleClientId}
+          onLoginSuccess={handleSocialLogin}
+          onLoginFailure={handleSocialLoginFailure}
+          style={{ background: "none", border: 0 }}
+        >
+          Google
+          {/* <FcGoogle /> */}
+        </SocialButton>
+      )}
     </div>
   );
 }
