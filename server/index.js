@@ -43,7 +43,7 @@ app.prepare().then(() => {
 
     await productModel.create({
       title: `Cà phê Mê Trang Arabica (A) - Hộp 250g rang xay hút chân không`,
-      description: process.env.MESSAGE,
+      description: `${new Date()} ${process.env.MESSAGE}`,
       image: "https://cf.shopee.vn/file/76698f5a72286c1f9aca14956b11d0db",
       price: 74000,
     });
