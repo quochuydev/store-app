@@ -19,7 +19,7 @@ function Thumb(props) {
     if (thumbRef !== null && index >= 0) {
       thumbRef.current.$car.to(index, 300, true);
     }
-  }, [index]);
+  }, [index, thumbRef]);
 
   const thumbActiveHandler = (e, thumbIndex) => {
     props.onChangeIndex(thumbIndex);

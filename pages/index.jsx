@@ -14,14 +14,14 @@ import Newsletter from "../components/Newsletter";
 
 import useCart from "../hooks/useCart";
 import config from "../utils/config";
-import useTranslation from "../locales/useTranslation";
 
 import { noSSRWithLoadingDynamic } from "../utils/dynamic.import";
 
 export default noSSRWithLoadingDynamic(import("../components/Index"));
 
-export async function getServerSideProps() {
-  const result = await axios.get(`${config.server}/api/products?limit=9`);
+export async function getServerSideProps({ query }) {
+  console.log(query);
+  const result = await axios.get(`${config.server}/api/products?limit=8`);
   const setting = await axios.get(`${config.server}/api/settings`);
 
   return {

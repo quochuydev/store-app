@@ -1,12 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 
 import config from "../utils/config";
 import OwlCarousel from "./OwlCarousel";
 import Thumb from "./Thumb";
 
 export default function Home({ setting }) {
-  const adClass = "";
   const [index, setIndex] = useState(0);
   const [mediaRef, setMediaRef] = useState(null);
 
@@ -80,11 +79,17 @@ export default function Home({ setting }) {
           </section>
         ))}
       </OwlCarousel>
-      <Thumb
-        thumbs={setting.contents}
-        index={index}
-        onChangeIndex={setIndexHandler}
-      />
+
+      {useMemo(
+        () => (
+          <Thumb
+            thumbs={setting.contents}
+            index={index}
+            onChangeIndex={setIndexHandler}
+          />
+        ),
+        []
+      )}
     </>
   );
 }

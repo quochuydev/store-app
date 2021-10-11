@@ -41,10 +41,8 @@ export default function Search({ meta, products, setting }) {
       <section>
         <div className="row">
           <div className="col-md-3">
-            {/*  */}
             <div className="mt-5" />
             <Category {...{ setting }} />
-            {/*  */}
           </div>
 
           <div className="col-md-9">
