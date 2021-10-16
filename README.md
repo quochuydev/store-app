@@ -39,3 +39,10 @@ sudo docker exec -it nginx /bin/bash
 service nginx status
 nginx -s reload
 ```
+
+https://stackoverflow.com/questions/47709208/how-to-find-docker-host-uri-to-be-used-in-jenkins-docker-plugin
+If your docker running at the same host were you use Jenkins inside a container than you can use unix:///var/run/docker.sock as the “Docker Host URI”, but you must check & obtain the permissions for jenkins user by using
+sudo groupadd docker
+sudo usermod -aG docker $USER
+sudo chmod a+rwx /var/run/docker.sock
+sudo chmod a+rwx /var/run/docker.pid

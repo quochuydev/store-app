@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 
 import styles from "../style.module.css";
+import config from "../../utils/config";
 
 export default function ProductDetail({ product, afterAddToCart }) {
   const [quantity, setQuantity] = useState(1);
@@ -10,7 +11,7 @@ export default function ProductDetail({ product, afterAddToCart }) {
 
   const addToCart = async () => {
     setLoading(true);
-    await axios.post(process.env.SERVER_URL + "/api/cart/add", {
+    await axios.post(`${config.server}/api/cart/add`, {
       quantity,
       id: product._id,
     });
