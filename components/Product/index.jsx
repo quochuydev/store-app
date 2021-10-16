@@ -76,6 +76,8 @@ export default function ProductDetail({ product, afterAddToCart }) {
             />
             Add to cart
           </button>
+          <br />
+          <p>{product.description}</p>
         </div>
       </div>
     </section>

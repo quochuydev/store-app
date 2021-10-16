@@ -41,12 +41,12 @@ app.prepare().then(() => {
   cron.schedule("0 0 * * * *", async () => {
     console.log(new Date(), "create every hour", process.env.MESSAGE);
 
-    await productModel.create({
-      title: `Cà phê Mê Trang Arabica (A) - Hộp 250g rang xay hút chân không`,
-      description: `${new Date()} ${process.env.MESSAGE}`,
-      image: "https://cf.shopee.vn/file/76698f5a72286c1f9aca14956b11d0db",
-      price: 74000,
-    });
+    // await productModel.create({
+    //   title: `Cà phê Mê Trang Arabica (A) - Hộp 250g rang xay hút chân không`,
+    //   description: `${new Date()} ${process.env.MESSAGE}`,
+    //   image: "https://cf.shopee.vn/file/76698f5a72286c1f9aca14956b11d0db",
+    //   price: 74000,
+    // });
   });
 
   server.use(cors({ credentials: true, origin: true }));

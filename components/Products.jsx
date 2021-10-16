@@ -22,7 +22,7 @@ export default function Products({ meta, products, afterAddToCart }) {
           <Product key={i} {...{ product, afterAddToCart }} />
         ))}
       </div>
-      <Pagination {...{ total, limit, page, skip, totalPage }} />
+      {/* <Pagination {...{ total, limit, page, skip, totalPage }} /> */}
     </section>
   );
 }
