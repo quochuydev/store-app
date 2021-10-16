@@ -8,6 +8,7 @@ import InputConfig from "../../components/Setting/InputConfig";
 import ItemsConfig from "../../components/Setting/ItemsConfig";
 import CreateProduct from "./CreateProduct";
 import Uploader from "../../components/Uploader";
+import config from "../../utils/config";
 
 export default function Files() {
   const [image, setImage] = useState(null);
@@ -95,6 +96,8 @@ export default function Files() {
         initData={setting.categories}
         onSave={onSave}
       />
+      <hr />
+      <p>{JSON.stringify(config)}</p>
     </>
   );
 }
