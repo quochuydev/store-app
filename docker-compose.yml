@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   app:
-    image: quochuydev/store-app
+    image: quochuydev/store-app:1.0.0
     # build: .
     container_name: app
     ports:
@@ -17,7 +17,7 @@ services:
       MESSAGE: app
 
   app_rep_1:
-    image: quochuydev/store-app
+    image: quochuydev/store-app:1.0.0
     # build: .
     container_name: app_rep_1
     ports:
