@@ -1,31 +1,38 @@
 pipeline {
+    environment { 
+        registry = "quochuydev/store-app" 
+        registryCredential = 'dockerhub_id' 
+        dockerImage = '' 
+        dockerHome = tool 'docker'
+        PATH = "${dockerHome}/bin:${env.PATH}"
+    }
     agent any
     stages {
-        stage('Build and push docker image') {
-            steps {
-                script {
-                    def dockerImage = docker.build("quochuydev/store-app:master")
-                    docker.withRegistry('', 'dockerhub_id') {
-                        dockerImage.push('master')
+        stage('Cloning our Git') { 
+            steps { 
+                git 'https://github.com/quochuydev/store-app.git' 
+            }
+        } 
+        stage('Building our image') { 
+            steps { 
+                script { 
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                }
+            } 
+        }
+        stage('Deploy our image') { 
+            steps { 
+                script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.push() 
                     }
-                }
+                } 
             }
-        }
-        stage('Deploy to remote docker host') {
-            environment {
-                DOCKER_HOST_CREDENTIALS = credentials('store-app')
+        } 
+        stage('Cleaning up') { 
+            steps { 
+                sh "docker rmi $registry:$BUILD_NUMBER" 
             }
-            steps {
-                script {
-//                     sh 'docker login -u $DOCKER_HOST_CREDENTIALS_USR -p $DOCKER_HOST_CREDENTIALS_PSW 127.0.0.1:2375'
-                    sh 'docker pull quochuydev/store-app:master'
-                    sh 'docker stop store-app'
-                    sh 'docker rm store-app'
-                    sh 'docker rmi quochuydev/store-app:current'
-                    sh 'docker tag quochuydev/store-app:master quochuydev/store-app:current'
-                    sh 'docker run -d --name store-app -p 3000:3000 quochuydev/store-app:current'
-                }
-            }
-        }
+        } 
     }
 }
