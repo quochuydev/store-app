@@ -2,7 +2,6 @@ pipeline {
     environment { 
         registry = "quochuydev/store-app" 
         registryCredential = 'dockerhub_id' 
-        dockerHome = tool 'docker'
     }
     agent any
     tools { dockerTool  "docker" } 
