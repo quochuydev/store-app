@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     def dockerImage = docker.build("quochuydev/store-app:master")
-                    docker.withRegistry('', 'store-app') {
+                    docker.withRegistry('', 'dockerhub_id') {
                         dockerImage.push('master')
                     }
                 }
