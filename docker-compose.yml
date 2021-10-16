@@ -2,13 +2,14 @@ version: "3.3"
 
 services:
   app:
-    build: .
+    image: quochuydev/store-app
+    # build: .
     container_name: app
     ports:
       - "3000:3000"
     depends_on:
       - db
-    env_file: ".env"
+    # env_file: ".env"
     environment:
       DATABASE_URL: mongodb://db:27017/grocery
       SERVER_URL: https://cafeman.xyz
@@ -16,13 +17,14 @@ services:
       MESSAGE: app
 
   app_rep_1:
-    build: .
+    image: quochuydev/store-app
+    # build: .
     container_name: app_rep_1
     ports:
       - "3001:3000"
     depends_on:
       - db
-    env_file: ".env"
+    # env_file: ".env"
     environment:
       DATABASE_URL: mongodb://db:27017/grocery
       SERVER_URL: https://cafeman.xyz

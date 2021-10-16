@@ -18,6 +18,8 @@ cd /home/grocery/ && sudo bash ./commands/build.sh
 **Docker**
 
 docker build . --tag quochuydev/store-app:1.0.0
+docker build -t quochuydev/store-app .
+docker push quochuydev/store-app
 
 **Nginx**
 
@@ -33,4 +35,7 @@ sudo docker-compose exec nginx nginx -s reload
 
 ```shell
 sudo cp /home/grocery/nginx/jenkins.conf /etc/nginx/conf.d/jenkins.conf
+sudo docker exec -it nginx /bin/bash
+service nginx status
+nginx -s reload
 ```
