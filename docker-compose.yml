@@ -82,5 +82,6 @@ services:
     container_name: jenkins
     volumes:
       - /data/jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
     expose:
       - 8080
