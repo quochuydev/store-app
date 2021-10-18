@@ -39,14 +39,7 @@ app.prepare().then(() => {
   const server = express();
 
   cron.schedule("0 0 * * * *", async () => {
-    console.log(new Date(), "create every hour", process.env.MESSAGE);
-
-    // await productModel.create({
-    //   title: `Cà phê Mê Trang Arabica (A) - Hộp 250g rang xay hút chân không`,
-    //   description: `${new Date()} ${process.env.MESSAGE}`,
-    //   image: "https://cf.shopee.vn/file/76698f5a72286c1f9aca14956b11d0db",
-    //   price: 74000,
-    // });
+    console.log(new Date(), "create every hour", process.env.CONTAINER);
   });
 
   server.use(cors({ credentials: true, origin: true }));
@@ -64,7 +57,11 @@ app.prepare().then(() => {
 
   server.get("/test", async (req, res) => {
     const start = Date.now();
-    res.send(`load: ${Date.now() - start}`, process.env.MESSAGE, "rebuild");
+    res.send(
+      `load: ${Date.now() - start}`,
+      process.env.CONTAINER,
+      process.env.VERSION
+    );
   });
 
   server.use(fileRoute);
