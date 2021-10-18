@@ -57,11 +57,7 @@ app.prepare().then(() => {
 
   server.get("/test", async (req, res) => {
     const start = Date.now();
-    res.send(
-      `load: ${Date.now() - start}`,
-      process.env.CONTAINER,
-      process.env.VERSION
-    );
+    res.send(`load: ${Date.now() - start}`, process.env.CONTAINER);
   });
 
   server.use(fileRoute);
@@ -83,6 +79,8 @@ app.prepare().then(() => {
   });
 
   server.listen(port, () => {
-    console.log(`> Ready on ${process.env.SERVER_URL}:${port}`);
+    console.log(
+      `Ready on ${process.env.SERVER_URL}:${port} ver:${process.env.VERSION}`
+    );
   });
 });
