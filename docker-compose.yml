@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   app:
-    image: quochuydev/store-app:1.0.6
+    # image: quochuydev/store-app:1.0.6
     # build: .
     container_name: app
     ports:
@@ -20,8 +20,8 @@ services:
       - .:/usr/src/app
 
   app_rep_1:
-    image: quochuydev/store-app:1.0.6
-    # build: .
+    # image: quochuydev/store-app:1.0.6
+    build: .
     container_name: app_rep_1
     ports:
       - "3001:3000"
