@@ -10,7 +10,6 @@ RUN apk update && apk add git
 RUN yarn install
 
 COPY . .
-COPY --from=builder .env .
 
 RUN yarn build
 
