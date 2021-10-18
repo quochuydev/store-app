@@ -16,6 +16,8 @@ services:
       NODE_ENV: production
       CONTAINER: app
       VERSION: 1.0.6
+    volumes:
+      - .:/usr/src/app
 
   app_rep_1:
     image: quochuydev/store-app:1.0.6
@@ -32,6 +34,8 @@ services:
       NODE_ENV: production
       CONTAINER: app_rep_1
       VERSION: 1.0.6
+    volumes:
+      - .:/usr/src/app
 
   service:
     image: quochuydev/services
