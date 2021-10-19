@@ -54,7 +54,7 @@ services:
     restart: always
     ports:
       - 27017:27017
-    command: mongod --replSet my-mongo-set
+    command: mongod --replSet mongo-set
 
   db_rep_1:
     image: mongo
@@ -62,7 +62,7 @@ services:
     restart: always
     ports:
       - 27018:27017
-    command: mongod --replSet my-mongo-set
+    command: mongod --replSet mongo-set
 
   nginx:
     restart: always
