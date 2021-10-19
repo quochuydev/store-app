@@ -31,11 +31,27 @@ console.log("database:", process.env.DATABASE_URL);
 console.log("server:", process.env.SERVER_URL);
 console.log("*********************************");
 
+const dbOptions = {
+  db: { native_parser: true },
+  replset: {
+    auto_reconnect: false,
+    poolSize: 10,
+    socketOptions: {
+      keepAlive: 1000,
+      connectTimeoutMS: 30000,
+    },
+  },
+  server: {
+    poolSize: 5,
+    socketOptions: {
+      keepAlive: 1000,
+      connectTimeoutMS: 30000,
+    },
+  },
+};
+
 mongoose
-  .connect(process.env.DATABASE_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.DATABASE_URL, dbOptions)
   .then(() => {
     console.log("connected mongo success");
   })

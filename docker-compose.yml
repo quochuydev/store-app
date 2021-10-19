@@ -12,7 +12,7 @@ services:
       - db_rep_1
     env_file: ".env"
     environment:
-      DATABASE_URL: mongodb://db:27017/grocery?replicaSet=mongo-set
+      DATABASE_URL: mongodb://db:27017,db_rep_1:27017/grocery?replicaSet=mongo-set
       SERVER_URL: https://cafeman.xyz
       NODE_ENV: production
       CONTAINER: app
@@ -29,7 +29,7 @@ services:
       - db_rep_1
     env_file: ".env"
     environment:
-      DATABASE_URL: mongodb://db:27017/grocery?replicaSet=mongo-set
+      DATABASE_URL: mongodb://db:27017,db_rep_1:27017/grocery?replicaSet=mongo-set
       SERVER_URL: https://cafeman.xyz
       NODE_ENV: production
       CONTAINER: app_rep_1
@@ -44,7 +44,7 @@ services:
       - db
       - db_rep_1
     environment:
-      DATABASE_URL: mongodb://db:27017/service?replicaSet=mongo-set
+      DATABASE_URL: mongodb://db:27017,db_rep_1:27017/service?replicaSet=mongo-set
       SERVER_URL: https://service.cafeman.xyz
       NODE_ENV: production
 
