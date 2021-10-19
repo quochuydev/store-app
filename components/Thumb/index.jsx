@@ -50,11 +50,10 @@ function Thumb(props) {
               <img src={thumb.image} alt={thumb.title} />
 
               <div className="content">
-                <h3>{thumb.title}</h3>
-                <p>{thumb.description}</p>
-                <a href={thumb.url} className="btn">
-                  check out
-                </a>
+                {thumb.title && thumb.title !== "" && <h3>{thumb.title}</h3>}
+                {thumb.description && thumb.description !== "" && (
+                  <p>{thumb.description}</p>
+                )}
               </div>
             </div>
           </div>

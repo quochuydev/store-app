@@ -70,15 +70,19 @@ export default function Home({ setting }) {
               <img src={setting.banner?.image} alt={setting.banner?.title} />
             </div>
             <div className="content">
-              <h3>{setting.banner?.title}</h3>
-              <p>{setting.banner?.description}</p>
-              <a href={setting.banner?.url} className="btn">
-                get started
-              </a>
+              {setting.banner?.title && setting.banner?.title !== "" && (
+                <h3>{setting.banner?.title}</h3>
+              )}
+              {setting.banner?.description &&
+                setting.banner?.description !== "" && (
+                  <p>{setting.banner?.description}</p>
+                )}
             </div>
           </section>
         ))}
       </OwlCarousel>
+
+      <div className="m-t-md"></div>
 
       {useMemo(
         () => (
