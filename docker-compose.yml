@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   app:
-    image: quochuydev/store-app
+    image: quochuydev/store-app:1.0.11
     build: .
     container_name: app
     ports:
@@ -19,7 +19,7 @@ services:
       VERSION: 1.0.11
 
   app_rep_1:
-    image: quochuydev/store-app
+    image: quochuydev/store-app:1.0.11
     build: .
     container_name: app_rep_1
     ports:
@@ -55,6 +55,8 @@ services:
     ports:
       - 27017:27017
     command: mongod --bind_ip_all --replSet mongo-set
+    volumes:
+      - data_db:/var/lib/postgresql/data
 
   db_rep_1:
     image: mongo
@@ -63,6 +65,8 @@ services:
     ports:
       - 27018:27017
     command: mongod --bind_ip_all --replSet mongo-set
+    volumes:
+      - data_db_rep_1:/var/lib/postgresql/data
 
   nginx:
     restart: always
@@ -99,3 +103,9 @@ services:
   #     - /var/run/docker.sock:/var/run/docker.sock
   #   expose:
   #     - 8080
+
+volumes:
+  data_db:
+    driver: local
+  data_db_rep_1:
+    driver: local
