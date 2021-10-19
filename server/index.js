@@ -28,6 +28,7 @@ console.log("port:", port);
 console.log("env:", process.env.NODE_ENV);
 console.log("is production:", process.env.NODE_ENV === "production");
 console.log("database:", process.env.DATABASE_URL);
+console.log("server:", process.env.SERVER_URL);
 console.log("*********************************");
 
 mongoose
