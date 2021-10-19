@@ -20,7 +20,7 @@ services:
 
   app_rep_1:
     image: quochuydev/store-app:1.0.12
-    build: .
+    # build: .
     container_name: app_rep_1
     ports:
       - "3001:3000"
