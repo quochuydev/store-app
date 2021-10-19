@@ -2,15 +2,6 @@ GCP demo: [http://cafeman.xyz/](http://cafeman.xyz/)
 
 heroku demo: [https://dlcapp.herokuapp.com/](https://dlcapp.herokuapp.com/)
 
-```shell
-sudo cp /home/grocery/nginx/default.conf /etc/nginx/conf.d/default.conf
-sudo docker exec -it nginx /bin/bash
-service nginx status
-nginx -s reload
-cat /etc/nginx/conf.d/default.conf
-cd /etc/nginx/conf.d
-```
-
 **Linux**
 
 cd /home/grocery/ && sudo bash ./commands/build.sh
@@ -23,8 +14,19 @@ docker push quochuydev/store-app
 
 **Nginx**
 
+```shell
+sudo cp /home/grocery/nginx/default.conf /etc/nginx/conf.d/default.conf
+sudo docker exec -it nginx /bin/bash
+service nginx status
+nginx -s reload
+cat /etc/nginx/conf.d/default.conf
+cd /etc/nginx/conf.d
+```
+
+```shell
 sudo docker logs nginx
 sudo docker-compose exec nginx nginx -s reload
+```
 
 **Jenkins**
 
