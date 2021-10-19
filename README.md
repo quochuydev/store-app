@@ -50,9 +50,10 @@ sudo chmod a+rwx /var/run/docker.pid
 ```
 
 **MongoDb**
-sudo rm /etc/nginx/conf.d/mongodb.conf
 
 ```shell
+sudo docker network create mongo-cluster
+
 sudo docker exec -it db bash
 mongo --host 172.19.0.5
 config = {
