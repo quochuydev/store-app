@@ -16,7 +16,7 @@ services:
       SERVER_URL: https://cafeman.xyz
       NODE_ENV: production
       CONTAINER: app
-      VERSION: 1.0.11
+      VERSION: 1.0.12
 
   app_rep_1:
     image: quochuydev/store-app
@@ -33,7 +33,7 @@ services:
       SERVER_URL: https://cafeman.xyz
       NODE_ENV: production
       CONTAINER: app_rep_1
-      VERSION: 1.0.11
+      VERSION: 1.0.12
 
   service:
     image: quochuydev/services
