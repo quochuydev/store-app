@@ -53,7 +53,7 @@ sudo chmod a+rwx /var/run/docker.pid
 
 ```shell
 sudo docker network create mongo-cluster
-
+sudo docker network inspect mongo-cluster
 sudo docker exec -it db bash
 mongo --host 172.19.0.5
 config = {
