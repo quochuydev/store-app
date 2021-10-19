@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   app:
-    image: quochuydev/store-app:1.0.10
+    image: quochuydev/store-app:1.0.11
     build: .
     container_name: app
     ports:
@@ -16,10 +16,10 @@ services:
       SERVER_URL: https://cafeman.xyz
       NODE_ENV: production
       CONTAINER: app
-      VERSION: 1.0.10
+      VERSION: 1.0.11
 
   app_rep_1:
-    image: quochuydev/store-app:1.0.10
+    image: quochuydev/store-app:1.0.11
     build: .
     container_name: app_rep_1
     ports:
@@ -33,7 +33,7 @@ services:
       SERVER_URL: https://cafeman.xyz
       NODE_ENV: production
       CONTAINER: app_rep_1
-      VERSION: 1.0.10
+      VERSION: 1.0.11
 
   service:
     image: quochuydev/services
