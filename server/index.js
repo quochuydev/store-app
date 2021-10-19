@@ -57,7 +57,9 @@ app.prepare().then(() => {
 
   server.get("/test", async (req, res) => {
     const start = Date.now();
-    res.send(`load: ${Date.now() - start}`, process.env.CONTAINER);
+    res.send(
+      `${Date.now() - start} ${process.env.CONTAINER} ${process.env.VERSION}`
+    );
   });
 
   server.use(fileRoute);

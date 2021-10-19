@@ -12,7 +12,7 @@ services:
       - db_rep_1
     env_file: ".env"
     environment:
-      DATABASE_URL: mongodb://db:27017/grocery
+      DATABASE_URL: mongodb://db:27017,db:27018/grocery
       SERVER_URL: https://cafeman.xyz
       NODE_ENV: production
       CONTAINER: app
@@ -29,7 +29,7 @@ services:
       - db_rep_1
     env_file: ".env"
     environment:
-      DATABASE_URL: mongodb://db:27017/grocery
+      DATABASE_URL: mongodb://db:27017,db:27018/grocery
       SERVER_URL: https://cafeman.xyz
       NODE_ENV: production
       CONTAINER: app_rep_1
