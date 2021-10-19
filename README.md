@@ -50,6 +50,7 @@ sudo chmod a+rwx /var/run/docker.pid
 ```
 
 **MongoDb**
+sudo rm /etc/nginx/conf.d/mongodb.conf
 
 ```shell
 sudo docker exec -it db bash
