@@ -9,6 +9,7 @@ services:
       - "3000:3000"
     depends_on:
       - db
+      - db_rep_1
     env_file: ".env"
     environment:
       DATABASE_URL: mongodb://db:27017/grocery
@@ -25,6 +26,7 @@ services:
       - "3001:3000"
     depends_on:
       - db
+      - db_rep_1
     env_file: ".env"
     environment:
       DATABASE_URL: mongodb://db:27017/grocery
@@ -40,22 +42,23 @@ services:
       - 4000:4000
     depends_on:
       - db
+      - db_rep_1
     environment:
       DATABASE_URL: mongodb://db:27017/service
       SERVER_URL: https://service.cafeman.xyz
       NODE_ENV: production
 
-  mongo:
+  db:
     image: mongo
-    container_name: mongo
+    container_name: db
     restart: always
     ports:
       - 27017:27017
     command: mongod --replSet my-mongo-set
 
-  mongo_rep_1:
+  db_rep_1:
     image: mongo
-    container_name: mongo_rep_1
+    container_name: db_rep_1
     restart: always
     ports:
       - 27017:27017
