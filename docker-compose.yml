@@ -12,7 +12,7 @@ services:
       - db_rep_1
     env_file: ".env"
     environment:
-      DATABASE_URL: mongodb://db:27017/grocery
+      DATABASE_URL: mongodb://db:27017/grocery?replicaSet=mongo-set
       SERVER_URL: https://cafeman.xyz
       NODE_ENV: production
       CONTAINER: app
@@ -29,7 +29,7 @@ services:
       - db_rep_1
     env_file: ".env"
     environment:
-      DATABASE_URL: mongodb://db:27017/grocery
+      DATABASE_URL: mongodb://db:27017/grocery?replicaSet=mongo-set
       SERVER_URL: https://cafeman.xyz
       NODE_ENV: production
       CONTAINER: app_rep_1
@@ -44,7 +44,7 @@ services:
       - db
       - db_rep_1
     environment:
-      DATABASE_URL: mongodb://db:27017/service
+      DATABASE_URL: mongodb://db:27017/service?replicaSet=mongo-set
       SERVER_URL: https://service.cafeman.xyz
       NODE_ENV: production
 
@@ -104,8 +104,7 @@ services:
   #   expose:
   #     - 8080
 
-volumes:
-  data_db:
-    driver: local
-  data_db_rep_1:
-    driver: local
+networks:
+  default:
+    external:
+      name: mongo-cluster
