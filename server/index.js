@@ -32,7 +32,9 @@ console.log("server:", process.env.SERVER_URL);
 console.log("*********************************");
 
 const dbOptions = {
-  db: { native_parser: true },
+  db: {
+    native_parser: true,
+  },
   replset: {
     auto_reconnect: false,
     poolSize: 10,

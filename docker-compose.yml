@@ -52,8 +52,6 @@ services:
     image: mongo
     container_name: db
     restart: always
-    ports:
-      - 27017:27017
     command: mongod --bind_ip_all --replSet mongo-set
     volumes:
       - ./data_db:/var/lib/postgresql/data
@@ -62,8 +60,6 @@ services:
     image: mongo
     container_name: db_rep_1
     restart: always
-    ports:
-      - 27018:27017
     command: mongod --bind_ip_all --replSet mongo-set
     volumes:
       - ./data_db_rep_1:/var/lib/postgresql/data
