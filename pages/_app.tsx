@@ -7,6 +7,8 @@ import "../styles/bootstrap.min.css";
 import "../styles/owl.carousel.min.css";
 
 import config from "../utils/config";
+console.log(process.env.NODE_ENV);
+console.log(process.env.SERVER_URL);
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
