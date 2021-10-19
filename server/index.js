@@ -30,10 +30,17 @@ console.log("is production:", process.env.NODE_ENV === "production");
 console.log("database:", process.env.DATABASE_URL);
 console.log("*********************************");
 
-mongoose.connect(process.env.DATABASE_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose
+  .connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("connected mongo success");
+  })
+  .catch((error) => {
+    console.log("connected mongo failed", error);
+  });
 
 app.prepare().then(() => {
   const server = express();
