@@ -33,8 +33,6 @@ export default function Index({ meta, products, setting }) {
       <Category {...{ setting }} />
       <Products {...{ meta, products, afterAddToCart }} />
       {/* <Banner {...{ setting }} /> */}
-      {/* <Deal /> */}
-      {/* <Contact /> */}
       <Newsletter />
     </Layout>
   );

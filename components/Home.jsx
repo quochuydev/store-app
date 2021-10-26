@@ -16,10 +16,6 @@ export default function Home({ setting }) {
   };
 
   useEffect(() => {
-    setIndex(0);
-  }, []);
-
-  useEffect(() => {
     if (mediaRef !== null && mediaRef.current !== null && index >= 0) {
       mediaRef.current.$car.to(index, 300, true);
     }
@@ -37,20 +33,10 @@ export default function Home({ setting }) {
     }
   };
 
-  const doc = document;
-
   const events = {
     onTranslate: function (e) {
-      if (!e.target) return;
-      if (doc.querySelector(".thumbs")) {
-        doc
-          .querySelector(".thumbs")
-          .querySelector(".thumb.active")
-          .classList.remove("active");
-        doc
-          .querySelector(".thumbs")
-          .querySelectorAll(".thumb")
-          [e.item.index].classList.add("active");
+      if (!e.target) {
+        return;
       }
     },
   };
