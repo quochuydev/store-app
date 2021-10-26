@@ -3,10 +3,9 @@ const express = require("express");
 const next = require("next");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const { v4: uuidv4 } = require("uuid");
+const uuid = require("uuid").v4;
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-
 const cron = require("node-cron");
 
 const port = 3000;
@@ -21,8 +20,6 @@ const { orderRoute } = require("./routes/order");
 const { coreRoute } = require("./routes/core");
 const { settingRoute } = require("./routes/setting");
 
-const { productModel } = require("./models/product");
-
 console.log("*********************************");
 console.log("port:", port);
 console.log("env:", process.env.NODE_ENV);
@@ -30,27 +27,6 @@ console.log("is production:", process.env.NODE_ENV === "production");
 console.log("database:", process.env.DATABASE_URL);
 console.log("server:", process.env.SERVER_URL);
 console.log("*********************************");
-
-// const dbOptions = {
-//   db: {
-//     native_parser: true,
-//   },
-//   replset: {
-//     auto_reconnect: false,
-//     poolSize: 10,
-//     socketOptions: {
-//       keepAlive: 1000,
-//       connectTimeoutMS: 30000,
-//     },
-//   },
-//   server: {
-//     poolSize: 5,
-//     socketOptions: {
-//       keepAlive: 1000,
-//       connectTimeoutMS: 30000,
-//     },
-//   },
-// };
 
 mongoose
   .connect(process.env.DATABASE_URL, {
@@ -79,16 +55,14 @@ app.prepare().then(() => {
   server.use(function (req, res, next) {
     const token = req.cookies.token;
     if (token === undefined) {
-      res.cookie("token", uuidv4(), { maxAge: 9000000, httpOnly: true });
+      res.cookie("token", uuid(), { maxAge: 9000000, httpOnly: true });
     }
     next();
   });
 
   server.get("/test", async (req, res) => {
     const start = Date.now();
-    res.send(
-      `${Date.now() - start} ${process.env.CONTAINER} ${process.env.VERSION}`
-    );
+    res.send(`${Date.now() - start} ${process.env.CONTAINER}`);
   });
 
   server.use(fileRoute);
@@ -110,8 +84,6 @@ app.prepare().then(() => {
   });
 
   server.listen(port, () => {
-    console.log(
-      `Ready on ${process.env.SERVER_URL}:${port} ver:${process.env.VERSION}`
-    );
+    console.log(`Ready on ${process.env.SERVER_URL}:${port}`);
   });
 });
