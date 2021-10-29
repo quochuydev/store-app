@@ -26,8 +26,8 @@ router.get("/files/:filename", (req, res) => {
     if (!exists) {
       return res.status(400).send({ message: "File not exist" });
     }
-    const filestream = fs.createReadStream(fullPath);
-    filestream.pipe(res);
+    const fileStream = fs.createReadStream(fullPath);
+    fileStream.pipe(res);
   });
 });
 
