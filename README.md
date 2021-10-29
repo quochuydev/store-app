@@ -50,26 +50,3 @@ sudo usermod -aG docker $USER
 sudo chmod a+rwx /var/run/docker.sock
 sudo chmod a+rwx /var/run/docker.pid
 ```
-
-**MongoDb**
-
-```shell
-sudo docker network create mongo-cluster
-sudo docker network inspect mongo-cluster
-sudo docker exec -it db bash
-mongo --host 172.19.0.5
-config = {
-  "_id" : "mongo-set",
-  "members" : [
-    {
-      "_id" : 0,
-      "host" : "db:27017"
-    },
-    {
-      "_id" : 1,
-      "host" : "db_rep_1:27017"
-    }
-  ]
-}
-rs.initiate(config)
-```

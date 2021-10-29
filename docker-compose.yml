@@ -9,28 +9,12 @@ services:
       - "3000:3000"
     depends_on:
       - db
-      - db_rep_1
     env_file: ".env"
     environment:
-      DATABASE_URL: mongodb://db:27017,db_rep_1:27017/grocery?replicaSet=mongo-set
+      DATABASE_URL: mongodb://db:27017/grocery
       SERVER_URL: https://cafeman.xyz
       NODE_ENV: production
       CONTAINER: app
-
-  app_rep_1:
-    image: quochuydev/store-app
-    container_name: app_rep_1
-    ports:
-      - "3001:3000"
-    depends_on:
-      - db
-      - db_rep_1
-    env_file: ".env"
-    environment:
-      DATABASE_URL: mongodb://db:27017,db_rep_1:27017/grocery?replicaSet=mongo-set
-      SERVER_URL: https://cafeman.xyz
-      NODE_ENV: production
-      CONTAINER: app_rep_1
 
   service:
     image: quochuydev/services
@@ -39,9 +23,8 @@ services:
       - 4000:4000
     depends_on:
       - db
-      - db_rep_1
     environment:
-      DATABASE_URL: mongodb://db:27017,db_rep_1:27017/service?replicaSet=mongo-set
+      DATABASE_URL: mongodb://db:27017/service
       SERVER_URL: https://service.cafeman.xyz
       NODE_ENV: production
 
@@ -54,16 +37,6 @@ services:
       - 27017:27017
     volumes:
       - ./data_db:/var/lib/postgresql/data
-
-  db_rep_1:
-    image: mongo
-    container_name: db_rep_1
-    restart: always
-    command: mongod --bind_ip_all --replSet mongo-set
-    ports:
-      - 27018:27017
-    volumes:
-      - ./data_db_rep_1:/var/lib/postgresql/data
 
   nginx:
     restart: always
@@ -100,8 +73,3 @@ services:
   #     - /var/run/docker.sock:/var/run/docker.sock
   #   expose:
   #     - 8080
-
-networks:
-  default:
-    external:
-      name: mongo-cluster
