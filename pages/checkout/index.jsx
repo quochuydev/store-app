@@ -11,8 +11,6 @@ import Layout from "../../components/Layout";
 
 import BillingAddress from "../../components/Checkout/BillingAddress";
 import Items from "../../components/Checkout/Items";
-import PromoCodeInput from "../../components/Checkout/PromoCodeInput";
-import Payment from "../../components/Checkout/Payment";
 import useTranslation from "../../locales/useTranslation";
 
 export default function Checkout() {
