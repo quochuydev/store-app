@@ -20,43 +20,6 @@ if (menu) {
   };
 }
 
-let countDate = new Date("june 1, 2021 00:00:00").getTime();
-
-function CountDown() {
-  let now = new Date().getTime();
-  gap = countDate - now;
-
-  let second = 1000;
-  let minute = second * 60;
-  let hour = minute * 60;
-  let day = hour * 24;
-
-  let d = Math.floor(gap / day);
-  let h = Math.floor((gap % day) / hour);
-  let m = Math.floor((gap % hour) / minute);
-  let s = Math.floor((gap % minute) / second);
-
-  if (document.getElementById("day")) {
-    document.getElementById("day").innerText = d;
-  }
-
-  if (document.getElementById("hour")) {
-    document.getElementById("hour").innerText = h;
-  }
-
-  if (document.getElementById("minute")) {
-    document.getElementById("minute").innerText = m;
-  }
-
-  if (document.getElementById("second")) {
-    document.getElementById("second").innerText = s;
-  }
-}
-
-setInterval(function () {
-  CountDown();
-}, 1000);
-
 $(document).ready(function () {
   $("button").on("click", function () {
     $(".card-holder").append(

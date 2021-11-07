@@ -1,3 +1,10 @@
+header {
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  top: 0;
+}
+
 .header-top .top-message {
   font-size: 0.8rem;
   font-weight: 500;
@@ -111,10 +118,9 @@
 }
 
 #menu-bar {
-  font-size: 2rem;
-  border-radius: 0.5rem;
+  border-radius: 0.2rem;
   border: 0.1rem solid var(--black);
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   color: var(--black);
   cursor: pointer;
   display: none;
@@ -145,24 +151,10 @@
     padding: 1rem 2rem;
     display: none;
   }
-
-  .header-2 .navbar.active {
-    z-index: 100;
-    display: initial;
-  }
-
-  .header-2 .navbar a {
-    display: block;
-    text-align: center;
-    background: #fff;
-    padding: 1rem;
-    margin: 1rem 0;
-  }
 }
 
 @media (max-width: 991px) {
-  .header-1,
-  .header-2 {
+  .header-1 {
     padding: 1rem;
   }
 }

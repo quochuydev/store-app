@@ -42,7 +42,7 @@ export default function Home({ setting }) {
   };
 
   return (
-    <>
+    <div>
       <OwlCarousel
         adClass="owl-theme owl-nav-inner"
         options={mainSlider}
@@ -80,6 +80,6 @@ export default function Home({ setting }) {
         ),
         []
       )}
-    </>
+    </div>
   );
 }

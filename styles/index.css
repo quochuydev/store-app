@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand:400,500,700&display=swap&subset=vietnamese");
+
 @import "owl.carousel";
 @import "header";
+@import "home";
 @import "footer";
 @import "newsletter";
 @import "mega-menu";
@@ -39,7 +41,6 @@ section {
 }
 
 .btn {
-  margin-top: 1rem;
   background: var(--green) !important;
   color: #fff !important;
   font-size: 1rem !important;
@@ -117,10 +118,6 @@ section {
 }
 
 @media (max-width: 991px) {
-  section {
-    padding: 2rem;
-  }
-
   .home .image {
     flex: 1 1 20rem;
   }
