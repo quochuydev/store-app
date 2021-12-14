@@ -6,7 +6,6 @@ const mongoose = require("mongoose");
 const uuid = require("uuid").v4;
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const cron = require("node-cron");
 
 const port = 3000;
 const dev = process.env.NODE_ENV !== "production";
@@ -43,10 +42,6 @@ mongoose
 app.prepare().then(() => {
   const server = express();
 
-  cron.schedule("0 0 * * * *", async () => {
-    console.log(new Date(), "create every hour", process.env.CONTAINER);
-  });
-
   server.use(cors({ credentials: true, origin: true }));
   server.use(bodyParser.json({}));
   server.use(bodyParser.urlencoded({ extended: false }));
@@ -62,7 +57,7 @@ app.prepare().then(() => {
 
   server.get("/test", async (req, res) => {
     const start = Date.now();
-    res.send(`${Date.now() - start} ${process.env.CONTAINER}`);
+    res.send(`${Date.now() - start}`);
   });
 
   server.use(fileRoute);
