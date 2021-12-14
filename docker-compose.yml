@@ -61,3 +61,11 @@ services:
   #     - /var/run/docker.sock:/var/run/docker.sock
   #   expose:
   #     - 8080
+
+  storage:
+    image: minio/minio
+    container_name: storage
+    ports:
+      - 9000:9000
+      - 9001:9001
+    command: server /data --console-address ":9001"
