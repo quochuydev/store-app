@@ -14,17 +14,6 @@ services:
       DATABASE_URL: mongodb://db:27017/grocery
       SERVER_URL: https://cafeman.xyz
       NODE_ENV: production
-      CONTAINER: app
-
-  db:
-    image: mongo
-    container_name: db
-    restart: always
-    command: mongod --bind_ip_all --replSet mongo-set
-    ports:
-      - 27017:27017
-    volumes:
-      - ./data_db:/var/lib/postgresql/data
 
   nginx:
     restart: always
@@ -61,6 +50,14 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     expose:
       - 8080
+
+  db:
+    image: mongo
+    container_name: db
+    restart: always
+    # command: mongod --bind_ip_all --replSet mongo-set
+    ports:
+      - 27017:27017
 
   minio:
     image: minio/minio
