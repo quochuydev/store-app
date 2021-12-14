@@ -51,10 +51,7 @@ export default function Order() {
 }
 
 function CustomerInfo({ data }) {
-  const { t } = useTranslation();
-
-  const [paymentNote, setPaymentNote] = useState(null);
-  console.log(data);
+s  const [paymentNote, setPaymentNote] = useState(null);
 
   useEffect(() => {
     if (data.payment) {

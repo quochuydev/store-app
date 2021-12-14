@@ -17,7 +17,6 @@ export default function CreateProduct({ image }) {
   });
 
   useEffect(() => {
-    console.log(image);
     if (image) {
       onData("image", image);
     }

@@ -18,7 +18,7 @@ const SocialButton = SocialLogin(SocialButtonComponent);
 
 export default function SocialLoginButton(props) {
   const handleSocialLogin = async (result) => {
-    const res = await axios.post(
+    await axios.post(
       "http://localhost:3000/users/signin",
       {
         profile: {
@@ -34,7 +34,6 @@ export default function SocialLoginButton(props) {
         withCredentials: true,
       }
     );
-    console.log(res?.data);
     props.onSuccess && props.onSuccess();
   };
 

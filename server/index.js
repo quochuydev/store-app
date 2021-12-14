@@ -55,11 +55,6 @@ app.prepare().then(() => {
     next();
   });
 
-  server.get("/test", async (req, res) => {
-    const start = Date.now();
-    res.send(`${Date.now() - start}`);
-  });
-
   server.use(fileRoute);
   server.use(cartRoute);
   server.use(productRoute);

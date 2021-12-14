@@ -7,8 +7,6 @@ export default function useCart(): any {
   });
 
   const getCart = () => {
-    console.log("fetch cart");
-
     axios.get(process.env.SERVER_URL + "/api/cart").then((result) => {
       setCart(result?.data);
     });

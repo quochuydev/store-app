@@ -65,12 +65,10 @@ function TicketsComponent({ tickets }) {
       return (firstUpdate.current = false);
     }
 
-    console.log(query);
     pushQuery(query);
   }, [query]);
 
   useEffect(() => {
-    console.log(router.query, query);
     const newQuery = {};
 
     if (router.query?.shipping) {
