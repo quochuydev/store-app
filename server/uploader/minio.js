@@ -33,12 +33,12 @@ const diskUploader = (file) => {
   );
 };
 
-function getFile(fileName, onError, onData) {
+function getFile(fileName, onData, onError) {
   minioClient.getObject("grocery", fileName, function (error, stream) {
     if (error) {
       return onError(error);
     }
-    onData(stream);
+    stream.pipe(onData);
   });
 }
 

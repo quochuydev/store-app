@@ -1,5 +1,7 @@
 const multer = require("multer");
 const slugify = require("slugify");
+const fs = require("fs");
+const path = require("path");
 
 const { fileModel } = require("../models/file");
 
@@ -23,4 +25,15 @@ const diskUploader = (file) => {
   return fileModel.create({ url: server + "/" + file.path });
 };
 
-module.exports = { diskStorage, diskUploader };
+function getFile(fileName, onData, onError) {
+  const fullPath = path.join(path.resolve("./files"), fileName);
+
+  fs.exists(fullPath, function (exists) {
+    if (!exists) {
+      return onError({ message: "File not exist" });
+    }
+    fileStream.pipe(onData);
+  });
+}
+
+module.exports = { diskStorage, diskUploader, getFile };

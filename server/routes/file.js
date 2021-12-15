@@ -1,6 +1,4 @@
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
 const router = express.Router();
 
 const { fileModel } = require("../models/file");
@@ -20,24 +18,9 @@ router.get("/api/files", async (req, res) => {
 });
 
 router.get("/files/:filename", (req, res) => {
-  // const fullPath = path.join(path.resolve("./files"), req.params.filename);
-  // fs.exists(fullPath, function (exists) {
-  //   if (!exists) {
-  //     return res.status(400).send({ message: "File not exist" });
-  //   }
-  //   const fileStream = fs.createReadStream(fullPath);
-  //   fileStream.pipe(res);
-  // });
-
-  getFile(
-    req.params.filename,
-    (error) => {
-      return res.status(500).send(error);
-    },
-    (stream) => {
-      return stream.pipe(res);
-    }
-  );
+  getFile(req.params.filename, res, (error) => {
+    return res.status(500).send(error);
+  });
 });
 
 module.exports = { fileRoute: router };
