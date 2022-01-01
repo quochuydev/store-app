@@ -1,0 +1,68 @@
+version: "3.3"
+
+services:
+  app:
+    image: store-app
+    build: .
+    container_name: app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    env_file: ".env"
+    environment:
+      DATABASE_URL: mongodb://db:27017/grocery
+      SERVER_URL: https://cafeman.xyz
+      NODE_ENV: production
+
+  nginx:
+    restart: always
+    container_name: nginx
+    build:
+      context: ./nginx
+    volumes:
+      # Custom: admin-dashboard-store
+      - /home/admin-dashboard-store/build:/build
+      # Base
+      - /etc/nginx/conf.d:/etc/nginx/conf.d
+      # SSL
+      - /data/certbot/conf:/etc/letsencrypt
+      - /data/certbot/www:/var/www/certbot
+    ports:
+      - 443:443
+      - 80:80
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    restart: unless-stopped
+    volumes:
+      - /data/certbot/conf:/etc/letsencrypt
+      - /data/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    restart: always
+    container_name: jenkins
+    volumes:
+      - /data/jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    expose:
+      - 8080
+
+  db:
+    image: mongo
+    container_name: db
+    restart: always
+    # command: mongod --bind_ip_all --replSet mongo-set
+    ports:
+      - 27017:27017
+
+  minio:
+    image: minio/minio
+    container_name: minio
+    ports:
+      - 9000:9000
+      - 9001:9001
+    command: server /data --console-address ":9001"
