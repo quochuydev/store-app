@@ -3,8 +3,8 @@ import config from "../utils/config";
 export default function Footer() {
   return (
     <section className="footer">
-      <div className="box-container">
-        <div className="box">
+      <div className="grid grid-cols-3">
+        <div className="">
           <a href="#" className="logo">
             <i className="fas fa-shopping-basket" />
             Groco
@@ -17,7 +17,7 @@ export default function Footer() {
             <a href={config.linkedinUrl} className="btn fab fa-linkedin" />
           </div>
         </div>
-        <div className="box">
+        <div className="">
           <h3>Our contact</h3>
           <div className="links">
             <a href="#">Phone number: {config.phoneNumber}</a>
@@ -25,7 +25,7 @@ export default function Footer() {
             <a href="#">Address: {config.address}</a>
           </div>
         </div>
-        <div className="box">
+        <div className="">
           <h3>Quick links</h3>
           <div className="links">
             <a href="#">home</a>

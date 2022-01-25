@@ -6,7 +6,7 @@ export default function Pagination({
   totalPage = 1,
 }) {
   const pages = [];
-  for (let i = 1; i <= ữa; i++) {
+  for (let i = 1; i <= page; i++) {
     pages.push(
       <li key={i} className={`page-item ${i === page && "active"}`}>
         <a className="page-link" href={`#product?page=${i}`}>

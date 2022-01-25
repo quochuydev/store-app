@@ -30,11 +30,6 @@ export default function Search({ meta, products, setting }) {
   const { q } = useRouter().query;
   const [cart, getCart] = useCart();
 
-  const afterAddToCart = () => {
-    getCart();
-    toast("Added to cart", { position: "bottom-right" });
-  };
-
   return (
     <Layout {...{ cart }}>
       <ToastContainer />
@@ -46,7 +41,10 @@ export default function Search({ meta, products, setting }) {
           </div>
 
           <div className="col-md-9">
-            <Products {...{ meta, products, afterAddToCart }} />
+            <Products {...{ meta, products, after: () => {
+              getCart();
+              toast("Added to cart", { position: "bottom-right" });
+            }}} />
           </div>
         </div>
       </section>

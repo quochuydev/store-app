@@ -5,11 +5,15 @@ const { fileModel } = require("../models/file");
 const { storage, uploader, getFile } = require("../uploader");
 
 router.post("/api/files", storage, async (req, res) => {
-  if (!req.file) {
-    return res.status(400).send("empty file");
+  try {
+    if (!req.file) {
+      throw { message: "empty file" };
+    }
+    const file = await uploader(req.file);
+    res.send(file);
+  } catch (error) {
+    return res.status(400).send(error);
   }
-  const file = await uploader(req.file);
-  res.send(file);
 });
 
 router.get("/api/files", async (req, res) => {

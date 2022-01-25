@@ -9,7 +9,7 @@ import Pagination from "./Pagination";
 import config from "../utils/config";
 import useTranslation from "../locales/useTranslation";
 
-export default function Products({ meta, products, afterAddToCart }) {
+export default function Products({ meta, products, after }) {
   const { total, limit, page, skip, totalPage } = meta;
 
   return (
@@ -17,9 +17,9 @@ export default function Products({ meta, products, afterAddToCart }) {
       <h1 className="heading">
         latest <span>products</span>
       </h1>
-      <div className="box-container mb-5">
+      <div className="grid grid-cols-4 mb-5">
         {products.map((product, i) => (
-          <Product key={i} {...{ product, afterAddToCart }} />
+          <Product key={i} {...{ product, after }} />
         ))}
       </div>
       {/* <Pagination {...{ total, limit, page, skip, totalPage }} /> */}
@@ -27,7 +27,7 @@ export default function Products({ meta, products, afterAddToCart }) {
   );
 }
 
-function Product({ product, afterAddToCart }) {
+function Product({ product, after }) {
   const { t } = useTranslation();
 
   const [quantity, setQuantity] = useState(1);
@@ -41,11 +41,11 @@ function Product({ product, afterAddToCart }) {
     });
 
     setLoading(false);
-    return afterAddToCart();
+    after();
   };
 
   return (
-    <div className="box">
+    <div className="p-2">
       <span className="discount">
         {Math.floor((product.original_price / product.price) * 100)}%
       </span>

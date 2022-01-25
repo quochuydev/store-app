@@ -18,11 +18,6 @@ export default function Index({ meta, products, setting }) {
 
   const [cart, getCart] = useCart();
 
-  const afterAddToCart = () => {
-    getCart();
-    toast("Added to cart", { position: "bottom-right" });
-  };
-
   return (
     <Layout {...{ cart }}>
       <ToastContainer />
@@ -31,7 +26,10 @@ export default function Index({ meta, products, setting }) {
         {t("label.shopBy")} <span>{t("label.category")}</span>
       </h1>
       <Category {...{ setting }} />
-      <Products {...{ meta, products, afterAddToCart }} />
+      <Products {...{ meta, products, after: () => {
+        getCart();
+        toast("Added to cart", { position: "bottom-right" });
+      } }} />
       {/* <Banner {...{ setting }} /> */}
       <Newsletter />
     </Layout>

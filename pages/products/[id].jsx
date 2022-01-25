@@ -21,15 +21,13 @@ export async function getServerSideProps({ query }) {
 export default function Product({ product }) {
   const [cart, getCart] = useCart();
 
-  const afterAddToCart = () => {
-    getCart();
-    toast("Added to cart", { position: "bottom-right" });
-  };
-
   return (
     <Layout {...{ cart }}>
       <ToastContainer />
-      <ProductDetail {...{ product, afterAddToCart }} />
+      <ProductDetail {...{ product, after: ()=>{
+        getCart();
+        toast("Added to cart", { position: "bottom-right" });
+      } }} />
     </Layout>
   );
 }

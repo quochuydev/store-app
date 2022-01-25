@@ -11,8 +11,8 @@ var minioClient = new Minio.Client({
   port: 9000,
   useSSL: false,
   // secure: false,
-  accessKey: "S9W42CAHHVBN3LGZC0LT",
-  secretKey: "bgSiXPnXVjKV05zUYbRng91klKmlalbaPDa0XNVv",
+  accessKey: process.env.MINIO_ACCESS_KEY,
+  secretKey: process.env.MINIO_SECRET_KEY,
 });
 
 const diskStorage = multer({ storage: multer.memoryStorage() }).single("files");
@@ -24,7 +24,10 @@ const diskUploader = (file) => {
     "grocery",
     fileName,
     file.buffer,
-    function (error, { etag }) {
+    function (error, result) {
+      if(error) {
+        throw error
+      }
       return fileModel.create({
         fileName,
         url: server + "/files/" + fileName,
