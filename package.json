@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node server/index",
     "build": "next build",
-    "start": "next start",
+    "start": "node server/index",
     "lint": "next lint"
   },
   "dependencies": {
