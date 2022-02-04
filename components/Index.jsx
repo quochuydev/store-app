@@ -10,11 +10,13 @@ import Category from "../components/Category";
 import Products from "../components/Products";
 import Newsletter from "../components/Newsletter";
 
+import config from "../utils/config";
 import useCart from "../hooks/useCart";
 import useTranslation from "../locales/useTranslation";
 
 export default function Index({ meta, products, setting }) {
   const { t } = useTranslation();
+  console.log(`config`, config);
 
   const [cart, getCart] = useCart();
 
