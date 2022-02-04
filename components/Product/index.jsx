@@ -1,8 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
 import axios from "axios";
-
-import styles from "../style.module.css";
 import config from "../../utils/config";
 
 export default function ProductDetail({ product, after }) {
@@ -63,7 +61,7 @@ export default function ProductDetail({ product, after }) {
             />
           </div>
 
-          <button className={styles.btn} onClick={addToCart} disabled={loading}>
+          <button className={`btn`} onClick={addToCart} disabled={loading}>
             <i
               className={`fa ${
                 loading ? "fa-spinner fa-spin" : "fa-shopping-cart"

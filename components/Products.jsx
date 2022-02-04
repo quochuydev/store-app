@@ -3,9 +3,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Link from "next/link";
-
-import styles from "./style.module.css";
-import Pagination from "./Pagination";
 import config from "../utils/config";
 import useTranslation from "../locales/useTranslation";
 
@@ -89,7 +86,7 @@ function Product({ product, after }) {
         />
       </div>
 
-      <button className={styles.btn} onClick={addToCart} disabled={loading}>
+      <button className={`btn`} onClick={addToCart} disabled={loading}>
         <i
           className={`fa ${
             loading ? "fa-spinner fa-spin" : "fa-shopping-cart"

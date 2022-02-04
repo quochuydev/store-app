@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node server/index",
+    "dev": "node server/index",
     "build": "next build",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
