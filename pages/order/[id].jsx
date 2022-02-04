@@ -51,7 +51,7 @@ export default function Order() {
 }
 
 function CustomerInfo({ data }) {
-s  const [paymentNote, setPaymentNote] = useState(null);
+  const [paymentNote, setPaymentNote] = useState(null);
 
   useEffect(() => {
     if (data.payment) {
