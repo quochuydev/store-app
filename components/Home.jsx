@@ -50,7 +50,7 @@ export default function Home({ setting }) {
         onChangeRef={changeRefHandler}
         events={events}
       >
-        {setting.contents.map((e, i) => (
+        {(setting.contents || []).map((e, i) => (
           <section key={i} className="home">
             <div className="image">
               <img src={setting.banner?.image} alt={setting.banner?.title} />
