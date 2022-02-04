@@ -6,7 +6,7 @@ import Link from "next/link";
 import config from "../utils/config";
 import useTranslation from "../locales/useTranslation";
 
-export default function Products({ meta, products, after }) {
+export default function Products({ meta, products = [], after }) {
   const { total, limit, page, skip, totalPage } = meta;
 
   return (
