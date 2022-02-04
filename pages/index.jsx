@@ -7,8 +7,10 @@ import { noSSRWithLoadingDynamic } from "../utils/dynamic.import";
 export default noSSRWithLoadingDynamic(import("../components/Index"));
 
 export async function getServerSideProps({ query }) {
-  const result = await axios.get(`${config.server}/api/products?limit=8`);
-  const setting = await axios.get(`${config.server}/api/settings`);
+  // const result = await axios.get(`${config.server}/api/products?limit=8`);
+  // const setting = await axios.get(`${config.server}/api/settings`);
+  const result = null;
+  const setting = null;
 
   return {
     props: {
