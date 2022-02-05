@@ -9,4 +9,5 @@ module.exports = {
   images: {
     domains: ["cf.shopee.vn"],
   },
+  useFileSystemPublicRoutes: false,
 };

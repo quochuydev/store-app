@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "node server/index",
     "build": "next build",
-    "start": "node server/index",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start": "NODE_ENV=production node server/index.js"
   },
   "dependencies": {
     "axios": "^0.21.1",

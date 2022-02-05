@@ -9,7 +9,7 @@ const cors = require("cors");
 
 const port = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev: true });
+const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const { fileRoute } = require("./routes/file");
@@ -20,6 +20,7 @@ const { coreRoute } = require("./routes/core");
 const { settingRoute } = require("./routes/setting");
 
 console.log("*********************************");
+console.log("dev:", dev);
 console.log("port:", port);
 console.log("env:", process.env.NODE_ENV);
 console.log("is production:", process.env.NODE_ENV === "production");
