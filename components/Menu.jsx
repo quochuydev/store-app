@@ -10,7 +10,7 @@ export default function Menu() {
 
   return (
     <nav className="navbar">
-      <Link href="/#home">home</Link>
+      <Link href="/#home">{t("navigation.home")}</Link>
       <Link href="/#category">{t("navigation.category")}</Link>
       {/* <MegaMenu /> */}
       <Link href="/products">{t("navigation.product")}</Link>

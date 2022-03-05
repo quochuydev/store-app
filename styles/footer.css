@@ -1,44 +1,37 @@
-.footer .box-container {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.footer .box-container .box {
-  padding: 1rem 0;
+.footer {
   flex: 1 1 25rem;
 }
 
-.footer .box-container .box .share a {
+.footer .share a {
   padding: 0;
-  height: 3rem;
-  width: 3rem;
-  line-height: 3rem;
+  height: 2rem;
+  width: 2rem;
+  line-height: 2rem;
   text-align: center;
   margin-right: 5px;
 }
 
-.footer .box-container .box h3 {
+.footer h3 {
+  font-size: 1.3rem;
   color: var(--black);
 }
 
-.footer .box-container .box p {
-  font-size: 1.3rem;
+.footer p {
   color: #666;
   padding: 0.7rem 0;
 }
 
-.footer .box-container .box .links {
+.footer .links {
   padding: 1rem 0;
 }
 
-.footer .box-container .box .links a {
+.footer .links a {
   display: block;
   padding: 0.5rem 0;
   color: #333;
 }
 
-.footer .box-container .box .links a:hover {
+.footer .links a:hover {
   text-decoration: underline;
   color: var(--green);
 }
@@ -53,5 +46,3 @@
 .footer .credit span {
   color: var(--green);
 }
-
-/* */
