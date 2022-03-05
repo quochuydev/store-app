@@ -34,7 +34,7 @@ const filters = [
     id: 'category',
     name: 'Category',
     options: [
-      { value: 'new-arrivals', label: 'New Arrivals', checked: false },
+      { value: 'new-arrivals', label: 'Products', checked: false },
       { value: 'sale', label: 'Sale', checked: false },
       { value: 'travel', label: 'Travel', checked: true },
       { value: 'organization', label: 'Organization', checked: false },
@@ -165,7 +165,7 @@ export default function ProductFilter({children}) {
 
         <main className="mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative z-10 flex items-baseline justify-between py-6 border-b border-gray-200">
-            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">New Arrivals</h1>
+            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">Products</h1>
 
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
