@@ -15,11 +15,8 @@ import useTranslation from "../../locales/useTranslation";
 
 export default function Checkout() {
   const { t } = useTranslation();
-
   const [cart] = useCart();
-
   const [paymentType, setPaymentType] = useState("cod");
-
   const [customer, setCustomer] = useState({
     firstName: "",
     phoneNumber: "",

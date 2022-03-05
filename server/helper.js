@@ -1,5 +1,7 @@
-const timeout = (time) => {
+const timeout = async (time) => {
   return new Promise((resolve) => setTimeout(resolve, time));
 };
 
-module.exports = { timeout };
+module.exports = {
+  timeout,
+};

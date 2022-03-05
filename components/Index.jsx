@@ -23,7 +23,7 @@ export default function Index({ meta, products, setting }) {
         getCart();
         toast("Added to cart", { position: "bottom-right" });
       } }} /> */}
-      <ProductList {...{ products }}/>
+      <ProductList {...{ products }} />
       <Newsletter />
     </Layout>
   );

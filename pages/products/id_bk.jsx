@@ -24,10 +24,15 @@ export default function Product({ product }) {
   return (
     <Layout {...{ cart }}>
       <ToastContainer />
-      <ProductDetail {...{ product, after: ()=>{
-        getCart();
-        toast("Added to cart", { position: "bottom-right" });
-      } }} />
+      <ProductDetail
+        {...{
+          product,
+          after: () => {
+            getCart();
+            toast("Added to cart", { position: "bottom-right" });
+          },
+        }}
+      />
     </Layout>
   );
 }

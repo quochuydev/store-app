@@ -9,8 +9,8 @@ const cors = require("cors");
 
 const port = process.env.PORT || 3000;
 const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev });
-const handle = app.getRequestHandler();
+const nextApp = next({ dev });
+const handle = nextApp.getRequestHandler();
 
 const { fileRoute } = require("./routes/file");
 const { cartRoute } = require("./routes/cart");
@@ -23,9 +23,9 @@ console.log("*********************************");
 console.log("dev:", dev);
 console.log("port:", port);
 console.log("env:", process.env.NODE_ENV);
-console.log("is production:", process.env.NODE_ENV === "production");
+console.log("isProduction:", process.env.NODE_ENV === "production");
 console.log("database:", process.env.DATABASE_URL);
-console.log("server:", process.env.SERVER_URL);
+console.log("serverUrl:", process.env.SERVER_URL);
 console.log("*********************************");
 
 mongoose
@@ -40,15 +40,15 @@ mongoose
     console.log("connected mongo failed", error);
   });
 
-app.prepare().then(() => {
-  const server = express();
+nextApp.prepare().then(() => {
+  const app = express();
 
-  server.use(cors({ credentials: true, origin: true }));
-  server.use(bodyParser.json({}));
-  server.use(bodyParser.urlencoded({ extended: false }));
-  server.use(cookieParser());
+  app.use(cors({ credentials: true, origin: true }));
+  app.use(bodyParser.json({}));
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(cookieParser());
 
-  server.use(function (req, res, next) {
+  app.use(function (req, res, next) {
     const token = req.cookies.token;
     if (token === undefined) {
       res.cookie("token", uuid(), { maxAge: 9000000, httpOnly: true });
@@ -56,25 +56,26 @@ app.prepare().then(() => {
     next();
   });
 
-  server.use(fileRoute);
-  server.use(cartRoute);
-  server.use(productRoute);
-  server.use(orderRoute);
-  server.use(coreRoute);
-  server.use(settingRoute);
+  app.use(fileRoute);
+  app.use(cartRoute);
+  app.use(productRoute);
+  app.use(orderRoute);
+  app.use(coreRoute);
+  app.use(settingRoute);
+  require("./routes/product/index")({ app, di: { mongoose } });
 
-  server.use((err, req, res, next) => {
+  app.use((err, req, res, next) => {
     if (err) {
       return res.status(400).send(err);
     }
     next();
   });
 
-  server.all("*", (req, res) => {
+  app.all("*", (req, res) => {
     return handle(req, res);
   });
 
-  server.listen(port, () => {
+  app.listen(port, () => {
     console.log(`Ready on ${process.env.SERVER_URL}:${port}`);
   });
 });
