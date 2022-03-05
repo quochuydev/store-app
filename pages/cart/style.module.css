@@ -1,3 +1,7 @@
+.cart {
+  padding: 2rem;
+}
+
 .cartInfo {
   display: flex;
   flex-wrap: wrap;
@@ -66,7 +70,7 @@
   text-align: right;
 }
 
-.qtyClick {
+.quantityControl {
   float: left;
 }
 
@@ -81,7 +85,7 @@
   float: left;
 }
 
-.qtyBtn {
+.quantityButton {
   width: 2rem;
   line-height: 2rem;
   font-weight: 500;

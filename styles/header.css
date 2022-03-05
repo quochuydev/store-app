@@ -96,7 +96,8 @@ header {
 
 .header-2 .navbar a {
   font-size: 1.2rem;
-  padding: 10px 1.5rem;
+  padding: 10px 0rem;
+  margin-right: 1.5rem;
   color: var(--black);
   text-transform: capitalize;
 }

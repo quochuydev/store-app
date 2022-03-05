@@ -1,15 +1,14 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import Link from "next/link";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
+import { ToastContainer } from "react-toastify";
+import axios from "../../utils/axios";
 import styles from "./style.module.css";
 import useCart from "../../hooks/useCart";
 import Layout from "../../components/Layout";
 import useTranslation from "../../locales/useTranslation";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Cart() {
   const [cart, getCart] = useCart();
@@ -60,7 +59,7 @@ function CartComponent({ cart, getCart }) {
         </td>
         <td>${item.price}</td>
         <td>
-          <div className={styles.qtyClick}>
+          <div className={styles.quantityControl}>
             <ButtonChangeQuantity
               type="decrease"
               item={item}
@@ -87,7 +86,7 @@ function CartComponent({ cart, getCart }) {
   };
 
   return (
-    <section className={styles.cart}>
+    <div className={styles.cart}>
       <ToastContainer />
       <table className={styles.table}>
         <tbody>
@@ -126,7 +125,7 @@ function CartComponent({ cart, getCart }) {
           <a className={styles.checkout}>{t("label.processCheckout")}</a>
         </Link>
       </div>
-    </section>
+    </div>
   );
 }
 
@@ -137,17 +136,19 @@ function ButtonChangeQuantity({ item, type, getCart }) {
     if (type === "decrease" && item.quantity <= 1) {
       return;
     }
+
     setLoading(true);
     await axios.post(
-      `${process.env.SERVER_URL}/api/cart/update/${item.productId}`,
+      `api/cart/update/${item.productId}`,
       { quantity: type === "decrease" ? -1 : 1 }
     );
     setLoading(false);
+
     getCart();
   };
 
   return (
-    <button type="button" className={styles.qtyBtn} onClick={onClick}>
+    <button type="button" className={styles.quantityButton} onClick={onClick}>
       {loading ? (
         <i className={`fa fa-spinner fa-spin`} />
       ) : (
@@ -163,7 +164,7 @@ function ButtonRemoveItem({ item, getCart }) {
   const onRemove = async () => {
     setLoading(true);
     await axios.post(
-      `${process.env.SERVER_URL}/api/cart/remove/${item.productId}`
+      `api/cart/remove/${item.productId}`
     );
     setLoading(false);
     getCart();

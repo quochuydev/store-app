@@ -7,11 +7,12 @@ COPY yarn.lock ./
 
 RUN apk update && apk add git
 
-RUN yarn install
+RUN yarn
 
 COPY . .
 
 RUN yarn build
 
 EXPOSE 3000
-CMD [ "node", "server/index.js" ]
+
+CMD [ "yarn start" ]
