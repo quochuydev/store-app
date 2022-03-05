@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "../utils/axios";
+import axios from "../../utils/axios";
 
 import InputConfig from "../../components/Setting/InputConfig";
 import ItemsConfig from "../../components/Setting/ItemsConfig";
