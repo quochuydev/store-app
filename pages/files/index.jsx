@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "../utils/axios";
 
 import InputConfig from "../../components/Setting/InputConfig";
 import ItemsConfig from "../../components/Setting/ItemsConfig";
@@ -16,13 +16,13 @@ export default function Files() {
   const [setting, setSetting] = useState({});
 
   const fetchFiles = () => {
-    axios.get(`${process.env.SERVER_URL}/api/files`).then((result) => {
+    axios.get(`api/files`).then((result) => {
       setFiles(result?.data?.items || []);
     });
   };
 
   useEffect(() => {
-    axios.get(process.env.SERVER_URL + "/api/settings").then((result) => {
+    axios.get("api/settings").then((result) => {
       setSetting(result?.data || {});
     });
   }, []);
@@ -43,12 +43,12 @@ export default function Files() {
   };
 
   const onSave = async (name, data) => {
-    const result = await axios.put(
-      process.env.SERVER_URL + "/api/settings/" + setting._id,
-      { [name]: data }
-    );
-    toast("updated");
-    return result;
+    const result = await axios.put("api/settings/" + setting._id, {
+      [name]: data,
+    });
+
+    toast("Updated successfully");
+    result;
   };
 
   return (

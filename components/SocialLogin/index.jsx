@@ -1,7 +1,7 @@
-import axios from "axios";
 import React from "react";
 import SocialLogin from "react-social-login";
 // import { FcGoogle } from "react-icons/fc";
+import axios from "../../utils/axios";
 
 class SocialButtonComponent extends React.Component {
   render() {
@@ -19,7 +19,7 @@ const SocialButton = SocialLogin(SocialButtonComponent);
 export default function SocialLoginButton(props) {
   const handleSocialLogin = async (result) => {
     await axios.post(
-      "http://localhost:3000/users/signin",
+      "users/signin",
       {
         profile: {
           name: result._profile.name,

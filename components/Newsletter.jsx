@@ -1,9 +1,7 @@
 import { useState } from "react";
-import axios from "axios";
 import { toast } from "react-toastify";
-
+import axios from "../utils/axios";
 import useTranslation from "../locales/useTranslation";
-import config from "../utils/config";
 
 export default function Newsletter() {
   const { t } = useTranslation();
@@ -14,7 +12,7 @@ export default function Newsletter() {
       return toast.error("Invalid phone number");
     }
 
-    await axios.post(`${config.server}/api/subscribe`, { phoneNumber });
+    await axios.post(`api/subscribe`, { phoneNumber });
     toast("Success");
   };
 

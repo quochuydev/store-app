@@ -1,9 +1,7 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
+import React from "react";
+import axios from "../../utils/axios";
+import { toast } from "react-toastify";
 import Layout from "../../components/Layout";
 import Products from "../../components/Products";
 import Category from "../../components/Category";
@@ -12,10 +10,8 @@ import useCart from "../../hooks/useCart";
 import config from "../../utils/config";
 
 export async function getServerSideProps({ query }) {
-  const result = await axios.get(
-    `${config.server}/api/products?limit=8&q=${query.q}`
-  );
-  const setting = await axios.get(`${config.server}/api/settings`);
+  const result = await axios.get(`api/products?limit=8&q=${query.q}`);
+  const setting = await axios.get(`api/settings`);
 
   return {
     props: {
@@ -32,7 +28,6 @@ export default function Search({ meta, products, setting }) {
 
   return (
     <Layout {...{ cart }}>
-      <ToastContainer />
       <section>
         <div className="row">
           <div className="col-md-3">
@@ -41,10 +36,16 @@ export default function Search({ meta, products, setting }) {
           </div>
 
           <div className="col-md-9">
-            <Products {...{ meta, products, after: () => {
-              getCart();
-              toast("Added to cart", { position: "bottom-right" });
-            }}} />
+            <Products
+              {...{
+                meta,
+                products,
+                after: () => {
+                  getCart();
+                  toast("Added to cart", { position: "bottom-right" });
+                },
+              }}
+            />
           </div>
         </div>
       </section>

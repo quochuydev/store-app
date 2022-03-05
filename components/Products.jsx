@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
-import axios from "axios";
 import Link from "next/link";
 import config from "../utils/config";
 import useTranslation from "../locales/useTranslation";
+import axios from "../utils/axios";
 
 export default function Products({ meta, products = [], after }) {
   const { total, limit, page, skip, totalPage } = meta;
@@ -32,7 +32,8 @@ function Product({ product, after }) {
 
   const addToCart = async () => {
     setLoading(true);
-    await axios.post(`${config.server}/api/cart/add`, {
+
+    await axios.post(`api/cart/add`, {
       quantity,
       id: product._id,
     });

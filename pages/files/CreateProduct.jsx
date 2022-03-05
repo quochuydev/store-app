@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import config from "../../utils/config";
+import axios from "../../utils/axios";
 
 export default function CreateProduct({ image }) {
   const title = "title" + String(Math.floor(Math.random() * 10000000));
@@ -28,7 +27,7 @@ export default function CreateProduct({ image }) {
   };
 
   const onCreateProduct = async () => {
-    await axios.post(`${config.server}/api/products`, data);
+    await axios.post(`api/products`, data);
     toast("success");
   };
 
