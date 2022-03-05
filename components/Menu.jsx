@@ -13,7 +13,7 @@ export default function Menu() {
       <Link href="/#home">home</Link>
       <Link href="/#category">{t("navigation.category")}</Link>
       {/* <MegaMenu /> */}
-      <Link href="/#product">{t("navigation.product")}</Link>
+      <Link href="/products">{t("navigation.product")}</Link>
       {config.tickets && <Link href="/tickets">tickets</Link>}
     </nav>
   );
