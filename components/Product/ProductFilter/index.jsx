@@ -193,7 +193,7 @@ export default function ProductFilter({ children }) {
         </Transition.Root>
 
         <main className="mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative z-10 flex items-baseline justify-between py-6 border-b border-gray-200">
+          <div className="relative z-0 flex items-baseline justify-between py-6 border-b border-gray-200">
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">
               Products
             </h1>

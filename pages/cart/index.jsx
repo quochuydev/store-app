@@ -53,11 +53,11 @@ function CartComponent({ cart, getCart }) {
               <Link href={`/products/${item.productId}`}>
                 <p>{item.title}</p>
               </Link>
-              <p>Price: ${item.price}</p>
+              <p>Price: {item.price}đ</p>
             </div>
           </div>
         </td>
-        <td>${item.price}</td>
+        <td>{item.price}đ</td>
         <td>
           <div className={styles.quantityControl}>
             <ButtonChangeQuantity
@@ -138,10 +138,9 @@ function ButtonChangeQuantity({ item, type, getCart }) {
     }
 
     setLoading(true);
-    await axios.post(
-      `api/cart/update/${item.productId}`,
-      { quantity: type === "decrease" ? -1 : 1 }
-    );
+    await axios.post(`api/cart/update/${item.productId}`, {
+      quantity: type === "decrease" ? -1 : 1,
+    });
     setLoading(false);
 
     getCart();
@@ -163,9 +162,7 @@ function ButtonRemoveItem({ item, getCart }) {
 
   const onRemove = async () => {
     setLoading(true);
-    await axios.post(
-      `api/cart/remove/${item.productId}`
-    );
+    await axios.post(`api/cart/remove/${item.productId}`);
     setLoading(false);
     getCart();
   };

@@ -53,12 +53,12 @@ export default function Checkout() {
   return (
     <Layout {...{ cart }}>
       <div>
-        <div className="mt-20">
+        <div className="mt-8">
           <h1 className="flex items-center justify-center font-bold text-indigo-600 text-md lg:text-3xl">
             Checkout
           </h1>
         </div>
-        <div className="container p-12 mx-auto">
+        <div className="container mx-auto">
           <div className="flex flex-col w-full px-0 mx-auto md:flex-row">
             <div className="flex flex-col md:w-full">
               <h2 className="mb-4 font-bold md:text-xl text-heading ">
@@ -191,9 +191,16 @@ export default function Checkout() {
                       defaultValue={""}
                     />
                   </div>
+
                   <div className="mt-4">
-                    <button className="w-full px-6 py-2 text-indigo-200 bg-indigo-600 hover:bg-blue-900">
-                      Process
+                    <button
+                      className="w-full px-6 py-2 text-indigo-200 bg-indigo-600 hover:bg-blue-900"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        createOrder();
+                      }}
+                    >
+                      {t("label.done")}
                     </button>
                   </div>
                 </div>
