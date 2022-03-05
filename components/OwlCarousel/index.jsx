@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useRef, useEffect } from "react";
 import Carousel from "react-owl-carousel2";
 

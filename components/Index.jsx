@@ -13,6 +13,8 @@ import Newsletter from "../components/Newsletter";
 import config from "../utils/config";
 import useCart from "../hooks/useCart";
 import useTranslation from "../locales/useTranslation";
+import { noSSRWithLoadingDynamic } from "../utils/dynamic.import";
+// const Home = noSSRWithLoadingDynamic('../components/Banner')
 
 export default function Index({ meta, products, setting }) {
   const { t } = useTranslation();

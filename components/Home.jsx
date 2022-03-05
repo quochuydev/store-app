@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState, useMemo } from "react";
 
-import config from "../utils/config";
 import OwlCarousel from "./OwlCarousel";
 import Thumb from "./Thumb";
 

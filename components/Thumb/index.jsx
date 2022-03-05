@@ -13,7 +13,7 @@ function Thumb(props) {
     autoHeight: false,
   };
 
-  const doc = document;
+  // const doc = document;
 
   useEffect(() => {
     if (thumbRef !== null && index >= 0) {
@@ -23,7 +23,7 @@ function Thumb(props) {
 
   const thumbActiveHandler = (e, thumbIndex) => {
     props.onChangeIndex(thumbIndex);
-    doc.querySelector(".thumb.active").classList.remove("active");
+    // doc.querySelector(".thumb.active").classList.remove("active");
     e.currentTarget.classList.add("active");
   };
 

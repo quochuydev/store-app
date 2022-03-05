@@ -12,7 +12,8 @@ export default function CreateProduct({ image }) {
     title,
     price,
     original_price: price,
-    image: image || `https://ui-avatars.com/api/?name=${title}&size=500`,
+    // image: image || `https://ui-avatars.com/api/?name=${title}&size=500`,
+    image: image || `https://picsum.photos/500`,
     description: "description" + String(Math.floor(Math.random() * 10000000)),
   });
 
