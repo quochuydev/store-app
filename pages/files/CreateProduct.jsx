@@ -12,7 +12,7 @@ export default function CreateProduct({ image }) {
     price,
     original_price: price,
     // image: image || `https://ui-avatars.com/api/?name=${title}&size=500`,
-    image: image || `https://picsum.photos/500`,
+    image: image || `https://source.unsplash.com/collection/190727/500x500`,
     description: "description" + String(Math.floor(Math.random() * 10000000)),
   });
 

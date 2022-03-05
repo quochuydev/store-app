@@ -2,13 +2,9 @@
 import React, { useState } from "react";
 import axios from "../../utils/axios";
 import Router from "next/router";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-import styles from "./style.module.css";
+import { toast } from "react-toastify";
 import useCart from "../../hooks/useCart";
 import Layout from "../../components/Layout";
-
 import BillingAddress from "../../components/Checkout/BillingAddress";
 import Items from "../../components/Checkout/Items";
 import useTranslation from "../../locales/useTranslation";
@@ -56,90 +52,241 @@ export default function Checkout() {
 
   return (
     <Layout {...{ cart }}>
-      <ToastContainer />
-
-      <section className={styles.container}>
-        <main>
-          <div className="row g-5">
-            <div className="col-md-5 col-lg-4 order-md-last">
-              <h4 className="d-flex justify-content-between align-items-center mb-3">
-                <span className="text-primary">{t("label.yourCart")}</span>
-                <span className="badge bg-primary rounded-pill">
-                  {cart.item_count}
-                </span>
-              </h4>
-              <Items {...{ cart }} />
-              {/* <PromoCodeInput /> */}
-
-              <h4 className="d-flex justify-content-between align-items-center mt-5">
-                <span className="text-primary">{t("label.paymentMethod")}</span>
-              </h4>
-              <div className="mt-3">
-                <div className="form-check">
-                  <input
-                    id="credit"
-                    name="paymentMethod"
-                    type="radio"
-                    className="form-check-input"
-                    required
-                    checked={paymentType === "cod"}
-                    onChange={() => setPaymentType("cod")}
-                  />
-                  <label className="form-check-label" htmlFor="credit">
-                    {t("label.cod")}
-                  </label>
+      <div>
+        <div className="mt-20">
+          <h1 className="flex items-center justify-center font-bold text-indigo-600 text-md lg:text-3xl">
+            Checkout
+          </h1>
+        </div>
+        <div className="container p-12 mx-auto">
+          <div className="flex flex-col w-full px-0 mx-auto md:flex-row">
+            <div className="flex flex-col md:w-full">
+              <h2 className="mb-4 font-bold md:text-xl text-heading ">
+                Shipping Address
+              </h2>
+              <form
+                className="justify-center w-full mx-auto"
+                method="post"
+                action
+              >
+                <div className>
+                  <div className="space-x-0 lg:flex lg:space-x-4">
+                    <div className="w-full lg:w-1/2">
+                      <label
+                        htmlFor="firstName"
+                        className="block mb-3 text-sm font-semibold text-gray-500"
+                      >
+                        First Name
+                      </label>
+                      <input
+                        name="firstName"
+                        type="text"
+                        placeholder="First Name"
+                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+                      />
+                    </div>
+                    <div className="w-full lg:w-1/2 ">
+                      <label
+                        htmlFor="firstName"
+                        className="block mb-3 text-sm font-semibold text-gray-500"
+                      >
+                        Last Name
+                      </label>
+                      <input
+                        name="Last Name"
+                        type="text"
+                        placeholder="Last Name"
+                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <div className="w-full">
+                      <label
+                        htmlFor="Email"
+                        className="block mb-3 text-sm font-semibold text-gray-500"
+                      >
+                        Email
+                      </label>
+                      <input
+                        name="Last Name"
+                        type="text"
+                        placeholder="Email"
+                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <div className="w-full">
+                      <label
+                        htmlFor="Address"
+                        className="block mb-3 text-sm font-semibold text-gray-500"
+                      >
+                        Address
+                      </label>
+                      <textarea
+                        className="w-full px-4 py-3 text-xs border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+                        name="Address"
+                        cols={20}
+                        rows={4}
+                        placeholder="Address"
+                        defaultValue={""}
+                      />
+                    </div>
+                  </div>
+                  <div className="space-x-0 lg:flex lg:space-x-4">
+                    <div className="w-full lg:w-1/2 ">
+                      <label
+                        htmlFor="District"
+                        className="block mb-3 text-sm font-semibold text-gray-500"
+                      >
+                        District
+                      </label>
+                      <input
+                        name="district"
+                        type="text"
+                        placeholder="District"
+                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+                      />
+                    </div>
+                    <div className="w-full lg:w-1/2">
+                      <label
+                        htmlFor="city"
+                        className="block mb-3 text-sm font-semibold text-gray-500"
+                      >
+                        City
+                      </label>
+                      <input
+                        name="city"
+                        type="text"
+                        placeholder="City"
+                        className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex items-center mt-4">
+                    <label className="flex items-center text-sm group text-heading">
+                      <input
+                        type="checkbox"
+                        className="w-5 h-5 border border-gray-300 rounded focus:outline-none focus:ring-1"
+                      />
+                      <span className="ml-2">
+                        Save this information for next time
+                      </span>
+                    </label>
+                  </div>
+                  <div className="relative pt-3 xl:pt-6">
+                    <label
+                      htmlFor="note"
+                      className="block mb-3 text-sm font-semibold text-gray-500"
+                    >
+                      {" "}
+                      Notes (Optional)
+                    </label>
+                    <textarea
+                      name="note"
+                      className="flex items-center w-full px-4 py-3 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-600"
+                      rows={4}
+                      placeholder="Notes for delivery"
+                      defaultValue={""}
+                    />
+                  </div>
+                  <div className="mt-4">
+                    <button className="w-full px-6 py-2 text-indigo-200 bg-indigo-600 hover:bg-blue-900">
+                      Process
+                    </button>
+                  </div>
                 </div>
-                <div className="form-check">
-                  <input
-                    id="debit"
-                    name="paymentMethod"
-                    type="radio"
-                    className="form-check-input"
-                    required
-                    checked={paymentType === "bank"}
-                    onChange={() => setPaymentType("bank")}
-                  />
-                  <label className="form-check-label" htmlFor="debit">
-                    {t("label.bank")}
-                  </label>
+              </form>
+            </div>
+            <div className="flex flex-col w-full ml-0 lg:ml-12 lg:w-2/5">
+              <div className="pt-12 md:pt-0 2xl:ps-4">
+                <h2 className="text-xl font-bold">Order Summary</h2>
+                <div className="mt-8">
+                  <div className="flex flex-col space-y-4">
+                    <div className="flex space-x-4">
+                      <div>
+                        <img
+                          src="https://source.unsplash.com/user/erondu/500x500"
+                          alt="image"
+                          className="w-60"
+                        />
+                      </div>
+                      <div>
+                        <h2 className="text-xl font-bold">Title</h2>
+                        <p className="text-sm">
+                          Lorem ipsum dolor sit amet, tet
+                        </p>
+                        <span className="text-red-600">Price</span> $20
+                      </div>
+                      <div>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-6 h-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex space-x-4">
+                      <div>
+                        <img
+                          src="https://source.unsplash.com/collection/190727/500x500"
+                          alt="image"
+                          className="w-60"
+                        />
+                      </div>
+                      <div>
+                        <h2 className="text-xl font-bold">Title</h2>
+                        <p className="text-sm">
+                          Lorem ipsum dolor sit amet, tet
+                        </p>
+                        <span className="text-red-600">Price</span> $20
+                      </div>
+                      <div>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-6 h-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex p-4 mt-4">
+                  <h2 className="text-xl font-bold">ITEMS 2</h2>
+                </div>
+                <div className="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
+                  Subtotal<span className="ml-2">$40.00</span>
+                </div>
+                <div className="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
+                  Shipping Tax<span className="ml-2">$10</span>
+                </div>
+                <div className="flex items-center w-full py-4 text-sm font-semibold border-b border-gray-300 lg:py-5 lg:px-3 text-heading last:border-b-0 last:text-base last:pb-0">
+                  Total<span className="ml-2">$50.00</span>
                 </div>
               </div>
             </div>
-
-            <div className="col-md-7 col-lg-8">
-              <h4 className="mb-3">{t("label.billing")}</h4>
-              <form className="needs-validation was-validated" noValidate>
-                <BillingAddress {...{ onData }} />
-
-                <div className="form-check">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    id="same-address"
-                    checked
-                    disabled
-                  />
-                  <label className="form-check-label" htmlFor="same-address">
-                    {t("label.noteShipping")}
-                  </label>
-                </div>
-
-                {/* <Payment /> */}
-                <hr className="my-4" />
-                <button
-                  className="w-100 btn btn-primary btn-lg"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    createOrder();
-                  }}
-                >
-                  {t("label.done")}
-                </button>
-              </form>
-            </div>
           </div>
-        </main>
-      </section>
+        </div>
+      </div>
     </Layout>
   );
 }
