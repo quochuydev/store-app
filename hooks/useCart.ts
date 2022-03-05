@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
+import axios from "../utils/axios";
 
 export default function useCart(): any {
   const [cart, setCart] = useState({
@@ -7,7 +7,7 @@ export default function useCart(): any {
   });
 
   const getCart = () => {
-    axios.get(process.env.SERVER_URL + "/api/cart").then((result) => {
+    axios.get("/api/cart").then((result) => {
       setCart(result?.data);
     });
   };

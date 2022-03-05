@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/router";
-import axios from "axios";
+import axios from "../../utils/axios";
 
 import styles from "./style.module.css";
 import Layout from "../../components/Layout";
@@ -28,7 +28,7 @@ export default function Order() {
 
     axios({
       method: "get",
-      url: `${process.env.SERVER_URL}/api/orders/${id}`,
+      url: `/api/orders/${id}`,
     }).then(function (response) {
       setData(response.data);
     });
@@ -84,10 +84,9 @@ function CustomerInfo({ data }) {
               <Uploader
                 onSuccess={async (result) => {
                   const note = result?.url;
-                  await axios.post(
-                    `${process.env.SERVER_URL}/api/orders/${data._id}/payment-info`,
-                    { note }
-                  );
+                  await axios.post(`/api/orders/${data._id}/payment-info`, {
+                    note,
+                  });
                   setPaymentNote(note);
                 }}
                 onError={(error) => {

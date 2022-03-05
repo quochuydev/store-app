@@ -1,10 +1,7 @@
 const multer = require("multer");
-const slugify = require("slugify");
-var Minio = require("minio");
-
+const Minio = require("minio");
+const env = require("../env");
 const { fileModel } = require("../models/file");
-
-const server = process.env.SERVER_URL;
 
 var minioClient = new Minio.Client({
   endPoint: "localhost",
@@ -25,12 +22,13 @@ const diskUploader = (file) => {
     fileName,
     file.buffer,
     function (error, result) {
-      if(error) {
-        throw error
+      if (error) {
+        throw error;
       }
+
       return fileModel.create({
         fileName,
-        url: server + "/files/" + fileName,
+        url: `${env.serverUrl}/files/${fileName}`,
       });
     }
   );

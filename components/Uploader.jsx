@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useMemo } from "react";
-import axios from "axios";
+import React from "react";
+import axios from "../utils/axios";
 
 export default function Uploader(props) {
   return (
@@ -13,8 +13,10 @@ export default function Uploader(props) {
 
           const result = await axios({
             method: "post",
-            url: `${process.env.SERVER_URL}/api/files`,
-            headers: { "Content-Type": "multipart/form-data" },
+            url: `api/files`,
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
             data: formData,
           });
 

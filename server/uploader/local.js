@@ -2,10 +2,8 @@ const multer = require("multer");
 const slugify = require("slugify");
 const fs = require("fs");
 const path = require("path");
-
+const env = require("../env");
 const { fileModel } = require("../models/file");
-
-const server = process.env.SERVER_URL;
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -22,7 +20,7 @@ const diskStorage = upload.single("files");
 
 const diskUploader = (file) => {
   console.log(file);
-  return fileModel.create({ url: server + "/" + file.path });
+  return fileModel.create({ url: `${env.serverUrl}/${file.path}` });
 };
 
 function getFile(fileName, onData, onError) {

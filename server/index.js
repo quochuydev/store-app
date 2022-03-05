@@ -6,11 +6,7 @@ const mongoose = require("mongoose");
 const uuid = require("uuid").v4;
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-
-const port = process.env.PORT || 3000;
-const dev = process.env.NODE_ENV !== "production";
-const nextApp = next({ dev });
-const handle = nextApp.getRequestHandler();
+const env = require("./env");
 
 const { fileRoute } = require("./routes/file");
 const { cartRoute } = require("./routes/cart");
@@ -19,17 +15,22 @@ const { orderRoute } = require("./routes/order");
 const { coreRoute } = require("./routes/core");
 const { settingRoute } = require("./routes/setting");
 
+const port = env.port;
+const dev = env.nodeEnv !== "production";
 console.log("*********************************");
 console.log("dev:", dev);
 console.log("port:", port);
-console.log("env:", process.env.NODE_ENV);
-console.log("isProduction:", process.env.NODE_ENV === "production");
-console.log("database:", process.env.DATABASE_URL);
-console.log("serverUrl:", process.env.SERVER_URL);
+console.log("env:", env.nodeEnv);
+console.log("isProduction:", env.nodeEnv === "production");
+console.log("database:", env.databaseUrl);
+console.log("serverUrl:", env.serverUrl);
 console.log("*********************************");
 
+const nextApp = next({ dev });
+const handle = nextApp.getRequestHandler();
+
 mongoose
-  .connect(process.env.DATABASE_URL, {
+  .connect(env.databaseUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -64,10 +65,11 @@ nextApp.prepare().then(() => {
   app.use(settingRoute);
   require("./routes/product/index")({ app, di: { mongoose } });
 
-  app.use((err, req, res, next) => {
-    if (err) {
-      return res.status(400).send(err);
+  app.use((error, req, res, next) => {
+    if (error) {
+      return res.status(400).send(error);
     }
+
     next();
   });
 
@@ -76,6 +78,6 @@ nextApp.prepare().then(() => {
   });
 
   app.listen(port, () => {
-    console.log(`Ready on ${process.env.SERVER_URL}:${port}`);
+    console.log(`Ready on ${env.serverUrl}:${port}`);
   });
 });

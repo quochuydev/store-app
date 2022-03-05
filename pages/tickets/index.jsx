@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import * as _ from "lodash";
-import axios from "axios";
+import axios from "../../utils/axios";
 
 import TicketCard from "./TicketCard";
 import Pagination from "../../components/Pagination";
@@ -14,7 +14,7 @@ import Layout from "../../components/Layout";
 
 const fetchTickets = async () => {
   try {
-    const result = await axios.get(`${process.env.SERVER_URL}/api/tickets`);
+    const result = await axios.get(`/api/tickets`);
     return result?.data?.items;
   } catch (error) {
     return [

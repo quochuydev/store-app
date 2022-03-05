@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../../utils/axios";
 import Router from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -39,7 +39,7 @@ export default function Checkout() {
       return toast.error("Invalid address!");
     }
 
-    const result = await axios.post(`${process.env.SERVER_URL}/api/orders`, {
+    const result = await axios.post(`/api/orders`, {
       customer,
       line_items: cart.items,
       amount: cart.total_price,
@@ -48,7 +48,7 @@ export default function Checkout() {
       },
     });
 
-    await axios.delete(`${process.env.SERVER_URL}/api/cart`);
+    await axios.delete(`/api/cart`);
 
     const order = result?.data;
     Router.push(`/order/${order._id}?thankyou=true`);

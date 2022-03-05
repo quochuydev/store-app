@@ -1,7 +1,8 @@
 import React from "react";
 import dynamic from "next/dynamic";
 
-// import { Loading } from "../web/components";
+// TODO write loading component
+// import { Loading } from "@components";
 
 export const noSSRWithLoadingDynamic = (component) => {
   return dynamic(() => component, {

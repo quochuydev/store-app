@@ -4,7 +4,7 @@
 /* eslint-disable @next/next/no-sync-scripts */
 import Document, { NextScript, Head, Main, Html } from "next/document";
 
-const GA_TRACKING_ID = process.env.GA_TRACKING_ID;
+const TrackingId = process.env.GA_TRACKING_ID;
 const isProduction = process.env.NODE_ENV === "production";
 
 export default class MyDocument extends Document {
@@ -14,7 +14,7 @@ export default class MyDocument extends Document {
   }
 
   render() {
-    GA_TRACKING_ID && console.log(GA_TRACKING_ID, isProduction);
+    TrackingId && console.log(TrackingId, isProduction);
 
     return (
       <Html lang="en">
@@ -34,7 +34,7 @@ export default class MyDocument extends Document {
             <>
               <script
                 async
-                src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+                src={`https://www.googletagmanager.com/gtag/js?id=${TrackingId}`}
               />
               <script
                 // eslint-disable-next-line react/no-danger
@@ -43,7 +43,7 @@ export default class MyDocument extends Document {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${GA_TRACKING_ID}', {
+            gtag('config', '${TrackingId}', {
               page_path: window.location.pathname,
             });
           `,
@@ -52,14 +52,11 @@ export default class MyDocument extends Document {
             </>
           )}
         </Head>
-
         <body>
           <Main />
-
           <script src="./js/jquery.min.js"></script>
           <script src="./js/owl.carousel.min.js"></script>
           <script src="./js/app.js"></script>
-
           <NextScript />
         </body>
       </Html>
