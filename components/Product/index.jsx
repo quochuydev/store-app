@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
-import axios from "axios";
-import config from "../../utils/config";
+import axios from "../../utils/axios";
 
 export default function ProductDetail({ product, after }) {
   const [quantity, setQuantity] = useState(1);
@@ -9,7 +8,7 @@ export default function ProductDetail({ product, after }) {
 
   const addToCart = async () => {
     setLoading(true);
-    await axios.post(`${config.server}/api/cart/add`, {
+    await axios.post(`/api/cart/add`, {
       quantity,
       id: product._id,
     });
@@ -28,7 +27,7 @@ export default function ProductDetail({ product, after }) {
             className="p-4"
           />
         </div>
-        <div >
+        <div>
           <h1>{product.title}</h1>
           <div>{product.body}</div>
           <strong>Categories:</strong>

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import ProductDetail from "../../components/Product";
 import useCart from "../../hooks/useCart";
 import Layout from "../../components/Layout";

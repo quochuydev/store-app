@@ -1,8 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import { StarIcon } from "@heroicons/react/solid";
 import { RadioGroup } from "@headlessui/react";
+import axios from "../../../utils/axios";
 
-const product = {
+const productDetail = {
   name: "Basic Tee 6-Pack",
   price: "$192",
   href: "#",
@@ -60,9 +62,25 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function ProductDetail({}) {
-  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
-  const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
+export default function ProductDetail({ product, after }) {
+  const [selectedColor, setSelectedColor] = useState(product?.colors?.[0]);
+  const [selectedSize, setSelectedSize] = useState(product?.sizes?.[2]);
+  const [quantity, setQuantity] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+  const addToCart = async () => {
+    setLoading(true);
+    try {
+      await axios.post(`/api/cart/add`, {
+        quantity,
+        id: product._id,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+    setLoading(false);
+    after();
+  };
 
   return (
     <div className="bg-white">
@@ -72,7 +90,7 @@ export default function ProductDetail({}) {
             role="list"
             className="mx-auto px-4 flex items-center space-x-2 sm:px-6 lg:px-8"
           >
-            {product.breadcrumbs.map((breadcrumb) => (
+            {product.breadcrumbs?.map((breadcrumb) => (
               <li key={breadcrumb.id}>
                 <div className="flex items-center">
                   <a
@@ -162,7 +180,7 @@ export default function ProductDetail({}) {
                     Choose a color
                   </RadioGroup.Label>
                   <div className="flex items-center space-x-3">
-                    {product.colors.map((color) => (
+                    {product.colors?.map((color) => (
                       <RadioGroup.Option
                         key={color.name}
                         value={color}
@@ -212,7 +230,7 @@ export default function ProductDetail({}) {
                     Choose a size
                   </RadioGroup.Label>
                   <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
-                    {product.sizes.map((size) => (
+                    {product.sizes?.map((size) => (
                       <RadioGroup.Option
                         key={size.name}
                         value={size}
@@ -274,6 +292,8 @@ export default function ProductDetail({}) {
 
               <button
                 type="submit"
+                onClick={addToCart}
+                disabled={loading}
                 className="mt-10 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 Add to cart
@@ -299,7 +319,7 @@ export default function ProductDetail({}) {
 
                 <div className="mt-4">
                   <ul role="list" className="pl-4 list-disc text-sm space-y-2">
-                    {product.highlights.map((highlight) => (
+                    {product.highlights?.map((highlight) => (
                       <li key={highlight} className="text-gray-400">
                         <span className="text-gray-600">{highlight}</span>
                       </li>
@@ -321,8 +341,8 @@ export default function ProductDetail({}) {
           <div className="py-10 lg:pt-6 lg:pb-4 lg:col-start-1 lg:col-span-1 lg:border-r lg:border-gray-200 lg:pr-8">
             <div>
               <img
-                src={product.images[0].src}
-                alt={product.images[0].alt}
+                src={product.images?.[0]?.src}
+                alt={product.images?.[0]?.alt}
                 className="w-full h-full object-center object-cover"
               />
             </div>
