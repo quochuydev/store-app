@@ -38,7 +38,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 5%;
+  padding: 1rem 2rem;
 }
 
 .logo {
@@ -81,8 +81,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 5%;
   box-shadow: 0 0.5rem 1rem #0000001a;
+  padding: 0.5rem 2rem;
   position: relative;
 }
 

@@ -11,7 +11,7 @@ function Icon() {
   return (
     <a href="#" className="logo">
       <i className="fas fa-shopping-basket" />
-      groco
+      Coffee
     </a>
   );
 }

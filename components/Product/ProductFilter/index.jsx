@@ -116,7 +116,7 @@ export default function ProductFilter({children}) {
                   </ul>
 
                   {filters.map((section) => (
-                    <Disclosure as="div" key={section.id} className="border-t border-gray-200 px-4 py-6">
+                    <Disclosure as="div" key={section.id} className="border-t border-gray-200 px-4 py-6" defaultOpen={true}>
                       {({ open }) => (
                         <>
                           <h3 className="-mx-2 -my-3 flow-root">
