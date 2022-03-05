@@ -2,8 +2,7 @@
 
 /* @import "owl.carousel"; */
 @import "header";
-@import "layout";
-@import "footer";
+/* @import "footer"; */
 @import "newsletter";
 /* @import "mega-menu"; */
 @import "category";
@@ -38,16 +37,6 @@ html {
 
 section {
   padding: 0 5%;
-}
-
-.btn {
-  background: var(--green) !important;
-  color: #fff !important;
-  font-size: 1rem !important;
-}
-
-.btn:hover {
-  background: var(--grey2) !important;
 }
 
 .home {
