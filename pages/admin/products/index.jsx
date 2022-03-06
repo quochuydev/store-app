@@ -61,7 +61,7 @@ const projects = [
   },
   // More projects...
 ];
-const pinnedProjects = projects.filter((project) => project.pinned);
+const pinnedProjects = projects.filter((project) => project?.pinned);
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -88,7 +88,7 @@ export default function Example() {
 
   useEffect(() => {
     axios.post("api.admin.product.getList").then((result) => {
-      const newProducts = result?.data?.items || [];
+      const newProducts = result?.data || [];
       setProducts(newProducts);
     });
   }, []);
@@ -524,8 +524,8 @@ export default function Example() {
                 role="list"
                 className="mt-3 border-t border-gray-200 divide-y divide-gray-100"
               >
-                {projects.map((project) => (
-                  <li key={project.id}>
+                {products.map((product) => (
+                  <li key={product?.id}>
                     <a
                       href="#"
                       className="group flex items-center justify-between px-4 py-4 hover:bg-gray-50 sm:px-6"
@@ -533,15 +533,15 @@ export default function Example() {
                       <span className="flex items-center truncate space-x-3">
                         <span
                           className={classNames(
-                            project.bgColorClass,
+                            product?.bgColorClass,
                             "w-2.5 h-2.5 flex-shrink-0 rounded-full"
                           )}
                           aria-hidden="true"
                         />
                         <span className="font-medium truncate text-sm leading-6">
-                          {project.title}{" "}
+                          {product?.title}{" "}
                           <span className="truncate font-normal text-gray-500">
-                            in {project.team}
+                            in {product?.team}
                           </span>
                         </span>
                       </span>
@@ -562,10 +562,10 @@ export default function Example() {
                   <thead>
                     <tr className="border-t border-gray-200">
                       <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        <span className="lg:pl-2">Project</span>
+                        <span className="lg:pl-2">Sản phẩm</span>
                       </th>
-                      <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Members
+                      <th className="hidden md:table-cell px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Giá
                       </th>
                       <th className="hidden md:table-cell px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Last updated
@@ -576,7 +576,7 @@ export default function Example() {
                   <tbody className="bg-white divide-y divide-gray-100">
                     {products.map((product) => (
                       <tr key={product._id}>
-                        <td className="px-6 py-3 max-w-0 w-full whitespace-nowrap text-sm font-medium text-gray-900">
+                        <td className="px-6 py-3 max-w-0 whitespace-nowrap text-sm font-medium text-gray-900">
                           <div className="flex items-center space-x-3 lg:pl-2">
                             <div
                               className={classNames(
@@ -585,6 +585,11 @@ export default function Example() {
                               )}
                               aria-hidden="true"
                             />
+                            <img
+                              className="max-w-none h-12 w-12 ring-2 ring-white"
+                              src={product.image}
+                              alt={product.title}
+                            />
                             <a
                               href="#"
                               className="truncate hover:text-gray-600"
@@ -592,33 +597,17 @@ export default function Example() {
                               <span>
                                 {product.title}{" "}
                                 <span className="text-gray-500 font-normal">
-                                  in {project.team}
+                                  in {product.title}
                                 </span>
                               </span>
                             </a>
                           </div>
                         </td>
-                        <td className="px-6 py-3 text-sm text-gray-500 font-medium">
-                          <div className="flex items-center space-x-2">
-                            <div className="flex flex-shrink-0 -space-x-1">
-                              {project.members.map((member) => (
-                                <img
-                                  key={member.handle}
-                                  className="max-w-none h-6 w-6 rounded-full ring-2 ring-white"
-                                  src={member.imageUrl}
-                                  alt={member.name}
-                                />
-                              ))}
-                            </div>
-                            {project.totalMembers > project.members.length ? (
-                              <span className="flex-shrink-0 text-xs leading-5 font-medium">
-                                +{project.totalMembers - project.members.length}
-                              </span>
-                            ) : null}
-                          </div>
+                        <td className="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right">
+                          {product?.price}đ
                         </td>
                         <td className="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right">
-                          {project.lastUpdated}
+                          {product?.createdAt}
                         </td>
                         <td className="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
                           <a
