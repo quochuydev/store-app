@@ -1,15 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @next/next/link-passhref */
 import { Fragment, useState } from "react";
-import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
-import {
-  MenuIcon,
-  SearchIcon,
-  ShoppingBagIcon,
-  XIcon,
-} from "@heroicons/react/outline";
 import Link from "next/link";
+import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
+import { MenuIcon, ShoppingBagIcon, XIcon } from "@heroicons/react/outline";
 import useTranslation from "@locales/useTranslation";
+import SearchBox from "@components/SearchBox";
 
 const navigation = {
   categories: [
@@ -292,7 +288,7 @@ export default function Header({ cart }) {
                 ))}
               </div>
 
-              <div className="border-t border-gray-200 py-6 px-4 space-y-6">
+              {/* <div className="border-t border-gray-200 py-6 px-4 space-y-6">
                 <div className="flow-root">
                   <a
                     href="#"
@@ -309,7 +305,7 @@ export default function Header({ cart }) {
                     Create account
                   </a>
                 </div>
-              </div>
+              </div> */}
 
               <div className="border-t border-gray-200 py-6 px-4">
                 <a href="#" className="-m-2 p-2 flex items-center">
@@ -483,7 +479,7 @@ export default function Header({ cart }) {
               </Popover.Group>
 
               <div className="ml-auto flex items-center">
-                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                {/* <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
                   <a
                     href="#"
                     className="text-sm font-medium text-gray-700 hover:text-gray-800"
@@ -497,7 +493,7 @@ export default function Header({ cart }) {
                   >
                     Create account
                   </a>
-                </div>
+                </div> */}
 
                 {/* <div className="hidden lg:ml-8 lg:flex">
                   <a
@@ -514,6 +510,11 @@ export default function Header({ cart }) {
                   </a>
                 </div> */}
 
+                {/* Search */}
+                <div className="flex lg:ml-6">
+                  <SearchBox />
+                </div>
+
                 <select
                   className="border-white lg:ml-8"
                   value={i18n.language}
@@ -523,26 +524,20 @@ export default function Header({ cart }) {
                   <option value="en">en</option>
                 </select>
 
-                {/* Search */}
-                <div className="flex lg:ml-6">
-                  <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
-                    <span className="sr-only">Search</span>
-                    <SearchIcon className="w-6 h-6" aria-hidden="true" />
-                  </a>
-                </div>
-
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                  <a href="#" className="group -m-2 p-2 flex items-center">
-                    <ShoppingBagIcon
-                      className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
-                      aria-hidden="true"
-                    />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                      {cart.item_count || 0}
-                    </span>
-                    <span className="sr-only">items in cart, view bag</span>
-                  </a>
+                  <Link href="/cart">
+                    <a className="group -m-2 p-2 flex items-center">
+                      <ShoppingBagIcon
+                        className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
+                        aria-hidden="true"
+                      />
+                      <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+                        {cart.item_count || 0}
+                      </span>
+                      <span className="sr-only">items in cart, view bag</span>
+                    </a>
+                  </Link>
                 </div>
               </div>
             </div>

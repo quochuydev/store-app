@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Router from "next/router";
-
+import { SearchIcon } from "@heroicons/react/outline";
 import useTranslation from "@locales/useTranslation";
 
 export default function SearchBox() {
@@ -9,7 +9,7 @@ export default function SearchBox() {
   const [keyword, setKeyword] = useState("");
 
   const search = (q) => {
-    Router.push(`/search/?q=${q}`);
+    Router.push(`/search?q=${q}`);
   };
 
   return (
@@ -17,11 +17,14 @@ export default function SearchBox() {
       <input
         type="text"
         name="q"
-        id="search-box"
         placeholder={t("label.search")}
         onChange={(e) => setKeyword(e.target.value)}
       />
-      <a onClick={() => search(keyword)} className="fas fa-search" />
+      <SearchIcon
+        className="w-6 h-6"
+        aria-hidden="true"
+        onClick={() => search(keyword)}
+      />
     </div>
   );
 }

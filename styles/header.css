@@ -53,27 +53,14 @@ header {
   color: var(--green);
 }
 
-.header-1 .search-box-container {
+.search-box-container {
   display: flex;
 }
 
-.header-1 .search-box-container #search-box {
+.search-box-container input {
   height: 100%;
   width: 100%;
-  padding: 0.5rem;
-}
-
-.header-1 .search-box-container a {
-  width: 4rem;
-  color: #fff;
-  background: var(--black);
-  text-align: center;
-  cursor: pointer;
-  line-height: 2rem;
-}
-
-.header-1 .search-box-container label:hover {
-  background: var(--black);
+  padding: 0.1rem;
 }
 
 .header-2 {
@@ -130,11 +117,6 @@ header {
 @media (max-width: 450px) {
   .header-1 {
     flex-flow: column;
-  }
-
-  .header-1 .search-box-container {
-    width: 100%;
-    margin-top: 2rem;
   }
 }
 
