@@ -8,11 +8,7 @@ import {
   ViewListIcon,
   XIcon,
 } from "@heroicons/react/outline";
-import {
-  ChevronRightIcon,
-  SearchIcon,
-  SelectorIcon,
-} from "@heroicons/react/solid";
+import { SearchIcon, SelectorIcon } from "@heroicons/react/solid";
 import Link from "next/link";
 import axios from "@utils/axios";
 
@@ -498,59 +494,18 @@ export default function AdminLayout({ children }) {
                 </h1>
               </div>
               <div className="mt-4 flex sm:mt-0 sm:ml-4">
-                <button
-                  type="button"
-                  className="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3"
-                >
-                  Create
-                </button>
+                <Link href={"/admin/products/new_product"}>
+                  <button
+                    type="button"
+                    className="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3"
+                  >
+                    Create
+                  </button>
+                </Link>
               </div>
             </div>
 
-            {/* Projects list (only on smallest breakpoint) */}
-            <div className="mt-10 sm:hidden">
-              <div className="px-4 sm:px-6">
-                <h2 className="text-gray-500 text-xs font-medium uppercase tracking-wide">
-                  Projects
-                </h2>
-              </div>
-              <ul
-                role="list"
-                className="mt-3 border-t border-gray-200 divide-y divide-gray-100"
-              >
-                {products.map((product) => (
-                  <li key={product?.id}>
-                    <a
-                      href="#"
-                      className="group flex items-center justify-between px-4 py-4 hover:bg-gray-50 sm:px-6"
-                    >
-                      <span className="flex items-center truncate space-x-3">
-                        <span
-                          className={classNames(
-                            product?.bgColorClass,
-                            "w-2.5 h-2.5 flex-shrink-0 rounded-full"
-                          )}
-                          aria-hidden="true"
-                        />
-                        <span className="font-medium truncate text-sm leading-6">
-                          {product?.title}{" "}
-                          <span className="truncate font-normal text-gray-500">
-                            in {product?.team}
-                          </span>
-                        </span>
-                      </span>
-                      <ChevronRightIcon
-                        className="ml-4 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-                        aria-hidden="true"
-                      />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Projects table (small breakpoint and up) */}
-            <div className="hidden mt-8 sm:block">
+            <div className="sm:block">
               <div className="align-middle inline-block min-w-full border-b border-gray-200">
                 {children}
               </div>

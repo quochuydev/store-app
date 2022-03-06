@@ -6,16 +6,6 @@ export default function AdminNewProduct() {
       <form className="space-y-8 divide-y divide-gray-200 p-8">
         <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
           <div>
-            <div>
-              <h3 className="text-lg leading-6 font-medium text-gray-900">
-                Profile
-              </h3>
-              <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                This information will be displayed publicly so be careful what
-                you share.
-              </p>
-            </div>
-
             <div className="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
               <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                 <label
