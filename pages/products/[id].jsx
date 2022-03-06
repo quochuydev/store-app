@@ -1,8 +1,8 @@
 import { toast } from "react-toastify";
 import axios from "@utils/axios";
-import ProductDetail from "../../components/Product/ProductDetail";
-import Layout from "../../components/Layout";
-import useCart from "../../hooks/useCart";
+import ProductDetail from "@components/Product/ProductDetail";
+import Layout from "@components/Layout";
+import useCart from "@hooks/useCart";
 
 export async function getServerSideProps({ query }) {
   const result = await axios.get(`api/products/${query.id}`);

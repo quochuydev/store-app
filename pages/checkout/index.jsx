@@ -1,12 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
-import axios from "@utils/axios";
 import Router from "next/router";
 import { toast } from "react-toastify";
-import useCart from "../../hooks/useCart";
-import Layout from "../../components/Layout";
-import BillingAddress from "../../components/Checkout/BillingAddress";
-import Items from "../../components/Checkout/Items";
+import axios from "@utils/axios";
+import useCart from "@hooks/useCart";
+import Layout from "@components/Layout";
 import useTranslation from "@locales/useTranslation";
 
 export default function Checkout() {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import OwlCarousel from "../OwlCarousel";
+import OwlCarousel from "@components/OwlCarousel";
 
 function Thumb(props) {
   const { thumbs = [], index = 0 } = props;

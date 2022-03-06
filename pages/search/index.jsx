@@ -2,12 +2,10 @@ import { useRouter } from "next/router";
 import React from "react";
 import axios from "@utils/axios";
 import { toast } from "react-toastify";
-import Layout from "../../components/Layout";
-import Products from "../../components/Products";
-import Category from "../../components/Category";
-
-import useCart from "../../hooks/useCart";
-import config from "../../utils/config";
+import Layout from "@components/Layout";
+import Products from "@components/Products";
+import Category from "@components/Category";
+import useCart from "@hooks/useCart";
 
 export async function getServerSideProps({ query }) {
   const result = await axios.get(`api/products?limit=8&q=${query.q}`);

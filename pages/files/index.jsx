@@ -3,12 +3,11 @@ import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "@utils/axios";
-
-import InputConfig from "../../components/Setting/InputConfig";
-import ItemsConfig from "../../components/Setting/ItemsConfig";
-import CreateProduct from "./CreateProduct";
-import Uploader from "../../components/Uploader";
-import config from "../../utils/config";
+import InputConfig from "@components/Setting/InputConfig";
+import ItemsConfig from "@components/Setting/ItemsConfig";
+import CreateProduct from "@components/CreateProduct";
+import Uploader from "@components/Uploader";
+import config from "@utils/config";
 
 export default function Files() {
   const [image, setImage] = useState(null);

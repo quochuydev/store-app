@@ -5,11 +5,11 @@ import { useRouter } from "next/router";
 import axios from "@utils/axios";
 
 import styles from "./style.module.css";
-import Layout from "../../components/Layout";
-import Thankyou from "../../components/Thankyou";
-import useCart from "../../hooks/useCart";
+import Layout from "@components/Layout";
+import Thankyou from "@components/Thankyou";
+import Uploader from "@components/Uploader";
+import useCart from "@hooks/useCart";
 import useTranslation from "@locales/useTranslation";
-import Uploader from "../../components/Uploader";
 
 export default function Order() {
   const { id, thankyou } = useRouter().query;

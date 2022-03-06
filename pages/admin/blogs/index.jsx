@@ -10,7 +10,6 @@ import {
 } from "@heroicons/react/outline";
 import {
   ChevronRightIcon,
-  DotsVerticalIcon,
   SearchIcon,
   SelectorIcon,
 } from "@heroicons/react/solid";
