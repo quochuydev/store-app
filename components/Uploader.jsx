@@ -2,11 +2,13 @@ import React from "react";
 import axios from "@utils/axios";
 
 export default function Uploader(props) {
+  const { id, onSuccess, onError } = props;
+
   return (
     <input
       type="file"
-      id="file-upload"
-      name="file-upload"
+      id={id}
+      name={id}
       className="sr-only"
       onChange={async (event) => {
         try {
@@ -24,9 +26,9 @@ export default function Uploader(props) {
           });
 
           console.log(result?.data);
-          props.onSuccess && props.onSuccess(result?.data);
+          onSuccess && onSuccess(result?.data);
         } catch (error) {
-          props.onError && props.onError(error);
+          onError && onError(error);
         }
       }}
     />

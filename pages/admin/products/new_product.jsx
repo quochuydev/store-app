@@ -9,8 +9,10 @@ export default function AdminNewProduct() {
     () =>
       yup.object().shape({
         title: yup.string().trim().required(),
-        price: yup.number().required(),
-        description: yup.string().trim().notRequired(),
+        price: yup.number().min(0).notRequired(),
+        originalPrice: yup.number().min(0).notRequired(),
+        description: yup.string().trim().nullable().notRequired(),
+        image: yup.string().trim().required(),
       }),
     []
   );
@@ -20,7 +22,8 @@ export default function AdminNewProduct() {
       title: null,
       price: 0,
       originalPrice: 0,
-      description: "",
+      description: null,
+      image: null,
     },
     validationSchema: schema,
     onSubmit: async (values) => {
@@ -28,24 +31,19 @@ export default function AdminNewProduct() {
     },
   });
 
-  useEffect(() => {
-    formik.setValues({
-      title: null,
-      price: 0,
-      originalPrice: 0,
-      description: "",
-    });
-  }, []);
+  // useEffect(() => {
+  //   formik.setValues({
+  //   });
+  // }, []);
 
   return (
     <AdminLayout>
-      <form
-        onSubmit={formik.handleSubmit}
-        className="space-y-8 divide-y divide-gray-200 p-8"
-      >
+      <form onSubmit={formik.handleSubmit} className="space-y-8 p-8">
         <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
           <div>
             <div className="space-y-6 sm:space-y-5">
+              {/* {JSON.stringify(formik.errors)} */}
+
               <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
                 <label
                   htmlFor="first-name"
@@ -59,7 +57,11 @@ export default function AdminNewProduct() {
                     name="title"
                     id="title"
                     autoComplete="given-name"
-                    className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                    className={`max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm rounded-md ${
+                      formik.errors?.title
+                        ? "border-red-300"
+                        : "border-gray-300"
+                    }`}
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                     value={formik.values?.title}
@@ -156,10 +158,16 @@ export default function AdminNewProduct() {
                   htmlFor="cover-photo"
                   className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                 >
-                  Cover photo
+                  Image
                 </label>
                 <div className="mt-1 sm:mt-0 sm:col-span-2">
-                  <div className="max-w-lg flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                  <div
+                    className={`max-w-lg flex justify-center px-6 pt-5 pb-6 border-2 border-dashed rounded-md ${
+                      formik.errors?.image
+                        ? "border-red-300"
+                        : "border-gray-300"
+                    } `}
+                  >
                     <div className="space-y-1 text-center">
                       <svg
                         className="mx-auto h-12 w-12 text-gray-400"
@@ -181,16 +189,12 @@ export default function AdminNewProduct() {
                           className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                         >
                           <span>Upload a file</span>
-                          <Uploader />
-                          {/* <input
+                          <Uploader
                             id="file-upload"
-                            name="file-upload"
-                            type="file"
-                            className="sr-only"
-                            onChange={(e) => {
-                              console.log(e);
+                            onSuccess={(file) => {
+                              formik.setValues({ image: file?.url });
                             }}
-                          /> */}
+                          />
                         </label>
                         <p className="pl-1">or drag and drop</p>
                       </div>
@@ -203,7 +207,7 @@ export default function AdminNewProduct() {
               </div>
             </div>
           </div>
-
+          {/* 
           <div className="space-y-6 sm:space-y-5">
             <div className="space-y-6 sm:space-y-5">
               <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-5">
@@ -383,7 +387,7 @@ export default function AdminNewProduct() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="pt-5">
