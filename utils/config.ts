@@ -19,5 +19,4 @@ export default {
     isLoginTwitter: false,
   },
   tickets: false,
-  checkin: true,
 };
