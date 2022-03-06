@@ -17,8 +17,8 @@ import {
 import Link from "next/link";
 
 const navigation = [
-  { name: "Products", href: "/admin/products", icon: HomeIcon, current: true },
-  { name: "Orders", href: "/admin/orders", icon: ViewListIcon },
+  { name: "Products", href: "/admin/products", icon: HomeIcon },
+  { name: "Orders", href: "/admin/orders", icon: ViewListIcon, current: true },
   { name: "Blogs", href: "/admin/blogs", icon: ClockIcon },
 ];
 const projects = [

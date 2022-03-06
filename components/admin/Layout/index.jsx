@@ -153,28 +153,28 @@ export default function Example() {
                   <nav className="px-2">
                     <div className="space-y-1">
                       {navigation.map((item) => (
-                        <Link key={item.name} href={item.href}>
-                          <a
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          className={classNames(
+                            item.current
+                              ? "bg-gray-100 text-gray-900"
+                              : "text-gray-600 hover:text-gray-900 hover:bg-gray-50",
+                            "group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md"
+                          )}
+                          aria-current={item.current ? "page" : undefined}
+                        >
+                          <item.icon
                             className={classNames(
                               item.current
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-600 hover:text-gray-900 hover:bg-gray-50",
-                              "group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md"
+                                ? "text-gray-500"
+                                : "text-gray-400 group-hover:text-gray-500",
+                              "mr-3 flex-shrink-0 h-6 w-6"
                             )}
-                            aria-current={item.current ? "page" : undefined}
-                          >
-                            <item.icon
-                              className={classNames(
-                                item.current
-                                  ? "text-gray-500"
-                                  : "text-gray-400 group-hover:text-gray-500",
-                                "mr-3 flex-shrink-0 h-6 w-6"
-                              )}
-                              aria-hidden="true"
-                            />
-                            {item.name}
-                          </a>
-                        </Link>
+                            aria-hidden="true"
+                          />
+                          {item.name}
+                        </a>
                       ))}
                     </div>
                   </nav>

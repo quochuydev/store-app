@@ -1,72 +1,79 @@
-
-import { Fragment, useState } from 'react'
-import { Dialog, Menu, Transition } from '@headlessui/react'
-import { ClockIcon, HomeIcon, MenuAlt1Icon, ViewListIcon, XIcon } from '@heroicons/react/outline'
-import { ChevronRightIcon, DotsVerticalIcon, SearchIcon, SelectorIcon } from '@heroicons/react/solid'
+/* eslint-disable @next/next/no-img-element */
+import { Fragment, useState } from "react";
+import { Dialog, Menu, Transition } from "@headlessui/react";
+import {
+  ClockIcon,
+  HomeIcon,
+  MenuAlt1Icon,
+  ViewListIcon,
+  XIcon,
+} from "@heroicons/react/outline";
+import {
+  ChevronRightIcon,
+  DotsVerticalIcon,
+  SearchIcon,
+  SelectorIcon,
+} from "@heroicons/react/solid";
+import Link from "next/link";
 
 const navigation = [
-  { name: 'Home', href: '#', icon: HomeIcon, current: true },
-  { name: 'My tasks', href: '#', icon: ViewListIcon, current: false },
-  { name: 'Recent', href: '#', icon: ClockIcon, current: false },
-]
-const teams = [
-  { name: 'Engineering', href: '#', bgColorClass: 'bg-indigo-500' },
-  { name: 'Human Resources', href: '#', bgColorClass: 'bg-green-500' },
-  { name: 'Customer Success', href: '#', bgColorClass: 'bg-yellow-500' },
-]
+  { name: "Products", href: "/admin/products", icon: HomeIcon },
+  { name: "Orders", href: "/admin/orders", icon: ViewListIcon },
+  { name: "Blogs", href: "/admin/blogs", icon: ClockIcon, current: true },
+];
 const projects = [
   {
     id: 1,
-    title: 'GraphQL API',
-    initials: 'GA',
-    team: 'Engineering',
+    title: "GraphQL API",
+    initials: "GA",
+    team: "Engineering",
     members: [
       {
-        name: 'Dries Vincent',
-        handle: 'driesvincent',
+        name: "Dries Vincent",
+        handle: "driesvincent",
         imageUrl:
-          'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+          "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
       },
       {
-        name: 'Lindsay Walton',
-        handle: 'lindsaywalton',
+        name: "Lindsay Walton",
+        handle: "lindsaywalton",
         imageUrl:
-          'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+          "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
       },
       {
-        name: 'Courtney Henry',
-        handle: 'courtneyhenry',
+        name: "Courtney Henry",
+        handle: "courtneyhenry",
         imageUrl:
-          'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+          "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
       },
       {
-        name: 'Tom Cook',
-        handle: 'tomcook',
+        name: "Tom Cook",
+        handle: "tomcook",
         imageUrl:
-          'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+          "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
       },
     ],
     totalMembers: 12,
-    lastUpdated: 'March 17, 2020',
+    lastUpdated: "March 17, 2020",
     pinned: true,
-    bgColorClass: 'bg-pink-600',
+    bgColorClass: "bg-pink-600",
   },
   // More projects...
-]
-const pinnedProjects = projects.filter((project) => project.pinned)
+];
+const pinnedProjects = projects.filter((project) => project.pinned);
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export async function getServerSideProps({ req }) {
-  if(!req.session?.user){
+  if (!req.session?.user) {
     return {
       redirect: {
         permanent: false,
-        destination: "/login"
-      }
-    }
+        destination: "/login",
+      },
+    };
   }
 
   return {
@@ -75,7 +82,7 @@ export async function getServerSideProps({ req }) {
 }
 
 export default function Example() {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <>
@@ -86,7 +93,11 @@ export default function Example() {
       */}
       <div className="min-h-full">
         <Transition.Root show={sidebarOpen} as={Fragment}>
-          <Dialog as="div" className="fixed inset-0 flex z-40 lg:hidden" onClose={setSidebarOpen}>
+          <Dialog
+            as="div"
+            className="fixed inset-0 flex z-40 lg:hidden"
+            onClose={setSidebarOpen}
+          >
             <Transition.Child
               as={Fragment}
               enter="transition-opacity ease-linear duration-300"
@@ -124,7 +135,10 @@ export default function Example() {
                       onClick={() => setSidebarOpen(false)}
                     >
                       <span className="sr-only">Close sidebar</span>
-                      <XIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                      <XIcon
+                        className="h-6 w-6 text-white"
+                        aria-hidden="true"
+                      />
                     </button>
                   </div>
                 </Transition.Child>
@@ -139,50 +153,29 @@ export default function Example() {
                   <nav className="px-2">
                     <div className="space-y-1">
                       {navigation.map((item) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className={classNames(
-                            item.current
-                              ? 'bg-gray-100 text-gray-900'
-                              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50',
-                            'group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md'
-                          )}
-                          aria-current={item.current ? 'page' : undefined}
-                        >
-                          <item.icon
-                            className={classNames(
-                              item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-                              'mr-3 flex-shrink-0 h-6 w-6'
-                            )}
-                            aria-hidden="true"
-                          />
-                          {item.name}
-                        </a>
-                      ))}
-                    </div>
-                    <div className="mt-8">
-                      <h3
-                        className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider"
-                        id="mobile-teams-headline"
-                      >
-                        Teams
-                      </h3>
-                      <div className="mt-1 space-y-1" role="group" aria-labelledby="mobile-teams-headline">
-                        {teams.map((team) => (
+                        <Link key={item.name} href={item.href}>
                           <a
-                            key={team.name}
-                            href={team.href}
-                            className="group flex items-center px-3 py-2 text-base leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50"
+                            className={classNames(
+                              item.current
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-600 hover:text-gray-900 hover:bg-gray-50",
+                              "group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md"
+                            )}
+                            aria-current={item.current ? "page" : undefined}
                           >
-                            <span
-                              className={classNames(team.bgColorClass, 'w-2.5 h-2.5 mr-4 rounded-full')}
+                            <item.icon
+                              className={classNames(
+                                item.current
+                                  ? "text-gray-500"
+                                  : "text-gray-400 group-hover:text-gray-500",
+                                "mr-3 flex-shrink-0 h-6 w-6"
+                              )}
                               aria-hidden="true"
                             />
-                            <span className="truncate">{team.name}</span>
+                            {item.name}
                           </a>
-                        ))}
-                      </div>
+                        </Link>
+                      ))}
                     </div>
                   </nav>
                 </div>
@@ -213,12 +206,18 @@ export default function Example() {
                     <span className="flex min-w-0 items-center justify-between space-x-3">
                       <img
                         className="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0"
-                        src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
+                        src={
+                          "https://ui-avatars.com/api/?name=Huy Pham&size=500"
+                        }
                         alt=""
                       />
                       <span className="flex-1 flex flex-col min-w-0">
-                        <span className="text-gray-900 text-sm font-medium truncate">Jessy Schwarz</span>
-                        <span className="text-gray-500 text-sm truncate">@jessyschwarz</span>
+                        <span className="text-gray-900 text-sm font-medium truncate">
+                          Admin
+                        </span>
+                        <span className="text-gray-500 text-sm truncate">
+                          @quochuydev
+                        </span>
                       </span>
                     </span>
                     <SelectorIcon
@@ -244,40 +243,16 @@ export default function Example() {
                         <a
                           href="#"
                           className={classNames(
-                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                            'block px-4 py-2 text-sm'
+                            active
+                              ? "bg-gray-100 text-gray-900"
+                              : "text-gray-700",
+                            "block px-4 py-2 text-sm"
                           )}
                         >
                           View profile
                         </a>
                       )}
                     </Menu.Item>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                            'block px-4 py-2 text-sm'
-                          )}
-                        >
-                          Settings
-                        </a>
-                      )}
-                    </Menu.Item>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                            'block px-4 py-2 text-sm'
-                          )}
-                        >
-                          Notifications
-                        </a>
-                      )}
-                    </Menu.Item>
                   </div>
                   <div className="py-1">
                     <Menu.Item>
@@ -285,36 +260,10 @@ export default function Example() {
                         <a
                           href="#"
                           className={classNames(
-                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                            'block px-4 py-2 text-sm'
-                          )}
-                        >
-                          Get desktop app
-                        </a>
-                      )}
-                    </Menu.Item>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                            'block px-4 py-2 text-sm'
-                          )}
-                        >
-                          Support
-                        </a>
-                      )}
-                    </Menu.Item>
-                  </div>
-                  <div className="py-1">
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                            'block px-4 py-2 text-sm'
+                            active
+                              ? "bg-gray-100 text-gray-900"
+                              : "text-gray-700",
+                            "block px-4 py-2 text-sm"
                           )}
                         >
                           Logout
@@ -335,7 +284,10 @@ export default function Example() {
                   className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
                   aria-hidden="true"
                 >
-                  <SearchIcon className="mr-3 h-4 w-4 text-gray-400" aria-hidden="true" />
+                  <SearchIcon
+                    className="mr-3 h-4 w-4 text-gray-400"
+                    aria-hidden="true"
+                  />
                 </div>
                 <input
                   type="text"
@@ -354,45 +306,25 @@ export default function Example() {
                     key={item.name}
                     href={item.href}
                     className={classNames(
-                      item.current ? 'bg-gray-200 text-gray-900' : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50',
-                      'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+                      item.current
+                        ? "bg-gray-200 text-gray-900"
+                        : "text-gray-700 hover:text-gray-900 hover:bg-gray-50",
+                      "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                     )}
-                    aria-current={item.current ? 'page' : undefined}
+                    aria-current={item.current ? "page" : undefined}
                   >
                     <item.icon
                       className={classNames(
-                        item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-                        'mr-3 flex-shrink-0 h-6 w-6'
+                        item.current
+                          ? "text-gray-500"
+                          : "text-gray-400 group-hover:text-gray-500",
+                        "mr-3 flex-shrink-0 h-6 w-6"
                       )}
                       aria-hidden="true"
                     />
                     {item.name}
                   </a>
                 ))}
-              </div>
-              <div className="mt-8">
-                {/* Secondary navigation */}
-                <h3
-                  className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider"
-                  id="desktop-teams-headline"
-                >
-                  Teams
-                </h3>
-                <div className="mt-1 space-y-1" role="group" aria-labelledby="desktop-teams-headline">
-                  {teams.map((team) => (
-                    <a
-                      key={team.name}
-                      href={team.href}
-                      className="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:text-gray-900 hover:bg-gray-50"
-                    >
-                      <span
-                        className={classNames(team.bgColorClass, 'w-2.5 h-2.5 mr-4 rounded-full')}
-                        aria-hidden="true"
-                      />
-                      <span className="truncate">{team.name}</span>
-                    </a>
-                  ))}
-                </div>
               </div>
             </nav>
           </div>
@@ -458,8 +390,10 @@ export default function Example() {
                             <a
                               href="#"
                               className={classNames(
-                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                'block px-4 py-2 text-sm'
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
                               )}
                             >
                               View profile
@@ -471,8 +405,10 @@ export default function Example() {
                             <a
                               href="#"
                               className={classNames(
-                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                'block px-4 py-2 text-sm'
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
                               )}
                             >
                               Settings
@@ -484,8 +420,10 @@ export default function Example() {
                             <a
                               href="#"
                               className={classNames(
-                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                'block px-4 py-2 text-sm'
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
                               )}
                             >
                               Notifications
@@ -499,8 +437,10 @@ export default function Example() {
                             <a
                               href="#"
                               className={classNames(
-                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                'block px-4 py-2 text-sm'
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
                               )}
                             >
                               Get desktop app
@@ -512,8 +452,10 @@ export default function Example() {
                             <a
                               href="#"
                               className={classNames(
-                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                'block px-4 py-2 text-sm'
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
                               )}
                             >
                               Support
@@ -527,8 +469,10 @@ export default function Example() {
                             <a
                               href="#"
                               className={classNames(
-                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                'block px-4 py-2 text-sm'
+                                active
+                                  ? "bg-gray-100 text-gray-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
                               )}
                             >
                               Logout
@@ -546,15 +490,11 @@ export default function Example() {
             {/* Page title & actions */}
             <div className="border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
               <div className="flex-1 min-w-0">
-                <h1 className="text-lg font-medium leading-6 text-gray-900 sm:truncate">Home</h1>
+                <h1 className="text-lg font-medium leading-6 text-gray-900 sm:truncate">
+                  Home
+                </h1>
               </div>
               <div className="mt-4 flex sm:mt-0 sm:ml-4">
-                <button
-                  type="button"
-                  className="order-1 ml-3 inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-0 sm:ml-0"
-                >
-                  Share
-                </button>
                 <button
                   type="button"
                   className="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3"
@@ -563,110 +503,37 @@ export default function Example() {
                 </button>
               </div>
             </div>
-            {/* Pinned projects */}
-            <div className="px-4 mt-6 sm:px-6 lg:px-8">
-              <h2 className="text-gray-500 text-xs font-medium uppercase tracking-wide">Pinned Projects</h2>
-              <ul role="list" className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 xl:grid-cols-4 mt-3">
-                {pinnedProjects.map((project) => (
-                  <li key={project.id} className="relative col-span-1 flex shadow-sm rounded-md">
-                    <div
-                      className={classNames(
-                        project.bgColorClass,
-                        'flex-shrink-0 flex items-center justify-center w-16 text-white text-sm font-medium rounded-l-md'
-                      )}
-                    >
-                      {project.initials}
-                    </div>
-                    <div className="flex-1 flex items-center justify-between border-t border-r border-b border-gray-200 bg-white rounded-r-md truncate">
-                      <div className="flex-1 px-4 py-2 text-sm truncate">
-                        <a href="#" className="text-gray-900 font-medium hover:text-gray-600">
-                          {project.title}
-                        </a>
-                        <p className="text-gray-500">{project.totalMembers} Members</p>
-                      </div>
-                      <Menu as="div" className="flex-shrink-0 pr-2">
-                        <Menu.Button className="w-8 h-8 bg-white inline-flex items-center justify-center text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                          <span className="sr-only">Open options</span>
-                          <DotsVerticalIcon className="w-5 h-5" aria-hidden="true" />
-                        </Menu.Button>
-                        <Transition
-                          as={Fragment}
-                          enter="transition ease-out duration-100"
-                          enterFrom="transform opacity-0 scale-95"
-                          enterTo="transform opacity-100 scale-100"
-                          leave="transition ease-in duration-75"
-                          leaveFrom="transform opacity-100 scale-100"
-                          leaveTo="transform opacity-0 scale-95"
-                        >
-                          <Menu.Items className="z-10 mx-3 origin-top-right absolute right-10 top-3 w-48 mt-1 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none">
-                            <div className="py-1">
-                              <Menu.Item>
-                                {({ active }) => (
-                                  <a
-                                    href="#"
-                                    className={classNames(
-                                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                      'block px-4 py-2 text-sm'
-                                    )}
-                                  >
-                                    View
-                                  </a>
-                                )}
-                              </Menu.Item>
-                            </div>
-                            <div className="py-1">
-                              <Menu.Item>
-                                {({ active }) => (
-                                  <a
-                                    href="#"
-                                    className={classNames(
-                                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                      'block px-4 py-2 text-sm'
-                                    )}
-                                  >
-                                    Removed from pinned
-                                  </a>
-                                )}
-                              </Menu.Item>
-                              <Menu.Item>
-                                {({ active }) => (
-                                  <a
-                                    href="#"
-                                    className={classNames(
-                                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                      'block px-4 py-2 text-sm'
-                                    )}
-                                  >
-                                    Share
-                                  </a>
-                                )}
-                              </Menu.Item>
-                            </div>
-                          </Menu.Items>
-                        </Transition>
-                      </Menu>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
 
             {/* Projects list (only on smallest breakpoint) */}
             <div className="mt-10 sm:hidden">
               <div className="px-4 sm:px-6">
-                <h2 className="text-gray-500 text-xs font-medium uppercase tracking-wide">Projects</h2>
+                <h2 className="text-gray-500 text-xs font-medium uppercase tracking-wide">
+                  Projects
+                </h2>
               </div>
-              <ul role="list" className="mt-3 border-t border-gray-200 divide-y divide-gray-100">
+              <ul
+                role="list"
+                className="mt-3 border-t border-gray-200 divide-y divide-gray-100"
+              >
                 {projects.map((project) => (
                   <li key={project.id}>
-                    <a href="#" className="group flex items-center justify-between px-4 py-4 hover:bg-gray-50 sm:px-6">
+                    <a
+                      href="#"
+                      className="group flex items-center justify-between px-4 py-4 hover:bg-gray-50 sm:px-6"
+                    >
                       <span className="flex items-center truncate space-x-3">
                         <span
-                          className={classNames(project.bgColorClass, 'w-2.5 h-2.5 flex-shrink-0 rounded-full')}
+                          className={classNames(
+                            project.bgColorClass,
+                            "w-2.5 h-2.5 flex-shrink-0 rounded-full"
+                          )}
                           aria-hidden="true"
                         />
                         <span className="font-medium truncate text-sm leading-6">
-                          {project.title} <span className="truncate font-normal text-gray-500">in {project.team}</span>
+                          {project.title}{" "}
+                          <span className="truncate font-normal text-gray-500">
+                            in {project.team}
+                          </span>
                         </span>
                       </span>
                       <ChevronRightIcon
@@ -703,12 +570,21 @@ export default function Example() {
                         <td className="px-6 py-3 max-w-0 w-full whitespace-nowrap text-sm font-medium text-gray-900">
                           <div className="flex items-center space-x-3 lg:pl-2">
                             <div
-                              className={classNames(project.bgColorClass, 'flex-shrink-0 w-2.5 h-2.5 rounded-full')}
+                              className={classNames(
+                                project.bgColorClass,
+                                "flex-shrink-0 w-2.5 h-2.5 rounded-full"
+                              )}
                               aria-hidden="true"
                             />
-                            <a href="#" className="truncate hover:text-gray-600">
+                            <a
+                              href="#"
+                              className="truncate hover:text-gray-600"
+                            >
                               <span>
-                                {project.title} <span className="text-gray-500 font-normal">in {project.team}</span>
+                                {project.title}{" "}
+                                <span className="text-gray-500 font-normal">
+                                  in {project.team}
+                                </span>
                               </span>
                             </a>
                           </div>
@@ -736,7 +612,10 @@ export default function Example() {
                           {project.lastUpdated}
                         </td>
                         <td className="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
-                          <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                          <a
+                            href="#"
+                            className="text-indigo-600 hover:text-indigo-900"
+                          >
                             Edit
                           </a>
                         </td>
@@ -750,5 +629,5 @@ export default function Example() {
         </div>
       </div>
     </>
-  )
+  );
 }
