@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, Menu, Transition } from "@headlessui/react";
 import {
   ClockIcon,
@@ -15,6 +15,7 @@ import {
   SelectorIcon,
 } from "@heroicons/react/solid";
 import Link from "next/link";
+import axios from "@utils/axios";
 
 const navigation = [
   { name: "Products", href: "/admin/products", icon: HomeIcon, current: true },
@@ -83,6 +84,14 @@ export async function getServerSideProps({ req }) {
 
 export default function Example() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios.post("api.admin.product.getList").then((result) => {
+      const newProducts = result?.data?.items || [];
+      setProducts(newProducts);
+    });
+  }, []);
 
   return (
     <>
@@ -565,13 +574,13 @@ export default function Example() {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-100">
-                    {projects.map((project) => (
-                      <tr key={project.id}>
+                    {products.map((product) => (
+                      <tr key={product._id}>
                         <td className="px-6 py-3 max-w-0 w-full whitespace-nowrap text-sm font-medium text-gray-900">
                           <div className="flex items-center space-x-3 lg:pl-2">
                             <div
                               className={classNames(
-                                project.bgColorClass,
+                                product.bgColorClass,
                                 "flex-shrink-0 w-2.5 h-2.5 rounded-full"
                               )}
                               aria-hidden="true"
@@ -581,7 +590,7 @@ export default function Example() {
                               className="truncate hover:text-gray-600"
                             >
                               <span>
-                                {project.title}{" "}
+                                {product.title}{" "}
                                 <span className="text-gray-500 font-normal">
                                   in {project.team}
                                 </span>

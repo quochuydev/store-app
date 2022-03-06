@@ -80,10 +80,11 @@ nextApp.prepare().then(() => {
   app.use(coreRoute);
   app.use(settingRoute);
   require("./routes/auth")({ app });
-  require("./routes/product/index")({ app, di: { mongoose } });
+  require("./routes/product/index")(app, { mongoose });
 
   app.use((error, req, res, next) => {
     if (error) {
+      console.error(error);
       return res.status(400).send(error);
     }
 

@@ -7,14 +7,12 @@ module.exports = (di) => {
     return true;
   };
 
-  const handle = async () => {
-    const { mongoose } = di;
-    const products = await mongoose.model("Product").find({});
-    return products;
+  const handle = async ({ productId }) => {
+    return { productId };
   };
 
   return {
-    subject: "api.products.getList",
+    subject: "/api.web.products.get",
     validate,
     authorize,
     handle,
