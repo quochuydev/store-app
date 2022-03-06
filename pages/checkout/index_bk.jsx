@@ -2,8 +2,7 @@
 import React, { useState } from "react";
 import axios from "@utils/axios";
 import Router from "next/router";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 import useCart from "../../hooks/useCart";
 import Layout from "../../components/Layout";
@@ -54,8 +53,6 @@ export default function Checkout() {
 
   return (
     <Layout {...{ cart }}>
-      <ToastContainer />
-
       <section>
         <main>
           <div className="row g-5">

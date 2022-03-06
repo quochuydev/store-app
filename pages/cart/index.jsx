@@ -2,13 +2,11 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
 import Link from "next/link";
-import { ToastContainer } from "react-toastify";
 import axios from "@utils/axios";
 import styles from "./style.module.css";
-import useCart from "../../hooks/useCart";
-import Layout from "../../components/Layout";
+import useCart from "@hooks/useCart";
+import Layout from "@components/Layout";
 import useTranslation from "@locales/useTranslation";
-import "react-toastify/dist/ReactToastify.css";
 
 export default function Cart() {
   const [cart, getCart] = useCart();
@@ -87,7 +85,6 @@ function CartComponent({ cart, getCart }) {
 
   return (
     <div className={styles.cart}>
-      <ToastContainer />
       <table className={styles.table}>
         <tbody>
           <tr>

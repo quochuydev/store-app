@@ -131,7 +131,7 @@ const navigation = {
       ],
     },
   ],
-  pages: [{ name: "Products", href: "products" }],
+  pages: [{ name: "Products", href: "/products" }],
 };
 
 function classNames(...classes) {
@@ -326,9 +326,9 @@ export default function Header({ cart }) {
       </Transition.Root>
 
       <header className="relative bg-white">
-        <p className="bg-indigo-600 h-10 flex items-center justify-center text-sm font-medium text-white px-4 sm:px-6 lg:px-8">
+        {/* <p className="bg-indigo-600 h-10 flex items-center justify-center text-sm font-medium text-white px-4 sm:px-6 lg:px-8">
           Get free delivery on orders over $100
-        </p>
+        </p> */}
 
         <nav aria-label="Top" className="mx-auto px-4 sm:px-6 lg:px-8">
           <div className="border-b border-gray-200">
@@ -393,7 +393,7 @@ export default function Header({ cart }) {
                               />
 
                               <div className="relative bg-white">
-                                <div className="max-w-7xl mx-auto px-8">
+                                <div className="mx-auto px-8">
                                   <div className="grid grid-cols-2 gap-y-10 gap-x-8 py-16">
                                     <div className="col-start-2 grid grid-cols-2 gap-x-8">
                                       {category.featured.map((item) => (
