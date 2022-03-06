@@ -8,27 +8,23 @@ var minioClient = new Minio.Client({
   port: 9000,
   useSSL: false,
   // secure: false,
-  accessKey: process.env.MINIO_ACCESS_KEY,
-  secretKey: process.env.MINIO_SECRET_KEY,
+  accessKey: "S9W42CAHHVBN3LGZC0LT",
+  secretKey: "bgSiXPnXVjKV05zUYbRng91klKmlalbaPDa0XNVv",
 });
 
-const diskStorage = multer({ storage: multer.memoryStorage() }).single("files");
+const storage = multer({ storage: multer.memoryStorage() }).single("files");
 
-const diskUploader = (file) => {
+const uploader = (file) => {
   const fileName = Date.now() + "_" + file.originalname;
 
   minioClient.putObject(
     "grocery",
     fileName,
     file.buffer,
-    function (error, result) {
-      if (error) {
-        throw error;
-      }
-
+    function (error, { etag }) {
       return fileModel.create({
         fileName,
-        url: `${env.serverUrl}/files/${fileName}`,
+        url: env.serverUrl + "/files/" + fileName,
       });
     }
   );
@@ -43,4 +39,4 @@ function getFile(fileName, onData, onError) {
   });
 }
 
-module.exports = { diskStorage, diskUploader, getFile };
+module.exports = { storage, uploader, getFile };

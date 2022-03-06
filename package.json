@@ -21,7 +21,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "formik": "^2.2.9",
-    "fs": "^0.0.1-security",
+    "fs-extra": "^10.0.1",
     "i18next": "^20.6.0",
     "i18next-browser-languagedetector": "^6.1.2",
     "lodash": "^4.17.21",

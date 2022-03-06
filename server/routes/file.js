@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const { fileModel } = require("../models/file");
-const { storage, uploader, getFile } = require("../uploader");
+const { storage, uploader, getFile } = require("../storageService");
 
 router.post("/api/files", storage, async (req, res) => {
   try {
