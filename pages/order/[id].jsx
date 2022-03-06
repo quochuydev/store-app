@@ -26,10 +26,7 @@ export default function Order() {
       return;
     }
 
-    axios({
-      method: "get",
-      url: `/api/orders/${id}`,
-    }).then(function (response) {
+    axios.get(`/api/orders/${id}`).then(function (response) {
       setData(response.data);
     });
   }, [id]);

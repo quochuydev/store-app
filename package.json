@@ -37,7 +37,8 @@
     "react-social-login": "^3.4.14",
     "react-toastify": "^8.0.1",
     "slugify": "^1.6.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/react": "17.0.19",

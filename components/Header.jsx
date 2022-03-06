@@ -516,7 +516,7 @@ export default function Header({ cart }) {
                 </div>
 
                 <select
-                  className="border-white lg:ml-8"
+                  className="border-white lg:ml-4"
                   value={i18n.language}
                   onChange={(e) => changeLanguage(e.target.value)}
                 >

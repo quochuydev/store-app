@@ -142,6 +142,7 @@ export default function Example() {
                     </button>
                   </div>
                 </Transition.Child>
+
                 <div className="flex-shrink-0 flex items-center px-4">
                   <img
                     className="h-8 w-auto"

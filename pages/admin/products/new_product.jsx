@@ -1,13 +1,91 @@
+import { useMemo, useEffect } from "react";
+import { useFormik } from "formik";
+import * as yup from "yup";
 import AdminLayout from "@components/admin/Layout";
 
 export default function AdminNewProduct() {
+  const schema = useMemo(
+    () =>
+      yup.object().shape({
+        title: yup.string().trim().required(),
+        price: yup.number().required(),
+        description: yup.string().trim().notRequired(),
+      }),
+    []
+  );
+
+  const formik = useFormik({
+    initialValues: {
+      title: null,
+      price: 0,
+      description: "",
+    },
+    validationSchema: schema,
+    onSubmit: async (values) => {
+      console.log(values);
+    },
+  });
+
+  useEffect(() => {
+    formik.setValues({
+      title: null,
+      price: 0,
+      description: "",
+    });
+  }, []);
+
   return (
     <AdminLayout>
-      <form className="space-y-8 divide-y divide-gray-200 p-8">
+      <form
+        onSubmit={formik.handleSubmit}
+        className="space-y-8 divide-y divide-gray-200 p-8"
+      >
         <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
           <div>
-            <div className="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
-              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+            <div className="space-y-6 sm:space-y-5">
+              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
+                <label
+                  htmlFor="first-name"
+                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                >
+                  title
+                </label>
+                <div className="mt-1 sm:mt-0 sm:col-span-2">
+                  <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    autoComplete="given-name"
+                    className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values?.title}
+                  />
+                </div>
+              </div>
+
+              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
+                <label
+                  htmlFor="first-name"
+                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                >
+                  price
+                </label>
+                <div className="mt-1 sm:mt-0 sm:col-span-2">
+                  <input
+                    type="number"
+                    name="price"
+                    id="price"
+                    autoComplete="given-name"
+                    className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values?.price}
+                  />
+                </div>
+              </div>
+
+              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
                 <label
                   htmlFor="username"
                   className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
@@ -30,56 +108,28 @@ export default function AdminNewProduct() {
                 </div>
               </div>
 
-              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-5">
                 <label
                   htmlFor="about"
                   className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                 >
-                  About
+                  description
                 </label>
                 <div className="mt-1 sm:mt-0 sm:col-span-2">
                   <textarea
-                    id="about"
-                    name="about"
+                    id="description"
+                    name="description"
                     rows={3}
                     className="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md"
-                    defaultValue={""}
+                    value={formik.values?.description}
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
                   />
                   <p className="mt-2 text-sm text-gray-500">
                     Write a few sentences about yourself.
                   </p>
                 </div>
-              </div>
 
-              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 sm:pt-5">
-                <label
-                  htmlFor="photo"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Photo
-                </label>
-                <div className="mt-1 sm:mt-0 sm:col-span-2">
-                  <div className="flex items-center">
-                    <span className="h-12 w-12 rounded-full overflow-hidden bg-gray-100">
-                      <svg
-                        className="h-full w-full text-gray-300"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                      </svg>
-                    </span>
-                    <button
-                      type="button"
-                      className="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                      Change
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                 <label
                   htmlFor="cover-photo"
                   className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
@@ -129,70 +179,8 @@ export default function AdminNewProduct() {
           </div>
 
           <div className="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
-            <div>
-              <h3 className="text-lg leading-6 font-medium text-gray-900">
-                Personal Information
-              </h3>
-              <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                Use a permanent address where you can receive mail.
-              </p>
-            </div>
             <div className="space-y-6 sm:space-y-5">
-              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                <label
-                  htmlFor="first-name"
-                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                >
-                  First name
-                </label>
-                <div className="mt-1 sm:mt-0 sm:col-span-2">
-                  <input
-                    type="text"
-                    name="first-name"
-                    id="first-name"
-                    autoComplete="given-name"
-                    className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                <label
-                  htmlFor="last-name"
-                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                >
-                  Last name
-                </label>
-                <div className="mt-1 sm:mt-0 sm:col-span-2">
-                  <input
-                    type="text"
-                    name="last-name"
-                    id="last-name"
-                    autoComplete="family-name"
-                    className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                >
-                  Email address
-                </label>
-                <div className="mt-1 sm:mt-0 sm:col-span-2">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-5">
                 <label
                   htmlFor="country"
                   className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
@@ -212,91 +200,8 @@ export default function AdminNewProduct() {
                   </select>
                 </div>
               </div>
-
-              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                <label
-                  htmlFor="street-address"
-                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                >
-                  Street address
-                </label>
-                <div className="mt-1 sm:mt-0 sm:col-span-2">
-                  <input
-                    type="text"
-                    name="street-address"
-                    id="street-address"
-                    autoComplete="street-address"
-                    className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300 rounded-md"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                <label
-                  htmlFor="city"
-                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                >
-                  City
-                </label>
-                <div className="mt-1 sm:mt-0 sm:col-span-2">
-                  <input
-                    type="text"
-                    name="city"
-                    id="city"
-                    autoComplete="address-level2"
-                    className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                <label
-                  htmlFor="region"
-                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                >
-                  State / Province
-                </label>
-                <div className="mt-1 sm:mt-0 sm:col-span-2">
-                  <input
-                    type="text"
-                    name="region"
-                    id="region"
-                    autoComplete="address-level1"
-                    className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
-                  />
-                </div>
-              </div>
-
-              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-                <label
-                  htmlFor="postal-code"
-                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
-                >
-                  ZIP / Postal code
-                </label>
-                <div className="mt-1 sm:mt-0 sm:col-span-2">
-                  <input
-                    type="text"
-                    name="postal-code"
-                    id="postal-code"
-                    autoComplete="postal-code"
-                    className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
-                  />
-                </div>
-              </div>
             </div>
-          </div>
 
-          <div className="divide-y divide-gray-200 pt-8 space-y-6 sm:pt-10 sm:space-y-5">
-            <div>
-              <h3 className="text-lg leading-6 font-medium text-gray-900">
-                Notifications
-              </h3>
-              <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                We'll always let you know about important changes, but you pick
-                what else you want to hear about.
-              </p>
-            </div>
             <div className="space-y-6 sm:space-y-5 divide-y divide-gray-200">
               <div className="pt-6 sm:pt-5">
                 <div role="group" aria-labelledby="label-email">
@@ -385,6 +290,7 @@ export default function AdminNewProduct() {
                   </div>
                 </div>
               </div>
+
               <div className="pt-6 sm:pt-5">
                 <div role="group" aria-labelledby="label-notifications">
                   <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-baseline">
