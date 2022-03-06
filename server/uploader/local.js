@@ -25,6 +25,7 @@ const diskUploader = (file) => {
 
 function getFile(fileName, onData, onError) {
   const fullPath = path.join(path.resolve("./files"), fileName);
+  const fileStream = fs.createReadStream(fullPath);
 
   fs.exists(fullPath, function (exists) {
     if (!exists) {

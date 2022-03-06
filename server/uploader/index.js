@@ -1,4 +1,4 @@
-const { diskStorage, diskUploader, getFile } = require("./minio");
+const { diskStorage, diskUploader, getFile } = require("./local");
 
 module.exports = {
   storage: diskStorage,

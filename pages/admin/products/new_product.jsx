@@ -2,6 +2,7 @@ import { useMemo, useEffect } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import AdminLayout from "@components/admin/Layout";
+import Uploader from "@components/Uploader";
 
 export default function AdminNewProduct() {
   const schema = useMemo(
@@ -18,6 +19,7 @@ export default function AdminNewProduct() {
     initialValues: {
       title: null,
       price: 0,
+      originalPrice: 0,
       description: "",
     },
     validationSchema: schema,
@@ -30,6 +32,7 @@ export default function AdminNewProduct() {
     formik.setValues({
       title: null,
       price: 0,
+      originalPrice: 0,
       description: "",
     });
   }, []);
@@ -87,6 +90,28 @@ export default function AdminNewProduct() {
 
               <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
                 <label
+                  htmlFor="first-name"
+                  className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
+                >
+                  originalPrice
+                </label>
+                <div className="mt-1 sm:mt-0 sm:col-span-2">
+                  <input
+                    type="number"
+                    name="originalPrice"
+                    id="originalPrice"
+                    autoComplete="given-name"
+                    className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs sm:text-sm border-gray-300 rounded-md"
+                    onBlur={formik.handleBlur}
+                    onChange={formik.handleChange}
+                    value={formik.values?.originalPrice}
+                  />
+                </div>
+              </div>
+
+              {/* 
+              <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
+                <label
                   htmlFor="username"
                   className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2"
                 >
@@ -106,7 +131,7 @@ export default function AdminNewProduct() {
                     />
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-5">
                 <label
@@ -125,9 +150,6 @@ export default function AdminNewProduct() {
                     onBlur={formik.handleBlur}
                     onChange={formik.handleChange}
                   />
-                  <p className="mt-2 text-sm text-gray-500">
-                    Write a few sentences about yourself.
-                  </p>
                 </div>
 
                 <label
@@ -159,12 +181,16 @@ export default function AdminNewProduct() {
                           className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                         >
                           <span>Upload a file</span>
-                          <input
+                          <Uploader />
+                          {/* <input
                             id="file-upload"
                             name="file-upload"
                             type="file"
                             className="sr-only"
-                          />
+                            onChange={(e) => {
+                              console.log(e);
+                            }}
+                          /> */}
                         </label>
                         <p className="pl-1">or drag and drop</p>
                       </div>
@@ -178,7 +204,7 @@ export default function AdminNewProduct() {
             </div>
           </div>
 
-          <div className="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
+          <div className="space-y-6 sm:space-y-5">
             <div className="space-y-6 sm:space-y-5">
               <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-5">
                 <label

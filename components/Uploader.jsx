@@ -5,6 +5,9 @@ export default function Uploader(props) {
   return (
     <input
       type="file"
+      id="file-upload"
+      name="file-upload"
+      className="sr-only"
       onChange={async (event) => {
         try {
           const file = event.target?.files[0];
@@ -20,6 +23,7 @@ export default function Uploader(props) {
             data: formData,
           });
 
+          console.log(result?.data);
           props.onSuccess && props.onSuccess(result?.data);
         } catch (error) {
           props.onError && props.onError(error);

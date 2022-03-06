@@ -25,11 +25,6 @@
   transition: all 0.1s linear;
 }
 
-*::selection {
-  background: var(--green);
-  color: #fff;
-}
-
 html {
   overflow-x: hidden;
 }
@@ -39,7 +34,6 @@ section {
 }
 
 .home {
-  /* display: flex; */
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
