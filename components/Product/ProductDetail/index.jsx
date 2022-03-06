@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { StarIcon } from "@heroicons/react/solid";
 import { RadioGroup } from "@headlessui/react";
-import axios from "../../../utils/axios";
+import axios from "@utils/axios";
 
 const productDetail = {
   name: "Basic Tee 6-Pack",

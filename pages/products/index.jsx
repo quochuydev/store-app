@@ -1,4 +1,4 @@
-import axios from "../../utils/axios";
+import axios from "@utils/axios";
 import ProductFilter from "../../components/Product/ProductFilter";
 import ProductList from "../../components/Product/ProductList";
 import Layout from "../../components/Layout";

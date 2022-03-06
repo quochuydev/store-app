@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/router";
-import axios from "../../utils/axios";
+import axios from "@utils/axios";
 
 import styles from "./style.module.css";
 import Layout from "../../components/Layout";

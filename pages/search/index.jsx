@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
-import axios from "../../utils/axios";
+import axios from "@utils/axios";
 import { toast } from "react-toastify";
 import Layout from "../../components/Layout";
 import Products from "../../components/Products";

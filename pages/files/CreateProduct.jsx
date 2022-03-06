@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "../../utils/axios";
+import axios from "@utils/axios";
 
 export default function CreateProduct({ image }) {
   const title = "title" + String(Math.floor(Math.random() * 10000000));

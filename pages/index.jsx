@@ -1,4 +1,4 @@
-import axios from "../utils/axios";
+import axios from "@utils/axios";
 import config from "../utils/config";
 import { noSSRWithLoadingDynamic } from "../utils/dynamic.import";
 // export default noSSRWithLoadingDynamic(import("../components/Index"));

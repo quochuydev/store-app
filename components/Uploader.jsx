@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "../utils/axios";
+import axios from "@utils/axios";
 
 export default function Uploader(props) {
   return (

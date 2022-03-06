@@ -1,7 +1,7 @@
 import React from "react";
 import SocialLogin from "react-social-login";
 // import { FcGoogle } from "react-icons/fc";
-import axios from "../../utils/axios";
+import axios from "@utils/axios";
 
 class SocialButtonComponent extends React.Component {
   render() {

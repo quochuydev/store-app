@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import axios from "../../utils/axios";
+import axios from "@utils/axios";
 import ProductDetail from "../../components/Product/ProductDetail";
 import Layout from "../../components/Layout";
 import useCart from "../../hooks/useCart";

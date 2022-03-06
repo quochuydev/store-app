@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { ToastContainer } from "react-toastify";
-import axios from "../../utils/axios";
+import axios from "@utils/axios";
 import styles from "./style.module.css";
 import useCart from "../../hooks/useCart";
 import Layout from "../../components/Layout";

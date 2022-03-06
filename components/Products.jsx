@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import config from "../utils/config";
 import useTranslation from "../locales/useTranslation";
-import axios from "../utils/axios";
+import axios from "@utils/axios";
 
 export default function Products({ meta, products = [], after }) {
   const { total, limit, page, skip, totalPage } = meta;

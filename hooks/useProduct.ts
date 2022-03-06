@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "../utils/axios";
+import axios from "@utils/axios";
 
 export default function useProduct(props: any) {
   const [products, setProducts] = useState([]);

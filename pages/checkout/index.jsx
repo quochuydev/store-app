@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState } from "react";
-import axios from "../../utils/axios";
+import axios from "@utils/axios";
 import Router from "next/router";
 import { toast } from "react-toastify";
 import useCart from "../../hooks/useCart";

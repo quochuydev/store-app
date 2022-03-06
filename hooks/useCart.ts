@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "../utils/axios";
+import axios from "@utils/axios";
 
 export default function useCart(): any {
   const [cart, setCart] = useState({

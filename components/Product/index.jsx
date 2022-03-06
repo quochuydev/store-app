@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
-import axios from "../../utils/axios";
+import axios from "@utils/axios";
 
 export default function ProductDetail({ product, after }) {
   const [quantity, setQuantity] = useState(1);
