@@ -17,5 +17,6 @@ jobs:
           touch .env
           echo DATABASE_URL=mongodb://localhost:27017/grocery >> .env
           docker-compose up -d
+          yarn
           yarn build
           yarn start
