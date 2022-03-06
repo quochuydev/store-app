@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from "react";
-import { ClockIcon, HomeIcon, ViewListIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import axios from "@utils/axios";
 import AdminLayout from "@components/admin/Layout";
@@ -86,8 +85,17 @@ export default function Example() {
                 {product?.createdAt}
               </td>
               <td className="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
-                <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                <a
+                  className="text-indigo-600 hover:text-indigo-900"
+                  onClick={() => {}}
+                >
                   Edit
+                </a>{" "}
+                <a
+                  className="text-red-600 hover:text-red-900"
+                  onClick={() => {}}
+                >
+                  Archive
                 </a>
               </td>
             </tr>

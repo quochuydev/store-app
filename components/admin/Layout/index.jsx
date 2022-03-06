@@ -9,8 +9,10 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 import { SearchIcon, SelectorIcon } from "@heroicons/react/solid";
+import { ToastContainer } from "react-toastify";
 import Link from "next/link";
 import axios from "@utils/axios";
+import "react-toastify/dist/ReactToastify.css";
 
 const navigation = [
   { name: "Products", href: "/admin/products", icon: HomeIcon, current: true },
@@ -90,6 +92,7 @@ export default function AdminLayout({ children }) {
 
   return (
     <>
+      <ToastContainer />
       <div className="min-h-full">
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog

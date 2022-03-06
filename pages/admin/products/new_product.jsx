@@ -1,8 +1,11 @@
 import { useMemo, useEffect } from "react";
+import Router from "next/router";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { toast } from "react-toastify";
 import AdminLayout from "@components/admin/Layout";
 import Uploader from "@components/Uploader";
+import axios from "@utils/axios";
 
 export default function AdminNewProduct() {
   const schema = useMemo(
@@ -26,8 +29,16 @@ export default function AdminNewProduct() {
       image: null,
     },
     validationSchema: schema,
-    onSubmit: async (values) => {
-      console.log(values);
+    onSubmit: async (data) => {
+      console.log(data);
+      try {
+        await axios.post(`api/products`, data);
+        toast("Created success");
+        formik.resetForm();
+        Router.push(`/admin/products`);
+      } catch (error) {
+        toast.error("Created success");
+      }
     },
   });
 
@@ -42,7 +53,7 @@ export default function AdminNewProduct() {
         <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
           <div>
             <div className="space-y-6 sm:space-y-5">
-              {/* {JSON.stringify(formik.errors)} */}
+              {JSON.stringify(formik.errors)}
 
               <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
                 <label

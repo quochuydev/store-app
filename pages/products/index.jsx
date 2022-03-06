@@ -5,7 +5,7 @@ import Layout from "@components/Layout";
 import useCart from "@hooks/useCart";
 
 export async function getServerSideProps({ query }) {
-  const result = await axios.get(`api/products?limit=8`);
+  const result = await axios.get(`api/products`);
 
   return {
     props: {
