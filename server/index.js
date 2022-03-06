@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 const uuid = require("uuid").v4;
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const session = require("express-session");
+const flash = require("connect-flash");
 const env = require("./env");
 
 const { fileRoute } = require("./routes/file");
@@ -48,6 +50,20 @@ nextApp.prepare().then(() => {
   app.use(bodyParser.json({}));
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(cookieParser());
+  app.use(
+    session({
+      secret: "ADMIN_SECRET",
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+        path: "/",
+        httpOnly: true,
+        secure: false,
+        maxAge: 360000000,
+      },
+    })
+  );
+  app.use(flash());
 
   app.use(function (req, res, next) {
     const token = req.cookies.token;
@@ -63,6 +79,7 @@ nextApp.prepare().then(() => {
   app.use(orderRoute);
   app.use(coreRoute);
   app.use(settingRoute);
+  require("./routes/auth")({ app });
   require("./routes/product/index")({ app, di: { mongoose } });
 
   app.use((error, req, res, next) => {

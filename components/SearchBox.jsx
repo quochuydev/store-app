@@ -19,6 +19,7 @@ export default function SearchBox() {
         name="q"
         placeholder={t("label.search")}
         onChange={(e) => setKeyword(e.target.value)}
+        className="border-none"
       />
       <SearchIcon
         className="w-6 h-6"
