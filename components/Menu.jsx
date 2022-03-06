@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import MegaMenu from "./MegaMenu";
 import config from "../utils/config";
-import useTranslation from "../locales/useTranslation";
+import useTranslation from "@locales/useTranslation";
 
 export default function Menu() {
   const { t } = useTranslation();

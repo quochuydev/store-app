@@ -9,6 +9,7 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 import Link from "next/link";
+import useTranslation from "@locales/useTranslation";
 
 const navigation = {
   categories: [
@@ -141,8 +142,13 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function Header({ cart }) {
   const [open, setOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <div className="bg-white">
@@ -493,7 +499,7 @@ export default function Example() {
                   </a>
                 </div>
 
-                <div className="hidden lg:ml-8 lg:flex">
+                {/* <div className="hidden lg:ml-8 lg:flex">
                   <a
                     href="#"
                     className="text-gray-700 hover:text-gray-800 flex items-center"
@@ -506,7 +512,16 @@ export default function Example() {
                     <span className="ml-3 block text-sm font-medium">CAD</span>
                     <span className="sr-only">, change currency</span>
                   </a>
-                </div>
+                </div> */}
+
+                <select
+                  className="border-white lg:ml-8"
+                  value={i18n.language}
+                  onChange={(e) => changeLanguage(e.target.value)}
+                >
+                  <option value="vn">vn</option>
+                  <option value="en">en</option>
+                </select>
 
                 {/* Search */}
                 <div className="flex lg:ml-6">
@@ -524,7 +539,7 @@ export default function Example() {
                       aria-hidden="true"
                     />
                     <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                      0
+                      {cart.item_count || 0}
                     </span>
                     <span className="sr-only">items in cart, view bag</span>
                   </a>

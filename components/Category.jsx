@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import useTranslation from "../locales/useTranslation";
+import useTranslation from "@locales/useTranslation";
 
 export default function Category({ setting }) {
   const { t } = useTranslation();

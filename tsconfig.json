@@ -16,9 +16,20 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": ["components/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@locales/*": ["locales/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "server/index.js", "components/Product/index.jsx", "pages/products/[id].jsx", "pages/order/[id].jsx", "pages/settings/index.jsx", "pages/tickets/vietnam-places.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "server/index.js",
+    "components/Product/index.jsx",
+    "pages/products/[id].jsx",
+    "pages/order/[id].jsx",
+    "pages/settings/index.jsx",
+    "pages/tickets/vietnam-places.js"
+  ],
   "exclude": ["node_modules"]
 }

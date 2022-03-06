@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Router from "next/router";
 
-import useTranslation from "../locales/useTranslation";
+import useTranslation from "@locales/useTranslation";
 
 export default function SearchBox() {
   const { t } = useTranslation();

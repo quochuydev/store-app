@@ -8,7 +8,7 @@ import styles from "./style.module.css";
 import Layout from "../../components/Layout";
 import Thankyou from "../../components/Thankyou";
 import useCart from "../../hooks/useCart";
-import useTranslation from "../../locales/useTranslation";
+import useTranslation from "@locales/useTranslation";
 import Uploader from "../../components/Uploader";
 
 export default function Order() {

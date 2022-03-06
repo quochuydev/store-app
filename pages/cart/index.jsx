@@ -7,7 +7,7 @@ import axios from "@utils/axios";
 import styles from "./style.module.css";
 import useCart from "../../hooks/useCart";
 import Layout from "../../components/Layout";
-import useTranslation from "../../locales/useTranslation";
+import useTranslation from "@locales/useTranslation";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Cart() {

@@ -1,4 +1,4 @@
-import useTranslation from "../../locales/useTranslation";
+import useTranslation from "@locales/useTranslation";
 
 export default function BillingAddress(props: any) {
   const { t } = useTranslation();

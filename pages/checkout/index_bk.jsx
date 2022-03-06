@@ -9,7 +9,7 @@ import useCart from "../../hooks/useCart";
 import Layout from "../../components/Layout";
 import BillingAddress from "../../components/Checkout/BillingAddress";
 import Items from "../../components/Checkout/Items";
-import useTranslation from "../../locales/useTranslation";
+import useTranslation from "@locales/useTranslation";
 
 export default function Checkout() {
   const { t } = useTranslation();

@@ -9,7 +9,7 @@ import ProductList from "../components/Product/ProductList";
 import Newsletter from "../components/Newsletter";
 import config from "../utils/config";
 import useCart from "../hooks/useCart";
-import useTranslation from "../locales/useTranslation";
+import useTranslation from "@locales/useTranslation";
 
 export default function Index({ meta, products, setting }) {
   const { t } = useTranslation();

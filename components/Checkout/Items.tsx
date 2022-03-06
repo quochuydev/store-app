@@ -1,4 +1,4 @@
-import useTranslation from "../../locales/useTranslation";
+import useTranslation from "@locales/useTranslation";
 
 export default function Items(props: any) {
   const { t } = useTranslation();

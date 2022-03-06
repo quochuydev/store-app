@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import Menu from "./Menu";
 import SearchBox from "./SearchBox";
-import useTranslation from "../locales/useTranslation";
+import useTranslation from "@locales/useTranslation";
 import SocialLogin from "./SocialLogin";
 
 function Icon() {

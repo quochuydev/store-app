@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import useTranslation from "../locales/useTranslation";
+import useTranslation from "@locales/useTranslation";
 
 export default function Thankyou() {
   const { t } = useTranslation();
