@@ -68,14 +68,16 @@ export default function Example() {
                     src={product.image}
                     alt={product.title}
                   />
-                  <a href="#" className="truncate hover:text-gray-600">
-                    <span>
-                      {product.title}{" "}
-                      <span className="text-gray-500 font-normal">
-                        in {product.title}
+                  <Link href={`/admin/products/${product._id}`}>
+                    <a className="truncate hover:text-gray-600">
+                      <span>
+                        {product.title}{" "}
+                        <span className="text-gray-500 font-normal">
+                          in {product.title}
+                        </span>
                       </span>
-                    </span>
-                  </a>
+                    </a>
+                  </Link>
                 </div>
               </td>
               <td className="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right">

@@ -139,7 +139,7 @@ export default function ProductDetail({ product, after }) {
             <p className="text-3xl text-gray-900">{product.price}đ</p>
 
             {/* Reviews */}
-            <div className="mt-6">
+            {/* <div className="mt-6">
               <h3 className="sr-only">Reviews</h3>
               <div className="flex items-center">
                 <div className="flex items-center">
@@ -164,7 +164,7 @@ export default function ProductDetail({ product, after }) {
                   {reviews.totalCount} reviews
                 </a>
               </div>
-            </div>
+            </div> */}
 
             <form className="mt-10">
               {/* Colors */}
