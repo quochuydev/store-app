@@ -12,11 +12,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Build the Docker image
-        run: |
-          touch .env
-          echo DATABASE_URL=mongodb://localhost:27017/grocery >> .env
-          docker-compose up -d
-          yarn
-          yarn build
-          yarn start
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: touch .env
+      - run: echo DATABASE_URL=mongodb://localhost:27017/grocery >> .env
+      - run: docker-compose up -d
+      - run: yarn
+      - run: yarn build
+      - run: yarn start
