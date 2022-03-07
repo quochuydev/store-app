@@ -8,6 +8,7 @@ import {
   PlusSmIcon,
   ViewGridIcon,
 } from "@heroicons/react/solid";
+import Link from "next/link";
 
 const sortOptions = [
   { name: "Most Popular", href: "#", current: true },
@@ -17,46 +18,30 @@ const sortOptions = [
   { name: "Price: High to Low", href: "#", current: false },
 ];
 const subCategories = [
-  { name: "Totes", href: "#" },
-  { name: "Backpacks", href: "#" },
-  { name: "Travel Bags", href: "#" },
-  { name: "Hip Bags", href: "#" },
-  { name: "Laptop Sleeves", href: "#" },
+  { name: "Hàu", href: "/products?category=oyster" },
+  { name: "Bào ngư", href: "/products?category=abalone" },
+  { name: "Rượu", href: "/products?category=wine" },
+  { name: "Cà phê", href: "/products?category=coffee" },
 ];
 const filters = [
   {
-    id: "color",
-    name: "Color",
-    options: [
-      { value: "white", label: "White", checked: false },
-      { value: "beige", label: "Beige", checked: false },
-      { value: "blue", label: "Blue", checked: true },
-      { value: "brown", label: "Brown", checked: false },
-      { value: "green", label: "Green", checked: false },
-      { value: "purple", label: "Purple", checked: false },
-    ],
-  },
-  {
     id: "category",
-    name: "Category",
+    name: "Sản phẩm",
     options: [
-      { value: "new-arrivals", label: "Products", checked: false },
-      { value: "sale", label: "Sale", checked: false },
-      { value: "travel", label: "Travel", checked: true },
-      { value: "organization", label: "Organization", checked: false },
-      { value: "accessories", label: "Accessories", checked: false },
+      { value: "sale", label: "Giảm giá", checked: false },
+      {
+        value: "freeship",
+        label: "Miễn phí giao hàng Sài Gòn",
+        checked: false,
+      },
     ],
   },
   {
     id: "size",
-    name: "Size",
+    name: "Bán",
     options: [
-      { value: "2l", label: "2L", checked: false },
-      { value: "6l", label: "6L", checked: false },
-      { value: "12l", label: "12L", checked: false },
-      { value: "18l", label: "18L", checked: false },
-      { value: "20l", label: "20L", checked: false },
-      { value: "40l", label: "40L", checked: true },
+      { value: "Bán sĩ", label: "Bán sĩ", checked: false },
+      { value: "Bán lẻ", label: "Bán lẻ", checked: false },
     ],
   },
 ];
@@ -121,9 +106,9 @@ export default function ProductFilter({ children }) {
                   >
                     {subCategories.map((category) => (
                       <li key={category.name}>
-                        <a href={category.href} className="block px-2 py-3">
-                          {category.name}
-                        </a>
+                        <Link href={category.href}>
+                          <a className="block px-2 py-3">{category.name}</a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -277,7 +262,9 @@ export default function ProductFilter({ children }) {
                 >
                   {subCategories.map((category) => (
                     <li key={category.name}>
-                      <a href={category.href}>{category.name}</a>
+                      <Link href={category.href}>
+                        <a href={category.href}>{category.name}</a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
