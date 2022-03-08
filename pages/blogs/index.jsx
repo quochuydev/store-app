@@ -16,7 +16,7 @@ export async function getServerSideProps({ query }) {
 }
 
 export default function Products({ products }) {
-  const [cart, getCart] = useCart();
+  const [cart] = useCart();
 
   return (
     <Layout cart={cart}>
