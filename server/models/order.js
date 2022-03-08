@@ -6,11 +6,15 @@ const orderSchema = new mongoose.Schema({
     phoneNumber: String,
     email: String,
     address: String,
+    city: String,
+    district: String,
     lng: Number,
     lat: Number,
   },
   amount: Number,
-  line_items: {
+  status: String,
+  note: String,
+  lineItems: {
     type: [
       {
         productId: String,

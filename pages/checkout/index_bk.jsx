@@ -38,7 +38,7 @@ export default function Checkout() {
 
     const result = await axios.post(`/api/orders`, {
       customer,
-      line_items: cart.items,
+      lineItems: cart.items,
       amount: cart.total_price,
       payment: {
         type: paymentType,

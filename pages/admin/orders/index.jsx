@@ -3,10 +3,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "@utils/axios";
 import AdminLayout from "@components/admin/Layout";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+import Table from "@components/Table";
+import { toast } from "react-toastify";
 
 export async function getServerSideProps({ req }) {
   if (!req.session?.user) {
@@ -18,90 +16,94 @@ export async function getServerSideProps({ req }) {
     };
   }
 
+  const result = await axios.get(`api/orders`);
+
   return {
-    props: {},
+    props: {
+      orders: result?.data?.items || [],
+    },
   };
 }
 
-export default function Example() {
+export default function Example({ orders }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    axios.post("api.admin.product.getList").then((result) => {
-      const newProducts = result?.data || [];
-      setProducts(newProducts);
-    });
-  }, []);
-
   return (
     <AdminLayout>
-      <table className="min-w-full">
-        <thead>
-          <tr className="border-t border-gray-200">
-            <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              <span className="lg:pl-2">Sản phẩm</span>
-            </th>
-            <th className="hidden md:table-cell px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Giá
-            </th>
-            <th className="hidden md:table-cell px-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Last updated
-            </th>
-            <th className="pr-6 py-3 border-b border-gray-200 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider" />
-          </tr>
-        </thead>
-        <tbody className="bg-white divide-y divide-gray-100">
-          {products.map((product) => (
-            <tr key={product._id}>
-              <td className="px-6 py-3 max-w-0 whitespace-nowrap text-sm font-medium text-gray-900">
-                <div className="flex items-center space-x-3 lg:pl-2">
-                  <div
-                    className={classNames(
-                      product.bgColorClass,
-                      "flex-shrink-0 w-2.5 h-2.5 rounded-full"
-                    )}
-                    aria-hidden="true"
-                  />
-                  <img
-                    className="max-w-none h-12 w-12 ring-2 ring-white"
-                    src={product.image}
-                    alt={product.title}
-                  />
-                  <a href="#" className="truncate hover:text-gray-600">
-                    <span>
-                      {product.title}{" "}
-                      <span className="text-gray-500 font-normal">
-                        in {product.title}
-                      </span>
-                    </span>
+      <Table
+        columns={[
+          {
+            id: "id",
+            name: "id",
+            render: function Column(data) {
+              return <button>button {data._id}</button>;
+            },
+          },
+          {
+            id: "lineItems",
+            name: "Line items",
+            render: function Column(data) {
+              return (
+                <>
+                  {data.lineItems.map((lineItem, index) => (
+                    <div key={index}>
+                      <p>{lineItem.title}</p>
+                      <p>{lineItem.price}</p>
+                    </div>
+                  ))}
+                </>
+              );
+            },
+          },
+          {
+            id: "createdAt",
+            name: "Created at",
+            render: function Column(data) {
+              return <>{data.createdAt}</>;
+            },
+          },
+          {
+            id: "total",
+            name: "total",
+          },
+          {
+            id: "action",
+            name: "",
+            render: function Column(data) {
+              return (
+                <>
+                  <a
+                    className="text-indigo-600 hover:text-indigo-900"
+                    onClick={() => {}}
+                  >
+                    Edit
+                  </a>{" "}
+                  <a
+                    className="text-red-600 hover:text-red-900"
+                    onClick={() => {}}
+                  >
+                    Archive
                   </a>
-                </div>
-              </td>
-              <td className="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right">
-                {product?.price}đ
-              </td>
-              <td className="hidden md:table-cell px-6 py-3 whitespace-nowrap text-sm text-gray-500 text-right">
-                {product?.createdAt}
-              </td>
-              <td className="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
-                <a
-                  className="text-indigo-600 hover:text-indigo-900"
-                  onClick={() => {}}
-                >
-                  Edit
-                </a>{" "}
-                <a
-                  className="text-red-600 hover:text-red-900"
-                  onClick={() => {}}
-                >
-                  Archive
-                </a>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                  <select
+                    onChange={async (event) => {
+                      await axios.put(`api/orders/${data._id}`, {
+                        status: event.target.value,
+                      });
+                      toast("Updated successfully");
+                    }}
+                  >
+                    <option>New</option>
+                    <option>In-progress</option>
+                    <option>Done</option>
+                  </select>
+                </>
+              );
+            },
+          },
+        ]}
+        rows={orders}
+      />
     </AdminLayout>
   );
 }

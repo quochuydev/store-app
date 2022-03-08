@@ -45,7 +45,7 @@ function Product({ product, after }) {
   return (
     <div className="p-2">
       <span className="discount">
-        {Math.floor((product.original_price / product.price) * 100)}%
+        {Math.floor((product.originalPrice / product.price) * 100)}%
       </span>
 
       <div className="icons">
@@ -72,7 +72,7 @@ function Product({ product, after }) {
 
       {/* <ReviewStars /> */}
       <div className="price">
-        ${product.price} <span>${product.original_price}</span>
+        ${product.price} <span>${product.originalPrice}</span>
       </div>
 
       <div className="quantity">

@@ -10,7 +10,7 @@ export default function CreateProduct({ image }) {
   const [data, setData] = useState({
     title,
     price,
-    original_price: price,
+    originalPrice: price,
     // image: image || `https://ui-avatars.com/api/?name=${title}&size=500`,
     image: image || `https://source.unsplash.com/collection/190727/500x500`,
     description: "description" + String(Math.floor(Math.random() * 10000000)),
@@ -50,11 +50,11 @@ export default function CreateProduct({ image }) {
       />
       <br />
 
-      <b>original_price</b>
+      <b>originalPrice</b>
       <input
         type="number"
-        value={data.original_price}
-        onChange={(e) => onData("original_price", e.target.value)}
+        value={data.originalPrice}
+        onChange={(e) => onData("originalPrice", e.target.value)}
       />
       <br />
 

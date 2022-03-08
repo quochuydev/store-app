@@ -1,7 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Router from "next/router";
 import { toast } from "react-toastify";
+import * as yup from "yup";
+import { useFormik } from "formik";
+
 import axios from "@utils/axios";
 import useCart from "@hooks/useCart";
 import Layout from "@components/Layout";
@@ -11,6 +14,41 @@ export default function Checkout() {
   const { t } = useTranslation();
   const [cart] = useCart();
   const [paymentType, setPaymentType] = useState("cod");
+
+  const schema = useMemo(
+    () =>
+      yup.object().shape({
+        title: yup.string().trim().required(),
+        price: yup.number().min(0).notRequired(),
+        originalPrice: yup.number().min(0).notRequired(),
+        description: yup.string().trim().nullable().notRequired(),
+        image: yup.string().trim().required(),
+      }),
+    []
+  );
+
+  const formik = useFormik({
+    initialValues: {
+      title: null,
+      price: 0,
+      originalPrice: 0,
+      description: null,
+      image: null,
+    },
+    validationSchema: schema,
+    onSubmit: async (data) => {
+      console.log(data);
+      try {
+        await axios.post(`api/products`, data);
+        toast("Created success");
+        formik.resetForm();
+        Router.push(`/admin/products`);
+      } catch (error) {
+        toast.error("Created success");
+      }
+    },
+  });
+
   const [customer, setCustomer] = useState({
     firstName: "",
     phoneNumber: "",
@@ -18,7 +56,8 @@ export default function Checkout() {
     address: "",
   });
 
-  const onData = (name, value) => {
+  const onChange = (event) => {
+    const { name, value } = event.target;
     setCustomer({ ...customer, [name]: value });
   };
 
@@ -35,7 +74,7 @@ export default function Checkout() {
 
     const result = await axios.post(`/api/orders`, {
       customer,
-      line_items: cart.items,
+      lineItems: cart.items,
       amount: cart.total_price,
       payment: {
         type: paymentType,
@@ -80,6 +119,7 @@ export default function Checkout() {
                         name="firstName"
                         type="text"
                         placeholder="First Name"
+                        {...{ onChange }}
                         className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
                       />
                     </div>
@@ -94,6 +134,7 @@ export default function Checkout() {
                         name="Last Name"
                         type="text"
                         placeholder="Last Name"
+                        {...{ onChange }}
                         className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
                       />
                     </div>
@@ -107,9 +148,10 @@ export default function Checkout() {
                         Email
                       </label>
                       <input
-                        name="Last Name"
+                        name="email"
                         type="text"
                         placeholder="Email"
+                        {...{ onChange }}
                         className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
                       />
                     </div>
@@ -124,11 +166,12 @@ export default function Checkout() {
                       </label>
                       <textarea
                         className="w-full px-4 py-3 text-xs border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
-                        name="Address"
+                        name="address"
                         cols={20}
                         rows={4}
                         placeholder="Address"
                         defaultValue={""}
+                        {...{ onChange }}
                       />
                     </div>
                   </div>
@@ -144,6 +187,7 @@ export default function Checkout() {
                         name="district"
                         type="text"
                         placeholder="District"
+                        {...{ onChange }}
                         className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
                       />
                     </div>
@@ -158,6 +202,7 @@ export default function Checkout() {
                         name="city"
                         type="text"
                         placeholder="City"
+                        {...{ onChange }}
                         className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
                       />
                     </div>

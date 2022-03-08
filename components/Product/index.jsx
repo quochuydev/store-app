@@ -46,7 +46,7 @@ export default function ProductDetail({ product, after }) {
           <br />
           <strong>Price: </strong>
           <p className="price">
-            ${product.price} <span>${product.original_price}</span>
+            ${product.price} <span>${product.originalPrice}</span>
           </p>
           <div className="form-group">
             <label>Quantity</label>

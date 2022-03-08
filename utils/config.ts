@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 export default {
-  server: process.env.SERVER_URL || "http://localhost:3000",
+  server: process.env.SERVER_URL,
   title: "Grocery - eCommerce website",
   phoneNumber: "0382986838",
   email: "quochuy.dev@gmail.com",

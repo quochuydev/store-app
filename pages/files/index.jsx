@@ -5,9 +5,9 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "@utils/axios";
 import InputConfig from "@components/Setting/InputConfig";
 import ItemsConfig from "@components/Setting/ItemsConfig";
-import CreateProduct from "@components/CreateProduct";
 import Uploader from "@components/Uploader";
 import config from "@utils/config";
+import CreateProduct from "./CreateProduct";
 
 export default function Files() {
   const [image, setImage] = useState(null);
@@ -42,7 +42,7 @@ export default function Files() {
   };
 
   const onSave = async (name, data) => {
-    const result = await axios.put("api/settings/" + setting._id, {
+    const result = await axios.put(`api/settings/${setting._id}`, {
       [name]: data,
     });
 

@@ -18,7 +18,7 @@ export default function Order() {
 
   const [data, setData] = useState({
     amount: 0,
-    line_items: [],
+    lineItems: [],
   });
 
   useEffect(() => {
@@ -135,7 +135,7 @@ function ItemsComponent({ data }) {
             <th>{t("label.quantity")}</th>
             <th>{t("label.total")}</th>
           </tr>
-          {data.line_items.map((e, i) => (
+          {data.lineItems.map((e, i) => (
             <CartItem key={i} item={e} />
           ))}
         </tbody>
