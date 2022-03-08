@@ -7,7 +7,6 @@ const uuid = require("uuid").v4;
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const session = require("express-session");
-const flash = require("connect-flash");
 const env = require("./env");
 
 const { fileRoute } = require("./routes/file");
@@ -63,7 +62,6 @@ nextApp.prepare().then(() => {
       },
     })
   );
-  app.use(flash());
 
   app.use(function (req, res, next) {
     const token = req.cookies.token;

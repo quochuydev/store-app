@@ -4,8 +4,7 @@ module.exports = ({ app }) => {
       const { email, password } = req.body;
 
       // const message = "Sai mật khẩu";
-      // req.flash("error", message);
-      // res.redirect("/login");
+      // res.redirect(`/login?message=${message}`);
 
       const sess = req.session;
       sess.user = {

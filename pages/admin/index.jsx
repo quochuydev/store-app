@@ -17,5 +17,5 @@ export async function getServerSideProps({ req }) {
 }
 
 export default function AdminPage() {
-  return <></>;
+  return null;
 }
