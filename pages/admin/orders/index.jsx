@@ -26,7 +26,7 @@ export async function getServerSideProps({ req }) {
   };
 }
 
-export default function Example({ orders }) {
+export default function Order({ orders }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [products, setProducts] = useState([]);
 

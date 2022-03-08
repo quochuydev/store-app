@@ -1,6 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import { LockClosedIcon } from "@heroicons/react/solid";
 
-export default function Example() {
+export default function LoginPage() {
   return (
     <>
       {/*

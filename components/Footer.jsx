@@ -138,7 +138,7 @@ const navigation = {
   ],
 };
 
-export default function Example() {
+export default function Footer() {
   return (
     <footer className="bg-white" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">

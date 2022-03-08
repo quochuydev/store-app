@@ -23,8 +23,7 @@ export async function getServerSideProps({ req }) {
   };
 }
 
-export default function Example() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+export default function Product() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
