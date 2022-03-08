@@ -1,6 +1,26 @@
-import axios from "@utils/axios";
+import axios from "axios";
+import config from "@utils/config";
 
-export default class UploadAdapter {
+export { CKConfig, CKUploadAdapter, CKOnReady };
+
+const CKOnReady = (editor) => {
+  if (!editor) {
+    return;
+  }
+
+  editor.plugins.get("FileRepository").createUploadAdapter = function (loader) {
+    return new CKUploadAdapter(loader);
+  };
+};
+
+const CKConfig = {
+  basicEntities: false,
+  ckfinder: {
+    uploadUrl: `${config.server}/api/files`,
+  },
+};
+
+class CKUploadAdapter {
   constructor(loader) {
     this.loader = loader;
   }
@@ -11,7 +31,7 @@ export default class UploadAdapter {
     data.append("files", file);
     return new Promise((resolve, reject) => {
       axios({
-        url: `/api/files`,
+        url: `${config.server}/api/files`,
         method: "post",
         data,
       })
