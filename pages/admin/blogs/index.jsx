@@ -7,12 +7,10 @@ import dynamic from "next/dynamic";
 import AdminLayout from "@components/admin/Layout";
 import Modal from "@components/Modal";
 import Table from "@components/Table";
+import axios from "@utils/axios";
 
-import "@uiw/react-md-editor/markdown-editor.css";
-import "@uiw/react-markdown-preview/markdown.css";
-
-const MDEditor = dynamic(
-  () => import("@uiw/react-md-editor").then((mod) => mod.default),
+const Editor = dynamic(
+  () => import("@components/Editor").then((mod) => mod.default),
   { ssr: false }
 );
 
@@ -47,8 +45,8 @@ export default function AdminBlogs({ blogs }) {
 
   const formik = useFormik({
     initialValues: {
-      title: null,
-      description: null,
+      title: "",
+      description: "",
     },
     validationSchema: schema,
     onSubmit: async (data) => {
@@ -68,18 +66,64 @@ export default function AdminBlogs({ blogs }) {
   //   });
   // }, []);
 
+  const initialState = {
+    entityMap: {
+      0: {
+        type: "IMAGE",
+        mutability: "IMMUTABLE",
+        data: {
+          src: "/images/canada-landscape-small.jpg",
+        },
+      },
+    },
+    blocks: [
+      {
+        key: "9gm3s",
+        text: "You can have images in your text field which are draggable. Hover over the image press down your mouse button and drag it to another position inside the editor.",
+        type: "unstyled",
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [],
+        data: {},
+      },
+      {
+        key: "ov7r",
+        text: " ",
+        type: "atomic",
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [
+          {
+            offset: 0,
+            length: 1,
+            key: 0,
+          },
+        ],
+        data: {},
+      },
+      {
+        key: "e23a8",
+        text: "You can checkout the alignment tool plugin documentation to see how to build a compatible block plugin …",
+        type: "unstyled",
+        depth: 0,
+        inlineStyleRanges: [],
+        entityRanges: [],
+        data: {},
+      },
+    ],
+  };
+
   return (
     <AdminLayout current="blog">
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
         <form onSubmit={formik.handleSubmit}>
           {JSON.stringify(formik.values)}
-
           <div className="sm:col-span-4">
             <label
               htmlFor="title"
               className="block text-sm font-medium text-gray-700"
             >
-              Username
+              title
             </label>
             <div className="mt-1 flex rounded-md shadow-sm">
               {useMemo(
@@ -104,17 +148,10 @@ export default function AdminBlogs({ blogs }) {
             </div>
           </div>
 
-          {useMemo(
-            () => (
-              <MDEditor
-                value={formik.values?.description}
-                onChange={(value) => {
-                  formik.setFieldValue("description", value);
-                }}
-              />
-            ),
-            [formik.values?.description]
-          )}
+          <Editor
+            initValue={formik.values.description}
+            onData={(description) => formik.setValues({ description })}
+          />
 
           <div className="mt-5 sm:mt-6">
             <button

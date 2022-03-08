@@ -1,7 +1,5 @@
-const removeImports = require("next-remove-imports")();
-
 /** @type {import('next').NextConfig} */
-module.exports = removeImports({
+module.exports = {
   // reactStrictMode: true,
   env: {
     SERVER_URL: process.env.SERVER_URL || "http://localhost:1111",
@@ -12,4 +10,4 @@ module.exports = removeImports({
     domains: [],
   },
   // useFileSystemPublicRoutes: false,
-});
+};
