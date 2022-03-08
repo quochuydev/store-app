@@ -152,7 +152,7 @@ export default function AdminLayout({ children, current = "" }) {
                   <nav className="px-2">
                     <div className="space-y-1">
                       {navigation.map((item) => (
-                        <Link key={item.name} href={item.href}>
+                        <Link key={item.id} href={item.href}>
                           <a
                             className={classNames(
                               item.id === current
@@ -303,28 +303,29 @@ export default function AdminLayout({ children, current = "" }) {
             <nav className="px-3 mt-6">
               <div className="space-y-1">
                 {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className={classNames(
-                      item.id === current
-                        ? "bg-gray-200 text-gray-900"
-                        : "text-gray-700 hover:text-gray-900 hover:bg-gray-50",
-                      "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-                    )}
-                    aria-current={item.id === current ? "page" : undefined}
-                  >
-                    <item.icon
+                  <Link key={item.id} href={item.href}>
+                    <a
+                      key={item.name}
                       className={classNames(
                         item.id === current
-                          ? "text-gray-500"
-                          : "text-gray-400 group-hover:text-gray-500",
-                        "mr-3 flex-shrink-0 h-6 w-6"
+                          ? "bg-gray-200 text-gray-900"
+                          : "text-gray-700 hover:text-gray-900 hover:bg-gray-50",
+                        "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                       )}
-                      aria-hidden="true"
-                    />
-                    {item.name}
-                  </a>
+                      aria-current={item.id === current ? "page" : undefined}
+                    >
+                      <item.icon
+                        className={classNames(
+                          item.id === current
+                            ? "text-gray-500"
+                            : "text-gray-400 group-hover:text-gray-500",
+                          "mr-3 flex-shrink-0 h-6 w-6"
+                        )}
+                        aria-hidden="true"
+                      />
+                      {item.name}
+                    </a>
+                  </Link>
                 ))}
               </div>
             </nav>
