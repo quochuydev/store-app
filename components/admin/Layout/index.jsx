@@ -15,9 +15,14 @@ import axios from "@utils/axios";
 import "react-toastify/dist/ReactToastify.css";
 
 const navigation = [
-  { name: "Products", href: "/admin/products", icon: HomeIcon, current: true },
-  { name: "Orders", href: "/admin/orders", icon: ViewListIcon },
-  { name: "Blogs", href: "/admin/blogs", icon: ClockIcon },
+  {
+    id: "product",
+    name: "Products",
+    href: "/admin/products",
+    icon: HomeIcon,
+  },
+  { id: "order", name: "Orders", href: "/admin/orders", icon: ViewListIcon },
+  { id: "blog", name: "Blogs", href: "/admin/blogs", icon: ClockIcon },
 ];
 const projects = [
   {
@@ -79,16 +84,8 @@ export async function getServerSideProps({ req }) {
   };
 }
 
-export default function AdminLayout({ children }) {
+export default function AdminLayout({ children, current = "" }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    axios.post("api.admin.product.getList").then((result) => {
-      const newProducts = result?.data || [];
-      setProducts(newProducts);
-    });
-  }, []);
 
   return (
     <>
@@ -158,16 +155,18 @@ export default function AdminLayout({ children }) {
                         <Link key={item.name} href={item.href}>
                           <a
                             className={classNames(
-                              item.current
+                              item.id === current
                                 ? "bg-gray-100 text-gray-900"
                                 : "text-gray-600 hover:text-gray-900 hover:bg-gray-50",
                               "group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md"
                             )}
-                            aria-current={item.current ? "page" : undefined}
+                            aria-current={
+                              item.id === current ? "page" : undefined
+                            }
                           >
                             <item.icon
                               className={classNames(
-                                item.current
+                                item.id === current
                                   ? "text-gray-500"
                                   : "text-gray-400 group-hover:text-gray-500",
                                 "mr-3 flex-shrink-0 h-6 w-6"
@@ -308,16 +307,16 @@ export default function AdminLayout({ children }) {
                     key={item.name}
                     href={item.href}
                     className={classNames(
-                      item.current
+                      item.id === current
                         ? "bg-gray-200 text-gray-900"
                         : "text-gray-700 hover:text-gray-900 hover:bg-gray-50",
                       "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                     )}
-                    aria-current={item.current ? "page" : undefined}
+                    aria-current={item.id === current ? "page" : undefined}
                   >
                     <item.icon
                       className={classNames(
-                        item.current
+                        item.id === current
                           ? "text-gray-500"
                           : "text-gray-400 group-hover:text-gray-500",
                         "mr-3 flex-shrink-0 h-6 w-6"

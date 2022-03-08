@@ -48,7 +48,7 @@ export default function AdminNewProduct() {
   // }, []);
 
   return (
-    <AdminLayout>
+    <AdminLayout current="blog">
       <form onSubmit={formik.handleSubmit} className="space-y-8 p-8">
         <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
           <div>

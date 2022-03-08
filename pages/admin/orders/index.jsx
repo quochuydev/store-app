@@ -30,7 +30,7 @@ export default function Example({ orders }) {
   const [products, setProducts] = useState([]);
 
   return (
-    <AdminLayout>
+    <AdminLayout current="order">
       <Table
         columns={[
           {

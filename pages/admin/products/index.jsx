@@ -35,7 +35,7 @@ export default function Example() {
   }, []);
 
   return (
-    <AdminLayout>
+    <AdminLayout current="product">
       <table className="min-w-full">
         <thead>
           <tr className="border-t border-gray-200">

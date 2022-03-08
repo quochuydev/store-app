@@ -11,7 +11,7 @@ export async function getServerSideProps({ req }) {
   return {
     redirect: {
       permanent: false,
-      destination: "/admin/products",
+      destination: "/admin/orders",
     },
   };
 }

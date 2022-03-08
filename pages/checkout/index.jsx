@@ -178,15 +178,15 @@ export default function Checkout() {
                   <div className="space-x-0 lg:flex lg:space-x-4">
                     <div className="w-full lg:w-1/2 ">
                       <label
-                        htmlFor="District"
+                        htmlFor="phoneNumber"
                         className="block mb-3 text-sm font-semibold text-gray-500"
                       >
-                        District
+                        Phone number
                       </label>
                       <input
-                        name="district"
+                        name="phoneNumber"
                         type="text"
-                        placeholder="District"
+                        placeholder="Phone number"
                         {...{ onChange }}
                         className="w-full px-4 py-3 text-sm border border-gray-300 rounded lg:text-sm focus:outline-none focus:ring-1 focus:ring-blue-600"
                       />
