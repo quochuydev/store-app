@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
-const { customerModel } = require("../models/customer");
+const { CustomerModel } = require("../models/customer");
 
 router.post("/api/subscribe", async (req, res) => {
   const { phoneNumber } = req.body;
 
-  let customer = await customerModel.findOne({ phoneNumber });
+  let customer = await CustomerModel.findOne({ phoneNumber });
   if (!customer) {
-    customer = await customerModel.create({ phoneNumber });
+    customer = await CustomerModel.create({ phoneNumber });
   }
 
   res.json(customer);

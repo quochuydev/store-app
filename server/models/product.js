@@ -27,6 +27,6 @@ productSchema.post("save", async function (product, next) {
   next();
 });
 
-const productModel = mongoose.model("Product", productSchema);
+const ProductModel = mongoose.model("Product", productSchema);
 
-module.exports = { productModel };
+module.exports = { ProductModel };

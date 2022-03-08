@@ -11,6 +11,6 @@ customerSchema.post("save", async function (customer, next) {
   next();
 });
 
-const customerModel = mongoose.model("Customer", customerSchema);
+const CustomerModel = mongoose.model("Customer", customerSchema);
 
-module.exports = { customerModel };
+module.exports = { CustomerModel };

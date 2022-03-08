@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { fileModel } = require("../models/file");
+const { FileModel } = require("../models/file");
 const { storage, uploader, getFile } = require("../storageService");
 
 router.post("/api/files", storage, async (req, res) => {
@@ -17,7 +17,7 @@ router.post("/api/files", storage, async (req, res) => {
 });
 
 router.get("/api/files", async (req, res) => {
-  const items = await fileModel.find({}).sort({ createdAt: -1 });
+  const items = await FileModel.find({}).sort({ createdAt: -1 });
   res.status(200).json({ items });
 });
 

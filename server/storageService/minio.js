@@ -1,7 +1,7 @@
 const multer = require("multer");
 const Minio = require("minio");
 const env = require("../env");
-const { fileModel } = require("../models/file");
+const { FileModel } = require("../models/file");
 
 var minioClient = new Minio.Client({
   endPoint: "localhost",
@@ -22,7 +22,7 @@ const uploader = (file) => {
     fileName,
     file.buffer,
     function (error, { etag }) {
-      return fileModel.create({
+      return FileModel.create({
         fileName,
         url: env.serverUrl + "/files/" + fileName,
       });

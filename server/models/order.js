@@ -39,6 +39,6 @@ orderSchema.post("save", async function (order, next) {
   next();
 });
 
-const orderModel = mongoose.model("Order", orderSchema);
+const OrderModel = mongoose.model("Order", orderSchema);
 
-module.exports = { orderModel };
+module.exports = { OrderModel };

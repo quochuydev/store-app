@@ -1,7 +1,7 @@
 const express = require("express");
 
 const router = express.Router();
-const { productModel } = require("../models/product");
+const { ProductModel } = require("../models/product");
 
 router.get("/api/products", async (req, res) => {
   let { limit = 20, page = 1, ...filter } = req.query;
@@ -14,7 +14,7 @@ router.get("/api/products", async (req, res) => {
   }
 
   const skip = limit * (page - 1);
-  const total = await productModel.count(criteria);
+  const total = await ProductModel.count(criteria);
 
   const totalPage = Math.ceil(total / limit);
   const meta = { total, limit, page, skip, totalPage };
@@ -24,8 +24,7 @@ router.get("/api/products", async (req, res) => {
     return res.json({ meta, items: [] });
   }
 
-  const items = await productModel
-    .find(criteria)
+  const items = await ProductModel.find(criteria)
     .sort({ createdAt: -1 })
     .limit(limit)
     .skip(skip);
@@ -34,13 +33,13 @@ router.get("/api/products", async (req, res) => {
 });
 
 router.get("/api/products/:id", async (req, res) => {
-  const result = await productModel.findOne({ _id: req.params.id }).lean(true);
+  const result = await ProductModel.findOne({ _id: req.params.id }).lean(true);
   res.json(result);
 });
 
 router.post("/api/products", async (req, res, next) => {
   try {
-    const product = await productModel.create(req.body);
+    const product = await ProductModel.create(req.body);
     res.json(product);
   } catch (error) {
     next(error);
@@ -49,7 +48,7 @@ router.post("/api/products", async (req, res, next) => {
 
 router.put("/api/products/:id", async (req, res, next) => {
   try {
-    const result = await productModel.findByIdAndUpdate(
+    const result = await ProductModel.findByIdAndUpdate(
       req.params.id,
       { $set: req.body },
       { new: true, lean: true }
@@ -62,7 +61,7 @@ router.put("/api/products/:id", async (req, res, next) => {
 
 router.delete("/api/products/:id", async (req, res, next) => {
   try {
-    const result = await productModel.deleteOne({ _id: req.params.id });
+    const result = await ProductModel.deleteOne({ _id: req.params.id });
     res.json(result);
   } catch (error) {
     next(error);

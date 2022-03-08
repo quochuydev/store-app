@@ -3,21 +3,21 @@ const _ = require("lodash");
 
 const router = express.Router();
 
-const { cartModel } = require("../models/cart");
-const { productModel } = require("../models/product");
+const { CartModel } = require("../models/cart");
+const { ProductModel } = require("../models/product");
 
 const cartAssetCreate = async (token) => {
   if (!token) {
     throw "no token found";
   }
 
-  const cart = await cartModel.findOne({ token }).lean(true);
+  const cart = await CartModel.findOne({ token }).lean(true);
   if (cart) {
     return cart;
   }
 
-  await cartModel.create({ token });
-  return cartModel.findOne({ token }).lean(true);
+  await CartModel.create({ token });
+  return CartModel.findOne({ token }).lean(true);
 };
 
 router.get("/api/cart", async (req, res) => {
@@ -27,7 +27,7 @@ router.get("/api/cart", async (req, res) => {
 });
 
 const increase = async (items = [], productId, quantity = 0) => {
-  const product = await productModel.findOne({ _id: productId }).lean(true);
+  const product = await ProductModel.findOne({ _id: productId }).lean(true);
   const foundItem = items.find((e) => e.productId === productId);
 
   if (!foundItem) {
@@ -68,7 +68,7 @@ router.post("/api/cart/add", async (req, res) => {
   const total_price = _.sumBy(items, "amount");
   const item_count = _.sumBy(items, "quantity");
 
-  const updated = await cartModel.findOneAndUpdate(
+  const updated = await CartModel.findOneAndUpdate(
     { _id: cart._id },
     { $set: { items, item_count, total_price } },
     { new: true, lean: true }
@@ -82,7 +82,7 @@ router.post("/api/cart/update", async (req, res) => {
 
   const { note } = req.body;
 
-  const updated = await cartModel.findOneAndUpdate(
+  const updated = await CartModel.findOneAndUpdate(
     { _id: cart._id },
     { $set: { note } },
     { new: true, lean: true }
@@ -102,7 +102,7 @@ router.post("/api/cart/update/:productId", async (req, res) => {
   const total_price = _.sumBy(items, "amount");
   const item_count = _.sumBy(items, "quantity");
 
-  const updated = await cartModel.findOneAndUpdate(
+  const updated = await CartModel.findOneAndUpdate(
     { _id: cart._id },
     { $set: { items, item_count, total_price } },
     { new: true, lean: true }
@@ -119,7 +119,7 @@ router.post("/api/cart/remove/:productId", async (req, res) => {
   const total_price = _.sumBy(items, "amount");
   const item_count = _.sumBy(items, "quantity");
 
-  const updated = await cartModel.findOneAndUpdate(
+  const updated = await CartModel.findOneAndUpdate(
     { _id: cart._id },
     { $set: { items, item_count, total_price } },
     { new: true, lean: true }
@@ -130,7 +130,7 @@ router.post("/api/cart/remove/:productId", async (req, res) => {
 router.delete("/api/cart", async (req, res) => {
   const token = req.cookies.token;
   const cart = await cartAssetCreate(token);
-  await cartModel.remove({ _id: cart._id });
+  await CartModel.remove({ _id: cart._id });
   res.send(true);
 });
 
