@@ -1,10 +1,14 @@
+const { UserModel } = require("../models/user");
+
 module.exports = ({ app }) => {
-  app.post("/auth/login", (req, res) => {
+  app.post("/auth/login", async (req, res) => {
     try {
       const { email, password } = req.body;
 
       // const message = "Sai mật khẩu";
       // res.redirect(`/login?message=${message}`);
+      const user = await UserModel.findOne({ email });
+      console.log(user);
 
       const sess = req.session;
       sess.user = {

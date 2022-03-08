@@ -1,8 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import dynamic from "next/dynamic";
 import AdminLayout from "@components/admin/Layout";
 import Modal from "@components/Modal";
+
+import "@uiw/react-md-editor/markdown-editor.css";
+import "@uiw/react-markdown-preview/markdown.css";
+
+const MDEditor = dynamic(
+  () => import("@uiw/react-md-editor").then((mod) => mod.default),
+  { ssr: false }
+);
 
 const projects = [
   {
@@ -66,10 +77,146 @@ export async function getServerSideProps({ req }) {
 export default function AdminBlogs() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const [isReady, setIsReady] = useState(false);
+  // const editorComponentRef = useRef();
+  // const commandsRef = useRef();
+
+  // useEffect(() => {
+  //   dynamic(
+  //     () =>
+  //       import("@uiw/react-md-editor").then((module) => {
+  //         const { default: editorComponent, commands } = module;
+
+  //         editorComponentRef.current = editorComponent;
+
+  //         commandsRef.current = [
+  //           commands.bold,
+  //           commands.italic,
+  //           commands.strikethrough,
+  //           commands.hr,
+  //           commands.group(
+  //             [
+  //               commands.title1,
+  //               commands.title2,
+  //               commands.title3,
+  //               commands.title4,
+  //               commands.title5,
+  //               commands.title6,
+  //             ],
+  //             {
+  //               name: "title",
+  //               groupName: "title",
+  //               buttonProps: { "aria-label": "Insert title" },
+  //             }
+  //           ),
+  //           commands.divider,
+  //           commands.link,
+  //           commands.quote,
+  //           commands.code,
+  //           commands.codeBlock,
+  //           commands.divider,
+  //           commands.orderedListCommand,
+  //           commands.unorderedListCommand,
+  //           commands.checkedListCommand,
+  //         ];
+
+  //         setIsReady(true);
+  //       }),
+  //     { ssr: false }
+  //   );
+  // }, []);
+
+  const schema = useMemo(
+    () =>
+      yup.object().shape({
+        title: yup.string().trim().required(),
+        description: yup.string().trim().required(),
+      }),
+    []
+  );
+
+  const formik = useFormik({
+    initialValues: {
+      title: null,
+      description: null,
+    },
+    validationSchema: schema,
+    onSubmit: async (data) => {
+      console.log(data);
+
+      try {
+        await axios.post(`api/blogs`, data);
+        toast("Success");
+
+        // formik.resetForm();
+        // Router.push(`/admin/blogs`);
+      } catch (error) {
+        toast.error("Failed");
+      }
+    },
+  });
+
+  // useEffect(() => {
+  //   formik.setValues({
+  //   });
+  // }, []);
+  const [value, setValue] = useState("**Hello world!!!**");
+
   return (
     <AdminLayout current="blog">
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-        123123132
+        <form onSubmit={formik.handleSubmit}>
+          <div className="sm:col-span-4">
+            <label
+              htmlFor="username"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Username
+            </label>
+            <div className="mt-1 flex rounded-md shadow-sm">
+              <input
+                type="text"
+                name="username"
+                id="username"
+                autoComplete="username"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                value={formik.values?.title}
+                className={`flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full min-w-0 rounded-none rounded-r-md sm:text-sm ${
+                  formik.errors?.title ? "border-red-300" : "border-gray-300"
+                }`}
+              />
+            </div>
+          </div>
+
+          {/* <editorComponentRef.current
+            preview="edit"
+            visiableDragbar={false}
+            highlightEnable={false}
+            commands={commandsRef.current}
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          /> */}
+          <MDEditor value={value} onChange={setValue} />
+          {/* <MDEditor.Markdown source={value} /> */}
+
+          <div className="mt-5 sm:mt-6">
+            <button
+              type="button"
+              className="inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
+              onClick={() => setIsOpen(false)}
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              className="inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
+              onClick={() => false}
+            >
+              Create
+            </button>
+          </div>
+        </form>
       </Modal>
 
       <div className="border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">

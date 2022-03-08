@@ -12,6 +12,6 @@ Schema.post("save", async function (data, next) {
   next();
 });
 
-const BlogModel = mongoose.model("Order", Schema);
+const BlogModel = mongoose.model("Blog", Schema);
 
 module.exports = { BlogModel };
