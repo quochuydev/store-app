@@ -1,34 +1,42 @@
-const AdminGetProductApi = require("./api.admin.product.get");
-const AdminGetProductListApi = require("./api.admin.product.getList");
-const WebGetProductApi = require("./api.web.product.get");
-const WebGetProductListApi = require("./api.web.product.getList");
-
 module.exports = (app, di) => {
-  app.post(WebGetProductApi(di).subject, function (req, res, next) {
-    WebGetProductApi(di)
+  const adminGetProductApi = require("./api.admin.product.get")(di);
+  const adminGetProductListApi = require("./api.admin.product.getList")(di);
+  const webGetProductApi = require("./api.web.product.get")(di);
+  const webGetProductListApi = require("./api.web.product.getList")(di);
+
+  app.post(webGetProductApi.subject, function (req, res, next) {
+    webGetProductApi
       .handle({ productId: req.query.id })
       .then((result) => res.json(result))
       .catch((error) => next(error));
   });
 
-  app.post(WebGetProductListApi(di).subject, function (req, res, next) {
-    WebGetProductListApi(di)
+  app.post(webGetProductListApi.subject, function (req, res, next) {
+    webGetProductListApi
       .handle({})
       .then((result) => res.json(result))
       .catch((error) => next(error));
   });
 
-  app.post(AdminGetProductApi(di).subject, function (req, res, next) {
-    AdminGetProductApi(di)
-      .handle({ productId: req.query.id })
-      .then((result) => res.json(result))
-      .catch((error) => next(error));
-  });
+  app.post(
+    adminGetProductApi.subject,
+    ...adminGetProductListApi.middlewares,
+    function (req, res, next) {
+      adminGetProductApi
+        .handle({ productId: req.query.id })
+        .then((result) => res.json(result))
+        .catch((error) => next(error));
+    }
+  );
 
-  app.post(AdminGetProductListApi(di).subject, function (req, res, next) {
-    AdminGetProductListApi(di)
-      .handle({})
-      .then((result) => res.json(result))
-      .catch((error) => next(error));
-  });
+  app.post(
+    adminGetProductListApi.subject,
+    ...adminGetProductListApi.middlewares,
+    function (req, res, next) {
+      adminGetProductListApi
+        .handle({})
+        .then((result) => res.json(result))
+        .catch((error) => next(error));
+    }
+  );
 };

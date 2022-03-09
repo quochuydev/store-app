@@ -1,3 +1,5 @@
+const { isAllow } = require("../../middlewares/is-allow");
+
 module.exports = (di) => {
   const validate = async () => {
     return true;
@@ -18,5 +20,6 @@ module.exports = (di) => {
     validate,
     authorize,
     handle,
+    middlewares: [isAllow("admin")],
   };
 };
