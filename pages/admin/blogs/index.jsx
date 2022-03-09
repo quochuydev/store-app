@@ -66,11 +66,6 @@ export default function AdminBlogs({ blogs }) {
     },
   });
 
-  // useEffect(() => {
-  //   formik.setValues({
-  //   });
-  // }, []);
-
   return (
     <AdminLayout current="blog">
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>

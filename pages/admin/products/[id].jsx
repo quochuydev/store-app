@@ -188,7 +188,7 @@ export default function AdminUpdateProduct({ product }) {
                           <Uploader
                             id="file-upload"
                             onSuccess={(file) => {
-                              formik.setValues({ image: file?.url });
+                              formik.setFieldValue("image", file?.url);
                             }}
                           />
                         </label>
