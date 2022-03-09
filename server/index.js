@@ -15,6 +15,7 @@ const { productRoute } = require("./routes/product");
 const { orderRoute } = require("./routes/order");
 const { coreRoute } = require("./routes/core");
 const { settingRoute } = require("./routes/setting");
+const { blogRoute } = require("./routes/blog");
 
 const port = env.port;
 const dev = env.nodeEnv !== "production";
@@ -77,6 +78,7 @@ nextApp.prepare().then(() => {
   app.use(orderRoute);
   app.use(coreRoute);
   app.use(settingRoute);
+  app.use(blogRoute);
   require("./routes/auth")({ app });
   require("./routes/product/index")(app, { mongoose });
 

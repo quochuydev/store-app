@@ -42,11 +42,6 @@ export default function AdminNewProduct() {
     },
   });
 
-  // useEffect(() => {
-  //   formik.setValues({
-  //   });
-  // }, []);
-
   return (
     <AdminLayout current="product">
       <form onSubmit={formik.handleSubmit} className="space-y-8 p-8">

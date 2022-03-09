@@ -9,6 +9,8 @@ import AdminLayout from "@components/admin/Layout";
 import Modal from "@components/Modal";
 import Table from "@components/Table";
 import axios from "@utils/axios";
+import { toast } from "react-toastify";
+import Router from "next/router";
 
 const Editor = dynamic(
   () => import("@components/Editor").then((mod) => mod.default),
@@ -25,10 +27,12 @@ export async function getServerSideProps({ req }) {
     };
   }
 
-  const blogs = [];
+  const result = await axios.get(`api/blogs`);
 
   return {
-    props: { blogs },
+    props: {
+      blogs: result?.data?.items || [],
+    },
   };
 }
 
@@ -39,7 +43,7 @@ export default function AdminBlogs({ blogs }) {
     () =>
       yup.object().shape({
         title: yup.string().trim().required(),
-        description: yup.string().trim().required(),
+        body: yup.string().trim().required(),
       }),
     []
   );
@@ -47,7 +51,7 @@ export default function AdminBlogs({ blogs }) {
   const formik = useFormik({
     initialValues: {
       title: "",
-      description: "",
+      body: "",
     },
     validationSchema: schema,
     onSubmit: async (data) => {
@@ -105,11 +109,11 @@ export default function AdminBlogs({ blogs }) {
           {useMemo(
             () => (
               <Editor
-                initValue={formik.values.description}
-                onData={(value) => formik.setFieldValue("description", value)}
+                initValue={formik.values.body}
+                onData={(value) => formik.setFieldValue("body", value)}
               />
             ),
-            [formik.values.description]
+            [formik.values.body]
           )}
 
           <div className="mt-5 sm:mt-6">
@@ -148,7 +152,79 @@ export default function AdminBlogs({ blogs }) {
         </div>
       </div>
 
-      <Table columns={[]} rows={[]} />
+      <Table
+        columns={[
+          {
+            id: "id",
+            name: "id",
+            render: function Column(data) {
+              return <button>button {data._id}</button>;
+            },
+          },
+          {
+            id: "title",
+            name: "title",
+            render: function Column(data) {
+              return <p>{data.title}</p>;
+            },
+          },
+          {
+            id: "createdAt",
+            name: "Created at",
+            render: function Column(data) {
+              return <>{new Date(data.createdAt).toDateString()}</>;
+            },
+          },
+          {
+            id: "publish",
+            name: "publish",
+            render: function Column(data) {
+              return (
+                <>
+                  <select
+                    onChange={async (event) => {
+                      await axios.put(`api/blogs/${data._id}`, {
+                        status: event.target.value,
+                      });
+
+                      toast("Updated successfully");
+                      Router.push("/admin/blogs");
+                    }}
+                    value={data.status}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  >
+                    <option value={"new"}>New</option>
+                    <option value={"in-progress"}>In-progress</option>
+                    <option value={"done"}>Done</option>
+                  </select>
+                </>
+              );
+            },
+          },
+          {
+            id: "action",
+            name: "",
+            render: function Column(data) {
+              return (
+                <>
+                  <Link href={`/admin/blogs/${data._id}`}>
+                    <a className="text-indigo-600 hover:text-indigo-900">
+                      Edit
+                    </a>
+                  </Link>{" "}
+                  <a
+                    className="text-red-600 hover:text-red-900"
+                    onClick={() => {}}
+                  >
+                    Archive
+                  </a>
+                </>
+              );
+            },
+          },
+        ]}
+        rows={blogs}
+      />
     </AdminLayout>
   );
 }

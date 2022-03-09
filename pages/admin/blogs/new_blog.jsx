@@ -6,6 +6,8 @@ import * as yup from "yup";
 import AdminLayout from "@components/admin/Layout";
 import axios from "@utils/axios";
 import dynamic from "next/dynamic";
+import { toast } from "react-toastify";
+import Router from "next/router";
 
 const Editor = dynamic(
   () => import("@components/Editor").then((mod) => mod.default),
@@ -21,6 +23,8 @@ export async function getServerSideProps({ req }) {
       },
     };
   }
+
+  return { props: {} };
 }
 
 export default function AdminNewBlog() {
@@ -28,7 +32,7 @@ export default function AdminNewBlog() {
     () =>
       yup.object().shape({
         title: yup.string().trim().required(),
-        description: yup.string().trim().required(),
+        body: yup.string().trim().required(),
       }),
     []
   );
@@ -36,7 +40,7 @@ export default function AdminNewBlog() {
   const formik = useFormik({
     initialValues: {
       title: "",
-      description: "",
+      body: "",
     },
     validationSchema: schema,
     onSubmit: async (data) => {
@@ -45,6 +49,7 @@ export default function AdminNewBlog() {
       try {
         await axios.post(`api/blogs`, data);
         toast("Success");
+        Router.push(`/admin/blogs`);
       } catch (error) {
         toast.error("Failed");
       }
@@ -99,11 +104,11 @@ export default function AdminNewBlog() {
         {useMemo(
           () => (
             <Editor
-              initValue={formik.values.description}
-              onData={(value) => formik.setFieldValue("description", value)}
+              initValue={formik.values.body}
+              onData={(value) => formik.setFieldValue("body", value)}
             />
           ),
-          [formik.values.description]
+          [formik.values.body]
         )}
 
         <div className="mt-5 sm:mt-6">

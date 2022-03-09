@@ -1,11 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import Link from "next/link";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import AdminLayout from "@components/admin/Layout";
 import axios from "@utils/axios";
 import dynamic from "next/dynamic";
+import { toast } from "react-toastify";
 
 const Editor = dynamic(
   () => import("@components/Editor").then((mod) => mod.default),
@@ -35,7 +36,7 @@ export default function AdminEditBlog({ blog }) {
     () =>
       yup.object().shape({
         title: yup.string().trim().required(),
-        description: yup.string().trim().required(),
+        body: yup.string().trim().required(),
       }),
     []
   );
@@ -43,14 +44,14 @@ export default function AdminEditBlog({ blog }) {
   const formik = useFormik({
     initialValues: {
       title: "",
-      description: "",
+      body: "",
     },
     validationSchema: schema,
     onSubmit: async (data) => {
       console.log(data);
 
       try {
-        await axios.post(`api/blogs`, data);
+        await axios.put(`api/blogs/${blog._id}`, data);
         toast("Success");
       } catch (error) {
         toast.error("Failed");
@@ -107,11 +108,11 @@ export default function AdminEditBlog({ blog }) {
         {useMemo(
           () => (
             <Editor
-              initValue={formik.values.description}
-              onData={(value) => formik.setFieldValue("description", value)}
+              initValue={formik.values.body}
+              onData={(value) => formik.setFieldValue("body", value)}
             />
           ),
-          [formik.values.description]
+          [formik.values.body]
         )}
 
         <div className="mt-5 sm:mt-6">
@@ -119,7 +120,7 @@ export default function AdminEditBlog({ blog }) {
             type="submit"
             className="inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
           >
-            Create
+            Update
           </button>
         </div>
       </form>
