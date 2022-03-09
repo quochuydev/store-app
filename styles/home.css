@@ -1,0 +1,41 @@
+.home {
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+.home .content {
+  position: absolute;
+  top: 50px;
+  left: 10%;
+}
+
+.home .image img {
+  width: 100%;
+}
+
+.home .content h3 {
+  font-size: 5rem;
+  color: var(--black);
+}
+
+.home .content p {
+  color: var(--black);
+}
+
+@media (max-width: 991px) {
+  .home .image {
+    flex: 1 1 20rem;
+  }
+
+  .home .content {
+    flex: 1 1 20rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .home .content {
+    text-align: center;
+  }
+}

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import { useState, useMemo } from "react";
 import Link from "next/link";
@@ -66,53 +67,6 @@ export default function AdminBlogs({ blogs }) {
   //   });
   // }, []);
 
-  const initialState = {
-    entityMap: {
-      0: {
-        type: "IMAGE",
-        mutability: "IMMUTABLE",
-        data: {
-          src: "/images/canada-landscape-small.jpg",
-        },
-      },
-    },
-    blocks: [
-      {
-        key: "9gm3s",
-        text: "You can have images in your text field which are draggable. Hover over the image press down your mouse button and drag it to another position inside the editor.",
-        type: "unstyled",
-        depth: 0,
-        inlineStyleRanges: [],
-        entityRanges: [],
-        data: {},
-      },
-      {
-        key: "ov7r",
-        text: " ",
-        type: "atomic",
-        depth: 0,
-        inlineStyleRanges: [],
-        entityRanges: [
-          {
-            offset: 0,
-            length: 1,
-            key: 0,
-          },
-        ],
-        data: {},
-      },
-      {
-        key: "e23a8",
-        text: "You can checkout the alignment tool plugin documentation to see how to build a compatible block plugin …",
-        type: "unstyled",
-        depth: 0,
-        inlineStyleRanges: [],
-        entityRanges: [],
-        data: {},
-      },
-    ],
-  };
-
   return (
     <AdminLayout current="blog">
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -148,10 +102,15 @@ export default function AdminBlogs({ blogs }) {
             </div>
           </div>
 
-          <Editor
-            initValue={formik.values.description}
-            onData={(description) => formik.setValues({ description })}
-          />
+          {useMemo(
+            () => (
+              <Editor
+                initValue={formik.values.description}
+                onData={(value) => formik.setFieldValue("description", value)}
+              />
+            ),
+            [formik.values.description]
+          )}
 
           <div className="mt-5 sm:mt-6">
             <button
@@ -178,13 +137,14 @@ export default function AdminBlogs({ blogs }) {
           </h1>
         </div>
         <div className="mt-4 flex sm:mt-0 sm:ml-4">
-          <button
-            type="button"
-            onClick={() => setIsOpen(true)}
-            className="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3"
-          >
-            New blog
-          </button>
+          <Link href={"/admin/blogs/new_blog"}>
+            <button
+              type="button"
+              className="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3"
+            >
+              New blog
+            </button>
+          </Link>
         </div>
       </div>
 

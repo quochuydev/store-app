@@ -1,0 +1,53 @@
+.banner-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.banner-container .banner {
+  flex: 1 1 20rem;
+  height: 20rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.banner-container .banner img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.banner-container .banner .content {
+  position: absolute;
+  top: 50%;
+  left: 4%;
+  transform: translateY(-50%);
+}
+
+.banner-container .banner .content h3 {
+  font-size: 3rem;
+  color: var(--black);
+}
+
+.banner-container .banner .content p {
+  font-size: 2rem;
+  color: #333;
+}
+
+.banner-container .banner:hover img {
+  transform: scale(1.2) rotate(-5deg);
+}
+
+@media (max-width: 991px) {
+  .banner-container .banner .content h3 {
+    font-size: 2rem;
+  }
+
+  .banner-container .banner .content p {
+    font-size: 1rem;
+  }
+
+  .banner-container .banner {
+    height: auto;
+  }
+}
