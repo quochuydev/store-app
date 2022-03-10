@@ -40,6 +40,10 @@ mongoose
     console.log("connected mongo success");
 
     const { ProductModel } = require("./models/product");
+    const { FileModel } = require("./models/file");
+
+    await FileModel.create({ url: `${env.serverUrl}/hau.png` });
+    await FileModel.create({ url: `${env.serverUrl}/bao-ngu.png` });
 
     await ProductModel.findOneAndUpdate(
       { title: "Hàu" },
