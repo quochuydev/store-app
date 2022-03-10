@@ -36,8 +36,24 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => {
+  .then(async () => {
     console.log("connected mongo success");
+
+    const { ProductModel } = require("./models/product");
+
+    await ProductModel.findOneAndUpdate(
+      { title: "Hàu" },
+      { title: "Hàu", originalPrice: 110000, price: 70000 },
+      { upsert: true }
+    );
+
+    await ProductModel.findOneAndUpdate(
+      { title: "Bào ngư" },
+      { title: "Bào ngư", originalPrice: 1200000, price: 700000 },
+      { upsert: true }
+    );
+
+    console.log("init product success");
   })
   .catch((error) => {
     console.log("connected mongo failed", error);
