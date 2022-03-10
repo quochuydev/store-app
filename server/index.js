@@ -42,18 +42,32 @@ mongoose
     const { ProductModel } = require("./models/product");
     const { FileModel } = require("./models/file");
 
-    await FileModel.create({ url: `${env.serverUrl}/hau.png` });
-    await FileModel.create({ url: `${env.serverUrl}/bao-ngu.png` });
+    const hauImage = await FileModel.create({
+      url: `${env.serverUrl}/hau.png`,
+    });
+    const baoNguImage = await FileModel.create({
+      url: `${env.serverUrl}/bao-ngu.png`,
+    });
 
     await ProductModel.findOneAndUpdate(
       { title: "Hàu" },
-      { title: "Hàu", originalPrice: 110000, price: 70000 },
+      {
+        title: "Hàu",
+        originalPrice: 110000,
+        price: 70000,
+        image: hauImage.url,
+      },
       { upsert: true }
     );
 
     await ProductModel.findOneAndUpdate(
       { title: "Bào ngư" },
-      { title: "Bào ngư", originalPrice: 1200000, price: 700000 },
+      {
+        title: "Bào ngư",
+        originalPrice: 1200000,
+        price: 700000,
+        image: baoNguImage.url,
+      },
       { upsert: true }
     );
 
