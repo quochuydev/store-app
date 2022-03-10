@@ -23,6 +23,7 @@ router.get("/api/files", async (req, res) => {
 
 router.get("/files/:filename", (req, res) => {
   getFile(req.params.filename, res, (error) => {
+    console.log(error);
     return res.status(500).send(error);
   });
 });

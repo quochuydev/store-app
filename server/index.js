@@ -43,10 +43,10 @@ mongoose
     const { FileModel } = require("./models/file");
 
     const hauImage = await FileModel.create({
-      url: `${env.serverUrl}/hau.png`,
+      url: `${env.serverUrl}/files/hau.png`,
     });
     const baoNguImage = await FileModel.create({
-      url: `${env.serverUrl}/bao-ngu.png`,
+      url: `${env.serverUrl}/files/bao-ngu.png`,
     });
 
     await ProductModel.findOneAndUpdate(
