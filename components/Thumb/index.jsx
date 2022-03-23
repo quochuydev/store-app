@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
 
 import OwlCarousel from "@components/OwlCarousel";
@@ -44,7 +45,7 @@ function Thumb(props) {
           <div
             className={`thumb ${i === 0 ? "active" : ""}`}
             onClick={(e) => thumbActiveHandler(e, i)}
-            key={thumb + "-2-" + i}
+            key={`${thumb}-${i}`}
           >
             <div key={i} className="banner">
               <img src={thumb.image} alt={thumb.title} />

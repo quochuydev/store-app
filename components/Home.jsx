@@ -21,6 +21,7 @@ export default function Home({ setting }) {
   }, [index, mediaRef]);
 
   const setIndexHandler = (mediaIndex) => {
+    console.log({ index, mediaIndex });
     if (mediaIndex !== index) {
       setIndex(mediaIndex);
     }
@@ -49,19 +50,16 @@ export default function Home({ setting }) {
         onChangeRef={changeRefHandler}
         events={events}
       >
-        {(setting.contents || []).map((e, i) => (
+        {(setting.contents || []).map((content, i) => (
           <section key={i} className="home">
             <div className="image">
-              <img src={setting.banner?.image} alt={setting.banner?.title} />
+              <img src={content?.image} alt={content?.title} />
             </div>
             <div className="content">
-              {setting.banner?.title && setting.banner?.title !== "" && (
-                <h3>{setting.banner?.title}</h3>
+              {content?.title && <h3>{content?.title}</h3>}
+              {setting.banner?.description && (
+                <p>{setting.banner?.description}</p>
               )}
-              {setting.banner?.description &&
-                setting.banner?.description !== "" && (
-                  <p>{setting.banner?.description}</p>
-                )}
             </div>
           </section>
         ))}

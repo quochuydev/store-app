@@ -56,13 +56,13 @@ export default function Files() {
       <Link href="/">Home</Link>
       <CreateProduct {...{ image }} />
       <hr />
-
       <Uploader
         onSuccess={async (result) => {
           setImage(result?.url);
           fetchFiles();
         }}
       />
+      <hr />
 
       {files.map((e, i) => (
         <ul key={i}>
@@ -70,7 +70,6 @@ export default function Files() {
           <li onClick={() => onCopy(e.url)}>{e.url}</li>
         </ul>
       ))}
-
       <hr />
       <InputConfig
         setting={setting}
