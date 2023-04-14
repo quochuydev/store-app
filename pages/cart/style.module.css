@@ -20,7 +20,7 @@
   text-align: left;
   padding: 0.5rem;
   color: var(--white);
-  background-color: var(--green);
+  background-color: var(--indigo);
   font-weight: normal;
 }
 
@@ -49,15 +49,15 @@
 
 .totalPrice a {
   display: inline-block;
-  background-color: var(--green);
+  background-color: var(--indigo);
   color: var(--white);
   padding: 0.7rem 1.6rem;
   font-weight: 700;
-  border-radius: 3rem;
+  border-radius: 0.5rem;
 }
 
 .totalPrice table {
-  border-top: 3px solid var(--green);
+  border-top: 3px solid var(--indigo);
   width: 100%;
   max-width: 35rem;
 }

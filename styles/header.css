@@ -28,7 +28,7 @@ header {
 }
 
 .heading span {
-  color: var(--green);
+  color: var(--indigo);
   text-transform: uppercase;
 }
 
@@ -50,7 +50,7 @@ header {
 
 .logo i {
   padding-right: 0.5rem;
-  color: var(--green);
+  color: var(--indigo);
 }
 
 .search-box-container {
@@ -90,7 +90,7 @@ header {
 }
 
 .header-2 .navbar a:hover {
-  border-bottom: 2px solid var(--green);
+  border-bottom: 2px solid var(--indigo);
   margin-bottom: -2px;
 }
 
@@ -102,7 +102,7 @@ header {
 }
 
 .header-2 .icons .link:hover {
-  color: var(--green);
+  color: var(--indigo);
 }
 
 #menu-bar {

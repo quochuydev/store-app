@@ -22,7 +22,7 @@
   text-align: left;
   padding: 0.5rem;
   color: var(--white);
-  background-color: var(--green);
+  background-color: var(--indigo);
   font-weight: normal;
 }
 
@@ -55,7 +55,7 @@
 }
 
 .totalPrice table {
-  border-top: 3px solid var(--green);
+  border-top: 3px solid var(--indigo);
   width: 100%;
   max-width: 35rem;
 }
