@@ -1,28 +1,25 @@
 import axios from "@utils/axios";
-import ProductFilter from "@components/Product/ProductFilter";
-import ProductList from "@components/Product/ProductList";
+import BlogList from "./components/BlogList";
 import Layout from "@components/Layout";
 import useCart from "@hooks/useCart";
 
 export async function getServerSideProps({ query }) {
-  const result = await axios.get(`api/products`);
+  const result = await axios.get(`api/blogs`);
 
   return {
     props: {
       meta: result?.data?.meta || {},
-      products: result?.data?.items || [],
+      blogs: result?.data?.items || [],
     },
   };
 }
 
-export default function Products({ products }) {
+export default function Products({ blogs }) {
   const [cart] = useCart();
 
   return (
     <Layout cart={cart}>
-      <ProductFilter>
-        <ProductList products={products} />
-      </ProductFilter>
+      <BlogList blogs={blogs} />
     </Layout>
   );
 }

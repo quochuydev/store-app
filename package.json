@@ -34,6 +34,7 @@
     "react-dom": "17.0.2",
     "react-i18next": "^11.11.4",
     "react-owl-carousel2": "^0.3.0",
+    "react-query": "^3.39.3",
     "react-select": "^4.3.1",
     "react-social-login": "^3.4.14",
     "react-toastify": "^8.0.1",

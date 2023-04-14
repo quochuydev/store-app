@@ -5,27 +5,17 @@ import Layout from "@components/Layout";
 import useCart from "@hooks/useCart";
 
 export async function getServerSideProps({ query }) {
-  const result = await axios.get(`api/products/${query.id}`);
+  const result = await axios.get(`api/blogs/${query.id}`);
 
   return {
     props: {
-      product: result?.data || {},
+      blog: result?.data || {},
     },
   };
 }
 
-export default function Product({ product }) {
-  const [cart, getCart] = useCart();
+export default function Product({ blog }) {
+  const [cart] = useCart();
 
-  return (
-    <Layout cart={cart}>
-      <ProductDetail
-        product={product}
-        after={() => {
-          getCart();
-          toast("Added to cart", { position: "bottom-right" });
-        }}
-      />
-    </Layout>
-  );
+  return <Layout cart={cart}>{JSON.stringify(blog)}</Layout>;
 }
