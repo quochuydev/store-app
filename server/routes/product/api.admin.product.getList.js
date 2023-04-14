@@ -1,25 +1,33 @@
 const { isAllow } = require("../../middlewares/is-allow");
 
-module.exports = (di) => {
-  const validate = async () => {
-    return true;
-  };
-
-  const authorize = async () => {
-    return true;
-  };
-
-  const handle = async () => {
-    const { mongoose } = di;
-    const products = await mongoose.model("Product").find({});
-    return products;
-  };
-
+const validate = async () => {
   return {
-    subject: "/api.admin.product.getList",
-    validate,
-    authorize,
-    handle,
-    middlewares: [isAllow("admin")],
+    code: "OK",
+    body: {},
   };
 };
+
+const authorize = async () => {
+  return {
+    code: "OK",
+    body: {},
+  };
+};
+
+const handle = async () => {
+  const products = await di.mongoose.model("Product").find({});
+
+  return {
+    body: products,
+  };
+};
+
+const handler = {
+  subject: "api.admin.product.getList",
+  validate,
+  authorize,
+  handle,
+  middlewares: [isAllow("admin")],
+};
+
+module.exports = handler;

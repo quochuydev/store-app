@@ -514,9 +514,9 @@ export default function Header({ cart }) {
                 </div> */}
 
                 {/* Search */}
-                <div className="flex lg:ml-6">
+                {/* <div className="flex lg:ml-6">
                   <SearchBox />
-                </div>
+                </div> */}
 
                 <select
                   className="border-white lg:ml-4"

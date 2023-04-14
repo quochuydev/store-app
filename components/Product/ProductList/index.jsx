@@ -2,19 +2,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 
-const productList = [
-  {
-    id: 1,
-    name: "Basic Tee",
-    href: "#",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-    price: "$35",
-    color: "Black",
-  },
-];
-
 export default function ProductList({ products = [] }) {
   return (
     <div className="bg-white">
@@ -23,7 +10,7 @@ export default function ProductList({ products = [] }) {
           LATEST PRODUCTS
         </h2>
 
-        <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-2 xl:gap-x-8">
+        <div className="mt-6 grid grid-cols-4 gap-y-10 gap-x-6 xl:gap-x-8">
           {products.map((product) => (
             <div key={product._id} className="group relative">
               <Link href={`/products/${product._id}`}>
@@ -48,11 +35,8 @@ export default function ProductList({ products = [] }) {
                   <p className="mt-1 text-sm text-gray-500">{product.color}</p>
                 </div>
                 <p className="text-sm font-medium text-gray-900">
-                  {product.price}đ
-                  {/* <span style={{
-                      textDecoration:'line-through'
-                    }}>{product.price}đ
-                    </span> */}
+                  <span>{product.price}đ</span>
+                  {/* <span>{product.price}đ</span> */}
                 </p>
               </div>
             </div>

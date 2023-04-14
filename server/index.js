@@ -46,7 +46,7 @@ mongoose
       url: `${env.serverUrl}/files/hau.png`,
     });
     const baoNguImage = await FileModel.create({
-      url: `${env.serverUrl}/files/bao-ngu.png`,
+      url: `${env.serverUrl}/files/hau.png`,
     });
 
     await ProductModel.findOneAndUpdate(
@@ -67,6 +67,28 @@ mongoose
         originalPrice: 1200000,
         price: 700000,
         image: baoNguImage.url,
+      },
+      { upsert: true }
+    );
+
+    await ProductModel.findOneAndUpdate(
+      { title: "Ốc Hương" },
+      {
+        title: "Ốc Hương",
+        originalPrice: 110000,
+        price: 70000,
+        image: hauImage.url,
+      },
+      { upsert: true }
+    );
+
+    await ProductModel.findOneAndUpdate(
+      { title: "Sò huyết" },
+      {
+        title: "Sò huyết",
+        originalPrice: 110000,
+        price: 70000,
+        image: hauImage.url,
       },
       { upsert: true }
     );
@@ -114,7 +136,7 @@ nextApp.prepare().then(() => {
   app.use(settingRoute);
   app.use(blogRoute);
   require("./routes/auth")({ app });
-  require("./routes/product/index")(app, { mongoose });
+  require("./nats-unit")(app, { mongoose });
 
   app.use((error, req, res, next) => {
     if (error) {
