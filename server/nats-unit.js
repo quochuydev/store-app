@@ -15,19 +15,37 @@ module.exports = (app, di) => {
       ...(handler.middlewares || []),
       async function (req, res, next) {
         try {
-          const validateResult = await handler.validate(req.body, di);
+          const validateResult = await handler.validate(
+            {
+              body: req.body,
+              headers: req.headers,
+            },
+            di
+          );
 
           if (validateResult.code !== "OK") {
             throw validateResult;
           }
 
-          const authorizeResult = await handler.authorize(req.body, di);
+          const authorizeResult = await handler.authorize(
+            {
+              body: req.body,
+              headers: req.headers,
+            },
+            di
+          );
 
           if (authorizeResult.code !== "OK") {
             throw authorizeResult;
           }
 
-          const result = await handler.handle(req.body, di);
+          const result = await handler.handle(
+            {
+              body: req.body,
+              headers: req.headers,
+            },
+            di
+          );
 
           if (result.code !== "OK") {
             throw result;

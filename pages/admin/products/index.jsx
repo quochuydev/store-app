@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "@utils/axios";
 import AdminLayout from "@components/admin/Layout";

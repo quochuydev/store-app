@@ -14,11 +14,12 @@ const authorize = async () => {
   };
 };
 
-const handle = async () => {
-  const products = await di.mongoose.model("Product").find({});
+const handle = async (_, di) => {
+  const product = await di.mongoose.model("Product").findOne({});
 
   return {
-    body: products,
+    code: "OK",
+    body: product,
   };
 };
 

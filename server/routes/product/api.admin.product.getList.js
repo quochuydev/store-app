@@ -14,7 +14,7 @@ const authorize = async () => {
   };
 };
 
-const handle = async (data, di) => {
+const handle = async (_, di) => {
   const products = await di.mongoose.model("Product").find({});
 
   return {

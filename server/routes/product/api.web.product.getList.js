@@ -12,11 +12,12 @@ const authorize = async () => {
   };
 };
 
-const handle = async () => {
+const handle = async (_, di) => {
   const { mongoose } = di;
   const products = await mongoose.model("Product").find({});
 
   return {
+    code: "OK",
     body: products,
   };
 };
