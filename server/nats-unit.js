@@ -17,24 +17,25 @@ module.exports = (app, di) => {
         try {
           const validateResult = await handler.validate(req.body, di);
 
-          if (!validateResult.code !== "OK") {
+          if (validateResult.code !== "OK") {
             throw validateResult;
           }
 
           const authorizeResult = await handler.authorize(req.body, di);
 
-          if (!authorizeResult.code !== "OK") {
+          if (authorizeResult.code !== "OK") {
             throw authorizeResult;
           }
 
           const result = await handler.handle(req.body, di);
 
-          if (!result.code !== "OK") {
+          if (result.code !== "OK") {
             throw result;
           }
 
-          return res.status(200).send(result);
+          return res.status(200).send(result.body);
         } catch (error) {
+          console.log(error);
           next(error);
         }
       }

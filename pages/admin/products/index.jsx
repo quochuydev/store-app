@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "@utils/axios";
 import AdminLayout from "@components/admin/Layout";
+import { useQuery } from "react-query";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -24,15 +25,23 @@ export async function getServerSideProps({ req }) {
   };
 }
 
-export default function Product() {
-  const [products, setProducts] = useState([]);
+const NatsRequest = () => {
+  return {
+    request: async (subject) => {
+      const result = await axios.post(subject);
 
-  useEffect(() => {
-    axios.post("api.admin.product.getList").then((result) => {
-      const newProducts = result?.data || [];
-      setProducts(newProducts);
-    });
-  }, []);
+      return result?.data;
+    },
+  };
+};
+
+const natsRequest = NatsRequest();
+
+export default function AdminProduct() {
+  const { data: products = [] } = useQuery(["products"], async () => {
+    const result = await natsRequest.request("api/api.admin.product.getList");
+    return result?.items || [];
+  });
 
   return (
     <AdminLayout current="product">
